@@ -20,10 +20,10 @@ Welcome to the official documentation for **UTX Freight** — transport manageme
 
 ## :material-new-box: What's New
 
-**Release 2.25** -- Latest update
+**Release 3.10** — Multi-Office Shared Resources
 
-- Add **last free day** to the listing for Imports for customers view
-- Add the ability to make the **tagging mandatory** for all orders
+- Share **customers, equipment, drivers, and terminals** across offices while keeping orders and invoices segregated
+- **Monthly fuel surcharges**, **container tracking alerts**, **order archival**, and more in recent releases
 
 [:octicons-arrow-right-24: Full Changelog](freight/changelog.md)
 
