@@ -52,14 +52,18 @@ nav:
   - Getting Started:
     - freight/getting-started.md
   - Features:
+    - freight/orders.md
     - freight/dispatch.md
-    - freight/equipment.md
-    - freight/order-tagging.md
-    - freight/order-duplication.md
+    - freight/driver-workflow.md
     - freight/managing-customers.md
+    - freight/equipment.md
+    - freight/invoices.md
     - freight/fuel-surcharge.md
     - freight/container-tracking.md
+    - freight/order-tagging.md
+    - freight/order-duplication.md
     - freight/automatic-statements.md
+    - freight/reports.md
     - freight/aged-receivables.md
   - Settings:
     - freight/application-settings.md
