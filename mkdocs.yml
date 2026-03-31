@@ -17,8 +17,7 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-  icon:
-    logo: material/truck-delivery
+  logo: images/utxfreight-logo.png
   features:
     - navigation.tabs
     - navigation.instant
