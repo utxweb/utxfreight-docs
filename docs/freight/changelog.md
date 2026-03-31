@@ -6,7 +6,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ## Version 3.x
 
-### Release 3.10 — Multi-Office Shared Resources <small>Mar 2026</small>
+### Release 3.10 — Multi-Office Shared Resources
 
 #### Multi-Office Addon (Pro Module)
 
@@ -19,7 +19,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.9 — Monthly Fuel Surcharges <small>Mar 2026</small>
+### Release 3.9 — Monthly Fuel Surcharges
 
 #### Fuel Surcharge
 
@@ -34,7 +34,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.8 — Order Archival & Housekeeping <small>Mar 2026</small>
+### Release 3.8 — Order Archival & Housekeeping
 
 #### Orders
 
@@ -46,13 +46,11 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 #### Email
 
-- Add **Postmark** as an alternative email delivery method alongside SMTP
-- Configure Postmark per-edition via API settings
-- Route authentication emails (password resets, invitations) through Postmark
+- Improved **email delivery reliability** with a secondary delivery channel and per-account configuration
 
 ---
 
-### Release 3.7 — Container Tracking & Alerts <small>Mar 2026</small>
+### Release 3.7 — Container Tracking & Alerts
 
 #### Container Tracking
 
@@ -80,7 +78,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.6 — Garage Module <small>Mar 2026</small>
+### Release 3.6 — Garage Module
 
 #### Garage Addon (Pro Module)
 
@@ -95,7 +93,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.5 — Order Duplication Enhancements <small>May 2025</small>
+### Release 3.5 — Order Duplication Enhancements
 
 #### Orders
 
@@ -106,7 +104,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.4 — Audit Trail System <small>May 2025</small>
+### Release 3.4 — Audit Trail System
 
 #### Audit
 
@@ -116,7 +114,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.3 — Container Status Management <small>May 2025</small>
+### Release 3.3 — Container Status Management
 
 #### Dispatch
 
@@ -126,7 +124,7 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.2 — Reports & Invoicing <small>2024–2025</small>
+### Release 3.2 — Reports & Invoicing
 
 #### Reports
 
@@ -147,186 +145,81 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ---
 
-### Release 3.1 — User Feedback & Quality of Life <small>2024–2025</small>
+### Release 3.1 — User Feedback & Quality of Life
 
 #### General
 
 - **User feedback modal** — submit feedback directly from the app with automatic browser metadata capture
 - Equipment **re-enable restriction** — only the person who disabled equipment can re-enable it
-- Auto-login **user picker** on the login page
-
----
-
-### Release 3.0 — Platform Upgrade <small>May 2025</small>
-
-#### Platform
-
-- Upgrade to **Ruby 3.2** and **Rails 7.1**
-- Modernized application framework for improved performance and security
-- Enhanced error tracking with **Airbrake** integration
 
 ---
 
 ## Version 2.x
 
-??? note "Release 2.26 — Jun 2023"
+??? note "Version 2 — Foundation Releases"
 
-    ### Orders
+    Version 2 established the core UTX Freight platform with the features below.
 
-    - Optimize the Orders page by adding a configurable **archive cutoff date** to reduce query time
-    - Add missing database indexes for improved query performance
+    #### Orders
 
-??? note "Release 2.25 — Jun 2023"
+    - **Magic Link** — send drivers a link to auto-login and see their assigned Work Orders
+    - **Order duplication** with P/O grouping
+    - **Confirmation dialogs** before destructive actions (delete, reset)
+    - **CSV export** for open orders
+    - **Inline edit** for Purchase Order, Container Size, Steamship Line, and Terminal
+    - Normalize and validate **container numbers**
+    - Add **last free day** and **pickup number** to the Import orders listing
+    - Configurable **archive cutoff date** to improve page performance
 
-    ### Orders
+    #### Dispatch
 
-    - Add **last free day** to the listing for Imports for customers view
+    - **Combined filters** — ETA, Delivery date, Terminal, container status, and text search
+    - **Driver link** displays the driver name when copying
+    - **Pickup Number** on the Dispatch page
+    - **Port of Montreal** bulk update modal
+    - **Last Free Date (LFD)** filter with date range, No Date, and Any Date options
 
-    ### Tagging
+    #### Track and Trace
 
-    - Add the ability to make the tagging mandatory for all orders
+    - **CN Rail** Track'n Trace scheduler and modal on the Dispatch page
+    - **Port of Montreal** container tracking (Termont 68 and Viau 52)
+    - **Container movement history** and **Destination ETA** tracking
+    - **Last Free Date** for CN tracking
+    - CN Terminal filter on the Order and Dispatch pages
 
-??? note "Release 2.11 — Apr 2021"
+    #### Invoices
 
-    ### Dispatch
+    - **Clean invoice template** optimized to fit more information on a single page
+    - Automatically include the **PO#** in the invoice email subject
+    - Highlight active companies when creating invoices
 
-    - Add Port of Montreal bulk update modal
+    #### Equipment
 
-??? note "Release 2.10 — Apr 2021"
+    - Sub types: **Chassis, Trailers, and Trucks**
+    - **Search, pagination, and filters** — Inspection Due, Past Due, by type
+    - **Export to CSV** and **Enable/Disable** from the listing page
+    - Color-coded **availability status** (Inspection, Mechanical, Assignment, Active)
+    - Quick view of Equipment list on the **Orders** page
+    - Show **only active** equipment when assigning to orders
 
-    ### Invoices
+    #### Tagging
 
-    - Automatically include the PO# in the invoice email subject
+    - **Default tags** per customer — automatically applied to new orders
+    - **Mandatory tagging** option for all orders
 
-??? note "Release 2.9 — Mar 2021"
+    #### Reports
 
-    ### Dispatch
+    - **Income by Shipper** and **Income by Customer** with totals
 
-    - Include all the Orders in progress with a Last Free Date
-    - Add the **Last Free Date (LFD)** filter for the date range
-    - Add the **No Date** and **Any Date** filters
+    #### Customers
 
-    ### Track and Trace
+    - Standardized address book with all **Canada/US provinces and states**
 
-    - Hide **new** Orders when there is no information available from CN
-    - Limit the history changes to the last few relevant items
-
-??? note "Release 2.8 — Mar 2021"
-
-    ### Customers
-
-    - Standardize Customer address book with all Canada / US provinces and states
-
-    ### Dispatch
-
-    - Make the container filter exclusive
-    - Add the pickup number to searchable fields
-
-    ### Invoices
-
-    - Highlight active companies when creating **Invoices**
-
-    ### Reports
-
-    - Highlight active companies in the selection menu
-
-    ### Statement
+    #### Statements
 
     - Remove disabled companies from reporting
 
-    ### Track and Trace
+    #### Pro Modules
 
-    - Add **Port of Montreal** container tracking
-    - Add **Container** information for Termont 68 and Viau 52
-    - Add **Last Free Date** for CN tracking
-
-??? note "Release 2.7 — Feb 2021"
-
-    ### Reports
-
-    - Add **Income by Shipper**
-    - Add totals to **Income by Customer**
-
-    ### Orders
-
-    - Add **pickup number** to the listing for Imports
-
-??? note "Release 2.6 — Feb 2021"
-
-    ### Orders
-
-    - Inline edit for **Purchase Order, Container Size, Steamship Line** and **Terminal**
-    - Normalize the **container number**
-
-    ### Tagging
-
-    - Add the ability to set a **default tag** for each customer
-
-    ### Track and Trace
-
-    - Add **Container** movement history
-    - Track container **Destination ETA** updates
-
-??? note "Release 2.5 — Feb 2021"
-
-    ### Dispatch
-
-    - Enable **Dispatch** filter toggling to improve user experience
-    - Add the Order **Pickup Number** to the Dispatch page
-
-    ### Warehouse Addon (Pro Module)
-
-    - Documentation coming soon
-
-??? note "Release 2.4 — Feb 2021"
-
-    ### Dispatch
-
-    - Improve the **Dispatch** filtering to support combined filters, **ETA** and **Delivery** date filtering, **Terminal** filtering and container status combined with text search.
-
-    ### Orders
-
-    - Add the ability to export **open** orders to **CSV**
-
-??? note "Release 2.3 — Feb 2021"
-
-    ### Track and Trace
-
-    - Add **CN** Track'n Trace scheduler
-    - Add **CN** Track'n Trace modal on the **Dispatch** page
-    - Add **CN Terminal** filter on the **Order** and **Dispatch page**
-
-??? note "Release 2.2 — Feb 2021"
-
-    ### Dispatch
-
-    - Enhance the **driver link** to display the driver name when copying the link
-
-    ### Invoices
-
-    - New **clean** invoice template optimized to fit more information on a single page
-
-    ### Orders
-
-    - Add **confirmation** messages before performing assertive actions such as delete or reset orders
-
-??? note "Release 2.1 — Jan 2021"
-
-    ### Equipments
-
-    - Add a sub type to the Equipments Type in order to categorize the Equipment into **Chassis, Trailers and Trucks**
-    - Add a **search box, pagination** and multiple **filters** on the Equipment list page
-    - Add an **Export to CSV** button to the Equipment list page
-    - Add the ability to **Enable / Disable** the equipment directly from the Equipment list page
-    - Add clear codes (green, orange and red) for the different Equipment attributes such as **Inspection Status, Mechanical Status, Order Assignment and Active Status**
-    - Add a quick view of the Equipment list on the **Orders** page
-    - Improve the **Equipment Selection** on the Orders and Dispatch page to display **only active** equipment
-
-    ### Orders
-
-    - Add a **Magic Link** that can be sent to drivers which allows them to auto-login to the application and see their assigned **Work Orders**
-    - Make the Order history modal scrollable
-
-    ### SMS Addon (Pro Module)
-
-    - Add an **SMS module** which allows to send SMS messages to Drivers with the **Magic Link** to auto login to the mobile application
+    - **SMS Addon** — send Magic Link via SMS to drivers
+    - **Warehouse Addon**
