@@ -1,9 +1,9 @@
-.text-success .twemoji svg { color: #4caf50; }
-.text-danger .twemoji svg { color: #f44336; }
-.text-warning .twemoji svg { color: #ff9800; }
-.text-info .twemoji svg { color: #2196f3; }
-.text-primary .twemoji svg { color: #1976d2; }
-.text-secondary .twemoji svg { color: #9e9e9e; }
+.twemoji.text-success svg { color: #4caf50; }
+.twemoji.text-danger svg { color: #f44336; }
+.twemoji.text-warning svg { color: #ff9800; }
+.twemoji.text-info svg { color: #2196f3; }
+.twemoji.text-primary svg { color: #1976d2; }
+.twemoji.text-secondary svg { color: #9e9e9e; }
 
 /* Announce bar CTA */
 .cta-announce {
