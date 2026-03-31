@@ -18,6 +18,7 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
   logo: images/utxfreight-logo.png
+  custom_dir: docs/overrides
   features:
     - navigation.tabs
     - navigation.instant
