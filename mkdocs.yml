@@ -1,0 +1,72 @@
+site_name: UTX Freight Documentation
+site_url: https://docs.utxfreight.ca
+site_description: Official documentation for UTX Freight — transport management software
+
+theme:
+  name: material
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: amber
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    logo: material/truck-delivery
+  features:
+    - navigation.tabs
+    - navigation.instant
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+plugins:
+  - search
+  - glightbox  # click-to-zoom on images
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - tables
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - freight/getting-started.md
+  - Features:
+    - freight/dispatch.md
+    - freight/equipment.md
+    - freight/order-tagging.md
+    - freight/order-duplication.md
+    - freight/managing-customers.md
+    - freight/fuel-surcharge.md
+    - freight/container-tracking.md
+    - freight/automatic-statements.md
+    - freight/aged-receivables.md
+  - Settings:
+    - freight/application-settings.md
+    - freight/user-roles.md
+  - Changelog: freight/changelog.md
+
+extra:
+  social:
+    - icon: fontawesome/solid/globe
+      link: https://utxfreight.ca
