@@ -19,7 +19,7 @@ The Order Duplication feature allows you to quickly create multiple copies of an
     - **Copy Container Status**
 6. **Click "Create Orders"** to complete the duplication
 
-<!-- TODO: Add screenshot - Duplicate Order Modal -->
+![Duplicate Order Modal](../images/order-duplication-modal.png)
 
 ## Finding Duplicated Orders
 
