@@ -1,0 +1,6 @@
+.text-success .twemoji svg { color: #4caf50; }
+.text-danger .twemoji svg { color: #f44336; }
+.text-warning .twemoji svg { color: #ff9800; }
+.text-info .twemoji svg { color: #2196f3; }
+.text-primary .twemoji svg { color: #1976d2; }
+.text-secondary .twemoji svg { color: #9e9e9e; }
