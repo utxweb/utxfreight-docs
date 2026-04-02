@@ -12,7 +12,7 @@ Every order in UTX Freight is placed on behalf of a **contact person** from a **
 - :fontawesome-solid-gas-pump: **Fuel surcharge exemptions** can be configured per customer.
 - :fontawesome-solid-envelope: **Automatic statements** can be scheduled per customer.
 
-<!-- TODO: Screenshot — The Customers list page showing the sidebar filters, search bar, and company list -->
+![The Customers list page showing sidebar filters, search bar, and company list](../images/customers-list.png)
 
 ---
 
@@ -64,7 +64,7 @@ Every order in UTX Freight is placed on behalf of a **contact person** from a **
 | **Office #** | Phone number |
 | **Fax #** | Fax number |
 
-<!-- TODO: Screenshot — The customer creation form showing the company information fields -->
+![The customer creation form showing company information, email, and rate fields](../images/customers-form.png)
 
 ### Email Settings
 
@@ -96,7 +96,7 @@ Once a company exists, add contacts who will be associated with orders:
 !!! warning "Invitation email"
     Adding a person triggers an automatic invitation email. The contact can then log in and place orders. Use a placeholder email if you want to delay this.
 
-<!-- TODO: Screenshot — The Add Person form showing name and email fields -->
+![The Add Person form showing name, email, and contact fields](../images/customers-add-person.png)
 
 ---
 
@@ -124,10 +124,16 @@ For full details, see [Fuel Surcharge — Exempting a Customer](fuel-surcharge.m
 
 If the **Automatic Statements** addon is enabled, you can set the delivery day:
 
-- On the customer edit form, select a day from the **Send statement on** dropdown.
+- On the customer edit form, select a day from the **Send weekly statement on** dropdown.
 - The statement email is sent automatically on that day if the customer has an outstanding balance.
 
 For full details, see [Automatic Statements](automatic-statements.md).
+
+### Custom Rates
+
+Set **zone-based custom rates** for the customer. Select the **Zone** and enter the **Rate**, then click **Add another** to add more.
+
+![Customer edit form showing statement schedule, custom rates, fuel exemption, and broker settings](../images/customers-edit-settings.png)
 
 ---
 
@@ -177,10 +183,6 @@ The customer and all their historical orders remain in the system — they are j
 
 ---
 
-## Screenshots Needed
+### Broker / Transport Company
 
-!!! info "Screenshots to capture"
-    1. **Customers list page** — showing sidebar filters (All Active / Disabled / Brokers), search bar, and a few companies listed
-    2. **Customer creation form** — showing company info fields, email settings, and rate section
-    3. **Add Person form** — showing first name, last name, email fields
-    4. **Customer edit form** — showing the Default Tag dropdown and Fuel Surcharge exemption checkbox (if visible)
+Check **Broker** to flag this company as a broker. Broker companies appear under the **Brokers** filter on the Customers list.
