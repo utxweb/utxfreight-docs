@@ -13,9 +13,30 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 - Share **customers, equipment, drivers, terminals, and shippers** across offices while keeping **orders and invoices** segregated per office
 - Office-specific customer and equipment management
 
+#### Garage Addon (Pro Module)
+
+- **Reopen completed work orders** — move a finished work order back to approved status for additional edits
+- **Customer work summary reports** — generate service history reports per customer
+- **Void and delete invoices** — void an invoice to reverse it or delete it entirely, with confirmation prompts
+- Improved **confirmation dialogs** before destructive actions (void, delete)
+- Visual and layout improvements to **PDF invoices and estimates**
+
 #### Orders
 
 - Clear appointment fields automatically when resetting an order back to **New**
+- Improved **archive experience** with a cleaner interface for managing archived orders
+
+#### Email & Notifications
+
+- Restored **multiple recipients** support — send emails with To, CC, and BCC fields
+- **Feedback notifications** — new user feedback submissions are emailed to the support team
+- Respect **notification preferences** — only send tracking digests and alerts to users who opted in
+
+#### General
+
+- **File upload limit** — 20 MB maximum per attachment across all upload areas
+- Improved **email address validation** throughout the application
+- Performance improvements for offices with large order volumes
 
 ---
 
