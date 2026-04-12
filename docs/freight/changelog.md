@@ -6,6 +6,20 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ## Version 3.x
 
+### Release 3.11 — Compound Search & Filtering
+
+#### Orders
+
+- **Compound search and filters** — combine any mix of status tab, order type, container status, terminal, search text, and tags in a single view. Filters chain independently rather than overriding each other
+- **New filter interface** — full-width search bar with inline filter chips, a 3-column card grid for Order Type / Container Status / Terminal, and a **Clear All** button
+- **Filter chips** — each active filter appears as a removable badge; click the × to drop one dimension while keeping the rest
+- **Order Type filter** — filter orders by type (Import, Export, Transfer, etc.) as a distinct dimension from container status
+- **N/A container status** option for orders where a container status has not been set
+- Renamed the **Terminal** card (previously labelled Location) for consistency across the interface
+- Shareable, bookmarkable filter URLs — the address bar reflects the exact filter state
+
+---
+
 ### Release 3.10 — Multi-Office Shared Resources
 
 #### Multi-Office Addon (Pro Module)

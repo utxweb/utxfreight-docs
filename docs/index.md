@@ -22,10 +22,10 @@ Welcome to the official documentation for **UTX Freight** — transport manageme
 
 ### :material-new-box: What's New
 
-<span class="version-pill">Release 3.10</span> **Multi-Office Shared Resources**
+<span class="version-pill">Release 3.11</span> **Compound Search & Filtering**
 
-- Share **customers, equipment, drivers, and terminals** across offices while keeping orders and invoices segregated
-- **Monthly fuel surcharges**, **container tracking alerts**, **order archival**, and more in recent releases
+- Combine **status, order type, container status, terminal, search, and tags** in a single view with a redesigned filter bar
+- **Multi-office shared resources**, **Garage improvements**, and more in recent releases
 
 [:octicons-arrow-right-24: Full Changelog](freight/changelog.md)
 
