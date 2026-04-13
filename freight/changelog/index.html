@@ -1,0 +1,2573 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Official documentation for UTX Freight — transport management software">
+      
+      
+      
+        <link rel="canonical" href="https://docs.utxfreight.ca/freight/changelog/">
+      
+      
+        <link rel="prev" href="../user-roles/">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Changelog - UTX Freight Documentation</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <a href="https://www.utxfreight.ca/#demo" target="_blank" class="cta-announce">
+    <strong>Interested in UTX Freight?</strong> &nbsp; Request a Demo →
+  </a>
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="UTX Freight Documentation" class="md-header__button md-logo" aria-label="UTX Freight Documentation" data-md-component="logo">
+      
+  <img src="../../images/utxfreight-logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            UTX Freight Documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="amber" aria-label="Switch to dark mode" type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="amber" aria-label="Switch to light mode" type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden="">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/" class="md-tabs__link">
+          
+  
+  
+  Getting Started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../orders/" class="md-tabs__link">
+          
+  
+  
+  Features
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../application-settings/" class="md-tabs__link">
+          
+  
+  
+  Settings
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="UTX Freight Documentation" class="md-nav__button md-logo" aria-label="UTX Freight Documentation" data-md-component="logo">
+      
+  <img src="../../images/utxfreight-logo.png" alt="logo">
+
+    </a>
+    UTX Freight Documentation
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2">
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting Started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting Started
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3">
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Features
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Features
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../orders/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Orders Management
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dispatch/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dispatch
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../driver-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Driver Workflow &amp; Mobile Access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../managing-customers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Customers
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../managing-terminals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Managing Terminals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../equipment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Equipment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../invoices/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Invoices
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fuel-surcharge/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fuel Surcharge
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../container-tracking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Container Tracking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../order-tagging/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Order Tagging
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../order-duplication/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Order Duplication
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../automatic-statements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Automatic Statements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reports/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../aged-receivables/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reporting - Aged Receivables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4">
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Settings
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Settings
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../application-settings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Application Settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../user-roles/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    User Roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#version-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 3.x
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 3.x">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-311-compound-search-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.11 — Compound Search &amp; Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.11 — Compound Search &amp; Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-310-multi-office-shared-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.10 — Multi-Office Shared Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.10 — Multi-Office Shared Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-office-addon-pro-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Office Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garage-addon-pro-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orders_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email &amp; Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-39-monthly-fuel-surcharges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.9 — Monthly Fuel Surcharges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.9 — Monthly Fuel Surcharges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuel-surcharge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuel Surcharge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-38-order-archival-housekeeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.8 — Order Archival &amp; Housekeeping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.8 — Order Archival &amp; Housekeeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-37-container-tracking-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.7 — Container Tracking &amp; Alerts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.7 — Container Tracking &amp; Alerts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-36-garage-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.6 — Garage Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.6 — Garage Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#garage-addon-pro-module_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-35-order-duplication-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.5 — Order Duplication Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.5 — Order Duplication Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-34-audit-trail-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.4 — Audit Trail System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.4 — Audit Trail System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-33-container-status-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.3 — Container Status Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.3 — Container Status Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dispatch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-32-reports-invoicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.2 — Reports &amp; Invoicing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.2 — Reports &amp; Invoicing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orders_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-31-user-feedback-quality-of-life" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.1 — User Feedback &amp; Quality of Life
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.1 — User Feedback &amp; Quality of Life">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-2x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 2.x
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 2.x">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispatch_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-and-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track and Trace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reports_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pro-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pro Modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#version-3x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 3.x
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 3.x">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#release-311-compound-search-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.11 — Compound Search &amp; Filtering
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.11 — Compound Search &amp; Filtering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-310-multi-office-shared-resources" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.10 — Multi-Office Shared Resources
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.10 — Multi-Office Shared Resources">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#multi-office-addon-pro-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Multi-Office Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#garage-addon-pro-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orders_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email-notifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email &amp; Notifications
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-39-monthly-fuel-surcharges" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.9 — Monthly Fuel Surcharges
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.9 — Monthly Fuel Surcharges">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fuel-surcharge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fuel Surcharge
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-38-order-archival-housekeeping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.8 — Order Archival &amp; Housekeeping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.8 — Order Archival &amp; Housekeeping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#email" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Email
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-37-container-tracking-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.7 — Container Tracking &amp; Alerts
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.7 — Container Tracking &amp; Alerts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#container-tracking" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container Tracking
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-alerts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Container Alerts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-36-garage-module" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.6 — Garage Module
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.6 — Garage Module">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#garage-addon-pro-module_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Garage Addon (Pro Module)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-35-order-duplication-enhancements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.5 — Order Duplication Enhancements
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.5 — Order Duplication Enhancements">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-34-audit-trail-system" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.4 — Audit Trail System
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.4 — Audit Trail System">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-33-container-status-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.3 — Container Status Management
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.3 — Container Status Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dispatch_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-32-reports-invoicing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.2 — Reports &amp; Invoicing
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.2 — Reports &amp; Invoicing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoices" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#orders_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#release-31-user-feedback-quality-of-life" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Release 3.1 — User Feedback &amp; Quality of Life
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Release 3.1 — User Feedback &amp; Quality of Life">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#general_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        General
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#version-2x" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Version 2.x
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Version 2.x">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#orders_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Orders
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dispatch_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dispatch
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#track-and-trace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Track and Trace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invoices_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invoices
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#equipment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Equipment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tagging" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tagging
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reports_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reports
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#customers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Customers
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statements" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Statements
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pro-modules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pro Modules
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">¶</a></h1>
+<p>All notable changes to UTX Freight are documented here. Releases are listed newest first.</p>
+<hr>
+<h2 id="version-3x">Version 3.x<a class="headerlink" href="#version-3x" title="Permanent link">¶</a></h2>
+<h3 id="release-311-compound-search-filtering">Release 3.11 — Compound Search &amp; Filtering<a class="headerlink" href="#release-311-compound-search-filtering" title="Permanent link">¶</a></h3>
+<h4 id="orders">Orders<a class="headerlink" href="#orders" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Compound search and filters</strong> — combine any mix of status tab, order type, container status, terminal, search text, and tags in a single view. Filters chain independently rather than overriding each other</li>
+<li><strong>New filter interface</strong> — full-width search bar with inline filter chips, a 3-column card grid for Order Type / Container Status / Terminal, and a <strong>Clear All</strong> button</li>
+<li><strong>Filter chips</strong> — each active filter appears as a removable badge; click the × to drop one dimension while keeping the rest</li>
+<li><strong>Order Type filter</strong> — filter orders by type (Import, Export, Transfer, etc.) as a distinct dimension from container status</li>
+<li><strong>N/A container status</strong> option for orders where a container status has not been set</li>
+<li>Renamed the <strong>Terminal</strong> card (previously labelled Location) for consistency across the interface</li>
+<li>Shareable, bookmarkable filter URLs — the address bar reflects the exact filter state</li>
+</ul>
+<hr>
+<h3 id="release-310-multi-office-shared-resources">Release 3.10 — Multi-Office Shared Resources<a class="headerlink" href="#release-310-multi-office-shared-resources" title="Permanent link">¶</a></h3>
+<h4 id="multi-office-addon-pro-module">Multi-Office Addon (Pro Module)<a class="headerlink" href="#multi-office-addon-pro-module" title="Permanent link">¶</a></h4>
+<ul>
+<li>Share <strong>customers, equipment, drivers, terminals, and shippers</strong> across offices while keeping <strong>orders and invoices</strong> segregated per office</li>
+<li>Office-specific customer and equipment management</li>
+</ul>
+<h4 id="garage-addon-pro-module">Garage Addon (Pro Module)<a class="headerlink" href="#garage-addon-pro-module" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Reopen completed work orders</strong> — move a finished work order back to approved status for additional edits</li>
+<li><strong>Customer work summary reports</strong> — generate service history reports per customer</li>
+<li><strong>Void and delete invoices</strong> — void an invoice to reverse it or delete it entirely, with confirmation prompts</li>
+<li>Improved <strong>confirmation dialogs</strong> before destructive actions (void, delete)</li>
+<li>Visual and layout improvements to <strong>PDF invoices and estimates</strong></li>
+</ul>
+<h4 id="orders_1">Orders<a class="headerlink" href="#orders_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>Clear appointment fields automatically when resetting an order back to <strong>New</strong></li>
+<li>Improved <strong>archive experience</strong> with a cleaner interface for managing archived orders</li>
+</ul>
+<h4 id="email-notifications">Email &amp; Notifications<a class="headerlink" href="#email-notifications" title="Permanent link">¶</a></h4>
+<ul>
+<li>Restored <strong>multiple recipients</strong> support — send emails with To, CC, and BCC fields</li>
+<li><strong>Feedback notifications</strong> — new user feedback submissions are emailed to the support team</li>
+<li>Respect <strong>notification preferences</strong> — only send tracking digests and alerts to users who opted in</li>
+</ul>
+<h4 id="general">General<a class="headerlink" href="#general" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>File upload limit</strong> — 20 MB maximum per attachment across all upload areas</li>
+<li>Improved <strong>email address validation</strong> throughout the application</li>
+<li>Performance improvements for offices with large order volumes</li>
+</ul>
+<hr>
+<h3 id="release-39-monthly-fuel-surcharges">Release 3.9 — Monthly Fuel Surcharges<a class="headerlink" href="#release-39-monthly-fuel-surcharges" title="Permanent link">¶</a></h3>
+<h4 id="fuel-surcharge">Fuel Surcharge<a class="headerlink" href="#fuel-surcharge" title="Permanent link">¶</a></h4>
+<ul>
+<li>Replace the weekly fuel surcharge system with a <strong>monthly system</strong> — set one rate per month instead of per week</li>
+<li><strong>Quick Set</strong> form to create or update rates for any month with copy-forward support</li>
+<li><strong>Custom company rates</strong> to override the general rate for specific customers</li>
+<li><strong>Exempt customers</strong> from fuel surcharges with a checkbox on the customer profile</li>
+<li><strong>Recalculate</strong> button to update all open orders in a month with one click, with a preview modal</li>
+<li><strong>Stale charge detection</strong> — red indicators when exempt customers still have fuel charges</li>
+<li><strong>Missing rates warning</strong> banner for months without a defined rate</li>
+<li>Legacy weekly rates preserved for historical orders</li>
+</ul>
+<hr>
+<h3 id="release-38-order-archival-housekeeping">Release 3.8 — Order Archival &amp; Housekeeping<a class="headerlink" href="#release-38-order-archival-housekeeping" title="Permanent link">¶</a></h3>
+<h4 id="orders_2">Orders<a class="headerlink" href="#orders_2" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Stale order detection</strong> — automatically identify orders that have been open longer than the configured threshold</li>
+<li><strong>Bulk archive</strong> stale orders to keep the Orders and Dispatch pages clean</li>
+<li><strong>Safe archive UX</strong> — archived orders moved to a separate view with visual indicators</li>
+<li><strong>Type-to-confirm delete</strong> — orders can only be deleted from the archived view with a confirmation step</li>
+<li><strong>Restore</strong> archived orders back to active status</li>
+</ul>
+<h4 id="email">Email<a class="headerlink" href="#email" title="Permanent link">¶</a></h4>
+<ul>
+<li>Improved <strong>email delivery reliability</strong> with a secondary delivery channel and per-account configuration</li>
+</ul>
+<hr>
+<h3 id="release-37-container-tracking-alerts">Release 3.7 — Container Tracking &amp; Alerts<a class="headerlink" href="#release-37-container-tracking-alerts" title="Permanent link">¶</a></h3>
+<h4 id="container-tracking">Container Tracking<a class="headerlink" href="#container-tracking" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Real-time container tracking</strong> across three terminal sources: CN Rail, Termont (Port of Montreal), and MGT (Racine/Cast)</li>
+<li>Automatic updates <strong>every 10 minutes</strong> from all terminal sources</li>
+<li><strong>Tracking modal</strong> with color-coded headers — green for ready to pick up, blue for in transit, red for holds</li>
+<li><strong>Auto-populate order fields</strong> from terminal data — seal number, weight, steamship line, container size, and customs status</li>
+<li><strong>Container number trimming</strong> — automatically strip whitespace from container numbers</li>
+<li><strong>Pipeline health dashboard</strong> showing submitted vs. found container counts per terminal</li>
+</ul>
+<h4 id="container-alerts">Container Alerts<a class="headerlink" href="#container-alerts" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Alerts Dashboard</strong> with summary cards for Pickup Ready, Customs Released, LFD Approaching, and Departed</li>
+<li><strong>Upcoming Last Free Days table</strong> with color-coded urgency rows (red = expired, yellow = 1-2 days)</li>
+<li><strong>Integration Health cards</strong> — green/red border indicating whether terminal data is fresh or stale</li>
+<li><strong>Daily digest email</strong> summarizing all new tracking alerts</li>
+<li><strong>Email subscriptions</strong> — choose which alert types to receive</li>
+<li>Suppress stale container alerts for containers no longer being tracked</li>
+</ul>
+<h4 id="dispatch">Dispatch<a class="headerlink" href="#dispatch" title="Permanent link">¶</a></h4>
+<ul>
+<li>Add <strong>inbound container status</strong> filter options</li>
+<li>New container statuses: <strong>Empty at Eco</strong>, <strong>Full at Eco</strong></li>
+<li>Display <strong>vessel cutoff date</strong> on the Dispatch page</li>
+</ul>
+<hr>
+<h3 id="release-36-garage-module">Release 3.6 — Garage Module<a class="headerlink" href="#release-36-garage-module" title="Permanent link">¶</a></h3>
+<h4 id="garage-addon-pro-module_1">Garage Addon (Pro Module)<a class="headerlink" href="#garage-addon-pro-module_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>Complete <strong>fleet and vehicle management</strong> system</li>
+<li><strong>Dashboard</strong> with vehicle overview, upcoming maintenance, and service history</li>
+<li><strong>Canned jobs</strong> — pre-defined service templates for common maintenance tasks</li>
+<li><strong>CSV import</strong> for bulk vehicle data migration</li>
+<li><strong>VIN decoder</strong> — automatically populate vehicle details from VIN</li>
+<li><strong>Invoice email</strong> with PDF attachment and company logo</li>
+<li><strong>Tax management</strong> with per-line taxable toggles</li>
+<li><strong>License plate search</strong> across the fleet</li>
+</ul>
+<hr>
+<h3 id="release-35-order-duplication-enhancements">Release 3.5 — Order Duplication Enhancements<a class="headerlink" href="#release-35-order-duplication-enhancements" title="Permanent link">¶</a></h3>
+<h4 id="orders_3">Orders<a class="headerlink" href="#orders_3" title="Permanent link">¶</a></h4>
+<ul>
+<li>Enhanced <strong>order duplication</strong> with selectable fields — choose which fields to copy (pickup number, drivers, equipment, container status)</li>
+<li><strong>Quantity selector</strong> for bulk duplication (1-100 copies)</li>
+<li>Duplication modal shows which fields will and will not be copied</li>
+<li>Automatic redirect to filtered view after duplication</li>
+</ul>
+<hr>
+<h3 id="release-34-audit-trail-system">Release 3.4 — Audit Trail System<a class="headerlink" href="#release-34-audit-trail-system" title="Permanent link">¶</a></h3>
+<h4 id="audit">Audit<a class="headerlink" href="#audit" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Reusable audit trail</strong> for all major modules — view history for orders, equipment, container sizes, checks, and more</li>
+<li><strong>History modal</strong> accessible from listing pages with a single click</li>
+<li>Enhanced tag handling in audit history</li>
+</ul>
+<hr>
+<h3 id="release-33-container-status-management">Release 3.3 — Container Status Management<a class="headerlink" href="#release-33-container-status-management" title="Permanent link">¶</a></h3>
+<h4 id="dispatch_1">Dispatch<a class="headerlink" href="#dispatch_1" title="Permanent link">¶</a></h4>
+<ul>
+<li>New <strong>container status management</strong> interface</li>
+<li>Custom container statuses for <strong>container transfers</strong></li>
+<li>Modernized layout for container status configuration</li>
+</ul>
+<hr>
+<h3 id="release-32-reports-invoicing">Release 3.2 — Reports &amp; Invoicing<a class="headerlink" href="#release-32-reports-invoicing" title="Permanent link">¶</a></h3>
+<h4 id="reports">Reports<a class="headerlink" href="#reports" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Aged Receivables</strong> report — Performance AR (operational, 12-month view) and Standard AR (GAAP-compliant snapshot)</li>
+<li><strong>QuickBooks invoice export</strong> for accounting integration</li>
+</ul>
+<h4 id="invoices">Invoices<a class="headerlink" href="#invoices" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Invoice discrepancies</strong> feature to identify payment mismatches</li>
+<li>Track <strong>appointment and completed dates</strong> on invoices</li>
+<li><strong>Due on Receipt</strong> invoice term option</li>
+<li><strong>Recover deleted invoices</strong> via Super User Dashboard</li>
+</ul>
+<h4 id="orders_4">Orders<a class="headerlink" href="#orders_4" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>"From Email" filter</strong> on the Orders page</li>
+<li>New terminal filters: <strong>CP, Racine, Cast</strong></li>
+</ul>
+<hr>
+<h3 id="release-31-user-feedback-quality-of-life">Release 3.1 — User Feedback &amp; Quality of Life<a class="headerlink" href="#release-31-user-feedback-quality-of-life" title="Permanent link">¶</a></h3>
+<h4 id="general_1">General<a class="headerlink" href="#general_1" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>User feedback modal</strong> — submit feedback directly from the app with automatic browser metadata capture</li>
+<li>Equipment <strong>re-enable restriction</strong> — only the person who disabled equipment can re-enable it</li>
+</ul>
+<hr>
+<h2 id="version-2x">Version 2.x<a class="headerlink" href="#version-2x" title="Permanent link">¶</a></h2>
+<details class="note">
+<summary>Version 2 — Foundation Releases</summary>
+<p>Version 2 established the core UTX Freight platform with the features below.</p>
+<h4 id="orders_5">Orders<a class="headerlink" href="#orders_5" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Magic Link</strong> — send drivers a link to auto-login and see their assigned Work Orders</li>
+<li><strong>Order duplication</strong> with P/O grouping</li>
+<li><strong>Confirmation dialogs</strong> before destructive actions (delete, reset)</li>
+<li><strong>CSV export</strong> for open orders</li>
+<li><strong>Inline edit</strong> for Purchase Order, Container Size, Steamship Line, and Terminal</li>
+<li>Normalize and validate <strong>container numbers</strong></li>
+<li>Add <strong>last free day</strong> and <strong>pickup number</strong> to the Import orders listing</li>
+<li>Configurable <strong>archive cutoff date</strong> to improve page performance</li>
+</ul>
+<h4 id="dispatch_2">Dispatch<a class="headerlink" href="#dispatch_2" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Combined filters</strong> — ETA, Delivery date, Terminal, container status, and text search</li>
+<li><strong>Driver link</strong> displays the driver name when copying</li>
+<li><strong>Pickup Number</strong> on the Dispatch page</li>
+<li><strong>Port of Montreal</strong> bulk update modal</li>
+<li><strong>Last Free Date (LFD)</strong> filter with date range, No Date, and Any Date options</li>
+</ul>
+<h4 id="track-and-trace">Track and Trace<a class="headerlink" href="#track-and-trace" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>CN Rail</strong> Track'n Trace scheduler and modal on the Dispatch page</li>
+<li><strong>Port of Montreal</strong> container tracking (Termont 68 and Viau 52)</li>
+<li><strong>Container movement history</strong> and <strong>Destination ETA</strong> tracking</li>
+<li><strong>Last Free Date</strong> for CN tracking</li>
+<li>CN Terminal filter on the Order and Dispatch pages</li>
+</ul>
+<h4 id="invoices_1">Invoices<a class="headerlink" href="#invoices_1" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Clean invoice template</strong> optimized to fit more information on a single page</li>
+<li>Automatically include the <strong>PO#</strong> in the invoice email subject</li>
+<li>Highlight active companies when creating invoices</li>
+</ul>
+<h4 id="equipment">Equipment<a class="headerlink" href="#equipment" title="Permanent link">¶</a></h4>
+<ul>
+<li>Sub types: <strong>Chassis, Trailers, and Trucks</strong></li>
+<li><strong>Search, pagination, and filters</strong> — Inspection Due, Past Due, by type</li>
+<li><strong>Export to CSV</strong> and <strong>Enable/Disable</strong> from the listing page</li>
+<li>Color-coded <strong>availability status</strong> (Inspection, Mechanical, Assignment, Active)</li>
+<li>Quick view of Equipment list on the <strong>Orders</strong> page</li>
+<li>Show <strong>only active</strong> equipment when assigning to orders</li>
+</ul>
+<h4 id="tagging">Tagging<a class="headerlink" href="#tagging" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Default tags</strong> per customer — automatically applied to new orders</li>
+<li><strong>Mandatory tagging</strong> option for all orders</li>
+</ul>
+<h4 id="reports_1">Reports<a class="headerlink" href="#reports_1" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>Income by Shipper</strong> and <strong>Income by Customer</strong> with totals</li>
+</ul>
+<h4 id="customers">Customers<a class="headerlink" href="#customers" title="Permanent link">¶</a></h4>
+<ul>
+<li>Standardized address book with all <strong>Canada/US provinces and states</strong></li>
+</ul>
+<h4 id="statements">Statements<a class="headerlink" href="#statements" title="Permanent link">¶</a></h4>
+<ul>
+<li>Remove disabled companies from reporting</li>
+</ul>
+<h4 id="pro-modules">Pro Modules<a class="headerlink" href="#pro-modules" title="Permanent link">¶</a></h4>
+<ul>
+<li><strong>SMS Addon</strong> — send Magic Link via SMS to drivers</li>
+<li><strong>Warehouse Addon</strong></li>
+</ul>
+</details>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://utxfreight.ca" target="_blank" rel="noopener" title="utxfreight.ca" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M351.9 280H161c2.9 64.5 17.2 123.9 37.5 167.4 11.4 24.5 23.7 41.8 35.1 52.4 11.2 10.5 18.9 12.2 22.9 12.2s11.7-1.7 22.9-12.2c11.4-10.6 23.7-28 35.1-52.4 20.3-43.5 34.6-102.9 37.5-167.4zm-191-48h190.9c-2.8-64.5-17.1-123.9-37.4-167.4-11.4-24.4-23.7-41.8-35.1-52.4C268.1 1.7 260.4 0 256.4 0s-11.7 1.7-22.9 12.2c-11.4 10.6-23.7 28-35.1 52.4-20.3 43.5-34.6 102.9-37.5 167.4m-48 0c3.5-85.6 25.6-165.1 57.9-217.3C78.7 47.3 10.9 131.2 1.5 232zM1.5 280c9.4 100.8 77.2 184.7 169.3 217.3-32.3-52.2-54.4-131.7-57.9-217.3zm398.4 0c-3.5 85.6-25.6 165.1-57.9 217.3 92.1-32.7 159.9-116.5 169.3-217.3zm111.4-48C501.9 131.2 434.1 47.3 342 14.7c32.3 52.2 54.4 131.7 57.9 217.3z"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.instant", "navigation.sections", "navigation.top", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
