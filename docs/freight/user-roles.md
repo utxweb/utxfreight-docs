@@ -57,4 +57,4 @@ Each user in the system has one of the predefined roles. Here is a breakdown of 
 
 !!! info "Dispatcher abilities marked with YES* are conditional:"
     - **Can Manage Rates** permissions (Cities, Expenses, Rates, Audit orders): Enable per dispatcher user in their profile settings.
-    - **Manage Customers** and **Manage Terminals**: Require system configuration (contact your administrator).
+    - **Manage Customers** and **Manage Terminals**: Require system configuration (contact your administrator). See [Managing Terminals](managing-terminals.md) for details.

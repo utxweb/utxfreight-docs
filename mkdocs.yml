@@ -56,6 +56,7 @@ nav:
     - freight/dispatch.md
     - freight/driver-workflow.md
     - freight/managing-customers.md
+    - freight/managing-terminals.md
     - freight/equipment.md
     - freight/invoices.md
     - freight/fuel-surcharge.md
