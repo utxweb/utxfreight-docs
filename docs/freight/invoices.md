@@ -9,10 +9,11 @@ The **Invoices** page is where you manage the billing cycle — from creating in
 - :fontawesome-solid-plus: **Create invoices** from completed orders
 - :fontawesome-solid-envelope: **Email invoices** directly to customers
 - :fontawesome-solid-filter: **Track payment status** — New, Invoiced, Paid, Partially Paid
-- :fontawesome-solid-clock: **Monitor overdue invoices** — Past Due, 30+, 60+ day filters
-- :fontawesome-solid-file-export: **Export** to CSV, Excel, or QuickBooks format
+- :fontawesome-solid-calendar: **Narrow by invoice date** — pick a range or use a preset
+- :fontawesome-solid-clock: **Track what you are owed** — AR aging by days past due
+- :fontawesome-solid-file-export: **Export exactly what you filtered** to Excel or CSV
 
-<!-- TODO: Screenshot — The Invoices list page showing filter tabs, search bar, and invoice rows with status badges -->
+<!-- TODO: Screenshot — The Invoices list page showing invoice rows with status badges and the total footer -->
 
 ---
 
@@ -41,9 +42,20 @@ The **Invoices** page is where you manage the billing cycle — from creating in
 
 ## :fontawesome-solid-filter: Invoice Filters
 
-The filter bar at the top helps you manage your invoice pipeline:
+The filter bar sits at the top of the Invoices page. Every control narrows the same list, and they combine — pick a status, add a date range, add an aging band, and you get the invoices matching all three.
 
-### Payment Status
+![The Invoices filter bar showing the search box, status tabs, Invoice Date range with presets, AR Aging bands, and the Export panel](../images/invoices-filters.png)
+
+!!! tip "Your filters follow you into the export"
+    The **Export** panel tells you exactly what you are about to download — for example *"Exports the 1,002 invoices currently listed (All unpaid)"*. The file always matches the list on screen.
+
+### :fontawesome-solid-magnifying-glass: Search
+
+Search by **invoice number**, **container number**, or **company name**. Searching narrows whatever you are already looking at instead of resetting it.
+
+Each active filter shows as a small removable chip inside the search box — click the **✕** on a chip to drop that one filter and keep the rest. **Clear All** resets the page to its default view.
+
+### :fontawesome-solid-tags: Payment Status
 
 | Filter | Shows |
 |--------|-------|
@@ -54,32 +66,45 @@ The filter bar at the top helps you manage your invoice pipeline:
 | **Paid** | Fully paid invoices |
 | **Partially Paid** | Invoices with partial payments recorded |
 
-### Overdue
+### :fontawesome-solid-calendar: Invoice Date
 
-| Filter | Shows |
-|--------|-------|
-| **Past Due** | Any invoice past its due date |
-| **Past Due (30+ days)** | Invoices overdue by 30 or more days |
-| **Past Due (60+ days)** | Invoices overdue by 60 or more days |
+Filter by the date on the invoice. Type a **from** and **to** date and click **Apply**, or use a preset:
+
+**This Month** · **Last Month** · **This Year** · **last year** (shown as the year itself, e.g. *2025*) · **Last 12 Months**
+
+Click **Clear dates** to drop the range while keeping your other filters.
+
+### :fontawesome-solid-clock: AR Aging (Days Past Due)
+
+Aging answers "how late is this?" It is measured from the **due date**, and it replaces the old separate Past Due tabs so that status and age can no longer contradict each other.
+
+There are two ways to ask, side by side:
+
+| Type | Options | Meaning |
+|------|---------|---------|
+| **Rollups** — open-ended | **Past due** · **30+ days** · **60+ days** | "This old *and worse*." 30+ days covers 31-60, 61-90 and 91+ together |
+| **Bands** — exact | **Not Due** · **0-30** · **31-60** · **61-90** · **91+** | Splits the unpaid ledger into exact buckets, the same way the Aged Receivables report does |
+
+!!! info "Two details worth knowing"
+    - **Past due** means at least one day late. An invoice falling due *today* sits in the **0-30** band without being past due.
+    - Invoices marked **Paid** carry no aging, so no aging filter will return them.
 
 ---
 
 ## :fontawesome-solid-table: Invoice List Columns
 
-The invoice list shows:
+The list shows eight columns. Most pair a **primary value** with a smaller related value underneath it, so the table stays readable without losing detail.
 
-| Column | Description |
-|--------|-------------|
-| **Invoice #** | Unique invoice number |
-| **Invoice date** | Date the invoice was created |
-| **Company** | Customer company name |
-| **Invoice Total** | Total amount including taxes |
-| **Due date** | Payment due date based on invoice terms |
-| **Last Payment** | Date of the most recent payment |
-| **Total Paid** | Amount paid so far |
-| **Checks** | Associated check numbers |
-| **Status** | New / Invoiced / Paid / Partially Paid |
-| **Sent date** | Date the invoice was emailed |
+| Column | Shows | Underneath |
+|--------|-------|------------|
+| **Invoice** | Invoice number | Invoice date |
+| **Company** | Customer company name | Number of orders on the invoice |
+| **Due date** | Payment due date from the invoice terms | Days past due, as a coloured badge |
+| **Total** | Invoice total including taxes | — |
+| **Balance** | Amount still outstanding | Total paid so far |
+| **Last payment** | Date of the most recent payment | Number of checks recorded |
+| **Status** | New / Invoiced / Paid / Partially Paid | Whether it was sent, and when |
+| **Actions** | Email and row actions | — |
 
 The footer row shows the **total count** and **sum** of all invoices matching the current filter.
 
@@ -119,18 +144,23 @@ Use **Audit Payments** to review and update payments across multiple invoices at
 
 ## :fontawesome-solid-file-export: Exporting Invoices
 
-Click the **Export** dropdown on the Invoices page:
+The **Export** panel is part of the filter bar. It exports **the invoices currently listed** — whatever your status, date range, search and aging filters have narrowed the page down to.
 
-| Option | Format | Description |
-|--------|--------|-------------|
-| **CSV** | .csv | Comma-separated values for spreadsheets |
-| **Excel** | .xlsx | Native Excel format |
+The line underneath the button always states what you are about to get, for example *"Exports the 1,002 invoices currently listed (All unpaid) — not the whole database."*
 
-Select the **year** and **format**, then click **Export**.
+### :fontawesome-solid-rectangle-list: Choosing what you get
 
-### QuickBooks Export
+| Setting | Options | Description |
+|---------|---------|-------------|
+| **Layout** | **QuickBooks columns** | The accounting-import layout, for bringing invoices into QuickBooks |
+| | **AR aging detail** | Receivables layout with the aging and balance detail, for collections and month-end |
+| **Format** | **Excel** (.xlsx) | Native Excel format |
+| | **CSV** (.csv) | Comma-separated values for spreadsheets |
 
-If your company uses QuickBooks, you can export invoices in a QuickBooks-compatible format for direct import into your accounting software.
+**To export:** set your filters so the list shows what you want, choose a **Layout** and **Format**, then click **Export**.
+
+!!! warning "Very large exports"
+    An export builds the whole file at once, so it is capped at **20,000 invoices**. If your filter matches more than that, narrow it — an invoice date range such as **This Year** or **Last 12 Months** is usually enough — and export in batches.
 
 ---
 
@@ -162,7 +192,6 @@ The discrepancies feature helps identify payment mismatches — invoices where t
 ## Screenshots Needed
 
 !!! info "Screenshots to capture"
-    1. **Invoices list page** — showing filter tabs (All Unpaid / Past Due / New / Invoiced / Paid), a few invoice rows, and the total footer
+    1. **Invoices list rows** — a few invoice rows showing the paired columns, aging badges, and the total footer
     2. **Invoice detail** — showing the invoice with line items, charges, and payment section
-    3. **Export dropdown** — showing the year selector and CSV/Excel format options
-    4. **Bulk Audit Payments** — the audit payments view (if visually distinct)
+    3. **Bulk Audit Payments** — the audit payments view (if visually distinct)

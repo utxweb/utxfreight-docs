@@ -6,6 +6,37 @@ All notable changes to UTX Freight are documented here. Releases are listed newe
 
 ## Version 3.x
 
+### Release 3.12 — Invoice Filtering & Consignee Visibility
+
+#### Invoices
+
+- **Exports now match your filters** — the Export button downloads exactly the invoices currently listed. Previously the export ignored the filters on screen and returned every invoice regardless of what you had selected
+- **See what you are exporting before you click** — the Export panel states the count and the active filter, for example *"Exports the 1,002 invoices currently listed (All unpaid)"*
+- **Two export layouts** — choose **QuickBooks columns** for accounting import, or the new **AR aging detail** layout for collections and month-end review
+- **Invoice date range** — filter the list to a **from/to** range, with one-click presets for This Month, Last Month, This Year, last year, and Last 12 Months
+- **AR aging on the invoice list** — filter by how late an invoice is, using open-ended rollups (**Past due**, **30+ days**, **60+ days**) or exact bands (**Not Due**, **0-30**, **31-60**, **61-90**, **91+**). The bands split the ledger the same way the Aged Receivables report does
+- **New Aging and Balance columns** — see days past due and the outstanding amount directly in the list, without opening the invoice
+- **Filters combine instead of replacing each other** — status, search, invoice date, and aging all narrow the same list. Each active filter appears as a removable chip in the search bar, with **Clear All** to reset
+- **A cleaner invoice table** — folded from 15 columns to 8 by pairing each value with its closely-related detail (invoice with its date, balance with total paid, status with sent date). Nothing was removed
+- **Consistent sorting** — past-due views now sort newest-first like every other tab, instead of oldest-first
+- **Large export guard** — exports are capped at 20,000 invoices with a clear message to narrow the filter, rather than timing out
+- Fixed an error when exporting an invoice that had no company assigned, and a company drill-down that led to an empty list
+
+!!! info "Your saved links still work"
+    Bookmarked **Past Due**, **30+** and **60+** invoice links continue to work — they now open the matching AR aging view and return the same invoices they always did.
+
+#### Customer Portal
+
+- **Consignee order visibility** — a consignee can now be linked to a customer account so their users get **read-only** visibility of orders delivered to them, including orders created by a different freight forwarder
+- Consignee users see an explanatory banner on the Orders page describing the scope of what they can view
+- Link a consignee to a customer account from the **Clients** admin form using the new company selector
+
+#### Orders
+
+- The **Total** figure in the Orders header now sums the operational statuses (New, App. Taken, Dispatched) so it matches the badges beside it — it previously also counted Completed orders
+
+---
+
 ### Release 3.11 — Compound Search & Filtering
 
 #### Orders
