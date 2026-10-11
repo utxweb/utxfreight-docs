@@ -1,365 +1,316 @@
 # Container Tracking
 
-Real-time container tracking across three terminal sources -- see the status of every container without leaving the app.
+See the latest terminal status of a container (CN Rail, Termont / Port of Montreal, or MGT Racine/Cast) from the order list, without logging in to the terminal websites.
 
 ## :fontawesome-solid-satellite-dish: Overview
 
-The **Container Tracking** system (also called Track & Trace) automatically monitors your containers across three terminal sources and brings the latest status directly into the app. You do not need to log in to terminal websites or call anyone -- the system does the checking for you.
+**Container Tracking** (also called Track & Trace) checks your containers at the terminal on a schedule, stores the latest status, and shows it in a popup when you click the tracking icon on an order.
 
-Here is how it works at a glance:
+- :fontawesome-solid-puzzle-piece: **Three separate add-ons** -- one per tracking source. Each source is shown and checked only when its own add-on is on for your account (see [Add-ons and Options](add-ons-and-options.md)).
+- :fontawesome-solid-train: **CN Rail** -- containers at a pickup terminal named **CN**. Add-on: `track_n_trace_cn`.
+- :fontawesome-solid-ship: **Termont (Port of Montreal)** -- containers at a pickup terminal whose name contains **TERMONT** or **VIAU**. Add-on: `track_n_trace_port_of_montreal`.
+- :fontawesome-solid-ship: **MGT (Racine/Cast)** -- containers at a pickup terminal whose name contains **RACINE** or **CAST**. Add-on: `track_n_trace_mtrtml`.
+- :fontawesome-solid-arrows-rotate: **Automatic checks** -- the system checks **in-progress** orders at those terminals on a schedule. You never trigger a check yourself.
+- :fontawesome-solid-clock-rotate-left: **Change history** -- every change to the key tracking fields is recorded and shown at the bottom of the popup.
+- :fontawesome-solid-wand-magic-sparkles: **Auto-fill** -- for Termont and MGT, blank order fields (seal, weight, steamship line, size, customs released) are filled in when new terminal data arrives.
+- :fontawesome-solid-bell: **Alerts and bulk updates** -- status-change alerts are covered in [Container Alerts](container-alerts.md); updating ETA and Last Free Day on many orders at once is covered in [Tracking Bulk Update](tracking-bulk-update.md).
 
-- :fontawesome-solid-clock: **Updates every 10 minutes** -- the system checks all three terminal sources automatically.
-- :fontawesome-solid-train: **CN Rail** -- Canadian National intermodal yard (Taschereau).
-- :fontawesome-solid-ship: **Termont** -- Port of Montreal, Sections 52 (Viau) & 68.
-- :fontawesome-solid-ship: **MGT (Racine/Cast)** -- Montreal Gateway Terminals, Sections 62 & 77.
-- :fontawesome-solid-bell: **Automatic alerts** -- you get notified when a container is ready for pickup, customs is released, the Last Free Day is approaching, or the container has departed.
-- :fontawesome-solid-wand-magic-sparkles: **Auto-fills order fields** -- seal number, weight, steamship line, container size, and customs released status are filled in automatically when tracking data is available.
-
-<!-- TODO: Add screenshot - The Container Tracking modal showing real-time status for a container at the Port of Montreal -->
+<!-- TODO: Screenshot — The Container Tracking popup for a Termont container with a green READY FOR PICKUP header -->
 
 ---
 
 ## :fontawesome-solid-bolt: Quick Start
 
-Already know how tracking works? Here is the fastest path to checking a container:
-
-1. Go to :fontawesome-solid-arrow-right: **Orders** from the main menu.
-2. Find the order with the container you want to check.
-3. Click the :fontawesome-solid-train: **tracking icon** (train or ship) on that order's row.
-4. The tracking modal opens with the latest status.
-
-That's it -- no terminal logins, no phone calls. The status is pulled automatically every 10 minutes.
+1. Go to :fontawesome-solid-arrow-right: **Orders** (or **Dispatch**).
+2. Find the order. In the **Container#** column, click the tracking icon (:fontawesome-solid-train: red train for CN, :fontawesome-solid-ship: blue ship for Termont, :fontawesome-solid-ship: orange ship for MGT). Its tooltip reads **Check container status**.
+3. The tracking popup opens. A **green header** means the container is available (CN: de-ramped; Termont / MGT: ready for pickup). Check the **Customs** line before you dispatch.
+4. Click **Close** when done.
 
 !!! tip "Tip"
-    The tracking icon only appears on orders that have a **container number** and a **pickup terminal** matching one of the three supported sources (CN Rail, Termont, or MGT). If you don't see the icon, check that the order has both fields filled in correctly.
+    The icon depends on the order's **pickup terminal**, not on the container number. If there is no icon, check the pickup terminal first. See [No tracking icon on an order](#no-tracking-icon-on-an-order).
 
 ---
 
 ## :fontawesome-solid-shield-halved: Access & Permissions
 
-Container Tracking is available to any user who can view orders. There are no special permissions required beyond normal order access.
+Each part of the feature has its own rule:
 
-| Role | Access Level |
-|------|-------------|
-| :fontawesome-solid-warehouse: **Warehouse** | Full access |
-| :fontawesome-solid-user-tie: **Manager** | Full access |
-| :fontawesome-solid-headset: **Dispatch** | Full access |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | Full access |
+- **Tracking icon on Orders** -- needs permission to change container status on orders (the same permission as the inline container status edit).
+- **Tracking icon on Dispatch** -- shown to everyone who can open **Dispatch**.
+- **Tracking popup** -- needs full permission to manage the order (the popup is its own order action, so view-only access to an order is not enough).
+
+| Role | Access |
+|------|--------|
+| :fontawesome-solid-user-shield: **Admin** | Icon on **Orders** and **Dispatch**, popup |
+| :fontawesome-solid-user-tie: **Manager** | Icon on **Orders** and **Dispatch**, popup (own offices) |
+| :fontawesome-solid-headset: **Dispatch** / **Customer Service** | Icon on **Orders** and **Dispatch**, popup (own offices) |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | Icon on **Orders** and popup (own offices) only when your account lets accountants manage orders. This is on by default and set by UTX. No access to **Dispatch** |
+| :fontawesome-solid-user: **Customer** | No tracking icon, no popup |
+| :fontawesome-solid-id-card: **Driver** / **Broker** / **Yard Worker** | No tracking icon, no popup |
+| :fontawesome-solid-warehouse: **Warehouse** / :fontawesome-solid-wrench: **Garage** | No access -- these roles have no access to orders |
 
 **How to get there:**
 
-- :fontawesome-solid-arrow-right: **Tracking modal:** Click the tracking icon on any order row in the Orders list.
-- :fontawesome-solid-arrow-right: **Alerts dashboard:** From the left menu, click **Container Tracking** :fontawesome-solid-arrow-right: **Alerts**.
+- :fontawesome-solid-arrow-right: **Orders** or **Dispatch** -- tracking icon in the **Container#** column.
+- :fontawesome-solid-arrow-right: **Dispatch** -- the **Alerts** button opens the Container Alerts page, where each container number also opens the tracking popup. See [Container Alerts](container-alerts.md).
 
-!!! warning "Can't find Container Tracking?"
-    If you don't see the **Container Tracking** menu item, your company may not have the tracking add-on enabled. Contact your administrator to enable it.
-
----
-
-## :fontawesome-solid-magnifying-glass: Checking a Container
-
-To check the real-time status of a container, click the **tracking icon** on the order row. The icon tells you which terminal source the container is tracked at:
-
-| Icon | Terminal Source | What It Means |
-|------|---------------|---------------|
-| :fontawesome-solid-train: Red train | **CN Rail** | Container is at the CN intermodal yard (Taschereau) |
-| :fontawesome-solid-ship: Blue ship | **Termont** | Container is at Port of Montreal (Sections 52/68) |
-| :fontawesome-solid-ship: Orange ship | **MGT (Racine/Cast)** | Container is at Montreal Gateway Terminals (Sections 62/77) |
-
-### Step-by-step: Check a container
-
-1. :fontawesome-solid-arrow-right: Go to **Orders** from the main menu.
-2. :fontawesome-solid-magnifying-glass: Find the order by searching for the order number or container number.
-3. :fontawesome-solid-arrow-pointer: Click the **tracking icon** (train or ship) on the right side of the order row.
-4. :fontawesome-solid-window-restore: The **tracking modal** opens showing the latest status from the terminal.
-
-<!-- TODO: Add screenshot - An order row showing the tracking icon (train icon for CN Rail) on the right side -->
-
-!!! info "When does the tracking icon appear?"
-    The tracking icon only appears when:
-
-    - The order has a **container number** entered
-    - The order has a **pickup terminal** that matches one of the three supported sources
-    - The tracking add-on for that source is **enabled** on your account
+!!! warning "Don't see any tracking icons?"
+    Your account may not have the tracking add-on for that terminal. Each source (CN, Termont, MGT) is a separate add-on. Contact UTX support to enable it.
 
 ---
 
-## :fontawesome-solid-window-restore: Understanding the Tracking Modal
+## :fontawesome-solid-arrows-rotate: Which Containers Are Checked
 
-When you click the tracking icon, a modal opens showing everything the system knows about that container. The modal looks different depending on which terminal source the container is tracked at.
+The system checks an order's container only when **all** of these are true:
 
-### :fontawesome-solid-train: CN Rail Modal
+- The add-on for that source is on.
+- The order is **in progress**: status **New**, **App. Taken** (shown as **App. Made** on the Orders tabs), or **Dispatched**.
+- The order was created on or after the **Order Archive Cutoff Date** in **Settings** (see [Application Settings](application-settings.md)).
+- The order's **pickup terminal** is one of the terminals set up for that source.
+- The container number is not blank and is not **N/A**.
+- The container has not already left the terminal:
+    - **CN:** skipped once its waybill status is **Departed** or **Completed**.
+    - **Termont / MGT:** skipped once its transit state is **Out**.
 
-<!-- TODO: Add screenshot - The CN Rail tracking modal showing a blue header (in transit) with CLM status, container details, and key dates -->
+Orders are processed in groups: 200 orders at a time for CN, 50 for MGT, and 10 for Termont (with a 2-second pause between Termont groups). Within a group, a container number that is on several orders is checked once.
 
-**Header color tells you the status at a glance:**
+**How often?** The checks are run by a scheduled job set up by UTX. The help text on the Container Alerts page says every 10 minutes, but the exact interval is not guaranteed. Use the **Updated ... ago** line at the bottom of the popup to see when that container was last refreshed.
 
-| Header Color | Meaning |
-|-------------|---------|
-| :fontawesome-solid-circle:{ .text-info } **Blue** | Container is in transit or at the yard (not yet de-ramped) |
-| :fontawesome-solid-circle:{ .text-success } **Green** | Container is **de-ramped** -- off the train and available for pickup |
+!!! info "Completed orders"
+    The icon can still appear on a **Completed** order, and the popup still shows the last data stored for that container. It is no longer refreshed, because only in-progress orders are checked.
 
-**What you will see inside:**
+---
 
-- **CLM Status** -- The CN Rail status code (e.g., "De-ramped" means it is off the train and ready).
-- **Status & Location** -- Where the container is, the last event, and the destination.
-- **Customs** -- Whether customs has released the container or if there is a hold.
-- **Container Details** -- Equipment type, size, weight, and whether it is full or empty.
-- **Key Dates** -- The **Destination ETA** and **Last Free Day** (LFD). If the LFD has expired, it is highlighted in red.
-- **Audit History** -- A log of all status changes the system has recorded.
+## :fontawesome-solid-magnifying-glass: The Tracking Icon
+
+The icon sits in the **Container#** column, before the container number and the HAZMAT / scale / damaged labels.
+
+| Icon | Source | Shown when |
+|------|--------|-----------|
+| :fontawesome-solid-train: Red train | **CN Rail** | CN tracking add-on is on and the pickup terminal is a CN terminal |
+| :fontawesome-solid-ship: Orange ship | **MGT (Racine/Cast)** | MGT tracking add-on is on and the pickup terminal is a Racine or Cast terminal |
+| :fontawesome-solid-ship: Blue ship | **Termont** | Port of Montreal tracking add-on is on and the pickup terminal is a Termont / Viau terminal |
+
+**Rules on the Orders page:**
+
+- You need permission to change container status on orders (see [Access & Permissions](#access-permissions)). Without it, you see the container number with its status label but no icon.
+- If the container number is **longer than 20 characters** (for example several numbers separated by `/`), there is **no** tracking icon. Each `/` becomes a line break so the numbers are shown on separate lines.
+- The icon does not check that a container number is entered. An order with a tracking terminal and no container number still shows the icon, and the popup will say the container was not found.
+
+**On the Dispatch page** the same icon appears in the container column for every order at a tracking terminal, with no permission check and no 20-character limit (only roles that can open Dispatch see it).
+
+<!-- TODO: Screenshot — An order row on the Orders page with the red CN train icon in the Container# column -->
+
+---
+
+## :fontawesome-solid-window-restore: The Tracking Popup
+
+Click the icon to open the popup. Its layout depends on the source. Fields with no data show a dash (**—**). Both layouts have a **Container Tracking** tab, the **Updated ... ago** line, the [change history](#change-history) table, and a **Close** button.
+
+!!! info "How the source is chosen"
+    The popup picks the source from the **first word** of the order's pickup terminal name:
+
+    - **CN** :fontawesome-solid-arrow-right: CN Rail
+    - **TERMONT** or **VIAU** :fontawesome-solid-arrow-right: Termont
+    - **RACINE** or **CAST** :fontawesome-solid-arrow-right: MGT (Racine/Cast)
+
+    It then looks up the stored tracking data for that source and the order's container number. If nothing is stored, the [not-found popup](#container-not-found) opens instead.
+
+### :fontawesome-solid-train: CN Rail popup
+
+<!-- TODO: Screenshot — The CN Rail tracking popup with a blue header showing the CLM status, Status & Location and Container Details sections, and Key Dates -->
+
+**Header:** train icon and container number, with **CN Rail**, the size, and Empty/Full underneath. The badge on the right shows the status.
+
+| Header color | Badge | Meaning |
+|-------------|-------|---------|
+| :fontawesome-solid-circle:{ .text-success } **Green** | **DE-RAMPED / AVAILABLE** | The CLM status contains "De-ramped": the container is off the train |
+| :fontawesome-solid-circle:{ .text-info } **Blue** | The current CLM status (or **TRACKING** if there is none) | Anything else: in transit, at the yard, not yet de-ramped |
+
+**Orange bar (CN):** appears when CN reports a customs status and the customs description does not contain "release". It reads **Customs Hold:** followed by the customs status, with the hold description underneath.
+
+**Sections:**
+
+| Section | Fields |
+|---------|--------|
+| **Status & Location** | **CLM Status**, **Event Location**, **Last Event** (date and time, when known), **Destination**, **Lot Location** (when known), **Customs** |
+| **Container Details** | **Equipment Type**, **Size**, **Empty/Full** (blue **Full** or gray **Empty** label), **Gross Weight** (KG), **Net Weight**, **Waybill Status** -- each shown only when CN sends it, except Empty/Full |
+| **GPS Location** | **Position**, **Location**, **GPS Time** -- only when CN sends a GPS position |
+| **Bill of Lading** | **BOL Number**, **Shipper**, **Consignee**, **Commodity** -- only when CN sends a BOL number |
+| **Key Dates** | **Destination ETA**, **Last Free Day** (see [Last Free Day colors](#last-free-day-colors)) |
+| **Technical Details** (click to expand) | **EDI 214**, **EDI 322**, **CLM Code** |
+
+The **Customs** field shows **No customs info** (gray) when there is nothing, a green check and the description when the description contains "release", or an orange warning triangle and the description (or hold status) otherwise.
 
 !!! tip "What does De-ramped mean?"
-    **De-ramped** is the key status to watch for on CN Rail containers. When you see a green header with "DE-RAMPED / AVAILABLE", that means you can dispatch a driver to pick it up.
+    **De-ramped** means the container is off the train at the CN yard. A green header with **DE-RAMPED / AVAILABLE** is the signal to plan the pickup -- after checking the **Customs** line for a hold.
 
-### :fontawesome-solid-ship: Termont / MGT Modal
+### :fontawesome-solid-ship: Termont / MGT popup
 
-<!-- TODO: Add screenshot - The Termont tracking modal showing a green header (ready for pickup) with customs status, carrier timeline, and key dates -->
+Termont and MGT (Racine/Cast) use the same layout.
 
-**Header color tells you the status at a glance:**
+<!-- TODO: Screenshot — The Termont tracking popup with a green READY FOR PICKUP header, Status & Availability, Container & Vessel, Carrier Timeline and Key Dates -->
 
-| Header Color | Meaning |
-|-------------|---------|
-| :fontawesome-solid-circle:{ .text-success } **Green** | Container is **READY FOR PICKUP** |
-| :fontawesome-solid-circle:{ .text-danger } **Red** | Container is **NOT AVAILABLE FOR PICKUP** (on hold or not yet cleared) |
+**Header:** cube icon and container number, with the source (**Termont** or **MGT (Racine/Cast)**), the shipping line, and size and type underneath.
 
-**What you will see inside:**
+| Header color | Badge | Meaning |
+|-------------|-------|---------|
+| :fontawesome-solid-circle:{ .text-success } **Green** | **READY FOR PICKUP** | The terminal reports the container as available for pickup |
+| :fontawesome-solid-circle:{ .text-danger } **Red** | **NOT AVAILABLE FOR PICKUP** | Any other answer, including no answer |
 
-- **Status & Availability** -- The terminal section and customs status.
-- **Customs** -- Shows whether customs has released the container. If there is a hold, an orange warning bar appears at the top.
-- **Container & Vessel** -- Shipping line, vessel name, voyage number, origin, and container size.
-- **Carrier Timeline** -- Shows the **IN** (vessel arrival) and **OUT** (carrier pickup) dates and times.
-- **Key Dates** -- The **Destination ETA** and **Last Free Day** (LFD). Expired LFDs are highlighted in red.
-- **Audit History** -- A log of all status changes.
+**Orange bar (Termont / MGT):** shows the **terminal's hold message** (for example "On Hold - Not available for pick up") whenever the terminal reports one. It is a terminal hold, which may or may not be customs-related -- check the **Customs** line for the customs status.
 
-!!! warning "Orange warning bar = hold in effect"
-    If you see an **orange warning bar** at the top of the modal saying something like "Hold" or "Customs Hold", the container cannot be picked up yet. Wait for the hold to be released before dispatching a driver.
+**Sections:**
 
----
+| Section | Fields |
+|---------|--------|
+| **Status & Availability** | **Terminal** (the terminal section), **Customs**, **Customs Date** (when known), **Hold/Perm** (when known) |
+| **Container & Vessel** | **Shipping Line**, **Vessel**, **Voyage**, **Origin**, **Size / Type** (when known), **Empty/Full** |
+| **Carrier Timeline** | **IN** -- ship icon, vessel name, arrival date and time. **OUT** -- carrier type icon (vessel, truck, or rail), carrier name, date and time. A row with no carrier and no date reads **Not yet departed** (this can also appear on **IN** when no arrival data is known) |
+| **Key Dates** | **Destination ETA**, **Last Free Day** (see [Last Free Day colors](#last-free-day-colors)) |
+| **Technical Details** (click to expand) | **Visit State** (**Active**, **Departed**, or **Unknown** when not reported), **Transit State** (**In**, **Out**, or **Unknown**), **Seal Number**, **Gross Weight** (KG), **Booking/BL** |
 
-## :fontawesome-solid-palette: Color Guide
+The **Customs** field works the same way as on the CN popup: **No customs info**, a green check when the description contains "release", or an orange warning triangle.
 
-The tracking system uses a consistent color scheme across the modal, the alerts dashboard, and the LFD table. Here is what each color means:
+### :fontawesome-solid-calendar-xmark: Last Free Day colors
 
-| Color | Meaning | Where You See It |
-|-------|---------|-----------------|
-| :fontawesome-solid-circle:{ .text-success } **Green** | Available for pickup, customs released, good news | Modal header, alert icons, LFD status |
-| :fontawesome-solid-circle:{ .text-danger } **Red** | Not available, LFD expired, urgent action needed | Modal header, expired LFD rows, unread alert count |
-| :fontawesome-solid-circle:{ .text-info } **Blue** | CN Rail tracking, customs released (informational) | CN modal header, customs released alert badge |
-| :fontawesome-solid-circle:{ .text-warning } **Orange** | Customs hold, LFD approaching (1-2 days left) | Hold warning bar, LFD approaching alert badge, warning LFD rows |
-| :fontawesome-solid-circle:{ .text-secondary } **Gray** | Departed, neutral, no data | Departed alert badge, unknown status |
+The **Last Free Day** in the **Key Dates** box is colored by how many days are left:
 
-!!! tip "The #1 Rule"
-    **Green header = go pick it up.** Whether it is CN Rail (de-ramped) or Termont/MGT (ready for pickup), a green header always means you can dispatch a driver.
+| Color | Days left |
+|-------|-----------|
+| :fontawesome-solid-circle:{ .text-success } **Green** | 3 or more days |
+| :fontawesome-solid-circle:{ .text-warning } **Orange** | 1 or 2 days |
+| :fontawesome-solid-circle:{ .text-danger } **Red**, light red background, **EXPIRED** | The Last Free Day is **today or earlier** |
 
----
+!!! warning "EXPIRED shows on the Last Free Day itself"
+    The popup marks the date **EXPIRED** from the Last Free Day onward, including the day itself. Treat it as "pick up today at the latest".
 
-## :fontawesome-solid-bell: Container Alerts Dashboard
-
-The Alerts Dashboard gives you a bird's-eye view of everything that has changed across all your tracked containers. Instead of checking each container one by one, the dashboard shows you all the important status changes in one place.
-
-**How to get there:**
-
-- :fontawesome-solid-arrow-right: From the left menu, click **Container Tracking** :fontawesome-solid-arrow-right: **Alerts**.
-
-<!-- TODO: Add screenshot - The Container Alerts Dashboard showing integration health cards, summary cards, upcoming LFD table, and alert list -->
-
-### :fontawesome-solid-table-cells-large: Summary Cards
-
-At the top of the dashboard, five clickable cards show alert counts by type. Click any card to filter the alert list below.
-
-| Card | Color | What It Means |
-|------|-------|--------------|
-| **Unread** | Red | Total alerts you have not seen yet |
-| :fontawesome-solid-triangle-exclamation: **LFD Approaching** | Orange | Containers whose Last Free Day is within 2 days |
-| :fontawesome-solid-truck: **Ready for Pickup** | Green | Containers that are off the train or cleared at the terminal |
-| :fontawesome-solid-circle-check: **Customs Released** | Blue | Containers where customs has just cleared |
-| :fontawesome-solid-right-from-bracket: **Departed** | Gray | Containers that have left the terminal |
-
-### :fontawesome-solid-tags: Alert Types Explained
-
-| Alert Type | Icon | What Happened | What You Should Do |
-|-----------|------|--------------|-------------------|
-| **Pickup Ready** | :fontawesome-solid-truck: | Container is off the train (CN) or cleared for pickup (Termont/MGT) | Dispatch a driver |
-| **Customs Released** | :fontawesome-solid-circle-check: | Customs has cleared the container | If customs was the last blocker, dispatch a driver |
-| **LFD Approaching** | :fontawesome-solid-triangle-exclamation: | Last Free Day is today, tomorrow, or the day after | Schedule pickup now to avoid demurrage charges |
-| **Departed** | :fontawesome-solid-right-from-bracket: | Container has left the terminal | No action needed |
-
-!!! warning "LFD alerts only fire once"
-    The **LFD Approaching** alert fires once per container and will **not** repeat for an already-expired LFD. If you miss it, check the Upcoming Last Free Days table for expired containers.
-
-### :fontawesome-solid-list: Reading the Alert List
-
-Each alert in the table shows:
-
-| Column | What It Shows |
-|--------|-------------|
-| **Icon** | Color-coded icon matching the alert type |
-| **Source** | Which terminal (CN Rail, Termont, or MGT) |
-| **Container** | The container number -- click it to open the tracking modal |
-| **Type** | A colored badge showing the alert type |
-| **Message** | A plain-text description of what changed |
-| **Order** | The order reference number -- click it to open the order |
-| **When** | Date and time the alert was created |
-
-Unread alerts appear in **bold** with a red **NEW** badge. Once you have reviewed the alerts, click **Mark All Read** to clear the bold formatting and badges.
-
-!!! info "Mark All Read is safe"
-    Marking alerts as read does **not** delete them. They stay in the list for reference -- only the bold text and NEW badge are removed.
+!!! danger "Storage and demurrage after the Last Free Day"
+    Once the Last Free Day has passed, the terminal or steamship line may start charging storage or demurrage. The exact charges and when they start depend on the terminal and the line, not on UTX Freight. Plan pickups before the date shown.
 
 ---
 
-## :fontawesome-solid-calendar-xmark: Upcoming Last Free Days
+## :fontawesome-solid-clock-rotate-left: Change History
 
-The **Upcoming Last Free Days** table appears on the Alerts Dashboard when any container has an LFD within the next 7 days. This is your go-to section for avoiding demurrage charges.
+At the bottom of the CN and Termont / MGT popups, a table lists changes the system recorded for that container, newest first.
 
-<!-- TODO: Add screenshot - The Upcoming Last Free Days table showing containers with color-coded urgency rows -->
+| Column | What it shows |
+|--------|---------------|
+| **Tracker** | **POM** for Termont containers. **CN** for CN containers **and** for MGT (Racine/Cast) containers |
+| **Changes** | Each changed field with its old and new value |
+| **When** | Date and time of the change |
 
-### :fontawesome-solid-palette: Row Color Coding
+Only these fields are tracked:
 
-| Row Color | Meaning | Action |
-|-----------|---------|--------|
-| :fontawesome-solid-circle:{ .text-danger } **Red** | LFD has **expired** -- demurrage charges are now accruing | Pick up immediately or contact the terminal |
-| :fontawesome-solid-circle:{ .text-warning } **Yellow** | LFD is **1-2 days away** | Schedule pickup today |
-| No highlight | LFD is **3+ days away** | Plan pickup within the coming days |
+| Label in the table | Meaning |
+|--------------------|---------|
+| **Status** | CN CLM status |
+| **Destination ETA** | ETA reported by the terminal |
+| **Last free day** | Last Free Day reported by the terminal |
+| **Pickup availability** | Termont / MGT available for pickup (Yes / No) |
+| **Visit state** | Termont / MGT visit state; CN waybill status |
+| **Transit state** | Termont / MGT transit state (In / Out) |
+| **Customs status** | Customs hold status |
+| **Customs description** | Customs description (for example a release or hold reason) |
 
-### :fontawesome-solid-table-columns: Table Columns
+Changes to other data (vessel, seal, weight, location and so on) update the popup but do not appear in the history.
 
-| Column | What It Shows |
-|--------|-------------|
-| **Source** | Terminal icon and name (CN Rail, Termont, or MGT) |
-| **Container** | The container number -- click it to open the tracking modal |
-| **Shipping Line** | The steamship/shipping line operating the container |
-| **Terminal** | The specific terminal section where the container is located |
-| **Last Free Day** | The date by which you must pick up the container to avoid demurrage |
-| **Days Left** | A badge showing how many days remain -- EXPIRED (red), TOMORROW (yellow), or a day count |
-| **Status** | Whether the container is ready for pickup or still pending |
-
-!!! danger "Critical: Expired LFD = Demurrage"
-    **Demurrage charges start the day after the Last Free Day expires.** If you see a red EXPIRED badge, that container is already costing you money every day it sits at the terminal. Take action immediately.
+The first **5** rows are shown. If there are more, click **Show all** to see the rest.
 
 ---
 
-## :fontawesome-solid-heart-pulse: Integration Health
+## :fontawesome-solid-wand-magic-sparkles: Auto-Filled Order Fields
 
-At the top of the Alerts Dashboard, you will see **Integration Health** cards -- one for each terminal source your account tracks. These cards tell you whether the system is successfully pulling data from each terminal.
+When new Termont or MGT data arrives for a container, the system fills in blank fields on every in-progress order with that container number.
 
-<!-- TODO: Add screenshot - Integration Health cards showing CN Rail (green border, healthy), Termont (green border, healthy), and MGT (red border, stale) -->
+**When it runs:**
 
-| Border Color | Meaning |
-|-------------|---------|
-| :fontawesome-solid-circle:{ .text-success } **Green border** | Data was pulled **within the last 30 minutes** and the pull was successful. Everything is up to date. |
-| :fontawesome-solid-circle:{ .text-danger } **Red border** | The last pull was **over an hour ago** or it **failed**. Data may be out of date. |
+- Only for **Termont** and **MGT (Racine/Cast)**. CN data never fills order fields.
+- Only when the terminal data for that container **changed** (or is new) since the last check.
+- Only on **in-progress** orders (New, App. Taken, Dispatched) created on or after the archive cutoff that have the **same container number**. The order's pickup terminal is not checked.
+- Only fields that are **blank** on the order. Existing values are never overwritten.
 
-Each card also shows:
+| Order field | What is filled |
+|-------------|----------------|
+| :fontawesome-solid-lock: **Seal Number** | The seal number from the terminal |
+| :fontawesome-solid-weight-hanging: **Weight** | The terminal's gross weight followed by `KG` (for example `24000 KG`) |
+| :fontawesome-solid-ship: **Steamship Line** | The steamship line whose name matches the terminal's shipping line (not case-sensitive). If there is no exact match, a line whose name **starts with** the terminal's value. Nothing if there is no match |
+| :fontawesome-solid-cube: **Container Size** | The container size whose name equals the terminal's size, written either as `40` or `40'`. Nothing if there is no match |
+| :fontawesome-solid-circle-check: **Customs released** | Set to `yes` when the terminal's customs description contains "release" |
 
-- **Last pull** -- How long ago the system last checked that terminal (e.g., "5 minutes ago").
-- **Containers checked** -- How many containers were checked in the last pull.
-- **Containers updated** -- How many containers had status changes.
+!!! warning "Auto-filled Customs released prints as NO on the POD"
+    Auto-fill stores the value `yes`, but the order form's **Customs released** dropdown saves Yes as a different value. The POD only prints **YES** for a value set from the order form, so on an auto-filled order the POD shows **NO**, and the order form's dropdown does not show **Yes**. If you need it to print correctly, set **Customs released** to **Yes** yourself on the order form.
 
-!!! warning "Red border = data may be outdated"
-    If you see a **red border** on a health card, it means the data from that terminal may be stale. The system will keep trying to pull data automatically. If the red border persists for more than a few hours, contact your administrator.
+!!! info "ETA and Last Free Day are never auto-filled"
+    Tracking does not copy the **ETA** or **Last Free Day** to the order. Use the bulk update tools (**CN Tracking** and **Port Tracking** on **Dispatch**) to apply them. See [Tracking Bulk Update](tracking-bulk-update.md).
 
----
-
-## :fontawesome-solid-wand-magic-sparkles: Auto-Populated Order Fields
-
-When the system pulls tracking data from Termont or MGT, it can automatically fill in certain fields on your orders. This saves you from manually entering data that the terminal already knows.
-
-The following fields are auto-populated **only if the field is currently blank** on the order:
-
-| Field | Where It Comes From |
-|-------|-------------------|
-| :fontawesome-solid-lock: **Seal Number** | The seal number reported by the terminal |
-| :fontawesome-solid-weight-hanging: **Weight** | The gross weight of the container (in KG) |
-| :fontawesome-solid-ship: **Steamship Line** | Matched by name from the terminal's shipping line data |
-| :fontawesome-solid-cube: **Container Size** | Matched by size (e.g., 20', 40', 53') from the terminal data |
-| :fontawesome-solid-circle-check: **Customs Released** | Automatically set to "Yes" when customs status shows "Released" |
-
-!!! tip "Your data is safe"
-    Auto-population **never overwrites** data you have already entered. If a field already has a value, the system leaves it alone. Only blank fields are filled in.
-
-!!! info "Which terminals auto-populate?"
-    Auto-population currently works for **Termont** and **MGT (Racine/Cast)** containers. CN Rail containers provide status updates but do not auto-populate order fields.
+If someone is saving the same order at the same moment, the system retries once and then skips that order for this update.
 
 ---
 
-## :fontawesome-solid-envelope: Email Alerts
+## :fontawesome-solid-bell: Alerts and Bulk Updates
 
-The system sends a **daily digest email** summarizing all new tracking alerts since the last email. This way, even if you are not logged in, you stay informed about important container status changes.
-
-**What the email includes:**
-
-- :fontawesome-solid-truck: **Pickup Ready** alerts -- containers you can dispatch drivers to pick up.
-- :fontawesome-solid-circle-check: **Customs Released** alerts -- containers where customs has just cleared.
-- :fontawesome-solid-triangle-exclamation: **LFD Approaching** alerts -- containers with an upcoming Last Free Day.
-- :fontawesome-solid-right-from-bracket: **Departed** alerts -- containers that have left the terminal.
-
-Alerts are grouped by type in the email so you can quickly scan for the most important items first.
-
-!!! info "No duplicate emails"
-    Each alert is only included in **one email**. Once an alert has been sent in a digest, it will not appear in future emails. Check the Alerts Dashboard in the app for the complete history.
+- :fontawesome-solid-bell: **Container Alerts** -- open from the **Alerts** button on **Dispatch**. Lists pickup-ready, customs-released, LFD-approaching and departed alerts, upcoming Last Free Days, and the health of each tracking source. Click a container number there to open the same tracking popup. See [Container Alerts](container-alerts.md).
+- :fontawesome-solid-list-check: **Bulk update** -- the **CN Tracking** and **Port Tracking** buttons on **Dispatch**. See [Tracking Bulk Update](tracking-bulk-update.md).
 
 ---
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
-### :fontawesome-solid-magnifying-glass: Container not found in the tracking modal
+### :fontawesome-solid-magnifying-glass: Container not found
 
 !!! info "Solution"
-    If the modal says **"This container number was not found"**, it means the system has not yet received tracking data for this container. This can happen if:
+    The popup titled **Container Information** says **This container number was not found.** and **There is no information available at this time.** It means no tracking data is stored for that source and container number. Common causes:
 
-    - The container has not arrived at the terminal yet.
-    - The container number on the order is incorrect (check for typos).
-    - The container is at a terminal that is not one of the three supported sources.
-
-    Wait for the container to arrive at a supported terminal, or double-check the container number on the order.
+    - The container has not been checked yet (new order, or the terminal does not know it yet).
+    - The container number on the order is blank, **N/A**, or has a typo.
+    - The order is not in progress, or was created before the **Order Archive Cutoff Date**, so it was never checked.
+    - The container number on the order has extra characters (for example several numbers in one field), so it does not match the stored container number.
+    - The tracking add-on for that source was off when the container was at the terminal.
+    - The pickup terminal name does not **start** with CN, TERMONT, VIAU, RACINE or CAST (see the next question).
 
 ### :fontawesome-solid-eye-slash: No tracking icon on an order
 
 !!! info "Solution"
-    The tracking icon only appears when **all three conditions** are met:
+    Check, in order:
 
-    1. The order has a **container number** entered.
-    2. The order has a **pickup terminal** assigned.
-    3. The pickup terminal matches one of the three supported sources (CN Rail, Termont, or MGT).
+    1. **Pickup terminal** -- it must be a tracking terminal: named exactly **CN**, or containing **TERMONT**, **VIAU**, **RACINE** or **CAST**. See [Managing Terminals](managing-terminals.md).
+    2. **Add-on** -- the add-on for that source must be on.
+    3. **Permission** -- on **Orders** you need permission to change container status. Customers, drivers, and accountants without order management do not see the icon.
+    4. **Container number length** -- on **Orders**, numbers longer than 20 characters have no icon.
 
-    If any of these are missing, the tracking icon will not appear. Fill in the missing fields and the icon will show up automatically.
+    If you just created or renamed a terminal and the icon still does not appear, contact UTX support.
 
-### :fontawesome-solid-circle-exclamation: LFD has expired -- what do I do?
-
-!!! danger "Action Required"
-    An expired Last Free Day means **demurrage charges are accruing** on that container. You should:
-
-    1. Dispatch a driver to pick up the container as soon as possible.
-    2. If pickup is not possible, contact the terminal to discuss options.
-    3. Check the tracking modal for any holds (customs or terminal) that might be preventing pickup.
-
-    The longer the container sits past its LFD, the higher the demurrage charges will be.
-
-### :fontawesome-solid-clock: Data seems stale or outdated
+### :fontawesome-solid-shuffle: The icon is there but the popup always says "not found"
 
 !!! info "Solution"
-    The system pulls new data every **10 minutes**. Check the **Integration Health** cards on the Alerts Dashboard:
+    The icon matches the terminal by **any part** of its name, but the popup uses the **first word**. A terminal named, for example, "Port Racine" shows the MGT icon, but the popup looks for a source called "PORT" and finds nothing. Rename the terminal so that it starts with **RACINE**, **CAST**, **TERMONT**, **VIAU** or **CN**.
 
-    - **Green border** = data is fresh (pulled within 30 minutes).
-    - **Red border** = last pull was over an hour ago or it failed.
-
-    If a health card shows a red border for an extended period, contact your administrator. The tracking modal also shows "Updated X minutes ago" at the bottom so you can see exactly when that container's data was last refreshed.
-
-### :fontawesome-solid-ban: Customs hold is showing but customs was already released
+### :fontawesome-solid-link: "Container status opens in a popup"
 
 !!! info "Solution"
-    Customs status updates come directly from the terminal and may have a slight delay. If customs was released very recently, wait for the next automatic pull (within 10 minutes). If the hold persists after several pulls, the terminal may still be reporting it -- contact the terminal directly to confirm.
+    The tracking popup only works from a click inside the app. If you open its address directly (for example from a bookmark), you are sent back to the previous page, or to Container Alerts, with the message **Container status opens in a popup. Click the container number in the list to see it.** Click the tracking icon or the container number instead.
 
-### :fontawesome-solid-lightbulb: Tips for getting the most out of Container Tracking
+### :fontawesome-solid-clock: Data seems out of date
+
+!!! info "Solution"
+    Look at **Updated ... ago** at the bottom of the popup. It changes each time the terminal returns data for that container, even if nothing changed. If it is old:
+
+    - The order may no longer be in progress, or the container is marked departed (CN **Departed** / **Completed**, Termont/MGT transit **Out**) and is no longer checked.
+    - The terminal may not be returning data. Check the source's health card on [Container Alerts](container-alerts.md).
+
+### :fontawesome-solid-ban: Customs hold still showing after release
+
+!!! info "Solution"
+    Customs information comes from the terminal and updates only on the next successful check. If it stays on hold after several checks, confirm with the terminal or your customs broker.
+
+### :fontawesome-solid-lightbulb: Best practices
 
 !!! tip "Best Practices"
-    **Check the Alerts Dashboard daily.** It gives you a full picture of all containers that need attention.
+    **Name terminals carefully.** Start each tracking terminal's name with CN, TERMONT, VIAU, RACINE or CAST so both the icon and the popup work.
 
-    **Watch the LFD table.** Red and yellow rows need immediate action to avoid demurrage.
+    **Enter one container number per order.** Long multi-number entries (over 20 characters) lose the tracking icon on Orders, and tracking sends the whole field to the terminal as one container number, so it is unlikely to be found.
 
-    **Click container numbers.** Anywhere you see a container number as a link, click it to open the full tracking modal.
+    **Green header = check customs, then dispatch.** On CN, de-ramped does not mean customs is released -- read the **Customs** line.
 
-    **Use the email digest.** Even when you are away from the app, the daily digest keeps you informed of critical changes.
-
-    **Monitor Integration Health.** If a health card turns red, data from that terminal may be stale -- factor this into your planning.
+    **Use bulk update for dates.** ETA and Last Free Day are not copied to orders automatically.
