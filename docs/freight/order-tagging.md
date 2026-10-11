@@ -9,7 +9,7 @@ Add a **Tag / Group** label to orders so your team can sort, filter and visually
 - The list of tags is **set up by UTX for your account**. Users cannot create, rename or delete tags in the app.
 - If no tags are configured for your account, the feature is completely hidden: no **Tag / Group** field, no **Default tag** field and no tag filters.
 - Your account is configured with tags either **optional** (the **Tag / Group** dropdown has a blank entry) or **required** (the dropdown has no blank entry). "Required" only affects the dropdown: orders created without a form (duplicated orders, automatic orders) can still have no tag.
-- A customer can have a **Default tag**. It is meant to be pre-selected when staff pick that customer on the order form (see the known issue in [Customer Default Tag](#customer-default-tag)).
+- A customer can have a **Default tag**, recording the group that customer usually belongs to.
 - Tagged orders show a coloured order number in the order lists, and you can filter the **Orders** and **Dispatch** pages by tag.
 
 ## :fontawesome-solid-bolt: Quick Start
@@ -28,7 +28,7 @@ Add a **Tag / Group** label to orders so your team can sort, filter and visually
 | :fontawesome-solid-user-tie: **Manager** | Set the tag on orders, set a customer's **Default tag**, filter by tag on **Dispatch** and **Orders** |
 | :fontawesome-solid-headset: **Dispatch** | Set the tag on orders, filter by tag on **Dispatch** and **Orders**. Can edit customers (and their **Default tag**) only if your account allows dispatchers to manage customers |
 | :fontawesome-solid-calculator: **Accountant** | Can set the tag on **Dispatched** orders (**Quick Edit**, **Edit Order**, **Complete Order**). Can set it on orders in any status when your account allows accountants to manage orders. Can use the tag buttons on the **Orders** page (intermodal accounts). No access to the **Dispatch** page or to customers |
-| :fontawesome-solid-user: **Customer** | When your account lets customers create and edit their own orders, the **Tag / Group** field also appears on their order form, so they can see and set it on orders that are still **New**. Customers never get the **Default tag** pre-selection and cannot edit customers. On intermodal accounts they also see the tag buttons on the **Orders** page |
+| :fontawesome-solid-user: **Customer** | When your account lets customers create and edit their own orders, the **Tag / Group** field also appears on their order form, so they can see and set it on orders that are still **New**. Customers cannot edit customers or their **Default tag**. On intermodal accounts they also see the tag buttons on the **Orders** page |
 
 !!! info "Who configures the tags?"
     Tag names, their order and whether a tag is required are account settings managed by UTX. Contact UTX support to add, rename or remove a tag, or to switch between optional and required tags.
@@ -65,7 +65,7 @@ The order action control on the **Orders** and **Dispatch** pages is a split but
 
 ## :fontawesome-solid-building: Customer Default Tag
 
-A customer's **Default tag** is meant to save staff a click when creating orders for that customer. Read the known issue below before relying on it.
+A customer's **Default tag** records the group that customer's orders usually belong to.
 
 1. From the left menu, select :fontawesome-solid-building: **Customers**.
 2. Find the customer by name.
@@ -77,20 +77,8 @@ A customer's **Default tag** is meant to save staff a click when creating orders
 
 The **Customers** menu, the **Edit Customer** button and the **Default tag** field are available to Admin and Manager users, and to Dispatch users when your account lets dispatchers manage customers. The **Default tag** field only appears when tags are configured for your account.
 
-### When the default tag is applied
-
-The default tag is designed as a **pre-selection on the staff order form only**: when an Admin, Manager or Dispatch user changes the customer in **Place the order on behalf of** (the **Change Customer** section of the New Order / Edit Order form), the form looks up that customer's **Default tag** and selects it in **Tag / Group**. You can still change it before saving.
-
-The default tag is **never** applied to:
-
-- Orders created by customers themselves
-- Duplicated orders
-- Orders created automatically (for example auto-orders from uploaded documents)
-- Existing orders (changing a customer's **Default tag** does not update orders already created)
-- Orders where the customer dropdown is never changed
-
-!!! warning "Known issue: the default tag is not pre-selected"
-    In the current version, changing the customer on the order form does **not** actually change the **Tag / Group** value: the dropdown keeps whatever was selected before (blank for optional tags, the first tag for required tags). Until this is fixed, always pick the **Tag / Group** value yourself after choosing the customer.
+!!! tip "Check the tag on each order"
+    The tag is set per order. Always check the **Tag / Group** value on the order form before you click **Submit Order** or **Update Order**. Changing a customer's **Default tag** does not update orders that already exist.
 
 ## :fontawesome-solid-filter: Filtering by Tag
 
@@ -121,12 +109,12 @@ The **Orders** page shows tag buttons **only for intermodal accounts**, for ever
 
 ## :fontawesome-solid-palette: Color Guide
 
-Tagged orders show their order number on a badge in the **Orders** and **Dispatch** lists. The colour depends on the tag's ID in your account configuration (normally tag 1 is the first tag in the list and tag 2 the second). The tag name itself is not displayed on the row.
+Tagged orders show their order number on a badge in the **Orders** and **Dispatch** lists. The colour depends on the tag's position in your account's tag list. The tag name itself is not displayed on the row.
 
 | Tag | Order number display |
 |-----|---------------------|
-| Tag with ID 1 | :fontawesome-solid-square:{ style="color: #519839" } Green badge |
-| Tag with ID 2 | :fontawesome-solid-square:{ style="color: #d9b51c" } Amber badge |
+| First tag | :fontawesome-solid-square:{ style="color: #519839" } Green badge |
+| Second tag | :fontawesome-solid-square:{ style="color: #d9b51c" } Amber badge |
 | Any other tag | Badge with no background colour |
 | No tag | Plain order number, no badge |
 
@@ -139,7 +127,7 @@ To see which tag an order has, open **Quick Edit** or **Edit Order**, or use the
 | Place | Tag shown? |
 |-------|-----------|
 | **Tag / Group** field on order forms | Yes |
-| Order number colour in **Orders** and **Dispatch** lists | Yes (tags with ID 1 and 2 only) |
+| Order number colour in **Orders** and **Dispatch** lists | Yes (first and second tags only) |
 | **Order History** (order action menu > **View History**, for users who have access to it) | Yes, changes are recorded with the tag name |
 | Emails to customers | No |
 | Invoices | No |
@@ -168,11 +156,6 @@ To see which tag an order has, open **Quick Edit** or **Edit Order**, or use the
 !!! info "Solution"
     Your account requires a tag on every order, so the **Tag / Group** dropdown has no blank option. You can change the tag but not clear it. Contact UTX support if tags should be optional.
 
-### :fontawesome-solid-building: The customer's default tag wasn't applied
-
-!!! info "Solution"
-    In the current version the default tag is not pre-selected when you change the customer (see the known issue in [Customer Default Tag](#customer-default-tag)). It is also never applied to orders created by customers, duplicated orders or automatic orders. Set the tag manually in **Tag / Group**, for example with **Quick Edit**.
-
 ### :fontawesome-solid-filter: I can't find the tag buttons on the Orders page
 
 !!! info "Solution"
@@ -181,7 +164,7 @@ To see which tag an order has, open **Quick Edit** or **Edit Order**, or use the
 ### :fontawesome-solid-palette: My order number has no colour even though it is tagged
 
 !!! info "Solution"
-    Only the tags with ID 1 and 2 have a colour (green and amber). Orders with any other tag show a badge without a background colour. Open **Quick Edit** to see the tag.
+    Only the first and second tags have a colour (green and amber). Orders with any other tag show a badge without a background colour. Open **Quick Edit** to see the tag.
 
 ### :fontawesome-solid-copy: I duplicated an order and the copies have no tag
 
@@ -191,8 +174,8 @@ To see which tag an order has, open **Quick Edit** or **Edit Order**, or use the
 ## :fontawesome-solid-lightbulb: Best Practices
 
 !!! tip "Getting the most out of tags"
-    - When asking UTX to configure tags, ask for your two most-used groups to be tags 1 and 2, so they get the green and amber colours.
-    - Set a **Default tag** on customers that always belong to the same group, but always check the **Tag / Group** value yourself before you submit.
+    - When asking UTX to configure tags, ask for your two most-used groups to be first and second in the list, so they get the green and amber colours.
+    - Set a **Default tag** on customers that always belong to the same group, and check the **Tag / Group** value on each order before you submit.
     - After duplicating orders, or when customers or automatic orders create orders, filter by **No Tag** on the **Dispatch** page to catch untagged orders.
     - Use **View History** (if you have access to it) to see who changed an order's tag and when.
 

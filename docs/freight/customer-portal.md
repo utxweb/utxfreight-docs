@@ -8,7 +8,7 @@ Every person you add under a customer company can sign in to UTX Freight with th
 
 - :fontawesome-solid-building: **Company-wide visibility**: a customer user sees every order placed for **anyone in their company**, not only their own, in the office they are working in.
 - :fontawesome-solid-eye: **View only by default**: customers can search, filter and open order details. They cannot change statuses, edit fields inline, or see drivers and pricing.
-- :fontawesome-solid-pencil: **Optional order management**: when the account option `customer_can_manage_orders` is on, customers can also create orders and edit orders that are still **New**. The option is **off** by default.
+- :fontawesome-solid-pencil: **Optional order management**: if your account has customer order entry turned on (ask UTX support), customers can also create orders and edit orders that are still **New**. It is **off** by default.
 - :fontawesome-solid-file-pdf: **PODs**: customers can open the scanned POD and the signed POD of their orders.
 - :fontawesome-solid-envelope: **Emails**: the person on the order gets an email when it is dispatched and when it is completed (if their **Email Notifications** setting is on). Invoices, statements and PODs are emailed by your staff.
 - :fontawesome-solid-link: **Consignee view**: when a customer company is linked to a **Shipper / Receiver** record, its users also see, read-only, every order delivered to that location, from any freight forwarder, with no pricing.
@@ -44,8 +44,8 @@ What a **Customer** user can do, compared with your staff:
 | See orders on the **Orders** page | :fontawesome-solid-check: All orders of their company, in their office(s) | :fontawesome-solid-check: Orders delivered to the linked shipper/receiver |
 | **View Details** | :fontawesome-solid-check: | :fontawesome-solid-check: |
 | Open the scanned or signed POD (**POD** column) | :fontawesome-solid-check: | :fontawesome-solid-check: |
-| **Create a new order** | Only when `customer_can_manage_orders` is on | — |
-| **Edit Order** | Only when `customer_can_manage_orders` is on, and only while the order is **New** | :fontawesome-solid-xmark: Never |
+| **Create a new order** | Only when customer order entry is turned on | — |
+| **Edit Order** | Only when customer order entry is turned on, and only while the order is **New** | :fontawesome-solid-xmark: Never |
 | Change status (**Make App.**, **Dispatch**, **Complete**), Reset, Go Back 1 Step | :fontawesome-solid-xmark: | :fontawesome-solid-xmark: |
 | Inline editing on the list (dates, numbers, container status) | :fontawesome-solid-xmark: | :fontawesome-solid-xmark: |
 | **Duplicate**, **Delete Order**, **Transfer to Office**, **View History** | :fontawesome-solid-xmark: | :fontawesome-solid-xmark: |
@@ -58,13 +58,13 @@ What a **Customer** user can do, compared with your staff:
 - The sidebar shows only **Orders**. The user menu shows **Edit Profile** and **Logout**. See [Navigation & Account](navigation-and-account.md).
 - If a customer opens a page they are not allowed to see (for example by typing its address), UTX Freight sends them back to **Orders**.
 - The top bar also shows **Feedback** and **Online Documentation**, and the office switcher on [Multi-Office](multi-office.md) accounts when the customer belongs to more than one office.
-- `customer_can_manage_orders` is an account-wide option set in your UTX Freight configuration. It applies to all customers at once; you cannot turn it on for a single customer. Contact UTX support to change it.
+- Customer order entry is an account-wide option that only UTX can switch on. It applies to all customers at once; it can't be turned on for a single customer. Contact UTX support to change it.
 
 **Who sets things up:**
 
 | Task | Who can do it |
 |------|---------------|
-| Add customer people (invitations) | Admin, Manager. Dispatch when `dispatch_can_manage_customers` is on. See [Customers](managing-customers.md) |
+| Add customer people (invitations) | Admin, Manager. Dispatch too, if your account lets dispatchers manage customers (ask UTX support). See [Customers](managing-customers.md) |
 | Link a shipper/receiver to a customer account (consignee) | Admin, Manager, Dispatch (anyone who can edit **Shipper / Receiver**). See [Shippers & Receivers](shippers-receivers.md) |
 
 ---
@@ -88,7 +88,7 @@ The list shows the orders of the office the customer is currently working in. On
 ### :fontawesome-solid-hashtag: Header and filters
 
 - **Counters**: **New Orders**, **App. Made**, **Dispatched**, **Total**, and on intermodal accounts the yard counters (**Empty at Yard**, **Full at Yard**, and **Pre-Pull** when that container status exists). They count only the orders the customer can see.
-- **Create a new order** button: only when `customer_can_manage_orders` is on.
+- **Create a new order** button: only when customer order entry is turned on.
 - **Search** box (**Container #, Order # and more**) and **Clear All**.
 - **Status tabs**: **All**, **In Progress**, **New**, **App. Made**, **Dispatched**, **Completed**. On intermodal accounts with order tagging, tag buttons also appear.
 
@@ -116,8 +116,7 @@ The status button is always the grey **Actions** button for customers: they can'
 | Menu item | When a customer sees it |
 |-----------|-------------------------|
 | **View Details** | Always |
-| **Edit Order** | Only when `customer_can_manage_orders` is on and the order is a **New** order of their own company. Consignee orders can't be edited |
-| **Quick Edit**, **Documents** | Same condition as **Edit Order**. Saving from these windows is reserved for staff, so customers should use **Edit Order** |
+| **Edit Order** | Only when customer order entry is turned on and the order is a **New** order of their own company. Consignee orders can't be edited |
 
 Customers never see **Duplicate**, **Reset Order to New**, **Go Back 1 Step**, **Transfer to Office**, **View History**, **Remove Signature**, **Delete Order**, **View POD** / **View eBoL**, **View Internal POD** or **View Carrier Confirmation**.
 
@@ -131,7 +130,7 @@ The **Administrative Information** section (rates, total, appointment date and t
 
 ## :fontawesome-solid-plus: Creating and Editing Orders (Optional)
 
-These features are available only when the account option `customer_can_manage_orders` is **on**. It is **off** by default. When it is off, customers have no **Create a new order** button and no **Edit Order** item.
+These features are available only when your account has customer order entry turned on. It is **off** by default and only UTX can turn it on, so ask UTX support. When it is off, customers have no **Create a new order** button and no **Edit Order** item.
 
 ### Creating an order
 
@@ -176,7 +175,7 @@ The **POD** column shows icons once a POD exists. Customers (and consignees) can
 | :fontawesome-solid-file-pdf: Red PDF | The scanned signed POD uploaded by your staff |
 | :fontawesome-solid-file-signature: Green signature (*Open signed POD*) | The signed POD captured on the driver's phone |
 
-The **DOC** column shows an icon when documents are attached to the order, but only to users who can edit the order. Customers therefore only see the icon on their **New** orders when `customer_can_manage_orders` is on, and the window it opens can't be saved by a customer. Customers can't upload documents or the signed POD; your staff do that. To send documents to a customer, include them in the invoice email or use **Send POD to client**. See [Order Documents & POD](order-documents-and-pod.md).
+Documents attached to an order are managed by your staff. Customers can't upload documents or the signed POD; your staff do that. To send documents to a customer, include them in the invoice email or use **Send POD to client**. See [Order Documents & POD](order-documents-and-pod.md).
 
 ---
 
@@ -205,7 +204,7 @@ A **consignee** is a customer user whose company is linked to one or more **Ship
 - Linked users see, **read-only**, every order whose delivery location (**Deliver To**) is one of the linked shipper/receiver records, **from any customer** (freight forwarder). They also keep seeing their own company's orders as usual.
 - Only the delivery location counts. Orders where the linked location is the pickup location are not added.
 - Pricing is never shown, the same as for every customer.
-- Consignee orders can't be edited, even when `customer_can_manage_orders` is on. Consignees can use **View Details** and open the POD.
+- Consignee orders can't be edited, even when customer order entry is turned on. Consignees can use **View Details** and open the POD.
 - The **Bill To** line shows the company that placed the order (the forwarder).
 - As for other customers, the list shows the orders of the office the user is currently working in.
 
@@ -240,12 +239,12 @@ A linked shipper/receiver shows the company name with a :fontawesome-solid-link:
 ### :fontawesome-solid-plus: The customer has no "Create a new order" button
 
 !!! info "Solution"
-    Customer order creation is controlled by the account option `customer_can_manage_orders`, which is off by default. Contact UTX support to turn it on. It applies to all customers. Also check that your account isn't suspended: during a suspension nobody can create orders.
+    Customer order entry is an account option that is off by default. Contact UTX support to turn it on. It applies to all customers. Also check that your account isn't suspended: during a suspension nobody can create orders.
 
 ### :fontawesome-solid-pencil: The customer can't edit an order
 
 !!! info "Solution"
-    Customers can only edit orders that are still **New**, and only when `customer_can_manage_orders` is on. Once an appointment is made the order is read-only for them. Orders seen through the consignee view are never editable. Make the change for them, or use **Reset Order to New** if the order must go back to the customer.
+    Customers can only edit orders that are still **New**, and only when customer order entry is turned on. Once an appointment is made the order is read-only for them. Orders seen through the consignee view are never editable. Make the change for them, or use **Reset Order to New** if the order must go back to the customer.
 
 ### :fontawesome-solid-eye-slash: A customer user can't see an order
 

@@ -6,7 +6,7 @@ Create, price and track repair and service jobs in the Garage add-on, from the f
 
 - :fontawesome-solid-list: The **Work Orders** page is the first page of the Garage. It lists every work order of your current office, newest first, 20 per page, with status tabs, a search box and an **Actions** menu on each row.
 - :fontawesome-solid-file-pen: A work order has a **Customer** (required), optional **Equipment**, a description, dates, an odometer reading, an assigned technician, **Parts** lines, **Labor** lines, a **Shop Supplies Fee** and **Internal Notes**.
-- :fontawesome-solid-arrow-right: Every work order moves through five statuses: **Estimate** :fontawesome-solid-arrow-right: **Approved** :fontawesome-solid-arrow-right: **In progress** :fontawesome-solid-arrow-right: **Completed** :fontawesome-solid-arrow-right: **Invoiced**. An estimate can also go straight to **In progress**. A completed work order can be **Reopened** back to **Approved**. A completed work order normally becomes **Invoiced** when you generate an invoice for it (see the warning about **Mark Invoiced** under [Status workflow](#status-workflow)).
+- :fontawesome-solid-arrow-right: Every work order moves through five statuses: **Estimate** :fontawesome-solid-arrow-right: **Approved** :fontawesome-solid-arrow-right: **In progress** :fontawesome-solid-arrow-right: **Completed** :fontawesome-solid-arrow-right: **Invoiced**. An estimate can also go straight to **In progress**. A completed work order can be **Reopened** back to **Approved**. A completed work order becomes **Invoiced** when you generate an invoice for it.
 - :fontawesome-solid-boxes-stacked: When a work order moves to **In progress**, the quantities of its catalogue parts are taken out of parts inventory.
 - :fontawesome-solid-pen: You can edit a work order at any status, including **Invoiced** while its invoice is still a **draft**. Saving then recalculates the draft invoice. Only a work order billed on an invoice that has left draft (sent, partially paid, paid) is locked.
 - :fontawesome-solid-print: **Print Estimate** opens a printable estimate for the customer. Internal notes are never printed.
@@ -105,7 +105,7 @@ Click :fontawesome-solid-ellipsis-vertical: on a row. The menu has up to three s
 | **View** | **View details** | Always |
 | | **Open invoice** (with the invoice number) | The work order is on an invoice that is not void |
 | | **Print estimate** | Always (opens in a new tab) |
-| **Move to** | **Approved**, **In progress**, **Completed**, **Invoiced** | The next statuses allowed from the current one (see [Status workflow](#status-workflow)). A **Completed** work order shows **Invoiced** here; do not use it (see the warning under [Status workflow](#status-workflow)). |
+| **Move to** | **Approved**, **In progress**, **Completed** | The next statuses allowed from the current one (see [Status workflow](#status-workflow)) |
 | **Actions** | **Edit** | The work order is not locked. Shows **updates draft** when it is on a draft invoice. |
 | | **Generate invoice** | Status is **Completed** and there is no active invoice |
 | | **Bundle with others** | Same as **Generate invoice** |
@@ -193,9 +193,6 @@ Each part row has: **Part / Description**, **Qty**, **Cost**, **Charge**, **Line
 - **Qty** must be a whole number greater than 0. **Cost** and **Charge** must be 0 or more.
 - **Line Total** (Qty × Charge) updates as you type.
 
-!!! warning "A picked part stays linked"
-    Once you pick a catalogue part on a row, the row stays linked to that part even if you retype the description. To switch to a different part or to a free-text line, remove the row with :fontawesome-solid-xmark: and add a new one.
-
 ### Labor lines
 
 Each labor row has: **Description**, **Hours**, **Rate**, **Line Total**, **Tax** and :fontawesome-solid-xmark:. Click **Add Labor** to add a row.
@@ -220,7 +217,7 @@ Click **Create Work Order** (new) or **Update Work Order** (edit). **Cancel** le
 | *<n> errors prevented this work order from being saved:* followed by a list | Something is missing or invalid (for example no customer, a part quantity of 0, a labor line with no description). Fix the listed items and save again. |
 
 !!! tip "Remove rows you don't use"
-    An empty part row still carries a **Qty** of 1 and an empty labor row still carries the default **Rate**, so they are sent and checked like real lines when you save, and can stop the save with errors. Click :fontawesome-solid-xmark: on any empty part or labor row you do not need before saving.
+    Every part and labor row on the form is saved and checked as a line. Click :fontawesome-solid-xmark: on any empty part or labor row you do not need before saving.
 
 ---
 
@@ -233,7 +230,6 @@ Click **Create Work Order** (new) or **Update Work Order** (edit). **Cancel** le
 | **Approved** | **In progress** | **Mark In progress** | *Mark as In Progress? Parts inventory will be decremented.* |
 | **In progress** | **Completed** | **Mark Completed** | *Mark as Completed? You can generate an invoice or reopen the work order from the completed state.* |
 | **Completed** | **Invoiced** | **Generate Single Invoice** or **Bundle with Other Work Orders** | See [Garage Invoices](garage-invoices.md) |
-| **Completed** | **Invoiced** (no invoice) | **Mark Invoiced** | *Move to Invoiced?* — do not use, see the warning below |
 | **Completed** | **Approved** (reopen) | **Reopen Work Order** | *Reopen this work order? It goes back to Approved because the work is not actually finished. You do not need this just to edit it — use Edit instead.* |
 
 The same moves are in the row **Actions** menu under **Move to** and **Actions** (the **Completed** confirmation there reads *Mark as Completed? You can generate an invoice or reopen the work order.*, and **Reopen** asks *Reopen this work order? It will return to Approved.*).
@@ -244,13 +240,10 @@ After a move you see *Work order #<id>: status changed to <status>.* Reopening s
 
 - **To In progress:** catalogue parts on the work order are taken out of inventory (see [Parts inventory](#parts-inventory)).
 - **To Completed:** **Date Out** is set to today, unless it already has a date. **Date Out** is not shown on the work order page or the printed estimate; it appears as **Completed:** on the invoice and in the customer summary report.
-- **To Invoiced:** happens when the work order is put on an invoice (**Generate Single Invoice**, **Bundle with Other Work Orders**, or adding it to an invoice). The **Mark Invoiced** button and the **Move to** :fontawesome-solid-arrow-right: **Invoiced** menu item also change the status, but without creating an invoice.
+- **To Invoiced:** happens when the work order is put on an invoice (**Generate Single Invoice**, **Bundle with Other Work Orders**, or adding it to an invoice).
 - **Reopen:** only from **Completed**. The work order goes back to **Approved**. **Date Out** is not cleared.
 
 You cannot move a work order backwards (other than **Reopen**), and there are no moves out of **Invoiced**. To take a work order off an invoice, delete or void the invoice, or remove the work order from it, on the invoice side. See [Garage Invoices](garage-invoices.md).
-
-!!! danger "Do not use Mark Invoiced"
-    On a **Completed** work order, the **Mark Invoiced** button (work order page) and **Move to** :fontawesome-solid-arrow-right: **Invoiced** (row **Actions** menu) set the status to **Invoiced** without creating or linking an invoice. The work order is then stuck: it cannot be edited (**Edit** is locked), it has no further status moves, it cannot be reopened, and it can no longer be put on an invoice because only **Completed** work orders can be invoiced. To bill a completed work order, always use **Generate Single Invoice** or **Bundle with Other Work Orders**.
 
 | Message | Meaning |
 |---------|---------|
@@ -258,7 +251,6 @@ You cannot move a work order backwards (other than **Reopen**), and there are no
 | **Cannot modify an invoiced work order.** | The work order is on an invoice that has left draft |
 | **Only completed work orders can be reopened.** | **Reopen** was used on a work order that is not **Completed** |
 | **Work order must be completed before invoicing.** | An invoice was requested for a work order that is not **Completed** |
-| **Cannot edit an invoiced work order.** | **Edit** was used on an **Invoiced** work order that has no invoice number attached (for example after **Mark Invoiced**) |
 
 !!! tip "Editing does not need Reopen"
     You can edit a completed work order directly with **Edit**. Use **Reopen** only when the work is actually not finished.
@@ -275,7 +267,7 @@ You cannot move a work order backwards (other than **Reopen**), and there are no
 
 ### Deleting a work order
 
-Only **Estimate** work orders can be deleted, and the current screens have no **Delete** button on the list or on the work order page. A work order in any other status cannot be deleted (*Only estimate work orders can be deleted.*).
+Work orders are not deleted from the **Work Orders** list or the work order page. Leave unused estimates in the **Estimates** tab.
 
 ---
 
@@ -289,11 +281,8 @@ Inventory is the **quantity on hand** of each part in Garage sidebar :fontawesom
 | A catalogue part line is removed while the work order is **In progress**, **Completed** or **Invoiced** (draft invoice) | The line's **Qty** is added back |
 | A catalogue part line is removed while the work order is **Estimate** or **Approved** | Nothing (stock was never taken out) |
 
-!!! warning "Known gaps"
-    - **Lines added after In progress are not subtracted.** Parts added to a work order that is already **In progress**, **Completed** or on a draft invoice do not reduce inventory. Adjust the part's quantity on hand by hand.
-    - **Changing a quantity does not adjust stock.** Editing **Qty** on an existing line does not add or remove stock. Adjust the part by hand, or remove the line and add a new one before the work order goes **In progress**.
-    - **Reopen, then In progress again, subtracts again.** Reopening returns the work order to **Approved** without putting stock back. Marking it **In progress** again subtracts every catalogue line a second time.
-    - **Removing a line after Reopen does not put stock back.** On a reopened (**Approved**) work order, the stock was already taken out, but removing a catalogue line adds nothing back because the status is **Approved**.
+!!! tip "Add parts before In progress"
+    Stock is taken out when the work order moves to **In progress**. Put all catalogue parts on the work order before that step. To correct a part's stock at any time, adjust its quantity on hand under Garage **Parts**.
 
 ---
 
@@ -319,7 +308,7 @@ Once the invoice is marked sent (or has payments), the work order is locked. **E
 
 If the invoice was marked sent between opening the form and saving, the save is refused with the same message and nothing is changed.
 
-!!! danger "Paid invoices are a dead end for editing"
+!!! info "Work orders on paid invoices"
     Payments cannot be removed from a fully paid invoice (*Cannot remove payments from a fully paid invoice.*), and only sent invoices without payments can be reopened. So a work order on a **paid** invoice cannot be edited. Voiding the invoice takes its work orders off it and returns them to **Completed**, but it also voids a paid invoice — check with your accountant first. See [Garage Invoices](garage-invoices.md).
 
 ---
@@ -333,7 +322,7 @@ Click the work order **ID** or **View details**.
 ### Header
 
 - **Work Order #<id>**, the total **including tax**, the status badge, **Date In**, the technician and the **P/O** number.
-- Buttons, depending on status: **Edit**, **Print Estimate**, **Mark Approved** / **Mark In progress** / **Mark Completed**, and for **Completed** work orders **Mark Invoiced** (do not use, see [Status workflow](#status-workflow)), **Generate Single Invoice**, **Bundle with Other Work Orders** and **Reopen Work Order**. **View Invoice** appears when the work order is on an invoice that is not void.
+- Buttons, depending on status: **Edit**, **Print Estimate**, **Mark Approved** / **Mark In progress** / **Mark Completed**, and for **Completed** work orders **Generate Single Invoice**, **Bundle with Other Work Orders** and **Reopen Work Order**. **View Invoice** appears when the work order is on an invoice that is not void.
 
 ### Status hint
 
@@ -422,12 +411,7 @@ This happens when you first enter **Odometer In**, change it, or change the equi
 ### :fontawesome-solid-boxes-stacked: Inventory did not go down for a part I added
 
 !!! info "Solution"
-    Stock is only taken out at the moment the work order moves to **In progress**, and only for lines linked to a catalogue part (picked from the list). Parts added afterwards, free-text lines and quantity changes do not change inventory. Adjust the part's quantity on hand under Garage **Parts**.
-
-### :fontawesome-solid-boxes-stacked: Inventory went down twice
-
-!!! info "Solution"
-    The work order was probably reopened and then marked **In progress** again, which subtracts the parts a second time. Correct the quantity on hand under Garage **Parts**. Next time, use **Edit** instead of **Reopen** if you only need to change lines.
+    Stock is taken out when the work order moves to **In progress**, and only for lines linked to a catalogue part (picked from the list). Free-text lines never change inventory. To correct stock, adjust the part's quantity on hand under Garage **Parts**.
 
 ### :fontawesome-solid-lock: I can't edit an invoiced work order
 
@@ -437,7 +421,7 @@ This happens when you first enter **Odometer In**, change it, or change the equi
 ### :fontawesome-solid-trash: How do I delete a work order?
 
 !!! info "Solution"
-    There is no **Delete** button in the current screens, and only **Estimate** work orders can be deleted at all. Leave unused estimates in the **Estimates** tab.
+    Work orders are not deleted from the Garage screens. Leave unused estimates in the **Estimates** tab.
 
 ### :fontawesome-solid-calculator: The total on the list is different from the total on the work order
 
@@ -457,7 +441,7 @@ This happens when you first enter **Odometer In**, change it, or change the equi
     - Pick parts from the catalogue instead of typing them, so inventory and costs stay accurate.
     - Get all parts on the work order **before** marking it **In progress**, since that is when stock is taken out.
     - Use **Edit**, not **Reopen**, to fix lines on a completed work order.
-    - Bill completed work orders with **Generate Single Invoice** or **Bundle with Other Work Orders**, never with **Mark Invoiced**.
+    - Bill completed work orders with **Generate Single Invoice** or **Bundle with Other Work Orders**.
     - Fix mistakes while the invoice is still a draft. Once it is sent, you have to reopen the invoice; once it is paid, you cannot edit the work order.
     - Enter **Odometer In** on every visit to keep the equipment's mileage and service history up to date.
     - Use **Internal Notes** for shop-only information; it never appears on the printed estimate.

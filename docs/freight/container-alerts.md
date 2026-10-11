@@ -46,7 +46,7 @@ The page only exists when at least one Container Tracking add-on (CN, Port of Mo
 |------|--------|
 | :fontawesome-solid-user-shield: **Admin** | Views the page. Can use **Mark All Read** and the per-alert read / unread toggle. Manages **Alert Email Subscriptions** in **Settings**. |
 | :fontawesome-solid-user-tie: **Manager**, :fontawesome-solid-headset: **Dispatch**, :fontawesome-solid-headset: **Customer Service** | Views the page (reached from the **Dispatch** header). Cannot mark alerts read or unread. |
-| Other signed-in users | The page itself has no role check, so anyone signed in can open it from a link (for example the digest email). Only Admins can change read status. |
+| Other signed-in users | Can open the page from a link (for example the digest email). Cannot mark alerts read or unread. |
 
 **How to get there:**
 
@@ -69,7 +69,7 @@ At the top of the page, under **Integration Health**, there is one card for each
 | Color | Meaning |
 |-------|---------|
 | :fontawesome-solid-circle:{ style="color:#4caf50" } **Green** | Healthy. The last pull ran less than 30 minutes ago and the terminal returned at least one container. |
-| :fontawesome-solid-circle:{ style="color:#ff9800" } **Orange** | The last pull ran less than 30 minutes ago and asked about containers, but the terminal returned none. Usually a problem on the terminal / API side. |
+| :fontawesome-solid-circle:{ style="color:#ff9800" } **Orange** | The last pull ran less than 30 minutes ago and asked about containers, but the terminal returned none. Usually a problem on the terminal side. |
 | :fontawesome-solid-circle:{ style="color:#f44336" } **Red** | The last pull failed (**ERROR** label), has not run for more than 1 hour, or has never run. |
 | :fontawesome-solid-circle:{ style="color:#9e9e9e" } **Gray** | None of the above. For example, the last pull was between 30 and 60 minutes ago, or it had no containers to ask about. |
 
@@ -107,10 +107,10 @@ Below Integration Health there are six cards. Click a card to filter the alert l
 | :fontawesome-solid-truck: **Ready for Pickup** | Green | **Pickup Ready** alerts created in the last 7 days | **Pickup Ready** alerts |
 | :fontawesome-solid-circle-check: **Customs Released** | Blue | **Customs Released** alerts created in the last 7 days | **Customs Released** alerts |
 | :fontawesome-solid-right-from-bracket: **Departed** | Gray | **Departed** alerts created in the last 7 days | **Departed** alerts |
-| :fontawesome-solid-list: **All** | Default (no color) | The sum of the five cards above | All alerts (no filter) |
+| :fontawesome-solid-list: **All** | Default (no color) | The total of the five cards above | All alerts (no filter) |
 
 !!! info "The card number and the list can differ"
-    The cards use different rules from the list. For example, **Ready for Pickup** counts the last 7 days, but its filtered list shows the last 90 days. **LFD Approaching** counts containers, but its list shows LFD alerts. The cards also count alerts whose order is no longer in progress (for example **Completed**), which the list hides. **All** adds the card numbers together, so an unread alert from this week is counted twice (in **Unread** and in its type card).
+    The cards use different rules from the list. For example, **Ready for Pickup** counts the last 7 days, but its filtered list shows the last 90 days. **LFD Approaching** counts containers, but its list shows LFD alerts. The cards also count alerts whose order is no longer in progress (for example **Completed**), which the list hides.
 
 With [multiple offices](multi-office.md), the alert cards count alerts for orders in your current office plus alerts with no order. The **LFD Approaching** card and the Upcoming LFD table are not limited to an office.
 
@@ -145,23 +145,14 @@ The table **Upcoming Last Free Days (Next 7 Days)** lists every tracked containe
 !!! tip "EXPIRED means today"
     Because past LFDs are not listed, an **EXPIRED** badge always means the LFD is **today**. Pick the container up today to avoid demurrage.
 
-!!! info "Departed containers can still be listed"
-    The table does not check whether the container has already left the terminal. A container that has departed but whose LFD is in the next 7 days is still listed. Check the **Status** column.
+!!! info "Check the Status column"
+    The table lists containers by Last Free Day, including containers that have already left the terminal. Check the **Status** column before dispatching a driver.
 
 ---
 
 ## :fontawesome-solid-list: The Alerts List
 
-The list title is **All Alerts**. When a card filter is on, the title is the filter's internal name followed by *Alerts*, exactly as shown here:
-
-| Card clicked | List title |
-|--------------|------------|
-| **Unread** | **Unread Alerts** |
-| **LFD Approaching** | **Lfd approaching Alerts** |
-| **Ready for Pickup** | **Pickup available Alerts** |
-| **Customs Released** | **Customs released Alerts** |
-| **Departed** | **Departed Alerts** |
-| **All** | **All Alerts** |
+The list title is **All Alerts**. When you click a summary card, the title changes to show which filter is on (for example **Unread Alerts**). Click **All** to clear the filter.
 
 ### Which alerts are listed
 
@@ -211,7 +202,7 @@ Unread alerts are shown in **bold** with a red **NEW** badge.
 !!! info "Marking read does not delete"
     Read alerts stay in the list. Only the bold text and the **NEW** badge go away.
 
-If a non-Admin clicks **Mark All Read**, nothing is marked and they are sent to the home page with the message **You are not authorized to access this page.** The eye icon does nothing for non-Admins.
+Only Admins can change read status. Other users see the alerts but cannot mark them read or unread.
 
 ---
 
@@ -223,8 +214,8 @@ Alerts are created by the tracking pull that runs every 10 minutes. An alert is 
 
 | Alert | Created when | Message |
 |-------|--------------|---------|
-| **Pickup Ready** | The CN CLM status starts containing **De-ramped** | `Container <number> has been de-ramped and is available for pickup at CN` |
-| **Customs Released** | The customs description starts containing the word **release** | `Customs released for container <number>` |
+| **Pickup Ready** | The CN status shows the container as **De-ramped** | `Container <number> has been de-ramped and is available for pickup at CN` |
+| **Customs Released** | The terminal reports the container as released by customs | `Customs released for container <number>` |
 | **Departed** | The visit state becomes **Completed** | `Container <number> has departed CN terminal` |
 
 After a CN container's visit state is **Departed** or **Completed**, no more status alerts are created for it.
@@ -233,8 +224,8 @@ After a CN container's visit state is **Departed** or **Completed**, no more sta
 
 | Alert | Created when | Message |
 |-------|--------------|---------|
-| **Pickup Ready** | Available for pickup becomes **Yes** | `Container <number> is now available for pickup` |
-| **Customs Released** | The customs description starts containing the word **release** | `Customs released for container <number>` |
+| **Pickup Ready** | The terminal shows the container as available for pickup | `Container <number> is now available for pickup` |
+| **Customs Released** | The terminal reports the container as released by customs | `Customs released for container <number>` |
 | **Departed** | The visit state becomes **Departed** | `Container <number> has departed the terminal` |
 
 After the terminal reports the container as out of the terminal, no more status alerts are created for it.
@@ -247,12 +238,8 @@ After each pull, the system checks every tracked container (CN Rail, Termont and
 - So the alert **repeats about once a day**: up to **3 times** (2 days before, 1 day before, and on the LFD itself).
 - It **never fires after the LFD**. Once the date has passed, no more LFD alerts are created for that container.
 - The 24-hour check is by container number, across all sources.
-- Unlike the other alert types, the LFD alert does **not** stop when the container has departed. A container that has already left the terminal still gets LFD alerts while its LFD is in this window.
 
 Message: `Last Free Day for <number> is in <N> days (<Mon DD, YYYY>)`. It says *1 day* when the LFD is tomorrow and *0 days* when it is today. Example: *Last Free Day for ABCU1234567 is in 2 days (Oct 14, 2026)*.
-
-!!! info "The help box says LFD alerts fire once"
-    The help box on the page says the LFD alert "fires once". It actually repeats daily as described above, until the LFD.
 
 !!! tip "Alerts are created for every tracked container"
     Alerts are created even when no in-progress order has the container. Those alerts show **N/A** in the **Order** column.
@@ -285,7 +272,6 @@ Once a day, the system sends one email to each subscriber.
 - **Title:** **Container Tracking Alerts**, then *Summary for <day, date> — N alerts*.
 - **⚠ Action Required (N)** — the **Pickup Ready** alerts (shown as *Ready for Pickup*) and **LFD Approaching** alerts, with container, source and order number. This box only appears when there is at least one.
 - **One section per alert type**, titled *Pickup Available*, *Customs Released*, *Departed* or *LFD Approaching* with the count in brackets. Each has a table: **Container**, **Source**, **Message**, **Order**, **Time**. The **Order** column shows the order's reference number, or **—** when no order is linked.
-- In the email, **Source** shows the internal source code: **CN**, **Termont** or **MTRTML** (MTRTML is MGT Racine/Cast).
 - With [multiple offices](multi-office.md), the email is split by office, each with its own **Action Required** box and type sections. Alerts with no order are under **Unassigned**.
 - **View Alerts Dashboard** button — opens the Container Alerts page.
 - Footer: *This notification is sent automatically by* your company name.
@@ -318,10 +304,10 @@ Once a day, the system sends one email to each subscriber.
 !!! info "Solution"
     There is no menu item. Go to **Dispatch** and click the **Alerts** button in the header. If the button is missing, no Container Tracking add-on is enabled on your account. Contact UTX support.
 
-### :fontawesome-solid-ban: Mark All Read does nothing / I get a not-authorized message
+### :fontawesome-solid-ban: I can't mark alerts as read
 
 !!! info "Solution"
-    Only Admins can mark alerts read or unread. Ask an Admin, or open **Port Tracking** on Dispatch, which marks the Termont and MGT alerts it shows as read.
+    Only Admins can use **Mark All Read** and the eye icon. Ask an Admin to mark the alerts as read.
 
 ### :fontawesome-solid-eye-slash: Alerts disappeared from the list
 
@@ -351,7 +337,7 @@ Once a day, the system sends one email to each subscriber.
 ### :fontawesome-solid-circle-exclamation: "User is already subscribed to this alert type" when adding a subscriber
 
 !!! info "Solution"
-    A **Subscription Error** popup with this message means the user is already on the list. The dropdown hides users who are already subscribed when **Settings** loads, but it does not refresh after you add or remove someone. Reload **Settings** to see the current list. A person you just removed only reappears in the dropdown after a reload.
+    A **Subscription Error** popup with this message means the user is already on the list. Check the subscriber table in **Alert Email Subscriptions**.
 
 ---
 

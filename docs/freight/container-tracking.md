@@ -7,9 +7,9 @@ See the latest terminal status of a container (CN Rail, Termont / Port of Montre
 **Container Tracking** (also called Track & Trace) checks your containers at the terminal on a schedule, stores the latest status, and shows it in a popup when you click the tracking icon on an order.
 
 - :fontawesome-solid-puzzle-piece: **Three separate add-ons** -- one per tracking source. Each source is shown and checked only when its own add-on is on for your account (see [Add-ons and Options](add-ons-and-options.md)).
-- :fontawesome-solid-train: **CN Rail** -- containers at a pickup terminal named **CN**. Add-on: `track_n_trace_cn`.
-- :fontawesome-solid-ship: **Termont (Port of Montreal)** -- containers at a pickup terminal whose name contains **TERMONT** or **VIAU**. Add-on: `track_n_trace_port_of_montreal`.
-- :fontawesome-solid-ship: **MGT (Racine/Cast)** -- containers at a pickup terminal whose name contains **RACINE** or **CAST**. Add-on: `track_n_trace_mtrtml`.
+- :fontawesome-solid-train: **CN Rail** -- containers at a pickup terminal named **CN**.
+- :fontawesome-solid-ship: **Termont (Port of Montreal)** -- containers at a pickup terminal whose name contains **TERMONT** or **VIAU**.
+- :fontawesome-solid-ship: **MGT (Racine/Cast)** -- containers at a pickup terminal whose name contains **RACINE** or **CAST**.
 - :fontawesome-solid-arrows-rotate: **Automatic checks** -- the system checks **in-progress** orders at those terminals on a schedule. You never trigger a check yourself.
 - :fontawesome-solid-clock-rotate-left: **Change history** -- every change to the key tracking fields is recorded and shown at the bottom of the popup.
 - :fontawesome-solid-wand-magic-sparkles: **Auto-fill** -- for Termont and MGT, blank order fields (seal, weight, steamship line, size, customs released) are filled in when new terminal data arrives.
@@ -37,7 +37,7 @@ Each part of the feature has its own rule:
 
 - **Tracking icon on Orders** -- needs permission to change container status on orders (the same permission as the inline container status edit).
 - **Tracking icon on Dispatch** -- shown to everyone who can open **Dispatch**.
-- **Tracking popup** -- needs full permission to manage the order (the popup is its own order action, so view-only access to an order is not enough).
+- **Tracking popup** -- needs full permission to manage the order (view-only access to an order is not enough).
 
 | Role | Access |
 |------|--------|
@@ -74,7 +74,7 @@ The system checks an order's container only when **all** of these are true:
 
 Orders are processed in groups: 200 orders at a time for CN, 50 for MGT, and 10 for Termont (with a 2-second pause between Termont groups). Within a group, a container number that is on several orders is checked once.
 
-**How often?** The checks are run by a scheduled job set up by UTX. The help text on the Container Alerts page says every 10 minutes, but the exact interval is not guaranteed. Use the **Updated ... ago** line at the bottom of the popup to see when that container was last refreshed.
+**How often?** The checks run automatically on a schedule set by UTX. Use the **Updated ... ago** line at the bottom of the popup to see when that container was last refreshed.
 
 !!! info "Completed orders"
     The icon can still appear on a **Completed** order, and the popup still shows the last data stored for that container. It is no longer refreshed, because only in-progress orders are checked.
@@ -95,9 +95,9 @@ The icon sits in the **Container#** column, before the container number and the 
 
 - You need permission to change container status on orders (see [Access & Permissions](#access-permissions)). Without it, you see the container number with its status label but no icon.
 - If the container number is **longer than 20 characters** (for example several numbers separated by `/`), there is **no** tracking icon. Each `/` becomes a line break so the numbers are shown on separate lines.
-- The icon does not check that a container number is entered. An order with a tracking terminal and no container number still shows the icon, and the popup will say the container was not found.
+- The icon is shown even before a container number is entered. In that case the popup says the container was not found.
 
-**On the Dispatch page** the same icon appears in the container column for every order at a tracking terminal, with no permission check and no 20-character limit (only roles that can open Dispatch see it).
+**On the Dispatch page** the same icon appears in the container column for every order at a tracking terminal, for everyone who can open **Dispatch**, whatever the length of the container number.
 
 <!-- TODO: Screenshot — An order row on the Orders page with the red CN train icon in the Container# column -->
 
@@ -108,7 +108,7 @@ The icon sits in the **Container#** column, before the container number and the 
 Click the icon to open the popup. Its layout depends on the source. Fields with no data show a dash (**—**). Both layouts have a **Container Tracking** tab, the **Updated ... ago** line, the [change history](#change-history) table, and a **Close** button.
 
 !!! info "How the source is chosen"
-    The popup picks the source from the **first word** of the order's pickup terminal name:
+    The popup picks the source from the start of the order's pickup terminal name:
 
     - **CN** :fontawesome-solid-arrow-right: CN Rail
     - **TERMONT** or **VIAU** :fontawesome-solid-arrow-right: Termont
@@ -196,7 +196,7 @@ At the bottom of the CN and Termont / MGT popups, a table lists changes the syst
 
 | Column | What it shows |
 |--------|---------------|
-| **Tracker** | **POM** for Termont containers. **CN** for CN containers **and** for MGT (Racine/Cast) containers |
+| **Tracker** | The tracking source, for example **CN** or **POM** (Port of Montreal / Termont) |
 | **Changes** | Each changed field with its old and new value |
 | **When** | Date and time of the change |
 
@@ -227,24 +227,19 @@ When new Termont or MGT data arrives for a container, the system fills in blank 
 
 - Only for **Termont** and **MGT (Racine/Cast)**. CN data never fills order fields.
 - Only when the terminal data for that container **changed** (or is new) since the last check.
-- Only on **in-progress** orders (New, App. Taken, Dispatched) created on or after the archive cutoff that have the **same container number**. The order's pickup terminal is not checked.
+- Only on **in-progress** orders (New, App. Taken, Dispatched) created on or after the archive cutoff that have the **same container number**.
 - Only fields that are **blank** on the order. Existing values are never overwritten.
 
 | Order field | What is filled |
 |-------------|----------------|
 | :fontawesome-solid-lock: **Seal Number** | The seal number from the terminal |
-| :fontawesome-solid-weight-hanging: **Weight** | The terminal's gross weight followed by `KG` (for example `24000 KG`) |
+| :fontawesome-solid-weight-hanging: **Weight** | The terminal's gross weight followed by KG (for example **24000 KG**) |
 | :fontawesome-solid-ship: **Steamship Line** | The steamship line whose name matches the terminal's shipping line (not case-sensitive). If there is no exact match, a line whose name **starts with** the terminal's value. Nothing if there is no match |
-| :fontawesome-solid-cube: **Container Size** | The container size whose name equals the terminal's size, written either as `40` or `40'`. Nothing if there is no match |
-| :fontawesome-solid-circle-check: **Customs released** | Set to `yes` when the terminal's customs description contains "release" |
-
-!!! warning "Auto-filled Customs released prints as NO on the POD"
-    Auto-fill stores the value `yes`, but the order form's **Customs released** dropdown saves Yes as a different value. The POD only prints **YES** for a value set from the order form, so on an auto-filled order the POD shows **NO**, and the order form's dropdown does not show **Yes**. If you need it to print correctly, set **Customs released** to **Yes** yourself on the order form.
+| :fontawesome-solid-cube: **Container Size** | The container size whose name equals the terminal's size, written either as **40** or **40'**. Nothing if there is no match |
+| :fontawesome-solid-circle-check: **Customs released** | Set to **Yes** when the terminal's customs description contains "release" |
 
 !!! info "ETA and Last Free Day are never auto-filled"
     Tracking does not copy the **ETA** or **Last Free Day** to the order. Use the bulk update tools (**CN Tracking** and **Port Tracking** on **Dispatch**) to apply them. See [Tracking Bulk Update](tracking-bulk-update.md).
-
-If someone is saving the same order at the same moment, the system retries once and then skips that order for this update.
 
 ---
 
@@ -267,24 +262,19 @@ If someone is saving the same order at the same moment, the system retries once 
     - The order is not in progress, or was created before the **Order Archive Cutoff Date**, so it was never checked.
     - The container number on the order has extra characters (for example several numbers in one field), so it does not match the stored container number.
     - The tracking add-on for that source was off when the container was at the terminal.
-    - The pickup terminal name does not **start** with CN, TERMONT, VIAU, RACINE or CAST (see the next question).
+    - The pickup terminal name does not **start** with CN, TERMONT, VIAU, RACINE or CAST. See [Managing Terminals](managing-terminals.md).
 
 ### :fontawesome-solid-eye-slash: No tracking icon on an order
 
 !!! info "Solution"
     Check, in order:
 
-    1. **Pickup terminal** -- it must be a tracking terminal: named exactly **CN**, or containing **TERMONT**, **VIAU**, **RACINE** or **CAST**. See [Managing Terminals](managing-terminals.md).
+    1. **Pickup terminal** -- it must be a tracking terminal: its name must start with **CN**, **TERMONT**, **VIAU**, **RACINE** or **CAST**. See [Managing Terminals](managing-terminals.md).
     2. **Add-on** -- the add-on for that source must be on.
     3. **Permission** -- on **Orders** you need permission to change container status. Customers, drivers, and accountants without order management do not see the icon.
     4. **Container number length** -- on **Orders**, numbers longer than 20 characters have no icon.
 
     If you just created or renamed a terminal and the icon still does not appear, contact UTX support.
-
-### :fontawesome-solid-shuffle: The icon is there but the popup always says "not found"
-
-!!! info "Solution"
-    The icon matches the terminal by **any part** of its name, but the popup uses the **first word**. A terminal named, for example, "Port Racine" shows the MGT icon, but the popup looks for a source called "PORT" and finds nothing. Rename the terminal so that it starts with **RACINE**, **CAST**, **TERMONT**, **VIAU** or **CN**.
 
 ### :fontawesome-solid-link: "Container status opens in a popup"
 
@@ -307,7 +297,7 @@ If someone is saving the same order at the same moment, the system retries once 
 ### :fontawesome-solid-lightbulb: Best practices
 
 !!! tip "Best Practices"
-    **Name terminals carefully.** Start each tracking terminal's name with CN, TERMONT, VIAU, RACINE or CAST so both the icon and the popup work.
+    **Name terminals carefully.** Start each tracking terminal's name with CN, TERMONT, VIAU, RACINE or CAST.
 
     **Enter one container number per order.** Long multi-number entries (over 20 characters) lose the tracking icon on Orders, and tracking sends the whole field to the terminal as one container number, so it is unlikely to be found.
 

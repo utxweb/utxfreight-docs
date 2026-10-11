@@ -153,7 +153,7 @@ The window closes and **Container status '_name_' was created successfully.** is
 | **Job Type Configuration** | No | One checkbox per order type enabled in your account: **Import (CI)**, **Export (CX)**, **Transfer (TF)**, **Dry Van (DV)**, **International Export (IX)**, **Warehouse (WH)**. Tick each order type the status applies to and, optionally, type a description in the box below it (for example *Container waiting at the rail yard*). |
 
 !!! warning "Names must be clearly different"
-    Besides the exact name, the app builds an internal key from the name (lower case, spaces and punctuation removed) when the status is first created. Two names that only differ by case, spaces or punctuation, such as *Pre-Pull* and *pre pull*, are treated as the same status, and the second one cannot be saved. The key is **not** rebuilt when you rename a status, so after renaming *Pre-Pull* to something else you still cannot create a new status called *Pre-Pull*. If a status will not save and no message appears under **Status Name**, this is the most likely reason.
+    Two names that only differ by case, spaces or punctuation, such as *Pre-Pull* and *pre pull*, are treated as the same status, so the second one cannot be saved. Choose a name that is clearly different from every existing status.
 
 !!! info "What Job Type Configuration does"
     The ticks and descriptions are shown in the order type columns of the **Container Statuses** list, so your team knows which statuses to use for which kind of order. They do **not** hide a status from any dropdown: every status, built-in and custom, is offered on every order that has a container status field.
@@ -209,9 +209,6 @@ See [Driver Workflow](driver-workflow.md) and [Yard Management](yard-management.
 !!! info "Returned to terminal removes the order from the driver app"
     Drivers never see orders whose container status is **Returned to terminal**. Setting it by hand from the office has the same effect: the order leaves the driver's list. Some other statuses also close individual driver steps, for example **Dropped at customer** on an import closes *Import: Deliver to client*. See [When an Order Leaves Your List](driver-workflow.md#when-an-order-leaves-your-list).
 
-!!! warning "Arrived - Awaiting delivery is not set on dispatch"
-    The **Automatic Status Changes** panel on the page says **Arrived - Awaiting delivery** *may* be set when an order is dispatched to a driver and has no container status yet. In the current version, dispatching an order does **not** change its container status. Set **Arrived - Awaiting delivery** yourself when the container is available.
-
 ---
 
 ## :fontawesome-solid-eye: Where Container Statuses Appear
@@ -224,7 +221,7 @@ See [Driver Workflow](driver-workflow.md) and [Yard Management](yard-management.
 | **Chassis #** column | The chassis / equipment number is shown in the colour of the order's container status. |
 | Container number | Shown in **red** when the container status is **Arrived - Missing customs** or **Arrived - On hold**, so held containers stand out. |
 
-Admins, Managers, Dispatch and Customer Service users can click the **C.Status** value to change it, on both pages. On the **Orders** page, Accountants can also change it when your account allows accountants to manage orders. See [Orders](orders.md) and [Dispatch](dispatch.md).
+Admins, Managers, Dispatch and Customer Service users can click the **C.Status** value to change it, on both pages. On the **Orders** page, Accountants can also change it if UTX has turned on order management for accountants on your account (ask UTX support). See [Orders](orders.md) and [Dispatch](dispatch.md).
 
 ### On the order form
 

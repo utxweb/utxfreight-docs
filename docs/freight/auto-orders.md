@@ -4,7 +4,7 @@ Upload a delivery order or cartage document and let UTX Freight read it for you,
 
 ## :fontawesome-solid-wand-magic-sparkles: Overview
 
-**Auto Orders** is an optional add-on (the **Textract** add-on, currently in beta). It reads a document you upload, picks out the order details, and lets you check them before an order is created. Nothing is created automatically: every order is saved by a person from the review window.
+**Auto Orders** is an optional add-on, currently in beta. It reads a document you upload, picks out the order details, and lets you check them before an order is created. Nothing is created automatically: every order is saved by a person from the review window.
 
 - :fontawesome-solid-upload: **Upload**: a button in the header of the **Orders** page opens the **Upload a Document** window.
 - :fontawesome-solid-cogs: **Background processing**: the document is read in the background. While this happens it sits in the **Processing** tab.
@@ -28,7 +28,7 @@ Upload a delivery order or cartage document and let UTX Freight read it for you,
 4. Click **Review** on the document's row.
 5. Check and correct the fields in the **Create Order** tab. Make sure **Place the order on behalf of** has a customer.
 6. Click **Save and Next** to create the order and open the next document, or **Save and Close** to create the order and close the window.
-7. Open the new order and complete it, including the delivery shipper/receiver (it is not saved from the review window).
+7. Open the new order and complete it (dates, locations and other details).
 
 ---
 
@@ -39,14 +39,11 @@ The add-on must be enabled on your account by UTX. When it is off, the **Upload*
 | Role | Upload, tabs and review window | Save an order from the review window |
 |------|--------|--------|
 | :fontawesome-solid-user-shield: **Admin** | Yes | Yes |
-| :fontawesome-solid-user-tie: **Manager** | Yes | See the warning below |
-| :fontawesome-solid-headset: **Dispatch** | Yes | See the warning below |
+| :fontawesome-solid-user-tie: **Manager** | Yes | Yes |
+| :fontawesome-solid-headset: **Dispatch** | Yes | Yes |
 | :fontawesome-solid-file-invoice-dollar: **Accountant**, **Customer**, **Driver**, **Garage**, **Warehouse** | No | No |
 
-!!! warning "Known issue: saving works for Admin users only"
-    In the current version, **Save and Next** and **Save and Close** only create the order when you are logged in as an **Admin**. Managers and dispatchers can upload documents, open the tabs, review documents and use **Skip**, but when they click a save button no order is created, the document stays in **Need Review**, and no error message is shown in the window. Until this is fixed, ask an Admin to save reviewed documents, or create the order manually with **Create a new order** (see [Order Form](order-form.md)).
-
-**Refresh**, **Reprocess All**, **Reprocess** and the **Debug** tab in the review window are UTX support tools. They are only visible to users flagged as super users (UTX support), not to your users.
+**Refresh**, **Reprocess All**, **Reprocess** and the **Debug** tab in the review window are UTX support tools. They are only visible to UTX support, not to your users.
 
 !!! danger "Account suspension"
     When your account is suspended, the **Upload** button turns red with a :fontawesome-solid-ban: icon. Clicking it opens **Account Suspended - Action Blocked** (**Order Creation Disabled**) instead of the upload window. **Create a new order** is blocked the same way. See [Orders](orders.md).
@@ -62,7 +59,7 @@ The add-on must be enabled on your account by UTX. When it is off, the **Upload*
 
 When the upload succeeds, the window closes and the **Orders** page opens on the **Processing** tab, where your document now appears.
 
-**Files:** use a PDF, JPG or PNG file of up to 20 MB. A file larger than 20 MB is not accepted, and the window may not show a message when this happens. Only the **first page** of the document is read and shown in the review window, so put the delivery order on page 1.
+**Files:** use a PDF, JPG or PNG file of up to 20 MB. A file larger than 20 MB is not accepted. Only the **first page** of the document is read and shown in the review window, so put the delivery order on page 1.
 
 ### Upload messages
 
@@ -70,7 +67,7 @@ When the upload succeeds, the window closes and the **Orders** page opens on the
 |------|------|------|
 | **File required** | You clicked **Submit** without choosing a file. | Choose a file and submit again. |
 | **This document has already been uploaded** | The exact same file was uploaded to Auto Orders before. Each file can only be uploaded once. | Look for it in **Processing**, **Need Review** or **Completed**. A re-scanned or edited copy counts as a different file. |
-| **was processed initially but Textract submission failed.** | The file was saved but could not be sent for reading. No document is added to the tabs. | Try again later. If it keeps failing, contact UTX support. |
+| A message ending in **submission failed.** | The file was saved but could not be sent for reading. No document is added to the tabs. | Try again later. If it keeps failing, contact UTX support. |
 
 ---
 
@@ -146,7 +143,7 @@ The form is pre-filled with the extracted values. Correct anything that is wrong
 | **Seal #** | The document's seal number | Seal Number |
 | **Weight** | The document's weight | Weight |
 | **Cont Size** | The container size on the document (Delmar and Kuehne+Nagel layouts only) | Container size. Only a fixed list of spellings is translated to a container size name (for example `40 REEFER` to **40RE**, `20 STD` to **20**, `53 VAN` to **53**, `45 HQ` to **45HC**), and that container size must exist in your account. Any other spelling leaves the field empty. |
-| **Delivery** | The delivery address's postal code | The delivery shipper/receiver. It is matched by **postal code** against your [Shippers & Receivers](shippers-receivers.md). If none matches, it stays empty. **See the known issue below: this value is not saved on the order.** |
+| **Delivery** | The delivery address's postal code | The delivery shipper/receiver. It is matched by **postal code** against your [Shippers & Receivers](shippers-receivers.md). If none matches, it stays empty. |
 
 The **New Client** button below **Delivery** lets you add a missing shipper/receiver without leaving the window (see [New Client](#new-client-quick-create)).
 
@@ -186,9 +183,6 @@ When you save:
 !!! info "The uploaded file is not attached to the order"
     The document you uploaded stays with Auto Orders. It is not added to the new order's documents. If you need it on the order, upload it there (see [Order Documents & POD](order-documents-and-pod.md)).
 
-!!! warning "Known issue: Delivery is not saved on the order"
-    In the current version, the shipper/receiver selected in **Delivery** is not saved on the new order, even though it is shown in the form. After saving, open the order and set the delivery shipper/receiver again (see [Order Form](order-form.md)).
-
 !!! warning "Only these fields are copied"
     The new order only gets **Job type**, **Place the order on behalf of**, **Ref #**, **Cont #**, **Terminal**, **Seal #**, **Weight** and **Cont Size**. Dates, delivery and return locations and everything else are not filled in. Open the order afterwards to complete it (see [Order Form](order-form.md)).
 
@@ -213,7 +207,7 @@ If the delivery shipper/receiver does not exist yet:
     | **Contact Info** | Optional |
     | **Email** | Optional |
 
-3. Click **Create**. The window closes and the new shipper/receiver is selected in **Delivery**. (Because of the known issue above, set it again on the order after saving.)
+3. Click **Create**. The window closes and the new shipper/receiver is selected in **Delivery**.
 
 If something is missing or wrong, the window stays open and shows the error. Click **Close** to cancel.
 
@@ -269,7 +263,7 @@ For a recognised layout, **Place the order on behalf of** is pre-filled with tha
 ### :fontawesome-solid-ban: I clicked Save and Next but no order was created
 
 !!! info "Solution"
-    In the current version, only **Admin** users can save orders from the review window (see [Access & Permissions](#access-permissions)). Also check that **Place the order on behalf of** is filled in: when it is empty, the form shows **User required**.
+    Check that **Place the order on behalf of** is filled in: when it is empty, the form shows **User required**. **Cont #** must also be filled in, and **Terminal** is required on an **Import** or **Export** order.
 
 ### :fontawesome-solid-user-slash: Place the order on behalf of is empty
 
@@ -280,11 +274,6 @@ For a recognised layout, **Place the order on behalf of** is pre-filled with tha
 
 !!! info "Solution"
     No shipper/receiver in your account has the postal code read from the document, or the layout is not recognised. Pick the shipper/receiver from the list, or click **New Client** to create it with the correct **Postal Code**.
-
-### :fontawesome-solid-truck: The saved order has no delivery shipper/receiver
-
-!!! info "Solution"
-    This is a known issue in the current version: **Delivery** is not saved from the review window. Open the order and set the delivery shipper/receiver there (see [Order Form](order-form.md)).
 
 ### :fontawesome-solid-exclamation: Why is there a red ! next to the container number?
 
@@ -310,4 +299,4 @@ For a recognised layout, **Place the order on behalf of** is pre-filled with tha
     - Keep postal codes on your [Shippers & Receivers](shippers-receivers.md) up to date. That is how **Delivery** is matched.
     - Click each field label in the review window to check the value against the document before saving.
     - Never ignore a **Duplicate container number** warning without checking the existing order first.
-    - After saving, open the new order, set the delivery shipper/receiver, and complete the dates, rates and locations.
+    - After saving, open the new order and complete the dates, rates and locations.

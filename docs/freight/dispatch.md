@@ -105,7 +105,7 @@ Four round buttons sit at the top of the page. Hover over one to see its tooltip
 
 The search box on the left (placeholder **Filter dispatched orders**) filters the board as you type.
 
-- It matches **all loaded rows**, not only Dispatched ones, despite the placeholder and the help text under the box.
+- It matches **all loaded rows**, whatever their status.
 - It combines with the status button and tabs that are active. Typing turns off the **Remove Filters** highlight.
 - It looks in: order number, container number, booking number, P/O number, deliver-to company and address, equipment name, container status, pickup terminal name, order type, pickup and delivery driver names, the drivers on the order's legs, steamship line, container size, pickup number, customer name, and the order's delivery, ETA, pickup, LFD and cutoff dates (as `YYYY-MM-DD`).
 - The match is a simple "contains" match and is not case-sensitive.
@@ -140,10 +140,6 @@ Switching the field while a day tab is active **turns that day tab off** (the bo
 | **No Date** | Blank |
 
 - Only one day tab can be active. Click the active tab again to turn it off.
-- The tooltips on the day tabs always say **Delivered …** (and **Date is set** on both **Any Date** and **No Date**) whichever date field is selected.
-
-!!! warning "Any Date / No Date in ground Pickup mode"
-    In ground mode with **Pickup** selected, **Any Date** and **No Date** currently show **no orders at all**. Use the individual day tabs, or switch back to **Delivery**, until this is fixed.
 
 ### :fontawesome-solid-box: Container status tabs (intermodal only)
 
@@ -169,7 +165,7 @@ Each tab shows the orders whose **C.Status** starts with that status name. "Only
 | Group | Tabs | Shown when |
 |-------|------|------------|
 | Order type | **Import**, **Export**, **Transfer**, **Dry Van** | Each type that is enabled for your company |
-| Terminal (intermodal) | **CN**, **CP**, **Termont** | **CN**: CN terminals are set up for your company. **CP**: a terminal named exactly "CP" exists. **Termont**: a terminal whose name contains "Termont" or "Viau" exists. Each tab shows orders whose **pickup terminal name starts with** CN, CP or Termont (so a terminal named only "Viau…" is not matched) |
+| Terminal (intermodal) | **CN**, **CP**, **Termont** | **CN**: CN terminals are set up for your company. **CP**: a terminal named exactly "CP" exists. **Termont**: a terminal whose name contains "Termont" or "Viau" exists. Each tab shows orders whose **pickup terminal name starts with** CN, CP or Termont |
 | Tag | One tab per tag (tooltip **Tag** *name*), plus **No Tag** | Tags are set up for your company — see [Order Tagging](order-tagging.md) |
 
 One tab per group can be active; click an active tab to turn it off.
@@ -208,7 +204,7 @@ The columns depend on whether your company runs **intermodal** or **ground** dis
     |--------|---------|-------------------|
     | **Status / Order#** | Type badge, status badge, order number, **P/O#**, status comment | **P/O#** |
     | **Pickup From** | Pickup company and address | — |
-    | **Pickup Date** | Pickup date on Dry Van and Transfer orders; on other order types this cell shows the order's return date | — |
+    | **Pickup Date** | Pickup date | — |
     | **Deliver To** | Delivery company and address | — |
     | **Delivery Date** / *App. Time* | Delivery date and appointment time | — |
     | **Trailer#** | Trailer number with badges and copy button | Trailer number |
@@ -265,7 +261,7 @@ Each row has **two driver columns**. Which driver goes where depends on the orde
 To assign a driver:
 
 1. Click the driver name (or the empty cell).
-2. Choose a driver from the list. The popup is titled **Enter new delivery driver** when you edit the order's delivery driver and **Enter new return driver** when you edit its pickup driver (whichever column it is in). The list contains the active drivers of your current office, plus a blank entry to remove the driver.
+2. Choose a driver from the list. The list contains the active drivers of your current office, plus a blank entry to remove the driver.
 3. The driver is saved and the order's legs are updated to match.
 
 !!! warning "Picking a driver does not dispatch"
@@ -287,14 +283,12 @@ When a step counts as open:
 
 The date under a driver name is when that driver signed.
 
-### :fontawesome-solid-share-from-square: Magic Driver Link
+### :fontawesome-solid-share-from-square: Driver Login Link
 
-With the **Magic Link** add-on, a :fontawesome-solid-share-from-square: icon (tooltip **Click to copy**) appears next to a driver name:
+With the **Driver Login Links** add-on, a :fontawesome-solid-share-from-square: icon (tooltip **Click to copy**) appears next to a driver name:
 
-- Next to the **delivery driver** — when a delivery driver is assigned and the **first** signature step is open (first column green).
-- Next to the **pickup driver** — when a pickup driver is assigned and the **second** signature step is open (second column green).
-
-On **Import** orders this means the icon appears next to whichever driver's name is green. On other order types the delivery driver sits in the second column and the pickup driver in the first, so the icon can appear next to a red name and be missing next to a green one.
+- Next to the **delivery driver** — when a delivery driver is assigned and the **first** signature step is open.
+- Next to the **pickup driver** — when a pickup driver is assigned and the **second** signature step is open.
 
 1. Click the icon. The link is copied to your clipboard.
 2. A toast confirms **Login Link copied for** *DRIVER NAME* — "Send this link using your messaging app or by email".
@@ -303,9 +297,6 @@ On **Import** orders this means the icon appears next to whichever driver's name
 ![Toast confirming the driver login link was copied](../images/dispatch-magic-driver-link.png)
 
 The link belongs to the driver, not to the order. It stays valid for **24 hours** from the last time it was copied: copying it again while it is still valid keeps the same link and extends it by another 24 hours; once it has expired, copying creates a new link. If the driver was removed from the order in the meantime, the toast says **Login Link failed to copy** — "Please make sure a driver is assigned to the order". See [Driver Login Links](driver-login-links.md) for details.
-
-!!! info "No SMS button on the Dispatch board"
-    Even with the **SMS** add-on, the Dispatch board currently shows no SMS button next to the drivers.
 
 ---
 
@@ -335,7 +326,7 @@ Click the caret next to the workflow button:
 | **View Details** | Opens the order page | Always |
 | **Edit Order** | Opens the full order form | Always (staff roles) |
 | **Reset Order to New** | After a confirmation (**RESET THE STATUS**), sets the status back to **New** and clears the appointment date, appointment time and delivery date | Status is not New |
-| **View History** | Shows the order's change history | History is enabled; Dispatch / Customer Service need **Can manage rates?** |
+| **View History** | Shows the order's change history | Order history is turned on for your account (ask UTX support); Dispatch / Customer Service need **Can manage rates?** |
 | **Transfer to Office** | Moves the order to another office | Multi-office, and you belong to another office. Shows **Transfer (Invoiced)** (disabled) for invoiced orders |
 | **Remove Signature** | After a confirmation (**CLEAR THE SIGNATURE**), clears the delivery signature, signee and signature date — cannot be undone. The pickup signature is not touched | Order is not Completed and has a delivery signature |
 
@@ -382,11 +373,6 @@ To send:
 1. Click the button. The **Send POD to client** modal opens.
 2. **To** is filled with the order's delivery email and **Subject** with *&lt;your company&gt; Order # &lt;order number&gt; Completed*. Add **CC** / **BCC** if needed. **To** and **Subject** are required. **To**, **CC** and **BCC** accept several addresses separated by commas or semicolons.
 3. Click **Send**. A toast shows **POD Sent!**, or **Sending POD Failed!** with the reason.
-
-The green and red buttons both show the tooltip **Last email delivered** with the date of the last *successful* send.
-
-!!! info "First send that fails stays blue"
-    If the very first send fails, the button stays blue. It turns red only when a send fails after an earlier successful one.
 
 See [Order Documents & POD](order-documents-and-pod.md) for POD content.
 
@@ -446,11 +432,6 @@ Click it to check that container's status in a modal.
 !!! info "Solution"
     Accountants have no access to the Dispatch board and are sent to **Orders**. Only Admin, Manager, Dispatch and Customer Service can open it.
 
-### :fontawesome-solid-calendar-xmark: Any Date / No Date shows nothing
-
-!!! info "Solution"
-    This happens in ground mode when **Pickup** is selected. Switch the toggle to **Delivery**, or use the individual day tabs.
-
 ### :fontawesome-solid-arrows-rotate: A driver signed but the board still shows the old status
 
 !!! info "Solution"
@@ -459,7 +440,7 @@ Click it to check that container's status in a modal.
 ### :fontawesome-solid-link: The driver link icon doesn't appear
 
 !!! info "Solution"
-    The **Magic Link** add-on must be on, a driver must be assigned, and the matching signature step must be open: the first step for the delivery driver, the second step for the pickup driver. See [Magic Driver Link](#magic-driver-link).
+    The **Driver Login Links** add-on must be on, a driver must be assigned, and the matching signature step must be open: the first step for the delivery driver, the second step for the pickup driver. See [Driver Login Link](#driver-login-link).
 
 ---
 
@@ -468,15 +449,3 @@ Click it to check that container's status in a modal.
     - Use the **LFD** and **CUT** toggles with the day tabs to catch storage and cutoff deadlines early.
     - Reload the board before big decisions — it does not auto-refresh.
     - Check **Legs** before assigning more work to a driver.
-
----
-
-## Screenshots Needed
-
-!!! info "Screenshots to capture"
-    1. **Dispatch board** — full view showing quick filter, status buttons, header buttons, day tabs and order rows
-    2. **Container status, type, terminal and tag tabs**
-    3. **Driver columns** — green and red driver names with the Magic Driver Link icon
-    4. **Date toggle and day tabs** — Delivery/ETA/LFD/CUT with the rolling day tabs
-    5. **Driver Legs for Today** and **Driver Legs Details for Today** modals
-    6. **Send POD to client** modal

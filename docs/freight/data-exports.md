@@ -59,7 +59,7 @@ UTX Freight has three kinds of downloads:
 | Role | List CSVs (Customers, Shipper / Receiver, Equipments, Orders) | Invoices export and EDI 210 | Reports downloads (Income by Customer, statements, Standard AR, AR Export) | Garage parts CSV |
 |------|------|------|------|------|
 | :fontawesome-solid-user-shield: **Admin** | Yes | Yes | Yes | Yes, when the Garage add-on is on |
-| :fontawesome-solid-user-tie: **Manager** | No | Yes, for the offices they belong to | Only if viewing reports is enabled for managers on your account | Yes, when the Garage add-on is on |
+| :fontawesome-solid-user-tie: **Manager** | No | Yes, for the offices they belong to | Only if UTX has turned on report access for managers on your account (ask UTX support) | Yes, when the Garage add-on is on |
 | :fontawesome-solid-file-invoice-dollar: **Accountant** | No | Yes, for the offices they belong to | No (no **Reports** menu) | No |
 | :fontawesome-solid-headset: **Dispatch** | No | No (no **Invoices** menu) | No | No |
 | :fontawesome-solid-screwdriver-wrench: **Garage** | No | No | No | Yes, when the Garage add-on is on |
@@ -79,7 +79,7 @@ All four list exports work the same way:
 - **Admin only.** The green :fontawesome-solid-file-csv: **Export** button is shown to Admins only.
 - **Filters and search are ignored.** The tab, filter buttons and search box on the page do not change the file. Each export always contains the same fixed selection, described below.
 - **Not limited to your current office.** None of the four list exports filters by office.
-- **CSV only**, comma separated, with a header row. Column headers are generated from internal field names, so they read like *Address one* or *Equipment type display name*. They are listed exactly below.
+- **CSV only**, comma separated, with a header row. Column headers are written as they appear in the file, for example *Address one* or *Equipment type display name*. They are listed exactly below.
 - **File name** ends with today's date as `YYYY-MM-DD`.
 
 ### Customers CSV
@@ -90,7 +90,7 @@ All four list exports work the same way:
 
 | Column | Content |
 |--------|---------|
-| **Id** | Internal company number |
+| **Id** | Company ID number |
 | **Name** | Company name |
 | **Address one** | Address 1 |
 | **City** | City |
@@ -110,7 +110,7 @@ All four list exports work the same way:
 
 | Column | Content |
 |--------|---------|
-| **Id** | Internal record ID |
+| **Id** | Record ID number |
 | **Company name** | Company name |
 | **Zone name** | Zone of the linked city, or `N/A` |
 | **Address** | Street address |
@@ -130,7 +130,7 @@ See [Shippers & Receivers](shippers-receivers.md).
 
 | Column | Content |
 |--------|---------|
-| **Id** | Internal ID |
+| **Id** | Equipment ID number |
 | **Name** | **Name/Number** |
 | **Equipment type display name** | Equipment type, for example *Chassis: 40' - 2 AXLES* |
 | **Inspection date** | **Next Inspection Date** |
@@ -157,7 +157,7 @@ See [Equipment](equipment.md).
 |--------|---------|
 | **Reference** | Order number |
 | **Description** | Order type: *Container Import*, *Container Export*, *Container Transfer*, *Dry Van Move* or *International Export* |
-| **Status** | Status as stored: `new`, `App. Taken` or `Dispatched` |
+| **Status** | Order status: `new`, `App. Taken` or `Dispatched` |
 | **Container number** | Container number |
 | **Customer name** | Company of the customer user the order is placed for (**Place the order on behalf of**) |
 | **Delivery company name** | Delivery location. For **Container Transfer** orders, the customer's company name |
@@ -204,7 +204,7 @@ Only invoices of the **office you are currently working in** are exported. The c
 
 ### QuickBooks columns layout
 
-One row per invoice, sorted by invoice date (oldest first), then invoice ID.
+One row per invoice, sorted by invoice date (oldest first).
 
 | Column | Content |
 |--------|---------|
@@ -219,14 +219,14 @@ One row per invoice, sorted by invoice date (oldest first), then invoice ID.
 
 ### AR aging detail layout
 
-One row per invoice, sorted by due date (oldest first), then invoice ID, followed by a **TOTALS** row that adds up every money column. Aging is calculated as of **today**.
+One row per invoice, sorted by due date (oldest first), followed by a **TOTALS** row that adds up every money column. Aging is calculated as of **today**.
 
 | Column | Content |
 |--------|---------|
 | **Invoice** | Invoice number |
 | **Invoice Date** | `YYYY-MM-DD` |
 | **Customer** | Company name |
-| **Status** | Invoice status as stored |
+| **Status** | Invoice status |
 | **Terms** | Invoice terms |
 | **Due Date** | `YYYY-MM-DD` |
 | **Days Overdue** | Days past the due date (or the invoice date if there is no due date) as of today. Negative for invoices that are not due yet. Empty for Paid invoices |
@@ -291,7 +291,7 @@ These columns are in the file but always empty: **BOND CHARGES**, **CHASSIS DETE
 
 ## :fontawesome-solid-chart-bar: Report Exports
 
-These downloads are on the **Reports** menu, which Admins have. Managers have it only when viewing reports is enabled for managers on your account. Accountants and Dispatch do not. All of them work on the customers of the **office you are currently in**, with the exceptions noted below. See [Reports](reports.md).
+These downloads are on the **Reports** menu, which Admins have. Managers have it only when UTX has turned on report access for managers on your account (ask UTX support). Accountants and Dispatch do not. All of them work on the customers of the **office you are currently in**. See [Reports](reports.md).
 
 ### Income by Customer CSV
 
@@ -323,9 +323,6 @@ A **TOTALS** row closes the file. Amounts have two decimals and a comma thousand
 | **Email** | Sends the statement as an attachment: `Statement of account as of YYYY-MM-DD.pdf`, or `.xlsx` when the customer's **Default Statement Format** is **Excel (.xlsx)** |
 
 A **PDF** file is only produced as the email attachment. There is no PDF download button.
-
-!!! info "Office scope"
-    The Excel download and **Print** include all of the customer's unpaid invoices, whatever office issued them. Only the emailed statement is limited to the current office on multi-office accounts.
 
 Rows, sections and the statement layout are described in [Customer Statements](customer-statements.md#what-the-statement-contains).
 
@@ -362,7 +359,7 @@ One row per customer with a balance, then a **TOTALS** row. The invoice counts a
 | **AR As Of YYYY-MM-DD** | Unpaid balance on the as-of date of the invoices dated in the 12-month window (older unpaid invoices are not counted) |
 | **30 days** · **60 days** · **90 days** · **90+ days** | That unpaid balance split by days since the **invoice date**: 0 to 30, 31 to 60, 61 to 90, more than 90 |
 
-Every non-deleted customer of the office (active or disabled) gets a row, even with no invoices, followed by a **TOTALS** row. Invoices are not filtered by office, so on multi-office accounts a customer's invoices from other offices are included. The file is saved, so downloading it again gives the same figures until you **Regenerate**. See [Aged Receivables](aged-receivables.md#performance-report-ar-export).
+Every non-deleted customer of the office (active or disabled) gets a row, even with no invoices, followed by a **TOTALS** row. The file is saved, so downloading it again gives the same figures until you **Regenerate**. See [Aged Receivables](aged-receivables.md#performance-report-ar-export).
 
 ---
 
@@ -424,7 +421,7 @@ See [Garage Parts & Templates](garage-parts-and-templates.md#exporting-parts).
 ### :fontawesome-solid-chart-bar: I can't find Income by Customer, statements or the AR files
 
 !!! info "Solution"
-    These are under the **Reports** menu. Admins have it. Managers have it only if viewing reports is enabled for managers on your account. Accountants can use the **AR aging detail** layout of the **Invoices** export instead.
+    These are under the **Reports** menu. Admins have it. Managers have it only if UTX has turned on report access for managers on your account (ask UTX support). Accountants can use the **AR aging detail** layout of the **Invoices** export instead.
 
 ---
 

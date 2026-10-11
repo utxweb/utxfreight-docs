@@ -43,8 +43,8 @@ Both pages are part of the Garage area, which is only available when the Garage 
 | :fontawesome-solid-screwdriver-wrench: **Garage** | View and edit | View, create, edit and delete |
 | :fontawesome-solid-file-invoice-dollar: **Accountant**, :fontawesome-solid-headset: **Dispatch**, **Warehouse**, **Customer**, drivers | No access to the Garage area | No access to the Garage area |
 
-!!! warning "Garage users can edit freight taxes"
-    Garage users cannot open **Manage Taxes** in the main application, but the Garage **Taxes** page edits the very same tax records. Anyone with Garage access can therefore change, deactivate or delete a tax used by **freight** invoices too. See [Tax Rates are shared with freight](#tax-rates-are-shared-with-freight).
+!!! warning "Garage Taxes also apply to freight"
+    The Garage **Taxes** page edits the same tax records as **Manage Taxes** in the main application. A change made there by anyone with Garage access also applies to **freight** invoices. See [Tax Rates are shared with freight](#tax-rates-are-shared-with-freight).
 
 **How to get there:**
 
@@ -80,7 +80,7 @@ The **Garage Settings** page is a single form for the current office. An office'
 | Field | Hint shown on the page | What it does |
 |-------|------------------------|--------------|
 | **Default Labor Rate ($/hour)** | *Applied to new labor line items* | Pre-fills the **Rate** of each new labor line on a work order. You can change the rate on any line. Existing labor lines keep their rate when you change this setting. Must be 0 or more. |
-| **Shop Supplies (% of subtotal)** | *Suggested percentage for shop supplies fee* | Stored, but **not currently used** anywhere. See [Shop Supplies % is not applied automatically](#shop-supplies-is-not-applied-automatically). Must be between 0 and 100. |
+| **Shop Supplies (% of subtotal)** | *Suggested percentage for shop supplies fee* | Your office's suggested shop supplies percentage, for reference. The fee itself is entered as a dollar amount on the work order or invoice. See [How shop supplies are charged](#how-shop-supplies-are-charged). Must be between 0 and 100. |
 | **Default Payment Terms** | — | Pre-fills **Terms** on new garage invoices. Choices: **Due on Receipt**, **Net 15**, **Net 30**, **Net 45**, **Net 60**. |
 | **Invoice Prefix** | *Next invoice:* followed by the next number, for example **GRG-00042** | The text placed before the number on new garage invoices. See [Invoice numbering](#invoice-numbering). |
 | **Company Address** | Placeholder *123 Main St\nCity, Province  Postal Code* | Multi-line address printed on garage documents. Press Enter to start a new line. Printed documents keep your line breaks; emails show the lines joined with ` \| `. |
@@ -91,8 +91,8 @@ The **Garage Settings** page is a single form for the current office. An office'
 !!! info "Garage company details are separate from freight"
     **Company Address**, **Phone**, **GST Number** and **QST Number** here are used only by Garage documents. Freight invoices use the GST and QST numbers in the main application settings (see [Application Settings](application-settings.md)). If you use both, fill in both places.
 
-!!! warning "Values out of range are not saved"
-    The labor rate must be 0 or more and the shop supplies percentage must be between 0 and 100. The browser normally stops you from entering other values. If an invalid value does reach the server, the settings are not saved and the form is shown again without an error message, so check your values and save again.
+!!! note "Allowed values"
+    The labor rate must be 0 or more and the shop supplies percentage must be between 0 and 100. Settings outside these ranges are not saved.
 
 ### Invoice numbering
 
@@ -105,10 +105,10 @@ For example, prefix `GRG` and next number 42 give `GRG-00042`. After each new in
 - The **Next invoice:** line under **Invoice Prefix** shows the number the next invoice will get. It reflects the **saved** prefix, so it updates after you click **Save Settings**.
 - The **next number cannot be edited** on this page. It only moves forward as invoices are created. It is never reset and numbers are never reused, even if an invoice is voided.
 - Changing the **Invoice Prefix** only affects invoices created afterwards. Existing invoices keep their numbers, and the sequence continues from where it was (for example `GRG-00042` is followed by `SHOP-00043`).
-- Each office has its **own** sequence, but invoice numbers must be unique across **all** offices. If you use the Garage in more than one office, give each office a **different** prefix, otherwise two offices can produce the same number and the second invoice cannot be created.
+- Each office has its **own** sequence, but invoice numbers must be unique across **all** offices. If you use the Garage in more than one office, give each office a **different** prefix so their invoice numbers never overlap.
 
-!!! warning "Do not leave the prefix empty"
-    `GRG` is only the starting value. If you clear the **Invoice Prefix** field and save, new invoice numbers have no prefix and start with a hyphen (for example `-00042`).
+!!! tip "Always set a prefix"
+    `GRG` is only the starting value. Keep a prefix in the **Invoice Prefix** field so your invoice numbers stay easy to recognise.
 
 See [Garage Invoices & Payments](garage-invoices.md) for how invoices are created.
 
@@ -125,11 +125,9 @@ See [Garage Invoices & Payments](garage-invoices.md) for how invoices are create
 
 Each item is only printed when it is filled in. The GST and QST numbers appear in brackets next to the **GST** and **QST** lines, and only when the document has a GST or QST amount above 0. See [Garage Work Orders](garage-work-orders.md), [Garage Invoices & Payments](garage-invoices.md) and [Garage Reports](garage-reports.md).
 
-### Shop Supplies % is not applied automatically
+### How shop supplies are charged
 
-The **Shop Supplies (% of subtotal)** setting is saved, but the application does **not** use it at the moment. It does not calculate or pre-fill any fee.
-
-Shop supplies are charged as a dollar amount instead:
+Shop supplies are charged as a dollar amount:
 
 - On a work order, enter the amount in **Shop Supplies Fee**.
 - On an invoice, the shop supplies amount is the sum of the work orders' fees, unless you enter a different amount on the invoice.
@@ -152,8 +150,8 @@ The **Tax Rates** page (subtitle *Manage GST/QST rates for invoices*) lists tax 
 | **GST %** | The federal tax percentage. |
 | **QST %** | The provincial tax percentage. |
 | **Active** | An **Active** (green) or **Inactive** (grey) badge. |
-| **Invoices** | How many **garage** invoices use this tax rate. Freight invoices are not counted here. |
-| **Actions** | :fontawesome-solid-pen-to-square: **Edit**, and :fontawesome-solid-trash: **Delete** when the **Invoices** count is 0. |
+| **Invoices** | How many **garage** invoices use this tax rate. |
+| **Actions** | :fontawesome-solid-pen-to-square: **Edit**, and :fontawesome-solid-trash: **Delete** when no garage invoice uses the tax rate. |
 
 !!! info "The list shows all offices"
     The page lists every tax rate in the application, from **all** offices, and does not show which office each one belongs to. Use names that make the office clear (for example *QC GST/QST 2025*) if you have several offices.
@@ -180,7 +178,7 @@ Editing does not change which office the tax rate belongs to.
 
 | Field | Hint shown on the page | Notes |
 |-------|------------------------|-------|
-| **Name \*** | Placeholder *e.g. GST/QST 2025* | The name shown in the **Tax Rate** dropdown on garage invoices and wherever freight lists taxes. Always fill it in: the application does not itself check that a name was entered. |
+| **Name \*** | Placeholder *e.g. GST/QST 2025* | The name shown in the **Tax Rate** dropdown on garage invoices and wherever freight lists taxes. |
 | **Active** | *Available for use on invoices* | Only active tax rates of your current office are offered on garage invoices. New tax rates are active by default. |
 | **GST (Federal Tax %)** | *Federal Goods & Services Tax percentage* (placeholder 5.0) | Enter `5` for 5%. The browser accepts 0 to 100 in steps of 0.001. |
 | **QST (Provincial Tax %)** | *Quebec Sales Tax percentage* (placeholder 9.975) | Enter `9.975` for 9.975%. Enter `0` if you do not charge a provincial tax. The browser accepts 0 to 100 in steps of 0.001. |
@@ -197,11 +195,11 @@ Editing does not change which office the tax rate belongs to.
 
 ### :fontawesome-solid-trash: Deleting a tax rate
 
-1. Click the :fontawesome-solid-trash: **Delete** icon on the row. It is only shown when the **Invoices** column is 0.
+1. Click the :fontawesome-solid-trash: **Delete** icon on the row.
 2. Confirm the **Delete** *name***?** prompt.
 3. The tax rate is removed and the message **Tax rate deleted.** appears.
 
-Deleting is refused when **any** invoice uses the tax rate, garage **or** freight. Because the **Invoices** column only counts garage invoices, a tax rate used only by freight invoices still shows the delete icon, but deleting it is blocked with the message:
+A tax rate can only be deleted when no invoice uses it, garage **or** freight. If invoices use it, the tax rate is kept and the message below appears:
 
 > **Cannot delete tax rate — N invoice(s) use it.**
 
@@ -236,10 +234,10 @@ Garage **Taxes** and **Manage Taxes** in the main application show and edit the 
 !!! info "Solution"
     You cannot. The **Next invoice:** line is a preview only, and the number moves forward by one each time a garage invoice is created. You can change the **Invoice Prefix**, which applies to invoices created afterwards.
 
-### :fontawesome-solid-box-open: I set Shop Supplies to 5% but no fee is added
+### :fontawesome-solid-box-open: How do I charge shop supplies?
 
 !!! info "Solution"
-    The **Shop Supplies (% of subtotal)** setting is stored but not used. Enter the fee as an amount in **Shop Supplies Fee** on the work order, or enter it on the invoice. See [Shop Supplies % is not applied automatically](#shop-supplies-is-not-applied-automatically).
+    Enter the fee as an amount in **Shop Supplies Fee** on the work order, or enter it on the invoice. See [How shop supplies are charged](#how-shop-supplies-are-charged).
 
 ### :fontawesome-solid-wrench: I changed the labor rate but my work order still shows the old rate
 
@@ -256,10 +254,10 @@ Garage **Taxes** and **Manage Taxes** in the main application show and edit the 
 !!! info "Solution"
     The garage invoice dropdown only lists **active** tax rates of your **current office**. Check that the tax rate is ticked **Active** and that it was created in the office you are working in. The Tax Rates page lists all offices, so a tax rate can appear there but belong to another office.
 
-### :fontawesome-solid-ban: The delete icon is there but deleting fails
+### :fontawesome-solid-ban: Why can't I delete a tax rate?
 
 !!! info "Solution"
-    The **Invoices** column only counts garage invoices, but deleting also checks freight invoices. If the message **Cannot delete tax rate — N invoice(s) use it.** appears, freight invoices use the tax rate. Untick **Active** instead.
+    A tax rate used by any garage or freight invoice cannot be deleted. The **Invoices** column on this page counts garage invoices only, while the message **Cannot delete tax rate — N invoice(s) use it.** counts garage and freight invoices together. To stop offering the tax rate, untick **Active** instead.
 
 ### :fontawesome-solid-print: My address or GST number is missing from the invoice
 

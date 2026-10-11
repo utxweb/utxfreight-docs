@@ -8,7 +8,7 @@ Expenses and checks are the "money out" side of UTX Freight. Each one has its ow
 
 - :fontawesome-solid-list: **Expenses** -- a list of every expense line entered in the **Order Expenses** panel of your orders (driver pay, broker fees, other costs). You can filter by payee, order status and payment status, and see which check paid each line.
 - :fontawesome-solid-money-check: **Checks** -- a list of the checks you issued. Each check records a vendor invoice (amount, number, date) and the payee's name and address.
-- :fontawesome-solid-link: **Linking** -- when **Check Expenses** is enabled for your edition, you tick expense lines on a check. Saving the check marks those lines as **Paid** on the Expenses page.
+- :fontawesome-solid-link: **Linking** -- when your account has check expenses turned on (ask UTX support), you tick expense lines on a check. Saving the check marks those lines as **Paid** on the Expenses page.
 - :fontawesome-solid-print: **Printing** -- each check has a **Print** button that opens a printable check layout in a new tab.
 - :fontawesome-solid-address-book: **Vendors** -- every time you save a check, the payee's name and address are saved as a vendor, so you can pick them again on the next check. There is no separate vendor page.
 
@@ -42,7 +42,7 @@ Already familiar with the feature? Here is the fastest path to pay a driver or b
 | :fontawesome-solid-user: **All other roles** | No sidebar link | No |
 
 - The **Expenses** link appears in the left sidebar for **Admin** users only.
-- The **Checks** link appears for anyone who can manage checks. For Managers and Accountants this depends on your UTX Freight edition (the **manager can manage checks** and **accountant can manage checks** options). If you are a Manager or Accountant and you do not see **Checks**, contact UTX support to ask whether it can be enabled for your edition.
+- The **Checks** link appears for anyone who can manage checks. For Managers and Accountants this depends on your UTX Freight edition: check management for each of these roles is an option only UTX can turn on. If you are a Manager or Accountant and you do not see **Checks**, contact UTX support to ask whether it can be enabled for your edition.
 - Managers and Accountants only see and manage checks belonging to the offices they are assigned to.
 - Expense lines are added on orders by users who can manage rates (**Admin**, **Manager**, and **Dispatch** or **Customer Service** users with **Can manage rates?** checked). See [Order Rates, Charges & Expenses](order-charges-and-expenses.md#access-permissions) and [User Roles](user-roles.md).
 
@@ -68,7 +68,7 @@ The **Filters** box at the top has three dropdowns and a **Search** button. The 
 
 | Filter | Options | Default |
 | ---- | ---- | ---- |
-| **Select a filter** | **No Filter**, or one payee. The list contains all your brokers, drivers and expense categories, grouped as **Broker**, **DriverUser** (drivers) and **ExpenseCategory** (other expense categories). | **No Filter** |
+| **Select a filter** | **No Filter**, or one payee. The list contains all your brokers, drivers and expense types, grouped by kind of payee. | **No Filter** |
 | **Order status** | **All statuses**, or one order status (for example **Completed**). Only statuses that exist on your orders are listed. | **All statuses** |
 | **Expense payment status** | **Paid and Unpaid**, **Paid Only**, **Unpaid Only** | **Unpaid Only** |
 
@@ -81,9 +81,9 @@ The list is sorted by order, newest first, and is split into pages.
 
 | Column | What It Shows |
 | ---- | ---- |
-| **Type** | **Driver**, **Broker** or **Expense** (an other-expense category) |
+| **Type** | **Driver**, **Broker** or **Expense** (one of your **Expense Types**) |
 | **Name** | The payee's name |
-| **Category** | The expense type picked on the expense line, if any (your **Expense** charge types) |
+| **Category** | The charge type picked on the expense line, if any (one of your **Charge Types** whose **Charge Type** is **Expense**, see [Charge Types & Taxes](charge-types-and-taxes.md)) |
 | **Order** | The order reference |
 | **Order Status** | The order's status, shown as an icon. Hover over it to see the status (for example *Order Completed*). |
 | **Delivery Date** | The order's delivery date |
@@ -177,11 +177,7 @@ You can change any of the filled-in fields after picking a vendor.
 
 ### Check Expenses
 
-This section appears only when check expenses are enabled for your edition. It lists expense lines as checkboxes, each written like:
-
-`DriverUser: John Smith for order #12345 - $ 150.00`
-
-(payee type, payee name, order reference, amount). The payee type reads **DriverUser**, **Broker** or **ExpenseCategory**.
+This section appears only when your account has check expenses turned on (ask UTX support). It lists expense lines as checkboxes, each showing the kind of payee (driver, broker or expense type), the payee name, the order reference and the amount.
 
 | Form | Expense lines offered |
 | ---- | ---- |
@@ -223,15 +219,11 @@ The printed check shows:
 | **Two stubs** | The issue date, the payee name, the vendor invoice date, the word **Invoice**, the vendor invoice number and the amount |
 
 - The amount always comes from **Vendor invoice amount**.
-- The amount in figures is printed as stored, without padding to two decimals (for example `$ 150.0` or `$ 150.5`).
 - The check number is not printed. Your company name and logo are not printed either.
 - Anyone who can see the check in the Checks list can print it.
 
 !!! tip "Test your alignment"
     Print one check on plain paper first and hold it against your check stock to confirm the fields line up with your printer.
-
-!!! warning "Proofread the amount in words"
-    Always compare the amount in words with the amount in figures before you sign. For some cent values (for example .29, .57 and .58) the words can show one cent less than the figures. If they differ, correct the words by hand or contact UTX support.
 
 ---
 
@@ -263,7 +255,7 @@ UTX Freight keeps a vendor directory automatically. There is no page to add, edi
 ### :fontawesome-solid-eye-slash: There is no Check Expenses section on the check form
 
 !!! info "Solution"
-    Linking expenses to checks is an edition option. When it is off, checks record the vendor invoice and payee only, and the Expenses page keeps showing every line as unpaid. Contact UTX support if you need it enabled.
+    Linking expenses to checks is an option that only UTX can turn on for your account. When it is off, checks record the vendor invoice and payee only, and the Expenses page keeps showing every line as unpaid. Contact UTX support if you need it enabled.
 
 ### :fontawesome-solid-calculator: The check amount doesn't match the expenses I ticked
 
@@ -274,11 +266,6 @@ UTX Freight keeps a vendor directory automatically. There is no page to add, edi
 
 !!! info "Solution"
     Open the check (**Actions** > **Edit**, or **View Check** on the Expenses page), untick the line under **Check Expenses**, and click **Save Changes**. The line returns to unpaid.
-
-### :fontawesome-solid-trash: I want to delete a check that pays expenses
-
-!!! warning "Untick its expenses first"
-    Deleting a check does not release the expense lines linked to it. Before deleting, edit the check, untick every line under **Check Expenses** and save. Then delete it. Otherwise those lines no longer appear under **Unpaid Only** and cannot be offered on a new check. They still appear under **Paid Only**, but with the red cross in **Paid** and an empty **Check Info**.
 
 ### :fontawesome-solid-building: The Expenses page shows lines from another office
 

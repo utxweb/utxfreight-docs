@@ -118,7 +118,7 @@ Click **New Part**, or the :fontawesome-solid-pen-to-square: edit icon on a row 
 | Field | Required | Notes |
 |-------|----------|-------|
 | **Name** | Yes | Shown in part searches on work orders and templates |
-| **SKU** | No | Part number. Must be unique across all offices (see warnings below). Searchable |
+| **SKU** | No | Part number. Must be unique across all offices (see below). Searchable |
 | **Category** | No | Pick from the list, or leave **Select category...** |
 | **Description** | No | Free text |
 | **Purchase Price** | No (defaults to 0) | Your cost. 0 or more, up to 2 decimals |
@@ -138,11 +138,6 @@ You cannot add your own categories. Use **Other** for anything that does not fit
 
 !!! warning "SKUs are unique across all offices"
     When you save a part, its **SKU** must not be used by **any** other part, in **any** office, including disabled parts. The comparison is exact (`ABC-1` and `abc-1` count as different SKUs). If the SKU is taken, you see *Sku has already been taken*. Use a different SKU.
-
-    The CSV import checks duplicates differently: its preview only compares SKUs with the parts of your **current** office (see [What the preview checks](#what-the-preview-checks)).
-
-!!! warning "Saving a part with an empty SKU can fail"
-    When you leave **SKU** empty on the form, the part is saved with an empty SKU value. Because SKUs must be unique across all offices, once one part has been saved from the form with an empty SKU, saving another part with an empty SKU (new or edited, in any office) can end on an error page instead of saving. This was found by reading the code. To avoid it, give every part a SKU. Parts imported from CSV without a SKU are stored differently and are not affected.
 
 !!! info "Changing a part's price"
     Work order and template lines keep the cost and charge they had when the part was added. Changing the price in the catalogue does not change existing work orders or templates.
@@ -192,11 +187,11 @@ name, sku, category, description, purchase_price, charge_price, quantity_on_hand
 
 | Column | Required | How it is imported |
 |--------|----------|-------------------|
-| `name` | Yes | Rows without a name are not imported, and are not counted in the *Y skipped* number |
-| `sku` | No | Rows whose SKU already exists in your office (ignoring capitals) are skipped. A SKU used in another office makes the row fail at import (see below) |
-| `category` | No | Must be **exactly** one of the [categories](#categories), with the same spelling and capitals (for example `Brakes`, `HVAC`). See the warning below |
+| `name` | Yes | Rows without a name are not imported |
+| `sku` | No | Rows whose SKU already exists in your office (ignoring capitals) are skipped. SKUs must be unique across all offices |
+| `category` | No | Must be **exactly** one of the [categories](#categories), with the same spelling and capitals (for example `Brakes`, `HVAC`), or left empty |
 | `description` | No | Free text |
-| `purchase_price` | No | Plain number such as `12.50`. Empty, not a number or negative becomes 0. Do not use `$` or thousands separators: `$12.50` becomes 0 and `1,250.00` becomes 1 |
+| `purchase_price` | No | Plain number such as `12.50`, 0 or more. Empty or not a number becomes 0. Do not use `$` or thousands separators: `$12.50` becomes 0 and `1,250.00` becomes 1 |
 | `charge_price` | No | Same rules as `purchase_price` |
 | `quantity_on_hand` | No | Whole number. Empty, not a number or negative becomes 0; decimals are dropped |
 | `reorder_point` | No | Whole number. Empty, not a number or negative becomes 0; decimals are dropped |
@@ -214,9 +209,6 @@ name, sku, category, description, purchase_price, charge_price, quantity_on_hand
 | *File too large. Maximum size is 1 MB.* | The file is larger than 1 MB |
 | *Invalid CSV file: ...* | The file could not be read as CSV (for example a broken quote). The message gives the technical reason |
 | *No CSV data found. Please upload again.* | The uploaded file was no longer available when you clicked **Import N Parts** (for example you clicked it a second time, or reloaded the page). Upload the file again |
-
-!!! warning "Keep import files small"
-    Between **Preview Import** and **Import N Parts**, the file is kept in your browser session, which only holds a few kilobytes. Even though files up to 1 MB are accepted, a file larger than roughly 2 KB (a few dozen short rows) can fail with an error page after **Preview Import**. If that happens, split your list into several smaller CSV files and import them one after the other.
 
 ### The preview page
 
@@ -247,21 +239,7 @@ Nothing is saved until you click **Import N Parts**.
 
 A row with a duplicate SKU is listed only as a duplicate, even if it also has other problems.
 
-!!! warning "Rows with a negative price are imported anyway"
-    The preview lists rows with a negative `purchase_price` or `charge_price` under **Invalid rows (will skip)**, but **Import N Parts** re-reads the whole file and **does** import them, with the negative price changed to 0. Fix or remove these rows before you click **Import N Parts**. (If the file has no **Ready to import** rows at all, there is no import button.)
-
-!!! danger "Some rows pass the preview but are still skipped"
-    The preview does not check everything. These rows are counted in **Ready to import**, but are **not** imported when you click **Import N Parts**. They are only counted in the *Y skipped* number of the final message, with no reason given:
-
-    - **Unknown category:** the `category` value is not exactly one of the [categories](#categories) (for example `brakes`, `Tyres` or `Filter`). Fix the spelling, or leave the column empty.
-    - **SKU used in another office:** SKUs must be unique across all offices, but the preview only checks your current office.
-    - **Same SKU twice in the file:** the preview does not compare rows with each other. The first row is imported and the next ones with the same SKU are skipped.
-
-    After an import, compare the *X parts imported* number with the **Ready to import** count. If they differ, check these three cases, and the negative-price rows above (which are imported even though the preview said they would be skipped).
-
-    The *Y skipped* number counts duplicate SKUs and rows that could not be saved. Rows with an empty `name` are not imported and not counted in it.
-
-!!! warning "Parts without a SKU are never treated as duplicates"
+!!! info "Parts without a SKU are never treated as duplicates"
     The duplicate check only works on SKUs. If you import the same file twice, or re-import the **Download Current Catalog as CSV Template** file, every row **without** a SKU is added again as a new part. Give your parts a SKU, or remove rows you have already imported.
 
 ---
@@ -333,8 +311,8 @@ When a line is newly linked to a catalogue part and you leave **Cost** or **Char
 
 Click **Create Template** or **Update Template**. You return to the list with *Template created successfully.* or *Template updated successfully.* **Cancel** returns without saving. If something is wrong, a red box lists the errors (*N errors prevented this template from being saved:*).
 
-!!! warning "Remove empty rows you don't need"
-    A new template starts with one empty part row and one empty labor row (a template being edited with no parts or no labor also shows one). If the template has no labor, remove the empty labor row with :fontawesome-solid-xmark: before saving, otherwise the template is refused because the labor line has no description and no rate. Likewise, remove an unused empty part row: left as is, it is saved as a blank part line (shown as **-**, quantity 1, at $0.00).
+!!! tip "Remove empty rows you don't need"
+    A new template starts with one empty part row and one empty labor row (a template being edited with no parts or no labor also shows one). If the template has no labor, remove the empty labor row with :fontawesome-solid-xmark: before saving, since every labor line needs a **Description** and a **Rate**. Likewise, remove an unused empty part row so the template only lists the parts you need.
 
 ### Viewing a template
 
@@ -380,18 +358,6 @@ The **Apply Template** box only appears when your current office has at least on
 !!! info "Solution"
     SKUs must be unique across **all offices**, including disabled parts. Check the **Disabled** tab, and ask someone in your other offices (or an Admin who can switch office) whether the SKU is used there. Otherwise use a different SKU.
 
-### :fontawesome-solid-file-csv: The preview said "Ready to import: 50" but only 45 parts were imported
-
-!!! info "Solution"
-    Rows that pass the preview can still be skipped at import time: a `category` that is not spelled exactly like one of the [categories](#categories), a SKU that exists in another office, or the same SKU twice in the file. Fix those rows and import them again in a new file that contains only them.
-
-    The opposite can also happen: rows the preview listed as invalid because of a negative price are imported, with the price set to 0. Edit those parts and enter the right price.
-
-### :fontawesome-solid-bug: I get an error page after clicking Preview Import
-
-!!! info "Solution"
-    The file is probably too large for the preview step, which only holds a few kilobytes. Split the file into smaller files of a few dozen rows and import them one at a time.
-
 ### :fontawesome-solid-copy: I imported the same file twice and now have duplicate parts
 
 !!! info "Solution"
@@ -435,7 +401,7 @@ The **Apply Template** box only appears when your current office has at least on
     - Give every part a **SKU** and a **Category**. SKUs make searches faster and protect you from duplicate imports.
     - Set a **Reorder Point** on parts you keep in stock, and check the **Low Stock** tab regularly.
     - Watch the **Margin** colours: red means less than 30% of the charge price is profit, or you even sell at a loss.
-    - Import in small files, and copy category names exactly from the list on this page.
+    - Copy category names exactly from the list on this page when you prepare a CSV import.
     - Use **Export** as a quick backup of your active catalogue before a large import.
     - Build templates for your most common jobs (oil changes, brake jobs, inspections), and review their prices when your catalogue prices change.
     - Disable seasonal or outdated templates instead of letting the **Apply Template** list grow.

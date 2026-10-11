@@ -6,7 +6,7 @@ This page covers how you sign in to UTX Freight on the web, where you land after
 
 - You sign in with your **Email** and **Password**. Tick **Remember me** to stay signed in on that browser.
 - Forgot your password? Click **I forgot my password**, then **Send me reset instructions**. The reset link in the email is valid for **6 hours**.
-- After you sign in, UTX Freight takes you to the page that fits your role: **Orders** for most users and **Warehouse** :fontawesome-solid-arrow-right: **Orders** for the Warehouse role. Garage users need to open the Garage screens directly (see [Where You Land](#where-you-land-after-signing-in)).
+- After you sign in, UTX Freight takes you to the page that fits your role: **Orders** for most users and **Warehouse** :fontawesome-solid-arrow-right: **Orders** for the Warehouse role, and **Garage** :fontawesome-solid-arrow-right: **Work Orders** for the Garage role (see [Where You Land](#where-you-land-after-signing-in)).
 - The **left sidebar** lists the main sections. Each item appears only when your role is allowed to use it, so different users see different menus.
 - The **top bar** shows your company and current office name on the left. On the right are the office switcher (multi-office only), **Feedback**, **Online Documentation**, and your **user menu** (your name). The user menu contains **Edit Profile** or **Settings**, the **Manage ...** lists, and **Logout**.
 - If you open a page your role can't use, you are sent back to your starting page. Nothing is changed.
@@ -18,7 +18,7 @@ This page covers how you sign in to UTX Freight on the web, where you land after
 2. Tick **Remember me** if you are on your own computer, then click **Sign in**.
 3. Use the left sidebar to move between sections (**Orders**, **Dispatch**, **Invoices**, and so on).
 4. Click your name in the top bar :fontawesome-solid-arrow-right: **Edit Profile** to update your phone numbers or email notifications.
-5. Click **Feedback** in the top bar any time to report a bug or suggest an improvement.
+5. Click **Feedback** in the top bar any time to report a problem or suggest an improvement.
 
 ## :fontawesome-solid-lock: Access & Permissions
 
@@ -31,8 +31,8 @@ Every web user (Admin, Manager, Dispatch, Customer Service, Accountant, Customer
 | :fontawesome-solid-headset: **Dispatch** / **Customer Service** | **Orders** | Yes |
 | :fontawesome-solid-calculator: **Accountant** | **Orders** | Yes |
 | :fontawesome-solid-user: **Customer** | **Orders** | Yes |
-| :fontawesome-solid-warehouse: **Warehouse** | **Warehouse** :fontawesome-solid-arrow-right: **Orders** (when the Warehouse add-on is enabled) | Shown, but the role can't open it |
-| :fontawesome-solid-screwdriver-wrench: **Garage** | No Garage starting page. Open the Garage screens directly (see below) | Shown, but the role can't open it |
+| :fontawesome-solid-warehouse: **Warehouse** | **Warehouse** :fontawesome-solid-arrow-right: **Orders** (when the Warehouse add-on is enabled) | No |
+| :fontawesome-solid-screwdriver-wrench: **Garage** | **Garage** :fontawesome-solid-arrow-right: **Work Orders** (when the Garage add-on is enabled) | No |
 
 !!! info "Drivers and mobile users sign in differently"
     Drivers, brokers and yard workers are set up under **Mobile Users** and don't sign in with an email and password. On a phone, the sign-in screen shows **Are you a driver or yard worker ?** with a **Mobile Login** button, which asks for an **Access Code**. See [Mobile Users](mobile-users.md) and [Driver Login Links](driver-login-links.md).
@@ -76,7 +76,7 @@ UTX Freight sends you to a starting page based on your role:
 | Role | Starting page |
 |------|---------------|
 | **Warehouse** | **Warehouse** :fontawesome-solid-arrow-right: **Orders**. If the Warehouse add-on isn't enabled, you are sent to the public home page instead. |
-| **Garage** | There is no Garage starting page: the redirect after sign-in points to **Orders**, which the Garage role can't open. Open the Garage **Work Orders** page directly (the `/garage/work_orders` address on your UTX Freight site) and bookmark it. |
+| **Garage** | **Garage** :fontawesome-solid-arrow-right: **Work Orders**, when the Garage add-on is enabled. |
 | Everyone else | **Orders** |
 
 Yard workers who sign in with **Mobile Login** land on a container search: a **Container #** box with a **Search** button, with results under **Search Results** (or **No Results Found**). Drivers who sign in with **Mobile Login** land on **Orders**. See [Yard Management](yard-management.md) and [Mobile Users](mobile-users.md).
@@ -88,7 +88,7 @@ The sidebar lists the sections you can open. Items appear in the order below. An
 | Sidebar item | Who sees it | Notes |
 |--------------|-------------|-------|
 | :fontawesome-solid-clipboard-check: **Getting started** | Admin, Manager | Shows your setup checklist. The label changes to **Setup check** on an account that is already running, and to **Setup complete** once everything is done. An alert icon means steps remain. See [Setup Checklist](setup-checklist.md). |
-| :fontawesome-solid-truck: **Orders** | Every role except Warehouse | The Garage role sees the item but can't open Orders. See [Orders](orders.md). |
+| :fontawesome-solid-truck: **Orders** | Every role except Warehouse and Garage | See [Orders](orders.md). |
 | :fontawesome-solid-road: **Dispatch** | Admin, Manager, Dispatch, Customer Service | Opens the dispatched orders. See [Dispatch](dispatch.md). |
 | :fontawesome-solid-warehouse: **Warehouse** | Admin, Warehouse, when the Warehouse add-on is enabled | Expands to **Orders**, **Product**, **Location**, **Charges**, **Unit of Measure**, **Building**. See [Warehouse Overview](warehouse-overview.md). |
 | :fontawesome-solid-screwdriver-wrench: **Garage** | Admin, Manager, Garage, when the Garage add-on is enabled | Opens Garage work orders. The Garage screens have their own sidebar (with **Back to TMS** at the bottom) and no **Feedback** button. See [Garage Overview](garage-overview.md). |
@@ -139,7 +139,7 @@ When multi-office is enabled and you are assigned to two or more offices:
 2. Pick an office from the list. Your current office has a green check mark.
 3. The page reloads with **Switched to the <office name> office**.
 
-Orders, invoices and checks are shown for the office you have selected. When multi-office is enabled, each office also gets its own top bar color (there are six colors, so they repeat after the sixth office), so you can see at a glance which one you're working in. The Warehouse and Garage roles can't switch offices: choosing an office sends them back to their starting page. See [Multi-Office](multi-office.md).
+Orders, invoices and checks are shown for the office you have selected. When multi-office is enabled, each office also gets its own top bar color (there are six colors, so they repeat after the sixth office), so you can see at a glance which one you're working in. Office switching is not available to the Warehouse and Garage roles. See [Multi-Office](multi-office.md).
 
 ### The user menu
 
@@ -147,9 +147,8 @@ Click your name in the top bar to open the user menu. Items are grouped by divid
 
 | Menu item | Who sees it | Notes |
 |-----------|-------------|-------|
-| :fontawesome-solid-user: **Edit Profile** | Everyone **except** Admin and Manager | Warehouse and Garage users see it but can't open it. See [Editing Your Profile](#editing-your-profile). |
-| :fontawesome-solid-gear: **Settings** | Admin and Manager | Only Admins can open it. A Manager who clicks it is sent back to their starting page. See [Application Settings](application-settings.md). |
-| :fontawesome-solid-user-shield: **Super User** | UTX staff only | Not used by customers. |
+| :fontawesome-solid-user: **Edit Profile** | Dispatch, Customer Service, Accountant, Customer | See [Editing Your Profile](#editing-your-profile). |
+| :fontawesome-solid-gear: **Settings** | Admin | See [Application Settings](application-settings.md). |
 | **Manage Brokers** | Admin, Manager | |
 | **Manage Cities** | Admin, Manager, Dispatch with **Can manage rates?** | See [Zones & Cities](zones-and-cities.md). |
 | **Manage Clients** | Admin, Manager, Dispatch | Same list as **Shipper / Receiver**. |
@@ -198,7 +197,7 @@ Click your name in the top bar to open the user menu. Items are grouped by divid
 !!! info "Admins and Managers"
     Admins and Managers don't have **Edit Profile** in their menu. They update their own details the same way they update other users, from the people listed under **Customers**. See [People & Invitations](people-and-invitations.md).
 
-After you click **Save Changes**, you are taken to the **Customers** page with **User was successfully updated.** If your role can't open **Customers** (Accountant, Customer, and Dispatch unless customer management is turned on for your account), you end up on your starting page instead, usually without a confirmation message. Your changes are still saved. **Cancel** discards your changes and also goes to **Customers** (or your starting page if your role can't open it).
+After you click **Save Changes**, your changes are saved. If your role can open **Customers**, you are taken there with **User was successfully updated.**; otherwise you return to your starting page. **Cancel** closes the page without saving.
 
 ## :fontawesome-solid-mobile-screen: Using UTX Freight on a Phone (Office and Customer Users)
 
@@ -210,11 +209,10 @@ You get the phone layout when any of these is true:
 
 | Situation | Notes |
 |-----------|-------|
-| Your browser identifies itself as a mobile browser | Browsers whose identification (user agent) contains "Mobile" or "webOS", which covers most phones. A browser that doesn't include either word (for example, many tablets) gets the normal site. |
-| The address you opened ends with `?mobile=1` | The choice is remembered for the rest of your browser session, on any device. |
-| Your UTX Freight address starts with `mobile.` | The phone layout is always used on that address. **View normal site** and `?mobile=0` have no effect there. Use your regular UTX Freight address instead. |
+| You open UTX Freight on a phone | Most phone browsers get the phone layout. Many tablets get the normal site. |
+| You tapped **View mobile site** | The choice is remembered for the rest of your browser session. |
 
-Adding `?mobile=0` to the address (or tapping **View normal site**) turns the phone layout off for the rest of your browser session, even on a phone. The choice is stored in your session, so after you **Logout** (or when your browser ends the session) you get the phone layout again on a phone.
+Tapping **View normal site** turns the phone layout off for the rest of your browser session, even on a phone. After you **Logout** (or when your browser ends the session) you get the phone layout again on a phone.
 
 ### What you see in the phone layout
 
@@ -229,13 +227,7 @@ Adding `?mobile=0` to the address (or tapping **View normal site**) turns the ph
 
 After you sign in, you land on **Orders** as usual, but the page shows the **driver's** order list instead of the normal orders table. It groups orders under headings such as **Import: Deliver to client**, **Import: Return empty**, **Export: Drop Empty**, **Export: Pickup Full**, **LCL: Pickup**, **LCL: Delivery** and transfer headings (**TF:** followed by the pickup and return terminals), with buttons such as **Sign DELIVERY**, **Sign DROP**, **Sign PICKUP**, **Drop Completed** and **Transfer Completed**, and a **Refresh** button at the bottom. See [Driver Workflow](driver-workflow.md) for what these mean for drivers.
 
-This list only shows in-progress orders (from the first page of results) that are ready for a signature or a return and where the **assigned driver** matches the person signed in. It compares the driver assigned on the order with your own user number, but drivers and web users are numbered separately. As a result:
-
-- For an office or customer user the list is **usually empty**: you see only the **Refresh** button and the **View normal site** link.
-- It **can show orders that have nothing to do with you**, when the driver assigned to an order happens to have the same number as your user account.
-
-!!! warning "Don't use the Sign or Completed buttons as an office or customer user"
-    Orders that appear in your phone list are not "your" orders. The **Sign ...**, **Drop Completed** and **Transfer Completed** buttons are meant for the assigned driver. Tap **View normal site** and work from the normal **Orders** page instead.
+This list is meant for the driver assigned to each order, so it is not the place for office or customer users to manage orders. Tap **View normal site** and work from the normal **Orders** page instead.
 
 ### Switching to the normal site
 
@@ -243,23 +235,20 @@ This list only shows in-progress orders (from the first page of results) that ar
 2. Tap **View normal site**.
 3. UTX Freight opens the normal **Orders** page, with the left sidebar, top bar and user menu described above. It stays on the normal site for the rest of your browser session.
 
-To go back to the phone layout, add `?mobile=1` to the end of the address (for example, after `/orders`) and open it. The normal UTX Freight screens have no link back to the phone layout. On a phone, your company's public home page (the **Home** link) shows a **View mobile site** link at the bottom, which also switches the phone layout back on.
-
-!!! tip "Bookmark the normal site on your phone"
-    Add `?mobile=0` to the end of your UTX Freight address (for example, the sign-in page or `/orders`) and bookmark it. Opening that bookmark turns the phone layout off right away, even after you have logged out.
+The normal UTX Freight screens have no link back to the phone layout. To go back to it on a phone, open your company's public home page (the **Home** link) and tap **View mobile site** at the bottom.
 
 !!! info "Drivers, brokers and yard workers"
     Drivers, brokers and yard workers should stay on the phone layout. Their order list, signatures and container search only exist there. See [Driver Workflow](driver-workflow.md), [Yard Management](yard-management.md) and [Mobile Users](mobile-users.md).
 
 ## :fontawesome-solid-ban: When You Don't Have Access
 
-- If you open a page or link your role isn't allowed to use (for example, a bookmarked URL), UTX Freight sends you back to your starting page. Nothing is changed. Because the starting page is itself reached through a redirect (to **Orders** or **Warehouse** :fontawesome-solid-arrow-right: **Orders**), you usually don't see an error message: you simply land on your starting page.
+- If you open a page or link your role isn't allowed to use (for example, a bookmarked URL), UTX Freight sends you back to your starting page. Nothing is changed.
 - If you open **Dispatch** without Dispatch access (anyone other than Admin, Manager, Dispatch or Customer Service), you are sent to **Orders**.
-- Most sidebar and user-menu items you can't use are hidden. The exceptions are **Settings** for Managers, **Edit Profile** for Warehouse and Garage users, and **Orders** for Garage users: these are shown but send you back to your starting page.
+- Sidebar and user-menu items you can't use are hidden.
 
 ## :fontawesome-solid-comment-dots: Sending Feedback
 
-Use **Feedback** in the top bar to send a bug report, suggestion or general comment straight to the UTX team.
+Use **Feedback** in the top bar to send a problem report, suggestion or general comment straight to the UTX team.
 
 <!-- TODO: Screenshot — "We'd love your feedback" modal with type and importance buttons -->
 
@@ -272,7 +261,7 @@ Use **Feedback** in the top bar to send a bug report, suggestion or general comm
 
 As the form says, your feedback is sent to the development team along with the current page for context. The page address (including any filters in it) and your browser details (browser and window size) are attached automatically, so you don't need to describe where you were.
 
-!!! tip "Writing a useful bug report"
+!!! tip "Writing a useful problem report"
     Choose **Bug Report**, open the feedback form from the page where the problem happens, and describe what you clicked, what you expected and what happened instead. Include order or invoice numbers if relevant.
 
 !!! warning "Where Feedback is not available"
@@ -295,10 +284,10 @@ As the form says, your feedback is sent to the development team along with the c
 !!! info "Solution"
     Menu items depend on your role, on add-ons (Warehouse, Garage, Fuel Surcharge), on whether your account is intermodal, and on some account settings. Ask your Admin to check your role. See [User Roles](user-roles.md) and [Add-ons & Options](add-ons-and-options.md).
 
-### :fontawesome-solid-gear: I'm a Manager and Settings sends me back
+### :fontawesome-solid-gear: I'm a Manager and need to change a setting
 
 !!! info "Solution"
-    Managers see **Settings** in the user menu, but only Admins can open it. A Manager who clicks it lands back on their starting page. Ask an Admin to make the change.
+    Only Admins can open **Settings**. Ask an Admin to make the change.
 
 ### :fontawesome-solid-building: I don't see the office switcher
 
@@ -310,15 +299,10 @@ As the form says, your feedback is sent to the development team along with the c
 !!! info "Solution"
     Go to **Edit Profile**, untick **Email Notifications**, and click **Save Changes**.
 
-### :fontawesome-solid-screwdriver-wrench: I have the Garage role and signing in doesn't open the Garage
+### :fontawesome-solid-mobile-screen-button: I opened UTX Freight on my phone and the Orders page looks different
 
 !!! info "Solution"
-    The sign-in redirect has no Garage destination. Go straight to the Garage **Work Orders** page (`/garage/work_orders` on your UTX Freight site) and bookmark it.
-
-### :fontawesome-solid-mobile-screen-button: I opened UTX Freight on my phone and my orders list is empty / looks wrong
-
-!!! info "Solution"
-    On a phone, office and customer users get the phone layout, which shows the drivers' order list (headings such as **Import: Deliver to client** or **Import: Return empty**). That list matches orders against the assigned driver, so for you it is usually empty, or it shows orders that aren't yours. Scroll to the bottom and tap **View normal site** to get the normal **Orders** page. If your address starts with `mobile.`, use your regular UTX Freight address instead. See [Using UTX Freight on a Phone](#using-utx-freight-on-a-phone-office-and-customer-users).
+    On a phone, office and customer users get the phone layout, which shows the drivers' order list (headings such as **Import: Deliver to client** or **Import: Return empty**). Scroll to the bottom and tap **View normal site** to get the normal **Orders** page. See [Using UTX Freight on a Phone](#using-utx-freight-on-a-phone-office-and-customer-users).
 
 ### :fontawesome-solid-mobile-screen: I'm a driver. Where do I sign in?
 
@@ -333,4 +317,4 @@ As the form says, your feedback is sent to the development team along with the c
     - In multi-office accounts, check the office name in the top bar before creating orders or invoices.
     - Use **Feedback** from the page where something went wrong. The page is attached for you.
     - Note the **Release** number at the bottom of the sidebar when you contact support.
-    - On a phone, tap **View normal site** right after signing in, or bookmark your address with `?mobile=0` at the end.
+    - On a phone, tap **View normal site** right after signing in.

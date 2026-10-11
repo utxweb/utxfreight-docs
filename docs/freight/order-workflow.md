@@ -1,6 +1,6 @@
 # Order Status Workflow
 
-Move an order from **New** to **Completed** with the status buttons, and undo, delete, transfer or audit an order from its actions menu.
+Move an order from **New** to **Completed** with the status buttons, and undo, delete, transfer or view the history of an order from its actions menu.
 
 ## :fontawesome-solid-arrows-rotate: Overview
 
@@ -32,8 +32,8 @@ Every order moves through four statuses, one step at a time:
 
 | Role | Status buttons | Reset / Go Back | Delete Order | Transfer to Office | View History |
 |------|----------------|-----------------|--------------|--------------------|--------------|
-| :fontawesome-solid-user-tie: **Admin** | All | Yes | Yes | Yes (multi-office) | Yes (if data audit is enabled) |
-| :fontawesome-solid-user-tie: **Manager** | All, for orders in their offices | Yes | Yes | Yes (multi-office) | Yes (if data audit is enabled) |
+| :fontawesome-solid-user-tie: **Admin** | All | Yes | Yes | Yes (multi-office) | Yes (if order history is turned on) |
+| :fontawesome-solid-user-tie: **Manager** | All, for orders in their offices | Yes | Yes | Yes (multi-office) | Yes (if order history is turned on) |
 | :fontawesome-solid-headset: **Dispatch** | All, for orders in their offices | Yes | Yes | Yes (multi-office) | Only with **Can manage rates?** |
 | :fontawesome-solid-file-invoice-dollar: **Accountant** | Depends on your installation (see below) | Depends on your installation | Depends on your installation | Depends on your installation (multi-office) | Depends on your installation |
 | :fontawesome-solid-user: **Customer** | No — sees the grey **Actions** button | No | No | No | No |
@@ -57,15 +57,15 @@ Every order moves through four statuses, one step at a time:
 
 Each order row shows a status label with an icon. Hover over it to see its name.
 
-| Status (as stored) | Label hover text | Icon | Label colour | Filter tab on Orders |
+| Status | Label hover text | Icon | Label colour | Filter tab on Orders |
 |--------------------|------------------|------|--------------|----------------------|
-| **new** | New Order | :fontawesome-solid-star: star | Red | **New** |
+| **New** | New Order | :fontawesome-solid-star: star | Red | **New** |
 | **App. Taken** | Appointment Made | :fontawesome-solid-clock: clock | Orange / yellow | **App. Made** |
 | **Dispatched** | Order Dispatched | :fontawesome-solid-road: road | Green | **Dispatched** |
 | **Completed** | Order Completed | :fontawesome-solid-check: check | Grey | **Completed** |
 
 !!! info "App. Taken vs. App. Made"
-    It is the same status, stored internally as **App. Taken** (the value you also see in the **Go Back 1 Step** toast). The filter tab and the counter at the top of the **Orders** list call it **App. Made**, the status filter icon on the **Dispatch** board shows **App Made** when you hover over it, and the label hover text says **Appointment Made**.
+    It is the same status. Most screens, including the **Go Back 1 Step** toast, call it **App. Taken**. The filter tab and the counter at the top of the **Orders** list call it **App. Made**, the status filter icon on the **Dispatch** board shows **App Made** when you hover over it, and the label hover text says **Appointment Made**.
 
 ### Status buttons
 
@@ -127,9 +127,6 @@ The toast **Order Dispatched!** confirms the change. If a value is invalid, you 
 !!! info "Email sent on dispatch"
     The modal warns: *When you dispatch this order, a notification email will automatically be send to the customer.* The email subject is **Order #&lt;order number&gt; is now dispatched**, and it goes to the customer contact on the order — **only if that person has Email Notifications turned on** in their profile (see [People & Invitations](people-and-invitations.md)). If sending fails, the toast includes **Sending email failed!**
 
-!!! warning "The toast does not check Email Notifications"
-    The success toast says a notification was sent to the customer even when the contact has **Email Notifications** turned off and no email actually went out. Check the contact's profile if a customer says they did not receive it.
-
 !!! tip "Picking a driver doesn't dispatch"
     Assigning a driver (for example by clicking the driver name on the **Dispatch** board) only saves the driver. The order stays at its current status until someone clicks **Dispatch** and **Dispatch Order**.
 
@@ -167,7 +164,7 @@ In the **Order Documents** panel, choose a PDF in **Signed POD file in .pdf form
 See [Order Documents & POD](order-documents-and-pod.md) for other document types.
 
 !!! info "Email sent on completion"
-    The modal warns: *When you complete this order, a notification email will automatically be send to the customer.* The subject is **Order Completed for order #&lt;order number&gt;**, sent to the customer contact on the order **only if they have Email Notifications turned on**. The same caveat applies: the success toast does not check that setting.
+    The modal warns: *When you complete this order, a notification email will automatically be send to the customer.* The subject is **Order Completed for order #&lt;order number&gt;**, sent to the customer contact on the order **only if they have Email Notifications turned on**.
 
 <!-- TODO: Screenshot — The Complete modal with the Order Documents panel open showing the signed POD upload -->
 
@@ -258,7 +255,7 @@ The row disappears from the current office's list and a toast confirms **Order #
 
 Opens the **Order History** modal with the list of changes made to the order.
 
-- The menu item only appears when **data audit** is enabled for your UTX Freight installation.
+- The menu item only appears when order history is turned on for your account. Ask UTX support if you want it turned on.
 - Admins and managers see it. Dispatchers see it only if **Can manage rates?** is checked in their profile. Accountants see it only when order management is turned on for them.
 
 ---
@@ -273,7 +270,7 @@ Opens the **Order History** modal with the list of changes made to the order.
 | **Go Back 1 Step** | Order status changed! | Order not updated! | None |
 | **Reset Order to New** | Order Reset! | Order not updated! | None |
 | **Delete Order** | Order #X was deleted. | — | None |
-| **Transfer Order** | Order #X transferred to &lt;office&gt;. | Error message from the server | None |
+| **Transfer Order** | Order #X transferred to &lt;office&gt;. | An error message explaining why | None |
 
 See [Notifications & Emails](notifications-and-emails.md) for all emails UTX Freight sends.
 
@@ -314,7 +311,7 @@ See [Notifications & Emails](notifications-and-emails.md) for all emails UTX Fre
 ### :fontawesome-solid-clock-rotate-left: I can't find View History
 
 !!! info "Solution"
-    Data audit must be enabled for your installation, and dispatchers also need **Can manage rates?** in their profile.
+    Order history must be turned on for your account (ask UTX support), and dispatchers also need **Can manage rates?** checked in their profile.
 
 ---
 

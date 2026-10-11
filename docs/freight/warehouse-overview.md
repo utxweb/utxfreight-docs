@@ -56,7 +56,7 @@ Details for each setup step are in [Warehouse Setup](warehouse-setup.md). Creati
 
 - **Warehouse orders are not office-scoped.** Admin and Warehouse users see every warehouse order in the **Warehouse Orders** list, whatever office they are working in.
 - **Setup records belong to an office.** Buildings, locations, units of measure, products and charges each have an **Office** field, and their setup lists show the records of the office you are currently working in.
-- **The warehouse order form is not filtered by office.** The product, unit of measure and location lists on an order line show every product, unit of measure and location, from all offices and including disabled ones. The charge list shows every Income charge with the Warehouse service, also from all offices and including disabled ones.
+- **The warehouse order form is not filtered by office.** The product, unit of measure and location lists on an order line show products, units of measure and locations from all offices. The charge list shows Income charges with the Warehouse service, also from all offices.
 - The customer list in the order form (**Place the order on behalf of**) shows the people of the current office.
 
 See [Multi-Office](multi-office.md) for how offices work.
@@ -107,7 +107,7 @@ Some records must exist before others can be created. Set things up in this orde
 | 6 | :fontawesome-solid-users: **Customer** with the Warehouse service | Only customers whose **Service** is **Warehouse** or **Intermodal & Warehouse** can be picked on a warehouse order (see below) |
 
 !!! tip "Only Income charges with the Warehouse service appear on orders"
-    The charge list on a warehouse order shows only charges whose **Charge Type** is **Income** and whose **Service** is **Warehouse**. A charge set to **Expense**, or to the **Intermodal** service, will not be offered. Disabled Warehouse charges are still offered, so pick carefully.
+    The charge list on a warehouse order shows only charges whose **Charge Type** is **Income** and whose **Service** is **Warehouse**. A charge set to **Expense**, or to the **Intermodal** service, will not be offered.
 
 ### :fontawesome-solid-users: Customers and the Warehouse service
 
@@ -154,9 +154,6 @@ The amount shown in the **Invoiced Rate** column of the **Warehouse Orders** lis
     If a unit of measure is missing its **Length (inch)** or **Width (inch)**, product lines using it add nothing to Monthly charges. Fixed charges are not affected, because they are added once per order.
 
 The **Invoiced Rate** column (and the **Closing Date** column) is shown on every filter except **Open**. On the **All** filter, open orders are calculated up to today. UTX Freight does not create invoices from warehouse orders.
-
-!!! info "The Not Invoiced filter"
-    The **Not Invoiced** filter lists orders whose status is "not invoiced". No screen in UTX Freight sets that status: new orders are open and completed orders are **Completed**, so this filter is normally empty.
 
 See [Warehouse Orders](warehouse-orders.md) for the full order workflow.
 

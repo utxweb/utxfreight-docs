@@ -4,7 +4,7 @@ Analyze income, deliveries, profit and driver activity for the current office wi
 
 ## :fontawesome-solid-chart-bar: Overview
 
-The **Reports** menu groups every freight report in one place. Each page opens under the **Analytics** heading, with the report name underneath.
+The **Reports** menu groups every freight report in one place. Each page opens under the **Analytics** heading, with the page title underneath.
 
 - :fontawesome-solid-dollar-sign: **Income reports**: **Income by Customer**, **Income by Shipper**, **Daily Income**, **Sales per Month**
 - :fontawesome-solid-truck: **Operations reports**: **Delivery by Zone**, **Order Sales / Profit**, **Drivers Delivery Report**
@@ -94,9 +94,6 @@ One row per customer that has at least one invoice in the date range, sorted by 
 | **All Income** | Total of those invoices, taxes included, followed by the customer's currency |
 | **Paid Income** | Amount paid on those invoices. A fully paid invoice counts in full; otherwise the payments recorded on it are added up |
 
-!!! warning "Currencies are added together in TOTALS"
-    Each customer row shows the customer's default currency, but the **TOTALS** row adds all rows together and labels the result **CAD**. If you bill customers in more than one currency, read the totals with care.
-
 ### Drill-down: Invoices panel
 
 Click a customer name (or pick a customer in the **Customer** filter and click **Update Report**). An **Invoices** panel appears under the summary, listing each invoice in the range in invoice date order, with one line per order on it:
@@ -124,8 +121,8 @@ Click **Export Report** to download the current report as a CSV file. The file c
 
 Invoiced order income grouped by the **delivery location** of each order, for a range of invoice dates.
 
-!!! warning "Grouped by delivery company, not pickup"
-    Despite the name, this report groups orders by their **Deliver To** company (the order's delivery location from [Shippers / Receivers](shippers-receivers.md)), not by the pickup location and not by the customer who is billed. Use **Income by Customer** for income per billed customer.
+!!! info "Grouped by delivery company, not pickup"
+    This report groups orders by their **Deliver To** company (the order's delivery location from [Shippers / Receivers](shippers-receivers.md)), not by the pickup location and not by the customer who is billed. Use **Income by Customer** for income per billed customer.
 
 ### Filters
 
@@ -141,15 +138,12 @@ Only invoiced orders count: an order that is not on an invoice dated in the rang
 
 One row per delivery location, sorted by **All Income**, highest first, with a **TOTALS** row.
 
-!!! warning "TOTALS Invoices figure"
-    The **Invoices** number in the **TOTALS** row is not a reliable count of invoices. Use the per-row figures, or **Income by Customer**, for an invoice count.
-
 | Column | What it shows |
 |--------|---------------|
 | **Shipper** | Delivery location name in capitals. Click it to drill down |
 | **Invoices** | Number of different invoices those orders are on |
 | **Completed Orders** | Number of invoiced orders delivered to that location |
-| **All Income** | Sum of those orders' totals, **before tax**, labelled **CAD** |
+| **All Income** | Sum of those orders' totals, **before tax** |
 
 ### Drill-down: Invoices panel
 
@@ -240,15 +234,15 @@ A table of invoiced sales per month for about the last 22 months (the current mo
 There are no filters on this page.
 
 !!! info "Figures are precomputed"
-    The page does not calculate anything when you open it. A scheduled task in UTX Freight computes the monthly figures in the background and stores them; the page reads the stored values. The current month is a month-to-date figure. Each run recalculates from the most recent stored month onward, so a change to an invoice in an older month (for example a back-dated invoice) may not appear here. Use **Income by Customer** for that period to see live figures.
+    The monthly figures are calculated regularly in the background, and the page shows the most recent calculation, so a change you just made may take a little while to appear. The current month is a month-to-date figure. Use **Income by Customer** for a period when you need live figures.
 
 ---
 
 ## :fontawesome-solid-chart-line: Order Sales / Profit
 
-Sales, expenses and profit for each order delivered in a date range. The page heading reads **Order Sales / Profits**.
+Sales, expenses and profit for each order delivered in a date range. The page heading reads **Order sales / profits**.
 
-<!-- TODO: Screenshot — Order Sales / Profits table with a few order rows and the Totals and Average Per Order rows -->
+<!-- TODO: Screenshot — Order sales / profits table with a few order rows and the Totals and Average Per Order rows -->
 
 ### Filters
 
@@ -417,7 +411,7 @@ If your account has the Garage add-on, garage reports are under **Reports** in t
 ### :fontawesome-solid-calendar-days: Sales per Month doesn't match Income by Customer
 
 !!! info "Solution"
-    **Sales per Month** is before tax and reads figures computed by a scheduled task, so a recent change to an older month may not be reflected. **Income by Customer** is live and includes taxes. Compare against **Income by Customer** for the same month to check live figures.
+    **Sales per Month** is before tax and shows figures calculated regularly in the background, so a very recent change may not show yet. **Income by Customer** is live and includes taxes. Compare against **Income by Customer** for the same month to check live figures.
 
 ### :fontawesome-solid-file-csv: The Income by Customer export has no invoice detail
 

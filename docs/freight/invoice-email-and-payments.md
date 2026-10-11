@@ -91,7 +91,7 @@ The subject is pre-filled in this format:
 
 | Part | When it appears |
 |------|-----------------|
-| **REVISED** | Only if the invoice's last send attempt succeeded (its row shows the green **OK** label). See [The REVISED rule](#the-revised-rule) |
+| **REVISED** | Only if the invoice has already been sent successfully (its row shows the green **OK** label). See [The REVISED rule](#the-revised-rule) |
 | **- PO#…** | Only if the invoice has **exactly one order**. It shows that order's delivery PO number, or its reference number if there is no PO number |
 
 Examples:
@@ -171,11 +171,10 @@ If the invoice was rejected because an address was invalid, the invoice is not t
 
 ### :fontawesome-solid-file-pen: The REVISED rule
 
-**REVISED** is added to the subject and to the invoice PDF file name only when the invoice's **last send attempt succeeded**, meaning the row shows the green **OK** label.
+**REVISED** is added to the subject and to the invoice PDF file name once the invoice has been **sent successfully**, meaning the row shows the green **OK** label.
 
 - First send of an invoice: no REVISED.
 - Any send after a successful one: REVISED.
-- If the last attempt **failed**, the next send has **no** REVISED, even if an earlier send had succeeded. Add the word to the subject yourself if you want it.
 
 !!! tip "Resending after a correction"
     After you change an invoice that was already sent (orders, charges, terms), resend it from the envelope button. The REVISED marking tells the customer this copy replaces the previous one.
@@ -215,19 +214,13 @@ Click **Balance Paid In Full** when the customer has paid everything that is lef
 
 Fill in the **Check number** if you have one, then click **Update Invoice**.
 
-!!! info "How the balance is worked out"
-    The amount is the **Invoice Total** minus the payment lines **already saved** when you opened the window. Lines you added in this window before clicking the button are not deducted. If you add a partial payment and the rest in one go, save the partial payment first, or adjust the amount by hand.
-
-!!! warning "Check the date"
-    The **Paid date** is pre-filled from your computer's clock. Late in the evening it can come out as the next day. Correct it before saving if needed.
-
 ### :fontawesome-solid-list-ol: Payment lines
 
 Click **(+) Add payment** to add a line. Each line has:
 
 | Field | Required | Description |
 |-------|----------|-------------|
-| **Paid date** | No | Date of the payment (placeholder *Payment date*). Pick it from the calendar; dates are stored as YYYY-MM-DD |
+| **Paid date** | No | Date of the payment (placeholder *Payment date*). Pick it from the calendar |
 | **Check number** | No | Cheque or reference number (placeholder *Check Number*) |
 | **Amount** | Yes | Amount received (placeholder *Amount*). The window will not save while a line has no amount |
 | **Action** | — | **(-) Remove payment** deletes the line when you click **Update Invoice** |
@@ -255,9 +248,6 @@ You can change an invoice's status straight from the list without opening anythi
 
 The change is saved immediately. This does not add or remove payment lines.
 
-!!! warning "Avoid the blank option"
-    The inline editor also offers an empty choice. An invoice with no status does not appear under any status tab except **All**, including **All Unpaid**. Use one of the four named statuses.
-
 ### Statuses
 
 | Status | Meaning | Set by |
@@ -277,7 +267,7 @@ The change is saved immediately. This does not add or remove payment lines.
 - Has no aging badge and is left out of every **AR Aging** filter and the **All Unpaid** tab.
 - Gets a **paid date** of today if it has no payment line with a date and no paid date yet. This date appears under **Last payment** when there are no payment lines.
 
-Any other status (**new**, **Invoiced**, **Partially Paid**) is treated as unpaid. Its **Balance** is the invoice total minus the sum of its payment lines, and it stays on **All Unpaid** and in aging, even when the payments cover the total. An invoice with a blank status also keeps its balance and aging badge, but it is only listed under **All**.
+Any other status (**new**, **Invoiced**, **Partially Paid**) is treated as unpaid. Its **Balance** is the invoice total minus the sum of its payment lines, and it stays on **All Unpaid** and in aging, even when the payments cover the total.
 
 !!! tip "Find mismatches"
     Because **Paid** overrides the payment lines, a Paid invoice can have payment lines that don't add up to its total. **Audit Payments** on the Invoices page lists those. See [Invoices](invoices.md#audit-payments).
@@ -299,7 +289,7 @@ Any other status (**new**, **Invoiced**, **Partially Paid**) is treated as unpai
 ### :fontawesome-solid-at: "Please correct the email address and try again"
 
 !!! info "Solution"
-    One of the addresses in **To**, **Cc** or **Bcc** is not a valid email address. Separate several addresses with commas or semicolons, and check for typos. If the addresses look right, ask an admin to check the **Invoice 'From' Address Override** in **Settings**: if it holds something that is not a valid email address, every invoice send is rejected with this message. When it is left empty, your account's default sender address is used instead.
+    One of the addresses in **To**, **Cc** or **Bcc** is not a valid email address. Separate several addresses with commas or semicolons, and check for typos. If the addresses look right, ask an admin to check that the **Invoice 'From' Address Override** in **Settings** is either empty or a valid email address. When it is left empty, your account's default sender address is used.
 
 ### :fontawesome-solid-file-circle-xmark: The customer didn't get a POD for one of the orders
 
@@ -310,11 +300,6 @@ Any other status (**new**, **Invoiced**, **Partially Paid**) is treated as unpai
 
 !!! info "Solution"
     The invoice was already sent successfully once, so the new copy is marked as revised. Delete the word from **Subject** if you don't want it. The invoice PDF's file name will still include REVISED.
-
-### :fontawesome-solid-file-pen: I resent an invoice but it wasn't marked REVISED
-
-!!! info "Solution"
-    The previous attempt failed. REVISED is only added when the last send succeeded. Type it into the subject yourself if needed.
 
 ### :fontawesome-solid-money-bill: I recorded the full payment but the invoice is still on All Unpaid
 
@@ -341,13 +326,3 @@ Any other status (**new**, **Invoiced**, **Partially Paid**) is treated as unpai
     - Untick **Include documents** when the orders carry large or internal files the customer doesn't need.
     - Record every payment as its own line with the check number. It keeps **Audit Payments** and your reconciliation clean.
     - Set the status as you record money: **Partially Paid** for part payments, **Paid** once settled.
-
----
-
-## Screenshots Needed
-
-!!! info "Screenshots to capture"
-    1. **Send invoice to customer** window with pre-filled fields, the yellow POD warning and the blue documents notice
-    2. **Invoice row** after sending, showing the green **OK** label and **sent** date, and one with **Failed!** and its tooltip
-    3. **Record a payment** window with **Balance Paid In Full** and two payment lines
-    4. **Inline status editor** open on a row

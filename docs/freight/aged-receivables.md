@@ -11,7 +11,7 @@ UTX Freight has **two** aged receivables reports. Both live under **Reports** in
 | **Aged Receivables (AR)** | **Standard Aged Receivables** | *Standard Aged Receivables* | A snapshot of every unpaid balance as of a date you pick, aged by **due date**. Shown on screen, calculated live, with an Excel download |
 | **AR Export** | **Performance report** | *Aged Receivables (AR)* | A saved Excel file per month covering the **12 months** ending at that month's end: income, invoice and order counts, and unpaid balances aged by **invoice date** |
 
-!!! warning "The names cross over"
+!!! info "Menu entries and page subtitles"
     The menu entry **Aged Receivables (AR)** opens the **Standard Aged Receivables** page. The menu entry **AR Export** opens the Performance report page, whose subtitle reads **Aged Receivables (AR)**. Go by the menu entry, not the page subtitle.
 
 - :fontawesome-solid-calendar-day: **Standard**: pick an **As of Date:**, click **Update Report**, read the table, click **Download Excel**. Nothing is saved.
@@ -154,7 +154,7 @@ This is the business view. For a chosen month it looks at the **12 months** endi
     Each office can have only **one** Performance report per month and year. If one already exists, **Generate Report** is refused with the notification **Report Already Exists**: *A report for this month/year already exists. Please use the Regenerate button instead.* Use :fontawesome-solid-arrows-rotate: **Regenerate** on the existing row, or delete it first.
 
 !!! info "Check the Status column"
-    The success notification appears once processing finishes, even if processing failed. Always check the **Status** of the row. If it says **Failed**, see [Failed reports](#failed-reports).
+    After generating, check the **Status** of the row in **Generated Reports**. If it says **Failed**, see [Failed reports](#failed-reports).
 
 ### The reporting window
 
@@ -187,7 +187,7 @@ The report's **as-of date** is the **last day** of the month you selected. The w
 !!! info "Aged by invoice date, not due date"
     The Performance buckets measure the **age of the invoice** (as-of date minus **invoice date**), not days past due. A Net 30 invoice dated 40 days before the as-of date is in **60 days** here, but only 10 days overdue (**30 or Less**) in the Standard report.
 
-Like the Standard report, the Performance report uses invoice totals including taxes, subtracts only payment lines dated on or before the as-of date, and leaves out invoices of deleted customers. An invoice marked **Paid** that has no payment lines counts as settled only if its paid date is **before** the as-of date. Unlike the Standard report, it does **not** use the **Order Start Date** setting, and it does not skip **Paid** invoices up front: a **Paid** invoice whose payment lines are dated on or before the as-of date but add up to less than the total still shows the difference as unpaid.
+Like the Standard report, the Performance report uses invoice totals including taxes, subtracts only payment lines dated on or before the as-of date, and leaves out invoices of deleted customers. An invoice marked **Paid** that has no payment lines counts as settled only if its paid date is **before** the as-of date. Unlike the Standard report, it does **not** use the **Order Start Date** setting.
 
 ### Generated Reports
 

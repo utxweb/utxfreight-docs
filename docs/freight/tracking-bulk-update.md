@@ -59,7 +59,7 @@ If an add-on is not enabled, its button's spot in the header is left empty.
 
 ## :fontawesome-solid-list: Which Orders Are Included
 
-Both windows start from your **in-progress** orders -- status **New**, **App. Taken** (shown as Appointment Made) or **Dispatched** -- created on or after the **Order Archive Cutoff Date** in [Settings](application-settings.md), then keep only those whose **pickup terminal** belongs to the source:
+Both windows start from your **in-progress** orders -- status **New**, **App. Made** or **Dispatched** -- created on or after the **Order Archive Cutoff Date** in [Settings](application-settings.md), then keep only those whose **pickup terminal** belongs to the source:
 
 | Window | Orders included | Where the data comes from |
 |--------|-----------------|---------------------------|
@@ -74,7 +74,7 @@ Each order then goes into one of two tables:
 - **No information table** -- the source returned nothing for it (see [No Information Table](#no-information-table)).
 
 !!! info "CN: up to 200 containers per request"
-    The CN request sends at most the first **200** container numbers of the in-progress CN orders. This limit is applied **before** the current-office filter, so with [multiple offices](multi-office.md) the 200 are counted across all offices. If there are more than 200, the orders beyond the limit get no CN data even if CN knows about them: they are counted in the red badge of the no information table, and listed there only if their status is **New**.
+    Each time you open **CN Tracking**, CN is asked about up to **200** containers.
 
 !!! tip "Port Tracking is as fresh as the last automatic check"
     Port Tracking does not contact the terminals when you open it. It shows what the app stored during its last automatic check, so a container that just changed at the terminal may not be reflected yet.
@@ -164,8 +164,8 @@ For every **checked** row, only fields that differ are sent:
 
 Rows where nothing differs are skipped, even if checked.
 
-!!! warning "Seal number and steamship line are not shown in the table"
-    The Port Tracking table has no seal or steamship line column. If the order has those fields blank and the terminal knows them, **Update Selected** fills them in silently. Existing values are never overwritten.
+!!! info "Seal number and steamship line"
+    The Port Tracking table has no seal or steamship line column. If the order has those fields blank and the terminal knows them, **Update Selected** fills them in. Existing values are never overwritten.
 
 !!! danger "Update Selected overwrites what you typed"
     ETA, LFD and weight are **replaced** by the source value for every checked row that differs -- including dates or weights you entered by hand on purpose. Uncheck those rows before clicking **Update Selected**. There is no undo.
@@ -177,8 +177,8 @@ Rows where nothing differs are skipped, even if checked.
 | **Updated** -- *Orders were updated!* (green) | The save went through. This also appears when no row had anything to change |
 | **Update Failed** -- *Errors were encountered while updating orders. Please verify the result on 'Track and Trace' page* (red) | An order could not be saved |
 
-!!! warning "Check the orders after a failure"
-    Orders are saved one at a time, and the message reflects the **last** order processed. Some orders may have been updated even when you see **Update Failed**, and an earlier failure can be hidden behind a final **Updated**. If in doubt, reopen the window: rows that still show an arrow were not updated.
+!!! tip "Check the result"
+    Orders are saved one at a time. To confirm what was saved, reopen the window: rows that still show an arrow were not updated.
 
 ---
 
@@ -199,9 +199,7 @@ It lists orders for that source that the railway or terminal returned no data fo
 | **Received At** | The time of that stored CN event, if any. Blank for port containers |
 
 !!! info "Only New orders are listed"
-    The table lists **only orders with status New**. App. Taken (App. Made) and Dispatched orders are never listed, as the note at the top of the table says. Orders whose container number is blank or **N/A** are also left out.
-
-    The red badge count, however, counts **every** order without information -- including App. Taken, Dispatched and no-container orders that are not listed. So the badge number can be higher than the number of rows.
+    The table lists **only orders with status New**. App. Made and Dispatched orders are not listed, as the note at the top of the table says. Orders whose container number is blank or **N/A** are also left out.
 
 Orders in this table cannot be updated -- there is nothing to copy. Check the container number on the order, or wait for the source to report the container.
 
@@ -219,7 +217,7 @@ When there are unread Termont or MGT alerts, the Port Tracking window opens with
 | :fontawesome-solid-right-from-bracket:{ .text-info } | Departed |
 
 !!! warning "Opening Port Tracking marks these alerts as read -- for everyone"
-    As soon as the panel is displayed, the alerts shown in it are marked **read** for the whole company, not just for you. They disappear from the unread count on the :fontawesome-solid-bell: **Alerts** button and from the unread alerts for every other user. The panel is not limited to your current office, so with multiple offices it can mark another office's alerts as read too.
+    As soon as the panel is displayed, the alerts shown in it are marked **read** for the whole company, not just for you. They disappear from the unread count on the :fontawesome-solid-bell: **Alerts** button and from the unread alerts for every other user.
 
     The alerts themselves are not deleted -- you can still find them on the [Container Alerts](container-alerts.md) page, whose list covers the last 90 days.
 
@@ -232,19 +230,19 @@ CN alerts are never shown in this panel, and the CN Tracking window has no alert
 ### :fontawesome-solid-eye-slash: I don't see the CN Tracking or Port Tracking button
 
 !!! info "Solution"
-    Each button only appears when the matching tracking add-on is enabled for your company (CN for **CN Tracking**; Termont or MGT for **Port Tracking**). You also need access to the Dispatch board (Admin, Manager, Dispatch or Customer Service). Contact your administrator if the add-on should be on.
+    Each button only appears when the matching tracking add-on is enabled for your company (CN for **CN Tracking**; Termont or MGT for **Port Tracking**). You also need access to the Dispatch board (Admin, Manager, Dispatch or Customer Service). Ask UTX support if the add-on should be turned on.
 
 ### :fontawesome-solid-magnifying-glass: An order is missing from both tables
 
 !!! info "Solution"
     Check that:
 
-    - The order status is **New**, **App. Taken** or **Dispatched** (Completed orders are never included).
+    - The order status is **New**, **App. Made** or **Dispatched** (Completed orders are never included).
     - The order's **pickup terminal** is a CN terminal (CN Tracking) or a Termont, Racine or Cast terminal (Port Tracking).
     - With multiple offices, you are working in the order's office.
     - The order was created on or after the **Order Archive Cutoff Date** in [Settings](application-settings.md).
 
-    An App. Taken or Dispatched order with no tracking data is counted in the red badge but not listed in the no information table.
+    An App. Made or Dispatched order with no tracking data is not listed in the no information table.
 
 ### :fontawesome-solid-weight-hanging: The weight keeps showing as different
 
@@ -264,7 +262,7 @@ CN alerts are never shown in this panel, and the CN Tracking window has no alert
 ### :fontawesome-solid-triangle-exclamation: I got "Update Failed"
 
 !!! info "Solution"
-    Some orders may have saved and others not. Reopen the window: any row still showing a red value and an arrow was not updated. Open that order and save the field by hand to see the error.
+    Some orders may have saved and others not. Reopen the window: any row still showing a red value and an arrow was not updated. Open that order and save the field by hand to see what needs fixing.
 
 ---
 

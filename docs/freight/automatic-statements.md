@@ -11,7 +11,7 @@ Schedule a recurring day for each customer so UTX Freight emails them their stat
 - Automatic statements are a Freight feature. Garage customers have their own, separate statement schedule (see [Garage Reports](garage-reports.md)).
 
 !!! info "Feature availability"
-    Automatic statements must be turned on for your account by UTX (account option `automated_statement_enabled`). When it is off, the **Delivery Day / Next Date** column, the day counters on **Customer Reports**, and the **Automatic Statement schedule for this customer** section on the customer form are all hidden. The **Sent date** and **Email** columns and the manual **Email** button are still shown. Contact UTX support if you don't see the scheduling options.
+    Automatic statements must be turned on for your account by UTX. When they are off, the **Delivery Day / Next Date** column, the day counters on **Customer Reports**, and the **Automatic Statement schedule for this customer** section on the customer form are all hidden. The **Sent date** and **Email** columns and the manual **Email** button are still shown. Contact UTX support if you don't see the scheduling options.
 
 ## :fontawesome-solid-bolt: Quick Start
 
@@ -108,11 +108,11 @@ The badge reads **Today**, **Tomorrow**, or **In** followed by the time left (fo
 - Statements are sent by a background job that runs on a schedule managed by UTX. The time of day it runs isn't set in UTX Freight, so don't count on a specific hour.
 - On each run, the job looks at active (not deleted) customers that have a schedule, whose **Next Date** is today, and whose **Sent date** is not today.
 - Customers are processed in alphabetical order by name.
-- Each run stops after about **20 customers** (20 on multi-office accounts, 21 on single-office accounts), waiting **10 seconds** after each one. On single-office accounts, every due customer counts toward this limit, including customers with a $0 balance and customers skipped because of an invalid email setup, so the limit is on customers processed, not emails sent.
+- Each run handles about **20 customers**, with a short pause after each one.
 - Customers that a run doesn't reach are handled by a later run, but only while their scheduled date is still today. **There is no catch-up:** once the date passes, the **Next Date** moves to the next scheduled date and nothing is sent for the missed one.
 
 !!! warning "Spread your schedules"
-    Because each run processes only about 20 customers, putting many customers on the same day increases the chance that some are skipped for that cycle. Since customers are processed alphabetically, the ones skipped are those later in the alphabet. Spread customers across different weekdays and monthly options, and check the day counters (below) to keep each day light.
+    Because each run processes only about 20 customers, putting many customers on the same day increases the chance that some are not reached on their scheduled date. Since customers are processed alphabetically, those later in the alphabet are reached last. Spread customers across different weekdays and monthly options, and check the day counters (below) to keep each day light.
 
 !!! tip "Update before the scheduled day"
     The statement reflects invoices and payments at the moment it is sent. Post payments and fix invoices the day before a customer's scheduled date so they receive an accurate statement.
@@ -129,7 +129,7 @@ The badge reads **Today**, **Tomorrow**, or **In** followed by the time left (fo
 
 | Part | Value |
 |------|-------|
-| **From** | Your company name with the **Accountant Email** from your application settings (described there as the default From address for invoices). If your account sends email through Postmark, the visible sender may be a UTX sending address, with **Reply-To** set to that Accountant Email. See [Application Settings](application-settings.md). |
+| **From** | Your company name with the **Accountant Email** from your application settings (described there as the default From address for invoices). Depending on how email is set up for your account, the visible sender may be a UTX sending address, with **Reply-To** set to that Accountant Email. See [Application Settings](application-settings.md). |
 | **To** | The customer's **Accountant Email**. |
 | **CC** | The customer's **Accountant Email (CC)** plus the **Invoice Default CC Address** from your application settings. |
 | **Subject** | `<Your company name> Statement of Account as of <date>` (the company name UTX set up for your account). On multi-office accounts, ` - <Office name>` is added at the end. |
@@ -159,8 +159,8 @@ Two columns on **Customer Reports** show the result of the last statement:
 !!! warning "A failed automatic send is not retried"
     When the automatic run hits an error, the **Sent date** is still set to today, so the customer is not retried that day. The next attempt is on the next scheduled date. Fix the problem and use **Email** to send the statement manually.
 
-!!! warning "Invalid email setup"
-    If the customer has no valid **Accountant Email**, or the **CC** or **Invoice 'From' Address Override** addresses are invalid, the automatic run skips the customer without changing **Sent date** or **Email**. Nothing on the screen tells you it was skipped. Because **Sent date** isn't set, the customer stays due and is tried again by every run that day, taking a place in each run's limit. Check that every scheduled customer has a valid **Accountant Email**.
+!!! warning "Check email addresses"
+    A statement can only be sent automatically when the customer has a valid **Accountant Email** and the **CC** and **Invoice 'From' Address Override** addresses are valid. Check that every scheduled customer has a valid **Accountant Email**.
 
 ### Sending a statement manually
 
@@ -177,21 +177,20 @@ At the top right of **Customer Reports**, a row of counters shows how many custo
 ![Delivery schedule overview](../images/statements-delivery-info.png)
 
 !!! info "What the counters count"
-    The counters count **customers with a schedule**, not emails delivered. They include inactive and deleted customers that still have a schedule, so the number can be higher than the number of statements actually sent. Set inactive customers to **Not Scheduled** to keep the counts meaningful.
+    The counters count **customers with a schedule**, not emails delivered, so the number can be higher than the number of statements actually sent. Set inactive customers to **Not Scheduled** to keep the counts meaningful.
 
 ## :fontawesome-solid-building: Multi-Office Accounts
 
 On accounts with more than one office:
 
 - Statements are **per office**. Each email covers only that office's invoices, and the subject ends with ` - <Office name>`.
-- The job goes office by office (offices are not processed in any guaranteed order). A customer is emailed for an office only if they have an unpaid balance **in that office**. Offices where the balance is $0 are skipped, and nothing is recorded for them (no **Sent date**, no **Statement Not Sent (0.0$)** message).
-- Once a customer has been sent a statement on their scheduled date, their **Sent date** is today, so the same run doesn't send them another one. This also applies when the send failed (the **Sent date** is set to today in that case too). In practice, a customer with balances in several offices receives the statement for only one office, the first one processed where they owe money, on that date. Send the other offices' statements manually with **Email** while working in each office.
-- The 20-customer limit applies to the whole run, across all offices. Only customers with a balance in the office being processed count toward it.
+- The job goes office by office. A customer is emailed for an office only if they have an unpaid balance **in that office**. Offices where the balance is $0 are skipped, and nothing is recorded for them (no **Sent date**, no **Statement Not Sent (0.0$)** message).
+- The 20-customer limit applies to the whole run, across all offices.
 - A manual **Email** send uses the office you are currently working in. See [Multi-Office](multi-office.md).
 
 ## :fontawesome-solid-clock-rotate-left: Activity Log
 
-Each automatic attempt (sent, not sent at $0, failed, or invalid email setup) is also written to UTX Freight's internal activity log, with the message (for example `Statement Sent to <customer>`, `Statement Not Sent to <customer> - (0.0$)`, the error message, or `Invalid Email Config`), whether it succeeded, and how long it took. This log isn't shown on a screen in the app; the **Sent date** and **Email** columns on **Customer Reports** are what you see. Contact UTX support if you need the history of attempts for a customer.
+UTX keeps a record of each automatic attempt (sent, not sent at $0, failed, or skipped because of an invalid email setup). This history isn't shown on a screen in the app; the **Sent date** and **Email** columns on **Customer Reports** are what you see. Contact UTX support if you need the history of attempts for a customer.
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
@@ -200,8 +199,8 @@ Each automatic attempt (sent, not sent at $0, failed, or invalid email setup) is
 !!! info "Solution"
     Check, in order:
 
-    1. **Is the customer Active?** Inactive customers show **Not Scheduled** in the column (a **Next Date** badge can still appear under it if a schedule is saved) and are never emailed.
-    2. **Does the customer have an Accountant Email?** Without a valid one, the statement is skipped silently.
+    1. **Is the customer Active?** Inactive customers are never emailed.
+    2. **Does the customer have an Accountant Email?** Without a valid one, the statement can't be sent.
     3. **Was the balance $0?** Hover over the **Email** label. **Statement Not Sent (0.0$)** means there was nothing to collect.
     4. **Is the label Failed!?** Hover to read the error, fix it, and send manually with **Email**.
     5. **Were many customers due that day?** Each run processes about 20 customers, in alphabetical order. If the customer wasn't reached on their date, they wait for the next scheduled date. Send manually if needed and spread out the schedules.
@@ -224,7 +223,7 @@ Each automatic attempt (sent, not sent at $0, failed, or invalid email setup) is
 ### :fontawesome-solid-hashtag: The day counter says 40 but far fewer statements went out
 
 !!! info "Solution"
-    The counters count customers with a schedule (including inactive and deleted ones), not deliveries. Customers with a $0 balance aren't emailed either.
+    The counters count customers with a schedule, not deliveries. Inactive customers are not emailed, and customers with a $0 balance aren't emailed either.
 
 ### :fontawesome-solid-screwdriver-wrench: Do Garage customers use this schedule?
 

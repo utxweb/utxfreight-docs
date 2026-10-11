@@ -203,8 +203,8 @@ The Excel file has one sheet named **Statement**. The download from the green bu
 
 Your company block (company name in capitals, address, city and province/state, postal code, **Tel:**, **Fax:**, website and **THANK YOU FOR YOUR BUSINESS!**) is in column H, rows 4 to 11. When detailed statements are enabled, per-order lines (container number, reference number, order total) appear under each invoice, as in the PDF.
 
-!!! warning "\"Due Invoices\" in Excel means Not Yet Due"
-    The Excel file labels the not-yet-due section **Due Invoices**. It contains the same invoices as the **Not Yet Due** section of the PDF (due today or later). Past due invoices are always under **Past Due Invoices**.
+!!! info "Section names in the Excel file"
+    In the Excel file, the **Due Invoices** section holds the invoices due today or later, the same invoices as the **Not Yet Due** section of the PDF. Past due invoices are under **Past Due Invoices**.
 
 !!! info "Print and Excel buttons are not filtered by office"
     The **Print** and Excel buttons, and the balance columns on the **Customer Reports** page, include all of the customer's unpaid invoices from every office. Only the emailed statement is limited to the current office on multi-office accounts.
@@ -237,11 +237,6 @@ Your company block (company name in capitals, address, city and province/state, 
 
 !!! info "Solution"
     Statements include every invoice whose status is not **Paid**, even if payments cover the full amount. Set the invoice status to **Paid** (see [Sending Invoices & Recording Payments](invoice-email-and-payments.md)).
-
-### :fontawesome-solid-spinner: The row keeps showing the wait indicator
-
-!!! info "Solution"
-    Reload the page. Then check the **Sent date** and **Email** columns to see whether the statement went out before sending again.
 
 ---
 

@@ -35,21 +35,21 @@ A new account needs a few things in place before the first order can be priced, 
 | Step | Who can do it |
 |------|---------------|
 | Set zone, city, terminal and charge type prices | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager** |
-| Create a customer and add people | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager**. :fontawesome-solid-headset: **Dispatch** only when the account option `dispatch_can_manage_customers` is on (it is off by default). |
+| Create a customer and add people | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager**. :fontawesome-solid-headset: **Dispatch** only if your account has dispatcher customer management turned on (off by default; ask UTX support). |
 | Set a person's role (staff logins) | :fontawesome-solid-user-shield: **Admin** only |
 | Add equipment and drivers | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager**, :fontawesome-solid-headset: **Dispatch** |
 | Enter GST, QST and NIR numbers (**Settings**) | :fontawesome-solid-user-shield: **Admin** only |
-| Create an order | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager**, :fontawesome-solid-headset: **Dispatch**. :fontawesome-solid-file-invoice-dollar: **Accountant** when `accountant_can_manage_orders` is on (on by default). :fontawesome-solid-user: **Customer** only when `customer_can_manage_orders` is on (off by default). |
+| Create an order | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager**, :fontawesome-solid-headset: **Dispatch**. :fontawesome-solid-file-invoice-dollar: **Accountant** if your account allows accountants to manage orders (on by default). :fontawesome-solid-user: **Customer** only if your account has customer order entry turned on (off by default; ask UTX support). |
 | Choose who the order is for (**Place the order on behalf of**) | Admin, Manager and Dispatch. Anyone else creates the order for themselves. |
 | See the setup checklist | Admin and Manager |
 
-The **Customer Service** role has the same access as **Dispatch** everywhere in this table. Account options such as `dispatch_can_manage_customers` and `customer_can_manage_orders` are set for your account by UTX. See [Add-ons and Options](add-ons-and-options.md) and [User Roles](user-roles.md).
+The **Customer Service** role has the same access as **Dispatch** everywhere in this table. Options such as dispatcher customer management and customer order entry are turned on for your account by UTX support. See [Add-ons and Options](add-ons-and-options.md) and [User Roles](user-roles.md).
 
 ---
 
 ## :fontawesome-solid-dollar-sign: Step 1: Set Your Prices
 
-UTX Freight prices an order by looking up the delivery city, reading which zone it is in, and taking that zone's price. Do this before the first order, or the order prices at **$0.00** and nothing warns you.
+UTX Freight prices an order by looking up the delivery city, reading which zone it is in, and taking that zone's price. Do this before the first order: an order whose delivery city has no zone price is priced at **$0.00**.
 
 The screens below are in the menu under your name at the top of the screen (**Manage Zones**, **Manage Cities**, **Manage Terminals**, **Charge Types**).
 
@@ -126,7 +126,7 @@ Every person added with **Add Person** is created with the **Customer** role, in
 The **Role** field is only shown to Admins, and only for people in your own company. See [People and Invitations](people-and-invitations.md) and [User Roles](user-roles.md).
 
 !!! info "Customer logins and orders"
-    A Customer-role person can log in and see their company's orders. They can only create orders themselves when the account option `customer_can_manage_orders` is on. See [Customer Portal](customer-portal.md).
+    A Customer-role person can log in and see their company's orders. They can only create orders themselves if your account has customer order entry turned on (ask UTX support). See [Customer Portal](customer-portal.md).
 
 ### Notification emails
 

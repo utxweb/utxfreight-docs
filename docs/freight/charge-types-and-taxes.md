@@ -79,7 +79,7 @@ The list is sorted by name and shows 50 charge types per page.
 
 | Column | What It Shows |
 |--------|---------------|
-| **ID** | The charge type's internal number. |
+| **ID** | The charge type's number. |
 | *(icon)* | A ship icon for **Intermodal** charge types, a warehouse icon for the others. |
 | **Name** | Green when the charge type is active, red when it is disabled. |
 | **Service** | The service the charge type belongs to, for example **Intermodal** or **Warehouse**. |
@@ -122,8 +122,8 @@ The list is sorted by name and shows 50 charge types per page.
 - :fontawesome-solid-money-bill: **Order Expenses.** The second dropdown of each expense row lists your **Expense** charge types. Picking one copies its default rate into **Rate**. Expenses never change the order total or the invoice.
 - :fontawesome-solid-warehouse: **Warehouse orders.** The warehouse order charges list your **Income** charge types for the **Warehouse** service. When the customer has its own rate for a charge type (**Custom rates for this customer** on the customer, **Warehouse** group), the dropdown shows that rate. See [Warehouse Orders](warehouse-orders.md).
 
-!!! warning "Disabling does not remove a charge type from the order dropdowns"
-    Unchecking **Active** moves the charge type to the **Disabled** filter, takes it out of the setup checklist count and removes it from the **Warehouse** group of a customer's custom rates. In the current version, the **Additional Charges** and expense type dropdowns on the order form, and the warehouse order charges, still list disabled charge types. These dropdowns are also not filtered by office: in a multi-office system they list the charge types of every office. Rename a charge type you never want picked (for example add "DO NOT USE") if it keeps getting selected.
+!!! info "Disabling a charge type"
+    Unchecking **Active** moves the charge type to the **Disabled** filter, takes it out of the setup checklist count and removes it from the **Warehouse** group of a customer's custom rates.
 
 ### The Terminal Fee default
 
@@ -136,7 +136,7 @@ Set **Use as default for** to **Terminal Fee** on the charge type you bill termi
 The **Default Rate** of the Terminal Fee charge type itself is not used for this. The amount always comes from the terminal or the customer's custom terminal rate. See [Managing Terminals](managing-terminals.md).
 
 !!! warning "Keep exactly one Terminal Fee charge type"
-    If no charge type is marked **Terminal Fee**, no terminal fee is ever added. If several are marked, only one is used: the first by name, whether it is active or not, and in a multi-office system whichever office it belongs to. Keep a single one.
+    If no charge type is marked **Terminal Fee**, no terminal fee is ever added. If several are marked, only one of them is used. Keep a single one.
 
 ### The Fuel Surcharge default
 
@@ -177,9 +177,6 @@ There are no filter buttons on this page.
 | **Name** | The name shown in the payee dropdown. Required. |
 | **Office** | The office the expense type belongs to. Hint: *Office for which this expense applies*. |
 | **Active** | Hint: *Only active expenses will be visible for new orders*. |
-
-!!! info "Active and the payee dropdown"
-    In the current version, the order's payee dropdown lists every expense type, including those with **Active** unchecked, and is not filtered by office.
 
 ### Deleting an expense type
 
@@ -305,11 +302,6 @@ See [Setup Checklist](setup-checklist.md).
 
 !!! info "Solution"
     Freight invoices recalculate GST and QST from the tax they point to. Put the old percentages back on that tax, then create a new tax for the new rate and use it on new invoices.
-
-### :fontawesome-solid-list: A disabled charge type still appears on the order form
-
-!!! info "Solution"
-    In the current version, the order form's charge and expense type dropdowns do not filter out disabled charge types. Rename the charge type so nobody picks it by mistake.
 
 ---
 

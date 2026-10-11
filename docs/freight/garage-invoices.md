@@ -167,9 +167,6 @@ The invoice is created as a **Draft**, the page shows *Invoice created.*, and ev
 !!! warning "Someone else may have invoiced it first"
     If a selected work order was invoiced or reopened by someone else in the meantime, the invoice is not created and the form shows an error such as *Work orders #15 is not available for invoicing.* Untick it and try again. No invoice number is used up when this happens.
 
-!!! warning "Tick at least one work order"
-    **Create Invoice** does not check that a work order is ticked. If you click it with nothing ticked, an empty **Draft** invoice ($0.00) is created and it uses up an invoice number. Delete the draft if it was a mistake (the number is not given back), or open **Edit** and tick the work orders to add them.
-
 ### :fontawesome-solid-calendar-days: Terms and due date {#terms-and-due-date}
 
 The new invoice form has no due date field. The due date is the invoice date plus the terms:
@@ -199,7 +196,7 @@ The number is assigned the moment the invoice is created, including drafts. It i
 
 So the first invoice with prefix `GRG` is `GRG-00001`, the next `GRG-00002`, and so on. The prefix is `GRG` until you change it. The **Invoice Prefix** field in Garage **Settings** shows the number the next invoice will get (*Next invoice: GRG-00042*). See [Garage Settings & Taxes](garage-settings-and-taxes.md).
 
-Garage **Settings** are kept per office, so each office has its own prefix and its own sequence. Invoice numbers must still be unique across all offices: if two offices use the same prefix, an office cannot create an invoice whose number the other office already used. Give each office its own prefix.
+Garage **Settings** are kept per office, so each office has its own prefix and its own sequence. Give each office its own prefix so invoice numbers stay unique across your company.
 
 !!! info "Numbers are never reused"
     The sequence only moves forward. Deleting a draft or voiding an invoice does not give its number back, so you will see a gap in the sequence. Changing the prefix affects new invoices only.
@@ -208,7 +205,7 @@ Garage **Settings** are kept per office, so each office has its own prefix and i
 
 ## :fontawesome-solid-calculator: How Totals Are Calculated
 
-Totals are recalculated whenever the invoice is created, saved from **Edit Invoice**, or one of its work orders is edited while the invoice is a **Draft**. They are only recalculated when at least one work order is on the invoice (see the warning in [Editing a Draft](#editing-a-draft)).
+Totals are recalculated whenever the invoice is created, saved from **Edit Invoice**, or one of its work orders is edited while the invoice is a **Draft**.
 
 | Line | How it is calculated |
 |------|----------------------|
@@ -249,8 +246,7 @@ Click **Update Invoice** to save. The totals are recalculated and you see *Invoi
 !!! warning "Shop Supplies Fee on edit"
     The **Shop Supplies Fee** field shows the invoice's current fee. If you add or remove work orders and want the fee recalculated from the work orders, clear the field before saving. If you leave a number in it, that number is kept.
 
-!!! warning "Do not untick every work order"
-    If you untick all the work orders and save, they are removed from the invoice and return to **Completed**, but the totals are **not** recalculated: the invoice keeps its old subtotal, taxes and total with no work orders behind them. Tick at least one work order, or use **Delete** to remove a draft you no longer need.
+An invoice should always keep at least one work order. To drop a draft you no longer need, use **Delete**.
 
 ### :fontawesome-solid-wrench: Fixing a work order on a draft invoice
 
@@ -304,7 +300,7 @@ Void cancels an invoice that should not be collected, at any status including **
 - The status changes to **Void** and a red banner says *This invoice has been voided and is excluded from all financial reports.*
 - All work orders are detached from the invoice and return to **Completed**, so you can invoice them again (**Generate Single Invoice** reappears on the work order). The confirmation tells you how many: *Invoice GRG-00001 voided. 2 work order(s) reverted to completed.*
 - The voided invoice keeps its number and stays in the list under **Void**. Its page shows *No work orders are linked to this invoice (it may have been voided).*
-- Payments already recorded are kept on the voided invoice (see [Payments on a void invoice](#removing-a-payment)).
+- Payments already recorded stay listed on the voided invoice.
 - No action buttons are shown on a void invoice. Voiding cannot be undone from the screen.
 
 !!! danger "Delete vs Void"
@@ -394,9 +390,6 @@ You never set the payment status by hand. After each payment is recorded or remo
 2. Confirm *Remove this payment?*. The page shows *Payment removed.* and the status and balance update.
 
 Payments cannot be removed from a **Paid** invoice (*Cannot remove payments from a fully paid invoice.*). If a paid invoice is wrong, void it and invoice the work orders again.
-
-!!! warning "Payments on a void invoice"
-    Voiding an invoice does not delete its payments: they stay listed under **Payments**, and the :fontawesome-solid-xmark: is still shown. Removing a payment from a **Void** invoice re-runs the automatic status above, so if other payments remain, the invoice can switch from **Void** back to **Partially paid** or **Paid**. Only when no payments are left does it stay **Void**. Avoid removing payments from void invoices.
 
 ---
 

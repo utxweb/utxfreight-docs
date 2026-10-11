@@ -50,11 +50,6 @@ The **Garage** add-on is a repair shop module inside UTX Freight: you keep garag
 - :fontawesome-solid-arrow-right: Main menu :fontawesome-solid-screwdriver-wrench: **Garage** — opens **Work Orders**
 - :fontawesome-solid-arrow-right: Garage sidebar :fontawesome-solid-arrow-left: **Back to TMS** — returns to the main UTX Freight application
 
-!!! warning "Garage users and the sign-in page"
-    After signing in, UTX Freight sends every user to its main landing page, which forwards most users (everyone except Warehouse users and yard workers) to **Orders**. A user with the **Garage** role is not allowed to see **Orders**, so the browser keeps bouncing between the two pages and ends with a "too many redirects" type of error. The same happens if a Garage user clicks **Back to TMS**.
-
-    **Workaround:** after signing in, open the Garage Work Orders address directly (the `/garage/work_orders` path on your UTX Freight address) and bookmark it. Admins and Managers are not affected because they can see **Orders**.
-
 ---
 
 ## :fontawesome-solid-table-columns: The Garage Screen
@@ -149,8 +144,8 @@ Then move it forward:
 
 On the work order page the status buttons read **Mark Approved**, **Mark In progress** and **Mark Completed**, and the status badge shows the status in sentence case (for example **In progress**). Each move asks for confirmation first. Statuses only move forward; the only way back is **Reopen Work Order** (Completed to Approved) or taking the work order off its invoice (Invoiced to Completed), which happens when you remove it from a draft invoice, delete the draft invoice or void the invoice.
 
-!!! warning "Do not use Mark Invoiced"
-    A **Completed** work order also shows a **Mark Invoiced** button (and **Invoiced** under **Move to** in the row's actions menu). It only changes the status: no invoice is created, and the work order is then locked, so you can no longer edit it, reopen it or invoice it with **Generate Single Invoice**. To bill a completed work order, always use **Generate Single Invoice** or **Bundle with Other Work Orders**.
+!!! tip "Billing a completed work order"
+    To bill a completed work order, use **Generate Single Invoice** or **Bundle with Other Work Orders**. These create the invoice and set the work order to **Invoiced** for you.
 
 Details: [Garage Work Orders](garage-work-orders.md).
 
@@ -206,11 +201,6 @@ Use **Reports** for the profit report, per-customer work summaries and customer 
 
 !!! info "Solution"
     The Garage add-on must be turned on for your installation, and your role must be **Admin**, **Manager** or **Garage**. Dispatch, Customer Service and Accountant users do not get the Garage. Ask your administrator.
-
-### :fontawesome-solid-rotate: A Garage user gets a "too many redirects" error after signing in
-
-!!! info "Solution"
-    This is the known sign-in issue for users with the **Garage** role (see [Access & Permissions](#access-permissions)). After signing in, go directly to the Garage Work Orders address (`/garage/work_orders`) and bookmark it. Avoid **Back to TMS** for these users.
 
 ### :fontawesome-solid-users-slash: I can't find a customer, work order or invoice
 

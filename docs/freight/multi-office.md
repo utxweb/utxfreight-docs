@@ -32,7 +32,7 @@ Run several offices (branches) in one UTX Freight account: each office keeps its
 | :fontawesome-solid-user-shield: **Admin** | Yes (view only) | Yes, between the offices on their user | Yes, to offices on their user |
 | :fontawesome-solid-user-tie: **Manager** | No | Yes, between their offices | Yes, for orders of their offices, to their other offices |
 | :fontawesome-solid-headset: **Dispatch** / **Customer Service** | No | Yes, between their offices | Yes, for orders of their offices, to their other offices |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | No | Yes, between their offices | Only when order management is turned on for Accountants (`accountant_can_manage_orders`, on by default). See [User Roles](user-roles.md) |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | No | Yes, between their offices | Only when order management is turned on for Accountants (on by default; ask UTX support to change it). See [User Roles](user-roles.md) |
 | :fontawesome-solid-user: **Customer** | No | Yes, between their offices (see [Customer Portal](customer-portal.md)) | No |
 | :fontawesome-solid-warehouse: **Warehouse**, :fontawesome-solid-screwdriver-wrench: **Garage** | No | No | No |
 
@@ -85,7 +85,7 @@ Only Admins see the **Offices** field, and only for people of your own company (
 2. The list shows your offices. The current one is in bold with a green :fontawesome-solid-check: check mark.
 3. Click another office.
 
-You return to the page you were on, now showing the new office's data, with the message **Switched to the &lt;office name&gt; office**. If you pick an office you do not belong to, the message is **Request failed** and you stay where you were.
+You return to the page you were on, now showing the new office's data, with the message **Switched to the &lt;office name&gt; office**.
 
 <!-- TODO: Screenshot — Office switcher dropdown in the top bar with the current office checked -->
 
@@ -136,7 +136,7 @@ With Multi-Office on, these lists are the **same in every office**. A record cre
 - **Expense Types** and **Charge Types** — see [Charge Types & Taxes](charge-types-and-taxes.md)
 - **Move Locations** — see [Order Legs & Move Locations](order-legs-and-move-locations.md)
 - **Units of Measure**, warehouse **Buildings**, **Locations** and **Products** — see [Warehouse Setup](warehouse-setup.md)
-- **Taxes** (the **Manage Taxes** list) — see [Charge Types & Taxes](charge-types-and-taxes.md). Exception: on a garage invoice, the tax list only offers taxes that were created in the current office
+- **Taxes** (the **Manage Taxes** list) — see [Charge Types & Taxes](charge-types-and-taxes.md)
 - **Container statuses** — see [Container Statuses](container-statuses.md)
 
 **Place the order on behalf of**: on the full order form (new order and **Edit Order** page), the list shows the active people of every customer, whatever office they belong to. In the **Edit Order** (Quick Edit) and **Dispatch Order** modals, the list only shows people assigned to the office you are in.
@@ -180,21 +180,15 @@ See also [Order Workflow](order-workflow.md#transfer-to-office).
 | **Customer Reports** | Lists every customer (customers are shared). Statements emailed from it are per office (see below) |
 | **Sales per Month** | The monthly figures are precomputed **separately for each office**, from that office's invoices. The page shows the current office's figures |
 | **Aged Receivables (AR)** (Standard report) | Counts only invoices **issued by** the current office |
-| **AR Export** (Performance report) | Includes the customers' invoices **without checking which office issued them**. Saved reports and the one-report-per-month rule apply per office. See [Aged Receivables](aged-receivables.md#office-scope-in-detail) |
+| **AR Export** (Performance report) | Saved reports and the one-report-per-month rule apply per office. See [Aged Receivables](aged-receivables.md#office-scope-in-detail) |
 | **Customer statements** (manual **Email**) | The attached PDF or Excel statement covers only the invoices of the office you are in. The subject ends with ` - <Office name>`. See [Customer Statements](customer-statements.md) |
 | **Automatic statements** | One statement per office, sent only for offices where the customer has an unpaid balance. At most 20 statements are sent per run. See [Automatic Statements](automatic-statements.md#multi-office-accounts) |
 | **Invoicing reminder** email | One email for all offices, with the subject **Invoicing Reminder (All Offices) - &lt;date&gt;** and one section per office. Offices with no late or undated uninvoiced orders are left out, and no email is sent if no office has any |
-| **Container Alerts** page | The alert list and the **Unread**, **Ready for Pickup**, **Customs Released** and **Departed** cards cover orders of the current office plus alerts that have no order. The **LFD Approaching** card (and so the **All** total) and the upcoming LFD table are **not** limited to an office |
+| **Container Alerts** page | The alert list and the **Unread**, **Ready for Pickup**, **Customs Released** and **Departed** cards cover orders of the current office plus alerts that have no order |
 | **Container tracking digest** email | Every subscriber gets the same email, whatever their offices, with alerts grouped under a heading per office. Alerts with no order are under **Unassigned** |
-
-!!! warning "Standard and Performance AR can differ per office"
-    Because the **AR Export** (Performance) report does not filter invoices by issuing office, a customer billed by two offices shows all of its invoices in each office's Performance report, while the Standard report splits them by office. Use the Standard report when you need each office's own receivables.
 
 !!! info "Who receives the invoicing reminder"
     The invoicing reminder is sent on Mondays, Wednesdays and Fridays to the active Admins, Managers and Accountants, whatever their offices. The office sections let each team find its own late orders. See [Container Alerts](container-alerts.md) for the tracking digest.
-
-!!! warning "Mark All Read is not per office"
-    On the **Container Alerts** page, **Mark All Read** marks every unread tracking alert as read, including alerts of other offices.
 
 ---
 

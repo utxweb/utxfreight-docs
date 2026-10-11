@@ -42,7 +42,7 @@ You can now create a warehouse order. See [Warehouse Orders](warehouse-orders.md
 | :fontawesome-solid-warehouse: **Warehouse** | Full access | Full access |
 | :fontawesome-solid-user-tie: **Manager** | No access | Full access to the Charge Types page, but no **Warehouse** menu |
 | :fontawesome-solid-file-invoice-dollar: **Accountant** | No access | Full access to the Charge Types page, but no **Warehouse** menu |
-| :fontawesome-solid-headset: **Dispatch** | No access | Only with **Can manage rates?**, and no **Warehouse** menu |
+| :fontawesome-solid-headset: **Dispatch** | No access | Only when **Can manage rates?** is checked on the user's form, and no **Warehouse** menu |
 | :fontawesome-solid-user: **All other roles** | No access | No access |
 
 - The **Warehouse** add-on must be turned on. When it is off, the **Warehouse** menu group is hidden and opening a Building, Location, Unit of Measure or Product page redirects you away (Admins land on the freight **Orders** list, Warehouse users on the home page). The **Charges** page (Charge Types) stays available, but without the **Warehouse** and **Intermodal** filter buttons. See [Add-ons & Options](add-ons-and-options.md).
@@ -117,9 +117,6 @@ The row stays in the list you are looking at until you reload the page or switch
 - **Save Changes** saves and returns you to the list, on its **All Active** filter. While saving, the button reads *Please wait...*.
 - If a required field is missing, the form stays open and shows the error next to the field.
 - **Cancel** returns to the list without saving.
-
-!!! warning "Disabled entries are still offered on warehouse order lines"
-    Disabling a building, location or unit of measure hides it from the dropdowns on the **setup forms** (see each section below). In the current version, the **Product**, **Unit of Measure** and **Location** dropdowns on a warehouse order line still list **every** product, unit of measure and location, including disabled ones and those of other offices. Rename an entry you never want picked (for example add "DO NOT USE") if it keeps getting selected.
 
 ---
 
@@ -272,7 +269,7 @@ Menu: :fontawesome-solid-arrow-right: **Warehouse** :fontawesome-solid-arrow-rig
 | **Sku** | The product SKU |
 | **Location** | The product's default location |
 | **Unit of Measure** | The product's default unit of measure |
-| **Image** | An :fontawesome-solid-image: icon. Click it to open the product image in a new tab. The icon is shown on every row, even when no image was uploaded |
+| **Image** | An :fontawesome-solid-image: icon. Click it to open the product image in a new tab |
 | **Active** | Green check (active) or red cross (disabled) |
 | *(Actions)* | **Edit**, **Disable** / **Enable** |
 
@@ -293,7 +290,7 @@ Menu: :fontawesome-solid-arrow-right: **Warehouse** :fontawesome-solid-arrow-rig
 | **Active** | — | In the **Warehouse product visibility** section. Checked by default for a new product |
 
 !!! info "Default location and unit of measure"
-    The product's **Location** and **Unit of Measure** are reference values shown in the Products list. In the current version they are **not** pre-filled when you add the product to a warehouse order: pick the **Unit of Measure** and **Location** on each order line.
+    The product's **Location** and **Unit of Measure** are reference values shown in the Products list. On a warehouse order, you pick the **Unit of Measure** and **Location** on each order line.
 
 !!! tip "Search warehouse orders by product"
     The search box on **Warehouse Orders** matches product **Name** and **Sku**, so a clear, unique SKU makes orders easy to find. See [Warehouse Orders](warehouse-orders.md).
@@ -371,15 +368,12 @@ The square footage comes from the line's unit of measure (see [How length and wi
 
 A customer can have its own price for a warehouse charge, which replaces the **Default Rate** on that customer's orders.
 
-1. Navigate to :fontawesome-solid-arrow-right: **Customers** and open the customer. **Customers** is available to Admins and Managers, and to Dispatch users only when your installation allows dispatchers to manage customers. Warehouse users cannot open **Customers**.
+1. Navigate to :fontawesome-solid-arrow-right: **Customers** and open the customer. **Customers** is available to Admins and Managers, and to Dispatch users when this has been turned on for your account (ask UTX support). Warehouse users cannot open **Customers**.
 2. In **Custom rates for this customer**, click **(+) Add another**.
 3. In the **Charge** dropdown, pick the charge in the **Warehouse** group. The group lists the **active** charges with the Warehouse service (Income and Expense).
 4. Enter the customer's **Rate** and click **Save Changes**.
 
 On a warehouse order for a person of that customer, the charge dropdown shows the custom rate, for example *Storage per sq ft (0.45$)*, and picking the charge pre-fills the **Rate** box with it. Changing the person in **Place the order on behalf of** reloads the charge rates for the new customer and resets the **Rate** box of every charge row already on the form to that customer's rate (or the **Default Rate**), so re-check any rate you typed by hand. The rate stays editable on each order. See [Managing Customers](managing-customers.md) and [Warehouse Orders](warehouse-orders.md).
-
-!!! warning "Disabled charges still appear on warehouse orders"
-    The charge dropdown on a warehouse order lists every **Income** charge with the **Warehouse** service, including disabled ones and those of other offices. Disabling a charge moves it to the **Disabled** filter and removes it from the **Warehouse** group of customer custom rates, but does not remove it from the warehouse order dropdown. Rename a charge you never want picked if it keeps getting selected.
 
 ---
 
@@ -438,4 +432,4 @@ On a warehouse order for a person of that customer, the charge dropdown shows th
     - Use **Monthly** charges for storage (rate per sq ft per month) and **Fixed** charges for one-time fees.
     - Give each product a unique **Sku** so warehouse orders are easy to search.
     - Use **Custom rates for this customer** for negotiated prices instead of editing the rate on every order.
-    - Disable entries you no longer use, and rename the ones that must never be picked again, since order dropdowns still list disabled entries.
+    - Disable entries you no longer use.

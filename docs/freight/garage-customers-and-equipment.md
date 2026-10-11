@@ -9,7 +9,7 @@ Keep the list of people and companies your garage works for, and the trucks, tra
 - :fontawesome-solid-barcode: The equipment form has a **Decode** button that fills **Year**, **Make** and **Model** from the VIN using the public NHTSA VIN decoder.
 - :fontawesome-solid-clock-rotate-left: Each unit has a **Service History** page with its work orders, **Total Work Orders**, **Total Spent** and **Last Service**.
 - :fontawesome-solid-envelope: The customer's **Accountant Email** is added in CC on garage invoice, work summary and statement emails.
-- :fontawesome-solid-ban: Equipment can be disabled and enabled again. Customers cannot be disabled or deleted from the screen, and neither can equipment be deleted.
+- :fontawesome-solid-ban: Equipment can be disabled and enabled again. Garage customers and garage equipment are kept rather than deleted, so their history stays available.
 - :fontawesome-solid-building: Both lists show only the office you are currently working in.
 - :fontawesome-solid-code-branch: Garage customers and garage equipment are **separate** from the freight **Customers** and **Equipments** pages. See [How these differ from freight Customers and Equipments](#how-these-differ-from-freight-customers-and-equipments).
 
@@ -60,7 +60,7 @@ The page header reads **Customers** — *Manage garage customers*, with a **New 
 | Tab | Shows |
 |-----|-------|
 | **Active** | Customers that are active (the default). Every customer you create is active. |
-| **Disabled** | Customers that have been marked inactive. There is no button on the screen to disable a customer, so this tab is normally empty. |
+| **Disabled** | Customers that have been marked inactive. |
 
 **Search**
 
@@ -125,9 +125,9 @@ Fill in **Company Name** so customers with similar names are easy to tell apart.
 
 You don't have to leave the work order form to add a customer. On the work order form, the green :fontawesome-solid-plus: button next to the **Customer \*** field (tooltip *Quick create customer*) opens **Quick Create Customer**, which asks for **First Name \***, **Last Name \***, **Phone** and **Company**. Click **Create & Select**. If first or last name is empty you see *First name and last name are required.* The new customer is created in your current office, selected on the work order, and a *Customer created* message appears. The button is hidden while the work order is on a draft invoice, because the customer can't be changed then. Add the email and accountant email later from **Customers**.
 
-### :fontawesome-solid-ban: No disable or delete for customers
+### :fontawesome-solid-note-sticky: Customers you no longer serve
 
-The Customers page has no disable, enable or delete button. A customer you no longer serve stays on the **Active** tab. Edit the **Notes** if you want to mark them as inactive for your team.
+Garage customers are kept with their work order history. To flag a customer you no longer serve for your team, add a note in **Notes**.
 
 ---
 
@@ -153,9 +153,6 @@ Next to the tabs are three chips: **Truck**, **Trailer**, **Chassis**. Click one
 **Search**
 
 Type in the **Search equipment...** box and press Enter or click :fontawesome-solid-magnifying-glass:. The search matches part of the **unit number**, **make**, **model**, **VIN** or **license plate** and is not case sensitive. It searches within the tab you are on.
-
-!!! warning "Search and type chips don't combine"
-    Running a search clears the type chip, and clicking a type chip clears the search text. Use one or the other.
 
 **Columns**
 
@@ -229,18 +226,12 @@ The purple **Decode** button (tooltip *Decode VIN via NHTSA*) looks the VIN up i
 | *Unexpected response from NHTSA. Please enter vehicle details manually.* | The decoder's answer could not be read. |
 | *Could not reach NHTSA VIN decoder. Please enter vehicle details manually.* | The decoder could not be reached (no internet, blocked, or no answer within 10 seconds). |
 
-!!! warning "Decode replaces Year, Make and Model"
-    A successful decode writes all three fields at once. If the decoder returns only some of them, the others are emptied. Re-type anything you want to keep before saving.
-
 !!! info "Decoder coverage"
     NHTSA mainly covers vehicles sold in the U.S. A Canadian-market or older unit may decode only partly or not at all. You can always type the values yourself. The VIN itself is not checked for length or format when you save.
 
 #### :fontawesome-solid-user: The Owner (Customer) dropdown
 
-The **Owner (Customer)** dropdown lists active garage customers sorted by last name, shown with their display name.
-
-!!! warning "The Owner list includes customers from all offices"
-    Unlike the Customers page, which only shows your current office, the **Owner (Customer)** dropdown lists active garage customers from **every** office. With [multiple offices](multi-office.md), make sure you pick the customer from the right office, especially when two offices have customers with the same name. Adding a **Company Name** helps tell them apart.
+The **Owner (Customer)** dropdown lists active garage customers sorted by last name, shown with their display name. Adding a **Company Name** to your customers makes them easy to tell apart.
 
 #### :fontawesome-solid-bolt: Adding equipment from a work order
 
@@ -312,12 +303,12 @@ The Garage keeps its own customers and equipment. Nothing is shared or synced wi
 |---|---|---|
 | **Customers page** | Garage sidebar :fontawesome-solid-arrow-right: **Customers** | Left menu **Customers** ([Customers](managing-customers.md)) |
 | **A customer is** | A person (first and last name) with an optional company name | A company, with people (users) invited under it |
-| **Disable / delete customer** | Not available | Available (see [Customers](managing-customers.md)) |
+| **Disable / delete customer** | Customers are kept with their history | Available (see [Customers](managing-customers.md)) |
 | **Equipment page** | Garage sidebar :fontawesome-solid-arrow-right: **Equipment** | Left menu **Equipments** ([Equipment](equipment.md)) |
 | **Equipment type** | Fixed: **Truck**, **Trailer**, **Chassis** | Types you create under the **Chassis**, **Truck** or **Trailer** sub categories |
 | **Equipment is used on** | Garage work orders | Freight orders (chassis and trailers only) |
 | **Tracks** | VIN, plate, odometer, owner, service history | Inspection date, mechanical status, availability |
-| **Who can manage customers** | Admin, Manager, Garage | Admin, Manager (Dispatch only when the account allows it, see [Customers](managing-customers.md)) |
+| **Who can manage customers** | Admin, Manager, Garage | Admin, Manager (Dispatch too when UTX support has turned this on for your account, see [Customers](managing-customers.md)) |
 | **Who can manage equipment** | Admin, Manager, Garage | Admin, Manager, Dispatch, Customer Service |
 
 !!! info "Same truck in both places"
@@ -327,30 +318,20 @@ The Garage keeps its own customers and equipment. Nothing is shared or synced wi
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
-### :fontawesome-solid-user-slash: How do I disable or delete a garage customer?
+### :fontawesome-solid-user-slash: How do I mark a garage customer we no longer serve?
 
 !!! info "Solution"
-    You can't from the screen. Garage customers have no disable, enable or delete button. Leave the customer as is, or add a note in **Notes**.
+    Garage customers are kept with their work order history. Add a note in **Notes** so your team knows the customer is no longer active.
 
 ### :fontawesome-solid-eye-slash: A unit doesn't show up when I search for it on a work order
 
 !!! info "Solution"
     The work order **Equipment** search only shows **active** units of your **current office**, and once a **Customer** is selected on the work order it only shows that customer's units (the **Owner (Customer)** must match). Check the **Disabled** tab on **Equipment** and enable the unit with the green :fontawesome-solid-check: button, set the unit's **Owner (Customer)** to the work order's customer, or switch to the office the unit was created in.
 
-### :fontawesome-solid-user-group: The Owner dropdown shows customers I don't see on the Customers page
-
-!!! info "Solution"
-    The **Owner (Customer)** dropdown lists active garage customers from all offices, while the Customers page only shows your current office. Pick the customer that belongs to your office. A **Company Name** on each customer makes them easier to tell apart.
-
 ### :fontawesome-solid-barcode: Decode says it could not reach NHTSA
 
 !!! info "Solution"
     The lookup runs from your browser to the public NHTSA service. Check your internet connection, and that your network or browser extensions don't block it, then try again. If it still fails, type **Year**, **Make** and **Model** yourself and save.
-
-### :fontawesome-solid-barcode: Decode cleared a field I had filled in
-
-!!! info "Solution"
-    A successful decode writes **Year**, **Make** and **Model** together, and empties any of them the decoder didn't return. Re-type the missing value before you click **Update Equipment**. Nothing changes until you save, so you can also click **Cancel**.
 
 ### :fontawesome-solid-envelope: The accountant didn't get the invoice email
 
@@ -361,11 +342,6 @@ The Garage keeps its own customers and equipment. Nothing is shared or synced wi
 
 !!! info "Solution"
     **Total Spent** adds parts and labour of every work order on the unit, including estimates and work orders not yet invoiced, and leaves out the shop supplies fee and taxes. Invoices only cover invoiced work orders (an invoice can group several, possibly for other units) and can add taxes and discounts. See [Service History](#service-history).
-
-### :fontawesome-solid-magnifying-glass: My search ignores the Truck/Trailer/Chassis chip
-
-!!! info "Solution"
-    The search box and the type chips don't combine: searching clears the chip and clicking a chip clears the search. Search by unit number, make, model, VIN or plate, or use a chip on its own.
 
 ---
 

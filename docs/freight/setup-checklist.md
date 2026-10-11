@@ -27,9 +27,9 @@ For a walkthrough of creating your first customer, contact and order by hand, se
 |------|--------|
 | :fontawesome-solid-user-shield: **Admin** | Sees the menu entry and can open the checklist. Can complete every step. |
 | :fontawesome-solid-user-tie: **Manager** | Sees the menu entry and can open the checklist. Some steps point to pages a Manager cannot open (see the warning below). |
-| :fontawesome-solid-headset: **Dispatch**, **Accountant**, **Customer Service**, **Customer**, **Warehouse**, **Garage**, drivers and other users | No menu entry. Opening `/getting_started` directly sends them to the home page with the message **You do not have access to the setup checklist.** |
+| :fontawesome-solid-headset: **Dispatch**, **Accountant**, **Customer Service**, **Customer**, **Warehouse**, **Garage**, drivers and other users | No menu entry. If they reach the checklist page some other way (for example from a saved link), they are sent to the home page with the message **You do not have access to the setup checklist.** |
 
-**Navigation:** left menu :fontawesome-solid-arrow-right: **Getting started** / **Setup check** / **Setup complete** (the first item in the menu). The page address is `/getting_started`.
+**Navigation:** left menu :fontawesome-solid-arrow-right: **Getting started** / **Setup check** / **Setup complete** (the first item in the menu).
 
 !!! warning "Some steps lead Managers to pages they cannot open"
     Three steps send you to pages that only Admins can use:
@@ -55,10 +55,10 @@ The checklist's entry in the left menu changes its label and icon as your setup 
 
 The entry stays in the menu after setup is complete, so you can come back and read the checklist at any time.
 
-!!! info "The menu entry can lag by up to 5 minutes"
-    To keep every page fast, the menu label and count are cached for up to **5 minutes**. The checklist page itself is never cached: it always shows the current state. If you just finished a step and the menu still shows the old count, open the checklist page to see the true state. The menu catches up within 5 minutes.
+!!! info "The menu entry can take up to 5 minutes to update"
+    To keep every page fast, the menu label and count are refreshed at most every **5 minutes**. The checklist page itself always shows the current state. If you just finished a step and the menu still shows the old count, open the checklist page to see the true state. The menu catches up within 5 minutes.
 
-    Saving the **Application Settings** page (for example, adding the tax numbers) or clicking **Looks right to me** resets this cache, so the menu entry is up to date on the next page you open.
+    Saving the **Application Settings** page (for example, adding the tax numbers) or clicking **Looks right to me** refreshes the menu entry, so it is up to date on the next page you open.
 
 <!-- TODO: Screenshot — left menu showing the "Getting started" entry with its warning icon, and the "Setup complete" entry with the green check -->
 
@@ -167,7 +167,7 @@ See [Equipment](equipment.md) and [Mobile Users](mobile-users.md). Office staff 
 | Step | Button | Done when |
 |------|--------|-----------|
 | **Add your GST, QST and NIR numbers** | **Open Settings** | **GST Number** and **QST Number** (under **Invoice Settings**) and **NIR Number** (under **POD Settings**) on the **Application Settings** page are **all** filled in. |
-| **Set this month's fuel surcharge** | **Open Fuel Schedule** | A general (not customer-specific) monthly fuel surcharge rate exists for the current month. **Only shown when your system has the fuel surcharge add-on.** |
+| **Set this month's fuel surcharge** | **Open Fuel Schedule** | A general (not customer-specific) monthly fuel surcharge rate exists for the current month. **Only shown when your system has the fuel surcharge add-on. To have it turned on, ask UTX support.** |
 | **Check your charge types** | **Open Charge Types** | At least one active charge type was changed more than one minute after it was created, **or** someone clicked **Looks right to me**. |
 | **Check what your website says** | **Open Manage Content** | Someone clicked **Looks right to me**. Editing the pages does not mark this step done on its own. |
 | **Your email is configured** | **Open Settings** | Always done. Email sending is set up when your system is built. The step is there so you can check where customer replies go. |
@@ -230,7 +230,7 @@ If the confirmation cannot be saved, this message appears next to the button: **
 ### :fontawesome-solid-rotate: I finished a step but the menu still shows the old count
 
 !!! info "Solution"
-    The menu entry is cached for up to 5 minutes. Open the checklist page: it is always up to date. The menu catches up within 5 minutes, or on the next page you open after saving the Application Settings page or clicking **Looks right to me**.
+    The menu entry can take up to 5 minutes to update. Open the checklist page: it is always up to date. The menu catches up within 5 minutes, or on the next page you open after saving the Application Settings page or clicking **Looks right to me**.
 
 ### :fontawesome-solid-ban: I get "You do not have access to the setup checklist."
 
@@ -265,7 +265,7 @@ If the confirmation cannot be saved, this message appears next to the button: **
 ### :fontawesome-solid-eye-slash: The checklist entry is missing from my menu
 
 !!! info "Solution"
-    The entry only shows for Admin and Manager users. If you are an Admin or Manager and the entry is missing, the checklist could not be calculated for that page load. Reload the page, and contact UTX support through **Feedback** if it stays missing.
+    The entry only shows for Admin and Manager users. If you are an Admin or Manager and the entry is missing, reload the page. If it is still missing, contact UTX support through **Feedback**.
 
 ## :fontawesome-solid-lightbulb: Best Practices
 

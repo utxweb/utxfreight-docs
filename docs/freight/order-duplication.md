@@ -36,7 +36,7 @@ Create one or many copies of an existing order in one step, for example when a c
 | :fontawesome-solid-user-shield: **Admin** | Yes, any order |
 | :fontawesome-solid-user-tie: **Manager** | Yes, orders in their offices |
 | :fontawesome-solid-headset: **Dispatch** / **Customer Service** | Yes, orders in their offices |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | Yes, orders in their offices, when the account configuration option `accountant_can_manage_orders` is on (it is on by default and is not on the **Settings** page). If the option is off, accountants do not see **Duplicate** |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | Yes, orders in their offices. This is on by default; if UTX support has turned off order management for accountants on your account, accountants do not see **Duplicate** |
 | :fontawesome-solid-user: **Customer** | No. **Duplicate** is not shown, even when customers can create and edit orders |
 | :fontawesome-solid-id-card: **Driver** | No |
 | :fontawesome-solid-warehouse: **Warehouse** / :fontawesome-solid-wrench: **Garage** | No access to Orders |
@@ -49,7 +49,7 @@ Create one or many copies of an existing order in one step, for example when a c
     **Duplicate** only works on the **Orders** list page. The Dispatch page and the order's own pages (View Details, Edit Order) do not have it. See [Orders](orders.md).
 
 !!! danger "Suspended accounts"
-    While your UTX Freight account is suspended, **Duplicate** still appears in the menu, but clicking **Create Orders** creates nothing. You are sent back to the **Orders** list with no message. See [Orders](orders.md#account-suspension).
+    While your UTX Freight account is suspended, no new orders can be created, including copies. See [Orders](orders.md#account-suspension).
 
 ---
 
@@ -61,7 +61,7 @@ Clicking **Duplicate** opens a window with these parts, from top to bottom:
 |------|---------------|
 | **Title** | **Duplicate *Type* Order**, with the order type in bold, for example **Duplicate Import Order**, **Duplicate Export Order**, **Duplicate Transfer Order**, **Duplicate Dry Van Order** or **Duplicate International Export Order** |
 | **Office notice** | Multi-office accounts only: a blue box **New order(s) will be created in: *office name***, showing the office you are currently working in |
-| **Instructions** | **You are creating multiple orders under the P/O #*P/O*** and **The order #*order number* will be duplicated.** When the original order has no P/O, the P/O part is blank or shows **#undefined** |
+| **Instructions** | **You are creating multiple orders under the P/O #*P/O*** and **The order #*order number* will be duplicated.** |
 | **The following fields will be copied:** | Grey box. A list of the fields copied for this order type, each with a green check mark, in alphabetical order. See [What is copied](#what-is-copied) |
 | **The following fields are NOT copied (Always Reset):** | Amber box. The nine fields that are always reset. See [What is always reset](#what-is-always-reset) |
 | **Number of copies:** | How many new orders to create. Starts at **1** |
@@ -71,11 +71,9 @@ Clicking **Duplicate** opens a window with these parts, from top to bottom:
 After you click **Create Orders**, the button's label is replaced by a loading icon and the button is disabled while the copies are created.
 
 !!! warning "Number of copies"
-    The field's arrows go from 1 to 100, but this limit is only on the field itself. The server does not check it, so a typed number above 100 creates that many orders. Check the number before you click **Create Orders**.
+    Enter a whole number from 1 to 100. Check the number before you click **Create Orders**: there is no undo.
 
     - If the field is empty or not a number, the window shows **Error Number of copies must be a number!** and nothing is created.
-    - If the number is 0 or negative, no orders are created, but you are still sent to the **Orders** list and the green success message still appears.
-    - A decimal is cut to a whole number (2.7 creates 2 copies).
 
 ---
 
@@ -189,13 +187,10 @@ You are sent to the **Orders** list with a search already filled in, sorted with
 - **Original has a P/O**: the search is the P/O text.
 - **Original has no P/O**: the search is **N/A**.
 
-A green message confirms the duplication: **new orders were created based on the P/O #*P/O*** (or **new orders were created** when there is no P/O).
-
-!!! warning "The message has no number in it"
-    Because of a known bug, the success message does not show how many orders were created. It starts with a blank where the number should be. Count the new rows at the top of the list instead.
+A green message confirms the duplication: ***N* new orders were created based on the P/O #*P/O*** (or ***N* new orders were created** when there is no P/O).
 
 !!! warning "Unrelated orders can appear in the results"
-    The redirect uses the normal free-text search, not a P/O filter. Besides orders with exactly that P/O, it also shows any order whose reference number, container #, booking #, customer, shipper/receiver, equipment, order type or container size contains the same text. If the P/O is a number, the order whose order # matches that number can appear too. When the search is **N/A**, every order with no container number appears, because their container # is **N/A**. The new copies are at the top because the list is sorted newest first. See [Orders](orders.md).
+    The list uses the normal free-text search, not a P/O filter. Besides orders with exactly that P/O, it also shows any order whose reference number, container #, booking #, customer, shipper/receiver, equipment, order type or container size contains the same text. If the P/O is a number, the order whose order # matches that number can appear too. When the search is **N/A**, every order with no container number appears, because their container # is **N/A**. The new copies are at the top because the list is sorted newest first. See [Orders](orders.md).
 
 !!! info "Transfer orders with a P/O"
     Transfer copies do not get the delivery P/O number. If the original Transfer order has one, the search may not find the copies (unless the copied reference number contains the same text). Clear the search and look for the new orders with status **New** and container **N/A**.
@@ -207,7 +202,7 @@ A green message confirms the duplication: **new orders were created based on the
 - **No new-order e-mail**: copies are created without the **New Order** notification e-mail that a regular new order sends to admins and office managers.
 - **History**: when order history is enabled for the account, **View History** on a copy (for users who can see it) shows it being created. The original order gets no history entry, because it is not changed.
 - **Office**: copies stay in the original order's office. To move one to another office, use **Transfer to Office** in the caret menu (see [Multi-Office](multi-office.md)).
-- **How it works**: the window sends the number of copies and the checked options to the server, which creates the copies one by one with the same settings. There is no separate screen or bulk tool for duplication.
+- **One place to duplicate**: all copies are made from the **Duplicate** window with the same options. There is no separate screen or bulk tool for duplication.
 
 ---
 
@@ -232,17 +227,12 @@ Enter the number of containers in **Number of copies** to create them all at onc
 ### :fontawesome-solid-eye-slash: I don't see Duplicate in the menu
 
 !!! info "Solution"
-    **Duplicate** is only on the **Orders** list, not on the Dispatch page or inside an order. Customers and drivers never see it. Accountants see it only when the account configuration option `accountant_can_manage_orders` is on (the default).
+    **Duplicate** is only on the **Orders** list, not on the Dispatch page or inside an order. Customers and drivers never see it. Accountants see it unless UTX support has turned off order management for accountants on your account (it is on by default).
 
 ### :fontawesome-solid-ban: I clicked Create Orders but nothing was created
 
 !!! info "Solution"
-    If you landed back on the **Orders** list with no message, the account is probably suspended (look for the red **System Notice: Account Suspended** banner). If the number of copies was 0 or negative, nothing is created either, even though the green success message appears.
-
-### :fontawesome-solid-hashtag: The success message doesn't say how many orders were created
-
-!!! info "Solution"
-    This is a known bug: the number is missing from the message. The copies were still created. They are at the top of the list, newest first.
+    Check whether the account is suspended (look for the red **System Notice: Account Suspended** banner). No orders, including copies, can be created while the account is suspended. Also check that **Number of copies** was at least 1.
 
 ### :fontawesome-solid-list: Orders that aren't copies appear after duplicating
 
@@ -270,7 +260,7 @@ Enter the number of containers in **Number of copies** to create them all at onc
 
 !!! tip "Getting the most out of duplication"
     - Complete and check the first order before duplicating it, so every copy starts right.
-    - Double-check **Number of copies**: there is no upper limit on the server and no undo.
+    - Double-check **Number of copies**: there is no undo.
     - Uncheck **Copy Reference Number** when each container has its own reference.
     - Right after duplicating, fill in the container number on each copy so the orders are easy to tell apart.
     - For Dry Van and International Export copies, add the charges by hand.

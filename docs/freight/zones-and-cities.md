@@ -53,7 +53,7 @@ Both items sit in the user menu with the other **Manage …** items. They are **
 
 ## :fontawesome-solid-map-marker-alt: Manage Zones
 
-The **Zones** page lists the zones of your current office, sorted by name. The list has no page links and shows at most 50 zones.
+The **Zones** page lists the zones of your current office, sorted by name.
 
 <!-- TODO: Screenshot — Manage Zones list with All Active / Disabled filter, Custom Rates button, Rate and Cities columns -->
 
@@ -124,7 +124,7 @@ A disabled zone:
 
 - is no longer offered as a zone filter on **Manage Cities**, nor in the inline zone picker of the city list (it is still listed in the **Zone** field of the city form);
 - is no longer a column of the **Custom Rates** matrix, nor of the zone rates shown in the order's rate history window;
-- stays assigned to the cities that are already in it, and its rate is still used for orders delivered to those cities (see [Disabled zones](#how-the-order-base-rate-is-set)). Move those cities to another zone if you no longer want to use it.
+- stays assigned to the cities that are already in it. When you disable a zone, move its cities to an active zone (see [Assigning a City to a Zone](#assigning-a-city-to-a-zone)).
 
 !!! danger "Zones cannot be deleted"
     There is no delete action for zones. Disable a zone you no longer use instead.
@@ -152,9 +152,6 @@ The **Custom Rates** button (:fontawesome-solid-dollar-sign:) at the top right o
 | :fontawesome-solid-circle: **Blue rate** | A **custom** rate for this customer (above $0.00) |
 | :fontawesome-solid-circle: **Green rate** | The zone's **default** rate. The customer has no custom rate for this zone, or a custom rate of 0 |
 | **N/A** (grey) | No custom rate above 0 for this customer, and the zone has no rate |
-
-!!! warning "A custom rate of 0 looks like the default here"
-    The matrix only shows a custom rate in blue when it is above 0. If a customer has a custom rate of 0 for a zone, the cell shows the zone's default rate in green, but the order lookup uses the custom rate and fills a **Base rate** of 0.
 
 The legend under the table reads: *Blue rates are custom for the Customer* and *Green rates are defaults for the Zone*.
 
@@ -275,9 +272,6 @@ The amount (the **- Rate $...** part) is only shown to users who can manage rate
 
 You can always overwrite the **Base rate** on the order. See [Order Form](order-form.md) for the rest of the rate calculation (default rate of the customer, terminal fees, fuel surcharge). Changing a zone rate or a custom rate later does not change the Base rate of existing orders.
 
-!!! info "Disabled zones"
-    The lookup uses the zone the city is assigned to, whether that zone is active or disabled. The hint on the zone form (*Only active zones will be used when creating new orders*) does not stop this. To stop using a zone's rate, move its cities to another zone.
-
 ---
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
@@ -311,11 +305,6 @@ You can always overwrite the **Base rate** on the order. See [Order Form](order-
 
 !!! info "Solution"
     Only **active** zones appear as filters and in the inline **Select new zone** picker on Manage Cities. Enable the zone on the Zones page (**Disabled** filter → **Actions** → **Enable**).
-
-### :fontawesome-solid-triangle-exclamation: Editing a zone rate or enabling/disabling a zone shows an error
-
-!!! info "Solution"
-    This was a bug: editing a rate in the list, or clicking **Disable** / **Enable**, failed with an error. It is fixed in version 3.12.15. Reload the page and try again. If it still happens, contact UTX support.
 
 ---
 

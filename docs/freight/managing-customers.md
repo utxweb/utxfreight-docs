@@ -37,11 +37,11 @@ Every order in UTX Freight is placed on behalf of a **person** who belongs to a 
 |------|-------------|
 | :fontawesome-solid-user-shield: **Admin** | Full access: create, edit, delete, add and edit people, and **Export** |
 | :fontawesome-solid-user-tie: **Manager** | Full access: create, edit, delete, add and edit people. No **Export** button. In single-office accounts, a Manager can't edit your own company or its staff (see [Editing your own company](#editing-your-own-company)) |
-| :fontawesome-solid-headset: **Dispatch** | Full access (create, edit, add and edit people) **only** when the account option `dispatch_can_manage_customers` is on. Dispatch cannot delete customers or people, and has no **Export**. When the option is off, Dispatch has no access and the **Customers** menu is hidden |
+| :fontawesome-solid-headset: **Dispatch** | Full access (create, edit, add and edit people) **only** when your account has Dispatch customer management turned on (ask UTX support). Dispatch cannot delete customers or people, and has no **Export**. Otherwise, Dispatch has no access and the **Customers** menu is hidden |
 | :fontawesome-solid-file-invoice-dollar: **Accountant** | No access. The **Customers** menu is not shown |
 | :fontawesome-solid-users: **Customer, Driver, Warehouse, Garage** | No access |
 
-- Only **Admin** and **Manager** can delete a customer or a person. A Dispatch user with customer access still sees the **Delete** buttons, but clicking one shows **Access Denied.**
+- Only **Admin** and **Manager** can delete a customer or a person.
 - The **Export** button is shown to **Admin** users only.
 - Garage users manage their own customer list in the Garage module. See [Garage Customers & Equipment](garage-customers-and-equipment.md).
 
@@ -138,7 +138,7 @@ The form is a single page with these sections, from top to bottom: **Customer In
 |-------|-------------|
 | **Service** | What this customer uses you for. Options: **Intermodal**; **Warehouse** and **Intermodal & Warehouse** (Warehouse add-on); **Garage** (Garage add-on). Only people of customers whose service includes **Intermodal** appear in the order form's **Place the order on behalf of** list. Customers with **Warehouse** are the ones available for warehouse orders |
 | **Default tag** | Shown only when your account has order tags configured. See [Default Tag](#default-tag) |
-| **Default user** | Shown only when editing an existing customer whose **Service** is exactly **Intermodal** (not **Intermodal & Warehouse**). Pick one of the customer's people who is active for orders. Used by automated document-to-order imports (Textract) to decide which person the imported order is placed for |
+| **Default user** | Shown only when editing an existing customer whose **Service** is exactly **Intermodal** (not **Intermodal & Warehouse**). Pick one of the customer's people who is active for orders. Used by automated document-to-order imports to decide which person the imported order is placed for |
 
 ### Rate to apply for new orders
 
@@ -178,7 +178,7 @@ When an Admin, Manager or Dispatch user creates a new order and chooses one of t
 
 ### :fontawesome-solid-calendar-days: Automatic Statement Schedule
 
-The **Automatic Statement schedule for this customer** section only appears when automatic statements are enabled on your account (`automated_statement_enabled`). Choose a value in **Send weekly statement on**:
+The **Automatic Statement schedule for this customer** section only appears when automatic statements are turned on for your account (ask UTX support). Choose a value in **Send weekly statement on**:
 
 | Option | When the statement is sent |
 |--------|-------------|
@@ -190,8 +190,8 @@ The **Automatic Statement schedule for this customer** section only appears when
 
 The statement is emailed to the **Accountant Email** (with the **Accountant Email (CC)** addresses in CC), in the **Default Statement Format**, only if the customer is **Active** and has unpaid invoices. If there's nothing owing, no email goes out. In single-office accounts the delivery is then recorded as **Statement Not Sent (0.0$)**. Without an **Accountant Email**, no automatic statement can be sent.
 
-!!! warning "Check this field on new customers"
-    **Send weekly statement on** has no blank option, and **Weekly on Sunday** is the first choice in the list. On a new customer, or on any customer that has no schedule yet, the field shows **Weekly on Sunday**, and saving the form without changing it schedules weekly Sunday statements. Choose **Not Scheduled** if the customer shouldn't receive automatic statements.
+!!! tip "Choose a schedule for each new customer"
+    On a new customer, or on any customer that has no schedule yet, **Send weekly statement on** starts at **Weekly on Sunday**, the first choice in the list. Choose **Not Scheduled** if the customer shouldn't receive automatic statements.
 
 You can also change the schedule from the customer statements screen. For full details, see [Automatic Statements](automatic-statements.md).
 
@@ -273,7 +273,7 @@ The **Delete** button only appears in a customer's box when **all** of these are
 
 Click **Delete**, then confirm **Are you sure you want to delete this company?** You see **Customer was successfully deleted.**
 
-Only **Admin** and **Manager** can delete (a Dispatch user who clicks **Delete** gets **Access Denied.**). Deleting is a soft delete: the customer is marked as deleted and inactive and disappears from every filter and search, but its record stays in the database (it still appears in the export). There's no way to restore it from the Customers page.
+Only **Admin** and **Manager** can delete. A deleted customer is marked inactive and disappears from every filter and search, but its record is kept (it still appears in the export). There's no way to restore it from the Customers page.
 
 !!! tip "Can't delete? Disable instead"
     A customer with invoices or people can't be deleted. Uncheck **Active** to hide it from new orders instead.
@@ -331,17 +331,12 @@ Changes to customer records are recorded in the system's change history. The Cus
 ### :fontawesome-solid-eye-slash: I can't see the Customers menu
 
 !!! info "Solution"
-    Accountants have no access to Customers. Dispatch users only see it when the `dispatch_can_manage_customers` option is on for your account. Ask your administrator.
+    Accountants have no access to Customers. Dispatch users only see it when Dispatch customer management is turned on for your account. Ask UTX support.
 
 ### :fontawesome-solid-magnifying-glass: My search returns nothing
 
 !!! info "Solution"
     Type at least 2 characters. The search looks within the selected filter: if **Brokers** or **Disabled** is selected, only those customers are searched. Switch to **All Active** or to your own company filter to search more widely. Deleted customers are never found.
-
-### :fontawesome-solid-circle-info: Clicking the company name does nothing
-
-!!! info "Solution"
-    The info window is wired up when the page first loads. After you search or move to another page of results, the list is reloaded in place and clicking a company name may not open the window. Reload the page (or pick a filter) and click the name again.
 
 ### :fontawesome-solid-house: I can't edit my own company
 

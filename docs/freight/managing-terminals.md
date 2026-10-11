@@ -112,7 +112,7 @@ There is **no Delete** action. Use **Disable** for terminals you no longer use.
 | **Name** | :fontawesome-solid-check: | Terminal name (placeholder *Terminal name*). Shown in order dropdowns, on the Orders and Dispatch pages and on reports. Some names drive filters and tracking, see [Terminal Names, Filters and Tracking](#terminal-names-filters-and-tracking) |
 | **Office** | :fontawesome-solid-check: | The office that owns the terminal. The dropdown lists the offices you belong to and has no blank option, so your first office is pre-selected |
 | **Address** | | Street address (placeholder *Address*) |
-| **City (Must exist)** | | The terminal's city, picked from a searchable list of the active cities of your current office (all active cities with the Multi-Office add-on). Shown in the **City** and **Country** columns of the list. Used for display only. If the city is missing, add it first under **Manage Cities**. See [Zones and Cities](zones-and-cities.md) |
+| **City (Must exist)** | | The terminal's city, picked from a searchable list of the active cities of your current office. Shown in the **City** and **Country** columns of the list. Used for display only. If the city is missing, add it first under **Manage Cities**. See [Zones and Cities](zones-and-cities.md) |
 | **Postal Code** | | Postal or ZIP code (placeholder *Postal Code*) |
 | **Contact Info** | | Free-form contact details such as phone, hours or gate information (placeholder *Contact Info*) |
 | **Email** | | Terminal email address (placeholder *Email*) |
@@ -242,7 +242,7 @@ Every change to a terminal is recorded.
 | Column | What it shows |
 |--------|---------------|
 | **User** | Who made the change (or **System** for automatic changes) |
-| **Changes** | Each field that changed, with its old and new value. Field names are shown as stored (for example **Default rate**, **Contact info**; the city appears as **Unlocation**). The office and city values are shown by name |
+| **Changes** | Each field that changed, with its old and new value (for example **Default rate** or **Contact info**). The office and city values are shown by name |
 | **When** | The date and time of the change |
 
 Use it to see who changed a rate or renamed a terminal, and when.
@@ -280,14 +280,11 @@ The **Orders** page shows all five filters. The **Dispatch** page shows **CN**, 
 
 See [Container Tracking](container-tracking.md).
 
-!!! warning "New or renamed terminals are not picked up for tracking right away"
-    The lists of CN, Termont, Racine and Cast terminals used for container tracking, the tracking icon and the **CN** filter are read when the application starts, not each time you save a terminal. After you create or rename one of these terminals, contact UTX support so the change takes effect. The **CP**, **Racine**, **Cast** and **Termont** filters on the **Orders** and **Dispatch** pages use the current names immediately.
-
 !!! info "Auto Orders"
     When an order is created automatically from a document, the pick up terminal is chosen from the text: CN or Canadian National goes to the first **CN** terminal, CP to the first **CP** terminal, Racine to the first **Racine** terminal and Termont to the first **Termont** terminal. See [Auto Orders](auto-orders.md).
 
 !!! danger "Rename with care"
-    - Renaming `CN` or `CP` to anything else (even `CN Montreal`), or removing `Termont`, `Viau`, `Racine` or `Cast` from a name, takes that terminal's orders out of the matching filter, and (for CN, Termont, Racine and Cast) out of container tracking once the change takes effect.
+    - Renaming `CN` or `CP` to anything else (even `CN Montreal`), or removing `Termont`, `Viau`, `Racine` or `Cast` from a name, takes that terminal's orders out of the matching filter, and (for CN, Termont, Racine and Cast) out of container tracking.
     - Changing the **first word** of a Racine, Cast, Termont, Viau or CN terminal can stop the container status from being found for orders that pick up there.
     - Giving an unrelated terminal a name that contains `CAST`, `RACINE`, `TERMONT` or `VIAU` (or naming it exactly `CN` or `CP`) puts its orders under that filter (and into container tracking, where it applies).
 

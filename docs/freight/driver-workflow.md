@@ -60,13 +60,13 @@ There are two ways to sign in. Drivers and Brokers both land on their order list
 2. Under **Are you a driver or yard worker ?**, tap **Mobile Login**.
 3. Type your **Access Code** (the characters are hidden) and tap **Sign in**.
 
-The Access Code is set by your office on your mobile user record. Codes of 4 characters or fewer are never accepted. Your mobile user must be **Active** (not disabled or deleted) to sign in this way. If the code is wrong, the page simply comes back empty, with no error message. See [Mobile Users](mobile-users.md) for the code rules.
+The Access Code is set by your office on your mobile user record. Codes of 4 characters or fewer are never accepted. Your mobile user must be **Active** (not disabled or deleted) to sign in this way. If the code is not accepted, the Access Code screen is shown again. See [Mobile Users](mobile-users.md) for the code rules.
 
 <!-- TODO: Screenshot — Phone sign-in page showing "Are you a driver or yard worker ?" with the Mobile Login button, and the Access Code screen -->
 
 ### Login Link
 
-A **Login Link** signs a driver in with one tap, without typing a code. It requires the **magic_link** add-on. See [Add-ons & Options](add-ons-and-options.md).
+A **Login Link** signs a driver in with one tap, without typing a code. It is available when your account has the **Driver Login Links** add-on turned on (ask UTX support). See [Add-ons & Options](add-ons-and-options.md).
 
 **How dispatch gets the link:**
 
@@ -89,11 +89,8 @@ A **Login Link** signs a driver in with one tap, without typing a code. It requi
 | **Extended on reuse** | Copying the link again while it is still valid extends it by another 24 hours from that moment. |
 | **New link after expiry** | Copying it after it has expired creates a brand new link. The old one no longer works. |
 
-!!! warning "Check the name in the confirmation"
-    The link copied is always for the driver named in the **Login Link copied for** message. On **Container Import** orders, each icon copies the link of the driver shown in its own column. On the other order types (Container Export, International Export, Dry Van, Transfer), the icon on the **Orders** page copies the link of the driver in the *other* driver column, and on **Dispatch** whether the icon shows depends on the other column's step. Check the name before you send the link.
-
-!!! warning "Disabling a driver does not cancel their Login Link"
-    A Login Link that has not expired still signs the driver in, even after the driver is disabled on **Mobile Users**. Only the **Access Code** sign-in checks that the driver is active. Wait 24 hours from the last copy before assuming a disabled driver can no longer get in.
+!!! tip "Check the name in the confirmation"
+    The link copied is for the driver named in the **Login Link copied for** message. Check the name before you send the link.
 
 !!! warning "Send the new link after it expires"
     An expired link does not sign the driver in. Copy the link again from **Orders** or **Dispatch** and send the new one. Re-sending an old message will not work.
@@ -106,7 +103,7 @@ A **Login Link** signs a driver in with one tap, without typing a code. It requi
 
 The list shows orders that meet **all** of these conditions:
 
-- The order status is **Dispatched** (not **new**, **App. Taken** or **Completed**).
+- The order status is **Dispatched** (not **New**, **App. Taken** or **Completed**).
 - You are the driver assigned to the step that is waiting (see the table below).
 - The container status is not **Returned to terminal**.
 - The order belongs to your current office.
@@ -114,8 +111,8 @@ The list shows orders that meet **all** of these conditions:
 
 There is **no "all orders for the day" view**, and no date filter. Orders are sorted by delivery date, then appointment time, earliest first, and then grouped into sections.
 
-!!! warning "The list shows at most 30 orders per order type"
-    The list loads up to **30** of your dispatched orders for each order type (Container Import; Container Export and International Export together; Dry Van; Transfer) and has no next page. The 30 count every dispatched order you are assigned to in either driver slot, including ones whose steps are already done but which the office has not completed yet. If you have more, the latest by delivery date will not appear until earlier ones are completed by the office or returned to terminal.
+!!! info "Up to 30 orders per order type"
+    The list shows up to **30** of your dispatched orders for each order type (Container Import; Container Export and International Export together; Dry Van; Transfer), earliest delivery date first. Later orders appear as earlier ones are completed by the office or returned to terminal.
 
 ### Sections and which driver they belong to
 
@@ -145,7 +142,7 @@ Each order is a collapsed row. The title reads:
 
 **AT YARD -** *(only when the container status contains "at yard", such as **Empty at yard** or **Full at yard**)* + customer name (or **- Not Available**) + **-** + the order type code in brackets: **[CI]** (Container Import), **[CX]** (Container Export), **[IX]** (International Export), **[DV]** (Dry Van), **[TF]** (Transfer).
 
-Tap the row to open it. Every container order starts with **CUSTOMER** and **POD #** (the order number). The other fields depend on which step of the order is still open, not on the section: while the first step is still waiting, the card shows the first step's fields in both sections. Once the first step is done, the second section shows the second step's fields.
+Tap the row to open it. Every container order starts with **CUSTOMER** and **POD #** (the order number). The other fields depend on the step:
 
 | Field (as shown) | Deliver to client | Return empty | Drop Empty | Pickup Full | Transfer |
 |------------------|:-:|:-:|:-:|:-:|:-:|
@@ -202,7 +199,6 @@ The form heading depends on the button:
 | **Sign DROP** (Export) | **Drop Signature** |
 | **Sign PICKUP** (Export) | **Pickup Signature** |
 | **Sign PICKUP** (LCL) | **Pickup Signature** |
-| **Sign DELIVERY** (LCL) | **Pickup Signature** |
 
 ### Form fields
 
@@ -212,11 +208,8 @@ The form heading depends on the button:
 | **Sign below** pad + **Clear** | All | The form asks *Please sign the document* if nothing was drawn. |
 | **Seal Number** (under **Container Information**) | All except Dry Van | Saved only when filled. |
 | **Container Number** | Container Export only (not International Export) | Replaces the order's container number when filled. |
-| **Weight** | Container Export only (not International Export) | Saved as entered. Leaving it blank clears the weight on the order. |
+| **Weight** | Container Export only (not International Export) | Saved on the order. |
 | **Time In:** / **Time Out:** (under **Waiting Time**) | All except Dry Van | 24-hour time picker in 15-minute steps. |
-
-!!! warning "International Export drop: waiting time is not kept"
-    On **Sign DROP** for an International Export, the **Time In:** and **Time Out:** fields are shown but not saved. Tell dispatch the waiting time another way.
 
 <!-- TODO: Screenshot — Mobile signature form showing "* Name of signee", the signature pad with Clear, Container Information, Waiting Time and the Submit Signature button -->
 
@@ -251,9 +244,9 @@ The container status becomes **Returned to terminal** and the time is recorded (
 2. Check the **Container Number**. The field is pre-filled with the order's container number; correct it if needed.
 3. Tap **Transfer Completed**.
 
-If the field is empty, the app can stop you with the label in red reading **Container Number cannot be empty!** This check does not run reliably on every order in the list. If an empty field does go through, the order keeps its existing container number.
+The container number cannot be left empty: if it is, the label turns red and reads **Container Number cannot be empty!**
 
-A filled-in container number replaces the one on the order. The container status becomes **Returned to terminal**, and the completion time is recorded. The order leaves your list.
+The container number entered replaces the one on the order. The container status becomes **Returned to terminal**, and the completion time is recorded. The order leaves your list.
 
 <!-- TODO: Screenshot — Transfer order opened on the phone with the Container Number field and the Transfer Completed button -->
 
@@ -287,10 +280,10 @@ Container statuses set by the office count too. For example, if dispatch sets **
 !!! info "Solution"
     The link expires 24 hours after dispatch last copied it. Once expired, a new link is created the next time it is copied, and the old one stops working. Ask dispatch to copy the link again from **Orders** or **Dispatch** and send you the new one. You can always sign in with **Mobile Login** and your **Access Code** instead.
 
-### :fontawesome-solid-key: The Access Code screen just comes back empty
+### :fontawesome-solid-key: My Access Code is not accepted
 
 !!! info "Solution"
-    The code was not accepted. No error message is shown. Check the code with your office and make sure your mobile user is active. See [Mobile Users](mobile-users.md).
+    If the Access Code screen is shown again after you tap **Sign in**, the code was not accepted. Check the code with your office (it must be longer than 4 characters) and make sure your mobile user is **Active**. See [Mobile Users](mobile-users.md).
 
 ### :fontawesome-solid-eye-slash: An order is missing from my list
 
@@ -308,17 +301,12 @@ Container statuses set by the office count too. For example, if dispatch sets **
 !!! info "Solution"
     You can't set it by hand on the phone. It changes automatically: **Dropped at customer** when you sign a Container Import delivery or a Container Export drop, and **Returned to terminal** when you tap **Drop Completed** or **Transfer Completed**. Any other status change is done by the office.
 
-### :fontawesome-solid-signature: I submitted a signature but there is no signature image on the order
-
-!!! info "Solution"
-    If the signature image does not reach the server, no error is shown and you are sent back to the list. The other details (signee name, time, container details, and the automatic container status change) are still saved, so the order may leave your list. Before tapping **Submit Signature**, check the signature is visible on the pad and that you have a data connection. If it happens, tell dispatch so they can collect a scanned POD instead.
-
 ### :fontawesome-solid-flag-checkered: I signed but the order still shows as Dispatched in the office
 
 !!! info "Solution"
     That is expected. Signing never changes the order status. The office completes the order.
 
-### :fontawesome-solid-comment-sms: Will I get the link by SMS?
+### :fontawesome-solid-share-from-square: How do I get my Login Link?
 
 !!! info "Solution"
     Dispatch copies the **Login Link** and sends it to you themselves, by text message or email. Ask your dispatcher how they send it.

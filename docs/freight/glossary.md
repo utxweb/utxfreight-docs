@@ -4,7 +4,7 @@ An A–Z list of the terms, screen labels, abbreviations and status names used i
 
 ## :fontawesome-solid-book: Overview
 
-UTX Freight uses trucking, port and rail vocabulary, and some things have more than one name: one name in the database or in exports, another on a filter tab, and a third in a tooltip. This page puts all of those names side by side.
+UTX Freight uses trucking, port and rail vocabulary, and some things have more than one name: one name in exports and order history, another on a filter tab, and a third in a tooltip. This page puts all of those names side by side.
 
 - :fontawesome-solid-font: **Labels are written exactly as the screen shows them**, in **bold**. Status names keep their capitals and punctuation (for example **App. Taken**, **Arrived - Awaiting delivery**).
 - :fontawesome-solid-shuffle: **Synonyms are grouped.** When two names mean the same thing, both are listed and point to the same definition. See [Synonyms & Alternate Names](#synonyms-alternate-names).
@@ -48,19 +48,19 @@ Use this table when someone uses a different word for the same thing.
 
 | You may hear or see | Same as | Where each name appears | See |
 |---------------------|---------|-------------------------|-----|
-| **App. Taken**, **App. Made**, **Appointment Made** | One order status: an appointment has been made | **App. Taken** is the stored value (database, exports, history). **App. Made** is the filter tab on **Orders**, **Dispatch** and the customer portal. **Appointment Made** is the status label tooltip and the Legend | [Order Status Workflow](order-workflow.md) |
+| **App. Taken**, **App. Made**, **Appointment Made** | One order status: an appointment has been made | **App. Taken** is the name in exports and order history. **App. Made** is the filter tab on **Orders**, **Dispatch** and the customer portal. **Appointment Made** is the status label tooltip and the Legend | [Order Status Workflow](order-workflow.md) |
 | **Make App.** | The button that moves a **New** order to **App. Taken** | Row action button on **Orders** and **Dispatch** | [Order Status Workflow](order-workflow.md) |
-| **New**, **New Order** | The first order status | **new** is stored; **New Order** is the tooltip; **New** is the tab | [Order Status Workflow](order-workflow.md) |
+| **New**, **New Order** | The first order status | **new** in exports and history; **New Order** is the tooltip; **New** is the tab | [Order Status Workflow](order-workflow.md) |
 | **Shipper / Receiver**, **Client**, **Manage Clients** | The address book of pickup and delivery locations | **Manage Clients** in the user menu opens the same list as **Shipper / Receiver**. "Send POD to client" means the delivery location | [Shippers & Receivers](shippers-receivers.md) |
 | **Customer** vs. **Client** | Not the same | A **Customer** is the company you bill. A **Client** (Shipper / Receiver) is a pickup or delivery location | [Customers](managing-customers.md) |
 | **Charge Types**, **Order Charges** | The list of charges you bill (and expense charge types) | **Charge Types** in the user menu; the page it opens is titled **Order Charges** | [Charge Types & Taxes](charge-types-and-taxes.md) |
 | **Order Charges for Invoice Breakdown**, **Rate** | The rate and charges section of an order | **Order Charges for Invoice Breakdown** in the **Quick Edit**, **Dispatch** and **Complete** windows; **Rate** on the full order form | [Order Rates, Charges & Expenses](order-charges-and-expenses.md) |
 | **Expense Types**, **Expense Categories**, **Other Expense** | The "other" payees for order expenses | **Expense Types** in the user menu; the page it opens is titled **Expense Categories**; the payee group in **Order Expenses** is **Other Expense** | [Charge Types & Taxes](charge-types-and-taxes.md) |
-| **Templates**, **Job Templates**, **Canned Jobs** | Garage job templates: pre-filled parts and labor | **Templates** in the Garage sidebar opens **Job Templates**. *Canned jobs* is the internal name, also used in the release notes | [Garage Parts & Templates](garage-parts-and-templates.md) |
-| **MGT**, **MTRTML**, **Racine / Cast** | One container tracking source: Montreal Gateway Terminals (Racine and Cast) | Shown as **MGT (Racine/Cast)** on screens; `MTRTML` is the source code name and the add-on is `track_n_trace_mtrtml` | [Container Tracking](container-tracking.md) |
-| **Termont**, **Port of Montreal** | One container tracking source (Port of Montreal terminals) | Shown as **Termont** on Container Alerts; the **Port Tracking** window on **Dispatch** is titled **Port of Montreal** (it also lists MGT containers); the add-on is `track_n_trace_port_of_montreal` | [Container Tracking](container-tracking.md) |
-| **CN**, **CN Rail**, **Canadian National** | The CN rail tracking source | **CN Rail** on Container Alerts; **CN Tracking** button on **Dispatch**; add-on `track_n_trace_cn` | [Container Tracking](container-tracking.md) |
-| **Login Link**, **magic link** | A one-tap sign-in link for a driver | **Login Link** in the copy message; `magic_link` is the add-on name | [Driver Login Links](driver-login-links.md) |
+| **Templates**, **Job Templates**, **Canned Jobs** | Garage job templates: pre-filled parts and labor | **Templates** in the Garage sidebar opens **Job Templates**. *Canned jobs* is an older name, still used in some release notes | [Garage Parts & Templates](garage-parts-and-templates.md) |
+| **MGT**, **Racine / Cast** | One container tracking source: Montreal Gateway Terminals (Racine and Cast) | Shown as **MGT (Racine/Cast)** on screens | [Container Tracking](container-tracking.md) |
+| **Termont**, **Port of Montreal** | One container tracking source (Port of Montreal terminals) | Shown as **Termont** on Container Alerts; the **Port Tracking** window on **Dispatch** is titled **Port of Montreal** (it also lists MGT containers) | [Container Tracking](container-tracking.md) |
+| **CN**, **CN Rail**, **Canadian National** | The CN rail tracking source | **CN Rail** on Container Alerts; **CN Tracking** button on **Dispatch** | [Container Tracking](container-tracking.md) |
+| **Login Link**, **driver login link** | A one-tap sign-in link for a driver | **Login Link** in the copy message (tooltip **Click to copy** on the share icon) | [Driver Login Links](driver-login-links.md) |
 | **Mobile Users**, **Drivers, Brokers & Yard**, **Drivers, Brokers and Yard Workers**, **Manage Drivers** | People who use UTX Freight from a phone, and the page that lists them | Left menu **Mobile Users** > **Drivers, Brokers & Yard**, or **Manage Drivers** in the user menu; the page title is **Drivers, Brokers and Yard Workers** | [Mobile Users](mobile-users.md) |
 | **Order Start Date**, **Invoice order start date** | One setting | **Order Start Date** on the Settings page; **Invoice order start date** on the edit form | [Application Settings](application-settings.md) |
 | **Order Archive Cutoff Date**, **Order archived at**, archive cutoff | One setting | **Order Archive Cutoff Date** on the Settings page; **Order archived at** on the edit form | [Application Settings](application-settings.md) |
@@ -70,7 +70,7 @@ Use this table when someone uses a different word for the same thing.
 | **International Export**, **IX**, **eBoL** | International Export orders use an eBoL instead of a POD | **View eBoL** replaces **View POD** | [Order Documents & POD](order-documents-and-pod.md) |
 | **Equipments**, **Equipment** | Chassis, trailers and trucks | Left menu **Equipments** | [Equipment](equipment.md) |
 | **Your Company: &lt;name&gt;** | Your own company on the Customers page; your staff are its people | **Customers** page | [Users, Contacts & Invitations](people-and-invitations.md) |
-| **Auto Orders**, **Textract** | Order creation from an uploaded document (beta) | `textract` is the add-on name | [Auto Orders](auto-orders.md) |
+| **Auto Orders** | Order creation from an uploaded document (beta) | **AUTO ORDERS** section of the **Orders** filters | [Auto Orders](auto-orders.md) |
 | **Broker** | Three different things | See [Broker](#b) | [Lookup Lists](lookup-lists.md) |
 
 ---
@@ -94,7 +94,7 @@ Order types are switched on per account by UTX. By default only **Import** and *
 
 ## :fontawesome-solid-flag: Order Status Names
 
-| Stored value | Tooltip / Legend | Filter tab | Icon and colour | Next button |
+| Exports / history | Tooltip / Legend | Filter tab | Icon and colour | Next button |
 |--------------|------------------|------------|-----------------|-------------|
 | **new** | **New Order** | **New** | :fontawesome-solid-star: red | **Make App.** |
 | **App. Taken** | **Appointment Made** | **App. Made** | :fontawesome-solid-clock: orange | **Dispatch** |
@@ -184,7 +184,7 @@ When an order has no container status, **N/A** is shown in grey. See [Container 
 |------|-----------|-----|
 | **Access Code** | The code a mobile user (Driver, Broker, Yard Worker) types after tapping **Mobile Login** to sign in on a phone | [Mobile Users](mobile-users.md) |
 | **Active for orders** | A per-person setting that decides whether a customer contact appears in the order form | [Users, Contacts & Invitations](people-and-invitations.md) |
-| **Add-on** | An optional feature that UTX turns on for your account (for example Garage, Warehouse, Fuel Surcharge, Multi-Office, container tracking, Login Links). When it is off, its menus and buttons are hidden. You cannot switch add-ons on yourself | [Add-ons & Options](add-ons-and-options.md) |
+| **Add-on** | An optional feature that UTX turns on for your account (for example Garage, Warehouse, Fuel Surcharge, Multi-Office, container tracking, Driver Login Links). When it is off, its menus and buttons are hidden. You cannot switch add-ons on yourself | [Add-ons & Options](add-ons-and-options.md) |
 | **Additional Charges** | The charge lines of an order on top of the **Base rate**: the ones you add with **(+) Add another**, plus computed lines such as the terminal fee and fuel surcharge | [Order Rates, Charges & Expenses](order-charges-and-expenses.md) |
 | **Aged Receivables** | The AR report of unpaid invoices by age. The **Standard** report ages by days past due (**Not Yet Overdue**, **30 or Less**, **31 to 60**, **61 to 90**, **91 or More**); the **Performance** report ages by invoice date (**30 days**, **60 days**, **90 days**, **90+ days**) | [Aged Receivables](aged-receivables.md) |
 | **Aging buckets** | The age bands unpaid invoices are grouped into. On the **Invoices** page: rollups **Past due**, **30+ days**, **60+ days** and exact bands **Not Due**, **0-30**, **31-60**, **61-90**, **91+** | [Invoices](invoices.md#ar-aging-days-past-due), [Aged Receivables](aged-receivables.md) |
@@ -248,7 +248,7 @@ When an order has no container status, **N/A** is shown in grey. See [Container 
 
 | Term | Definition | See |
 |------|-----------|-----|
-| **Edition** / **edition options** | Account options set by UTX that widen or narrow what some roles can do (for example `manager_can_view_reports`, `dispatch_can_manage_customers`, `customer_can_manage_orders`). They cannot be changed in the app | [User Roles](user-roles.md#edition-options-set-by-utx), [Add-ons & Options](add-ons-and-options.md) |
+| **Edition** / **edition options** | Account options set by UTX that widen or narrow what some roles can do (for example letting Managers view reports, letting Dispatch manage customers, or letting customers enter their own orders). They cannot be changed in the app; ask UTX support | [User Roles](user-roles.md#edition-options-set-by-utx), [Add-ons & Options](add-ons-and-options.md) |
 | **Equipment** | Your chassis, trailers and trucks (left menu **Equipments**). Each unit has an **Equipment Type** in one of three sub categories: **Chassis**, **Truck**, **Trailer**. Garage equipment is a separate list | [Equipment](equipment.md) |
 | **Estimate** | First status of a Garage work order. **Print Estimate** prints it for the customer | [Garage Work Orders](garage-work-orders.md) |
 | **Expenses** | What an order costs you (driver pay, broker fees, other costs), entered in **Order Expenses**. They never change the order total | [Expenses & Checks](expenses-and-checks.md) |
@@ -278,7 +278,7 @@ When an order has no container status, **N/A** is shown in grey. See [Container 
 | **Leg** | One move of an order: **Move From** a place, by a driver, **Move To** another place. Dry Van and Transfer legs are built automatically | [Order Legs & Move Locations](order-legs-and-move-locations.md) |
 | **Legend** | Button on the **Orders** page that opens the **Orders Page Legend** (codes, badges, abbreviations, icons, colours) | [Orders](orders.md) |
 | **Location** | Warehouse add-on: a storage spot (aisle, bay, room) inside a **Building** | [Warehouse Setup](warehouse-setup.md) |
-| **Login Link** | One-tap sign-in link for a driver, copied from the :fontawesome-solid-share-from-square: icon (magic_link add-on). Valid 24 hours; you send it yourself | [Driver Login Links](driver-login-links.md) |
+| **Login Link** | One-tap sign-in link for a driver, copied from the :fontawesome-solid-share-from-square: icon (Driver Login Links add-on). Valid 24 hours; you send it yourself | [Driver Login Links](driver-login-links.md) |
 
 ### M – O
 
@@ -356,7 +356,7 @@ When an order has no container status, **N/A** is shown in grey. See [Container 
 ### :fontawesome-solid-clock: Are App. Taken and App. Made different statuses?
 
 !!! info "Solution"
-    No. It is one status. **App. Taken** is the stored value (exports, history), **App. Made** is the filter tab, and **Appointment Made** is the tooltip. See [Order Status Workflow](order-workflow.md).
+    No. It is one status. **App. Taken** is the name in exports and order history, **App. Made** is the filter tab, and **Appointment Made** is the tooltip. See [Order Status Workflow](order-workflow.md).
 
 ### :fontawesome-solid-building: Is a Client the same as a Customer?
 
@@ -368,15 +368,15 @@ When an order has no container status, **N/A** is shown in grey. See [Container 
 !!! info "Solution"
     Check where they saw it. On a Dry Van order's **Broker** field or in **Order Expenses**, it is a name from **Manage Brokers**. In **Transport Company ( broker )** or on the Customers list, it is a customer flagged **Broker**. On a phone, it is a mobile user with the Broker role. See [Lookup Lists](lookup-lists.md).
 
-### :fontawesome-solid-ship: What is MTRTML?
+### :fontawesome-solid-ship: What is MGT?
 
 !!! info "Solution"
-    It is the internal name of the **MGT (Racine/Cast)** container tracking source. On screens it is shown as **MGT (Racine/Cast)**. See [Container Tracking](container-tracking.md).
+    **MGT** is Montreal Gateway Terminals, the container tracking source for the Racine and Cast terminals. On screens it is shown as **MGT (Racine/Cast)**. See [Container Tracking](container-tracking.md).
 
 ### :fontawesome-solid-eye-slash: A term in this glossary does not appear in my account
 
 !!! info "Solution"
-    Many terms belong to an add-on (Garage, Warehouse, Fuel Surcharge, Multi-Office, container tracking, Login Links, tags) or to one shipment mode (intermodal or ground). If the add-on is off, its screens are hidden. Contact UTX support to ask about turning it on. See [Add-ons & Options](add-ons-and-options.md).
+    Many terms belong to an add-on (Garage, Warehouse, Fuel Surcharge, Multi-Office, container tracking, Driver Login Links, tags) or to one shipment mode (intermodal or ground). If the add-on is off, its screens are hidden. Contact UTX support to ask about turning it on. See [Add-ons & Options](add-ons-and-options.md).
 
 ---
 

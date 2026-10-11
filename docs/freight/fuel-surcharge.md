@@ -47,7 +47,7 @@ The Fuel Schedule page requires the **fuel surcharge add-on** and one of these r
 | :fontawesome-solid-headset: **Dispatch** | Only with **Can manage rates?** checked on their profile |
 | :fontawesome-solid-wrench: **Garage**, customers, drivers | No access |
 
-**Can manage rates?** is a checkbox on the dispatcher's profile (internally called `manage_rates`). See [People & Invitations](people-and-invitations.md) and [User Roles](user-roles.md).
+**Can manage rates?** is a checkbox on the dispatcher's profile. See [People & Invitations](people-and-invitations.md) and [User Roles](user-roles.md).
 
 **How to get there:**
 
@@ -189,9 +189,8 @@ The same rule applies: above 0, at most 100.
 
 After you click **Save** in that form, you land on the **Charge Types** list (where fuel rates are hidden). Click **Back to Fuel Schedule** to return.
 
-!!! warning "Fields in the Edit form to leave alone"
-    - **Applicable on (Month)** -- a rate is only matched to orders when this date is the **1st of a month**. If you change it, pick the 1st.
-    - **Active** -- unchecking it does **not** stop the rate from being used. A rate still applies to orders, and still shows on the Fuel Schedule, while inactive.
+!!! warning "Applicable on (Month)"
+    A rate is matched to orders by month, so **Applicable on (Month)** should always be the **1st of a month**. If you change it, pick the 1st.
 
 !!! info "Changing a rate does not change orders by itself"
     Saving a new rate, by any method, does not touch existing orders. They pick up the new rate the next time they are saved, or all at once when you click **Recalculate** (current and future months only).
@@ -297,9 +296,6 @@ You return to the Fuel Schedule with **Recalculated charges for N open order(s) 
 
 At the top: **N order(s) will be recalculated.** (non-exempt orders only), then **General fuel surcharge rate: N%** (or **No general fuel surcharge rate is defined for this month.** in red), and, when relevant, **N order(s) use a custom company rate.**
 
-!!! info "How the general rate line is worked out"
-    The **General fuel surcharge rate** line is taken from the listed orders, not read from the schedule, and is shown as a whole number. If every listed order uses a customer override, or only exempt orders are listed, the red **No general fuel surcharge rate is defined for this month.** line appears even when the month has a general rate.
-
 The main table (under **Preview: Review the changes below before confirming.**) lists non-exempt open orders, sorted by customer and delivery date:
 
 | Column | What It Shows |
@@ -325,10 +321,10 @@ If there is nothing to do, the preview says **No open orders found for this mont
 
 ### :fontawesome-solid-circle-info: What recalculation actually does
 
-- Each open order in the month (exempt or not) is saved again with a full charge refresh. This also refreshes the automatic **Terminal Fee** (Import and Export orders) and the order **total**, not just fuel. The confirmation count includes every open order of exempt customers in the month, even those that had no fuel charge.
-- **Orders with Auto compute fuel surcharges for this order set to No are skipped for fuel.** They may still be listed in the preview, but their fuel charge does not change -- including exempt customers' orders.
+- Each open order in the month (exempt or not) is saved again with a full charge refresh. This also refreshes the automatic **Terminal Fee** (Import and Export orders) and the order **total**, not just fuel.
+- **Orders with Auto compute fuel surcharges for this order set to No are skipped for fuel.** Their fuel charge does not change -- including exempt customers' orders.
 - **Completed and invoiced orders are never changed.**
-- If the month has **no rate at all** (no general rate and no override for the customer), existing fuel charges on non-exempt orders are **kept as they are**, even though the preview shows **New Fuel** as $0.00.
+- If the month has **no rate at all** (no general rate and no override for the customer), existing fuel charges on non-exempt orders are **kept as they are**.
 
 !!! warning "Past months cannot be recalculated"
     Past months have no **Recalculate** button. To fix a past month, open and save the orders one by one (if they are still open), or adjust their charges individually. See [Order Charges & Expenses](order-charges-and-expenses.md).
@@ -357,13 +353,9 @@ The charge is added to the order's charges with the note **Computed Fuel Surchar
 | **Replacement** | The previous fuel charge is removed and replaced on every computation. Manual edits to it are overwritten. |
 | **Exempt customers** | Any fuel charge is removed and none is added. |
 | **No rate for the month** | Nothing is changed: no fuel charge is added, and an existing one is left as it is. |
-| **Rates below 1%** | A rate between 0 and 1% (for example `0.5`) adds no fuel charge, and removes any existing one. |
 
 !!! info "Delivery date decides the month"
     If you move an order's delivery date into another month, the next save uses the new month's rate.
-
-!!! warning "Several offices"
-    Rates are set per office on the Fuel Schedule, but when an order's fuel charge is calculated, the **general** rate for the month is looked up without checking the order's office. If you run more than one office, keep the same general rate in every office for each month, otherwise an order may pick up another office's general rate. Customer overrides are not affected. See [Multi-Office](multi-office.md).
 
 ### :fontawesome-solid-door-open: Which orders count as open { #which-orders-count-as-open }
 
@@ -433,7 +425,7 @@ These rates only matter for orders delivered in those months. Set all new rates 
 ### :fontawesome-solid-circle-xmark: An order has no fuel surcharge
 
 !!! info "Solution"
-    Check that: the month of the delivery date has a rate; the order is **Import**, **Export** or **Transfer**; **Auto compute fuel surcharges for this order** is **Yes**; the customer is not exempt; the order is not completed or invoiced; the rate is at least 1%. Then save the order or recalculate the month.
+    Check that: the month of the delivery date has a rate; the order is **Import**, **Export** or **Transfer**; **Auto compute fuel surcharges for this order** is **Yes**; the customer is not exempt; the order is not completed or invoiced. Then save the order or recalculate the month.
 
 ### :fontawesome-solid-gas-pump: An order still has a fuel charge in a month with "No rate"
 

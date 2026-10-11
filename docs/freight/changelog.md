@@ -37,7 +37,7 @@ See [Invoices](invoices.md) for how to use the filters and export.
 
 | Version | Date | Change |
 |---------|------|--------|
-| **3.12.1** | 2026-08-21 | **Consignee order visibility (Customer Portal).** A shipper/receiver record can be linked to a customer account so that account's users get **read-only** visibility of orders delivered to that location, including orders placed by a different customer (for example another freight forwarder). Link it from **Shippers / Receivers** :fontawesome-solid-arrow-right: edit form :fontawesome-solid-arrow-right: **Portal Access — Consignee Link** :fontawesome-solid-arrow-right: **Linked Customer Account**. Only users with the **Customer** role on the linked account get this access; they can view the orders and open their documents, but not edit them. Consignee users see a **Consignee view:** banner on the Orders page, which also states that pricing details are not shown. The Shippers / Receivers list gains a **Linked** filter and a **Linked Account** column. See [Shippers & Receivers](shippers-receivers.md) and [Customer Portal](customer-portal.md). |
+| **3.12.1** | 2026-08-21 | **Consignee order visibility (Customer Portal).** A shipper/receiver record can be linked to a customer account so that account's users get **read-only** visibility of orders delivered to that location, including orders placed by a different customer (for example another freight forwarder). Link it from **Shipper / Receiver** :fontawesome-solid-arrow-right: edit form :fontawesome-solid-arrow-right: **Portal Access — Consignee Link** :fontawesome-solid-arrow-right: **Linked Customer Account**. Only users with the **Customer** role on the linked account get this access; they can view the orders and open their documents, but not edit them. Consignee users see a **Consignee view:** banner on the Orders page, which also states that pricing details are not shown. The **Shipper / Receiver** list gains a **Linked** filter and a **Linked Account** column. See [Shippers & Receivers](shippers-receivers.md) and [Customer Portal](customer-portal.md). |
 | **3.12.1** | 2026-08-21 | **Orders header total.** The **Total** figure in the Orders header now sums only the three badges beside it (**New Orders**, **App. Made**, **Dispatched**). It previously also counted Completed orders. |
 | **3.12.2** | 2026-08-23 | **Garage: edit work orders until the invoice leaves the shop.** Work orders can now be edited at every stage, including **In Progress** and **Completed** (you no longer need **Reopen Work Order** just to fix a line). A work order attached to a **Draft** invoice can still be edited; the Draft invoice is recalculated after you save and the new total is shown. Editing locks only once the invoice is no longer a Draft (for example **Sent** or **Paid**); a Sent invoice with no payments can be returned to Draft with **Reopen to Edit**. The customer of an invoiced work order cannot be changed. Removing a part from a work order on a Draft invoice returns it to stock. See [Garage Work Orders](garage-work-orders.md). |
 | **3.12.3** | 2026-09-04 | **Garage: better work order search.** The work order search now also matches the attached equipment (unit / chassis number, VIN, plate, make, model, type) and the customer's company name. When nothing matches, the page says which term found nothing and offers **Clear search**. |
@@ -82,13 +82,13 @@ See [Orders](orders.md).
 | **3.11.1 – 3.11.5** | 2026-04-12 to 2026-04-13 | **Search fixes.** Removing a filter chip while a search is active now does what you expect (the × no longer appears to do nothing, and removing a status chip no longer jumps back to the in-progress list). |
 | **3.11.6** | 2026-04-15 | **Search links and sorting.** Links that open a search on the Orders page (after duplicating or creating an order, and from container tracking and alert pages) open the matching search result again instead of the default list. Freshly duplicated orders appear at the top. |
 | **3.11.8** | 2026-05-08 | **Dispatch shows all container status buttons' orders.** The Dispatch page now includes **New** orders that have any of the container statuses on its filter buttons (Pre-Pull, Dropped / Empty / Full at customer, Empty / Full at yard, Empty / Full at Eco, Inbound), even when they have no dates yet. Previously only Pre-Pull, Empty at yard and Full at yard were included. See [Dispatch](dispatch.md). |
-| **3.11.9** | 2026-05-08 | **Cleaner order history.** The order **History** no longer shows internal "Lock version" entries. |
+| **3.11.9** | 2026-05-08 | **Cleaner order history.** The order **History** no longer shows internal system entries. |
 | **3.11.10** | 2026-05-12 | Changes to website pages and document types now show immediately, instead of only after the next update of the app. |
-| **3.11.17** | 2026-05-21 | **List page sizes.** Lists whose page size is set above 30 rows now actually use it; for example **Shippers / Receivers** now shows 50 rows per page instead of 30. **Orders** and **Customers** stay at 30 per page. |
+| **3.11.17** | 2026-05-21 | **List page sizes.** Lists whose page size is set above 30 rows now actually use it; for example **Shipper / Receiver** now shows 50 rows per page instead of 30. **Orders** and **Customers** stay at 30 per page. |
 | **3.11.18** | 2026-05-21 | **Copy container number.** A copy icon (:fontawesome-solid-copy:) beside the container number on the Dispatch and Orders rows copies the plain number to the clipboard, so it pastes as text (not as a link) into chat apps and email. |
 | **3.11.19** | 2026-05-26 | **Invoice search fixed.** Searching invoices (by container number or company name) no longer shows an error. |
 | **3.11.20** | 2026-06-16 | **Equipment notes and new statuses.** Equipment has a new **Notes** field, shown as a column on the Equipment list, editable inline and on the edit form, and included in the CSV export. Two new equipment statuses: **Parked at SAAQ** and **Expired**; both count as out of service. The note of a chassis is shown in the **Assign Equipment** window so dispatchers see it when picking a chassis. See [Equipment](equipment.md). |
-| **3.11.21 – 3.11.22** | 2026-06-19 | **Standard AR fixes.** The Standard Aged Receivables report now correctly reconstructs what was outstanding on a past as-of date (it previously showed nothing for invoices that were open then but have since been paid), and loads quickly for offices with very large invoice histories. See [Aged Receivables](aged-receivables.md). |
+| **3.11.21 – 3.11.22** | 2026-06-19 | **Standard Aged Receivables fixes.** The Standard Aged Receivables report (**Reports** :fontawesome-solid-arrow-right: **Aged Receivables (AR)**) now correctly reconstructs what was outstanding on a past as-of date (it previously showed nothing for invoices that were open then but have since been paid), and loads quickly for offices with very large invoice histories. See [Aged Receivables](aged-receivables.md). |
 | **3.11.27** | 2026-08-04 | **Select All in the invoice order picker.** On the new and edit invoice forms, a **Select All** / **Deselect All** button above the order list selects the orders the current filter shows, with a counter of how many are selected. On the edit form, **Deselect All** asks for confirmation before clearing orders already on the invoice. See [Creating Invoices](creating-invoices.md). |
 | **3.11.28** | 2026-08-17 | **Invoice save no longer fails silently.** Saving an invoice that includes an order with incomplete data (for example a blank container number) used to do nothing, with no error. The invoice now saves. **Select All** is now disabled, with an explanation, until a company is chosen, so it can no longer put several companies' orders on one invoice. |
 | **3.11.29** | 2026-08-18 | **Invoice counters restored.** The invoice list again shows each invoice's total and order count, and moving an order off an invoice correctly lowers that invoice's total. |
@@ -107,7 +107,7 @@ See [Orders](orders.md).
 | **3.11.25** | 2026-07-24 | **P/O number on work orders.** Work orders have a **P/O Number** field. It shows on the work order, the estimate print, and in each work order's header on the invoice (page, print and email). |
 
 !!! info "Not listed"
-    Patch releases not listed above (3.11.15, 3.11.16 which added an internal usage API, 3.11.26 and 3.11.31) contain internal or maintenance changes only.
+    Patch releases not listed above (3.11.15, 3.11.16, 3.11.26 and 3.11.31) contain internal or maintenance changes only.
 
 ---
 
@@ -204,7 +204,7 @@ See [Container Alerts](container-alerts.md).
 #### Orders
 
 - **Order duplication** no longer offers to copy drivers, equipment or pickup number — they are always reset. **Copy Reference Number** is optional and checked by default; **Copy Container Status** is optional and unchecked by default. See [Order Duplication](order-duplication.md)
-- The **Send Invoice**, Quick Edit and invoice edit windows no longer close when you click outside them, so you do not lose what you typed
+- The **Send invoice to customer**, Quick Edit and invoice edit windows no longer close when you click outside them, so you do not lose what you typed
 
 #### Email
 
@@ -222,8 +222,8 @@ See [Container Alerts](container-alerts.md).
 #### Container Tracking (2026-03-18)
 
 - **Container tracking** across three terminal sources: CN Rail, Termont (Port of Montreal), and MGT (Racine/Cast). Each source is a separate add-on
-- On the Dispatch page, Termont and MGT share one **Port Tracking** button; the former "MTRTML" source is now called **MGT (Racine/Cast)** everywhere
-- **Automatic updates** from each enabled terminal source. How often the update runs is set by your installation's scheduler, and only the sources whose add-on is turned on are polled
+- On the Dispatch page, Termont and MGT share one **Port Tracking** button, and the MGT source is named **MGT (Racine/Cast)** everywhere
+- **Automatic updates** from each enabled terminal source. How often the update runs is set by UTX, and only the sources whose add-on is turned on are polled
 - More reliable updates: timeouts and automatic retries when a terminal source does not answer
 - Container numbers in the **Upcoming Last Free Days** table open the tracking window
 
@@ -241,7 +241,7 @@ See [Container Alerts](container-alerts.md).
 #### General
 
 - **User feedback** — the **Feedback** button in the top bar opens a form to send feedback from any page, with a category and a description (at least 10 characters). The page address and browser details are captured automatically
-- **Recover deleted invoices** — UTX support can restore a deleted invoice together with its orders (Invoice Revival on the Super User Dashboard; not available to customer users) (3.7.0)
+- **Recover deleted invoices** — UTX support can restore a deleted invoice together with its orders (contact UTX support) (3.7.0)
 
 #### Fuel Surcharge (weekly system, replaced in 3.9)
 
@@ -268,7 +268,7 @@ See [Order Duplication](order-duplication.md).
 
 #### Reports
 
-- **Standard AR** — a GAAP-style snapshot of outstanding receivables as of a chosen date, aged on invoice due dates, alongside the existing **Performance AR** report
+- **Standard Aged Receivables** — a GAAP-style snapshot of outstanding receivables as of a chosen date, aged on invoice due dates, alongside the existing Performance report (now in the menu as **AR Export**)
 
 See [Aged Receivables](aged-receivables.md).
 
@@ -290,7 +290,7 @@ See [Aged Receivables](aged-receivables.md).
 
 #### Reports
 
-- **Aged Receivables** report (**Performance AR**: income and sales activity for the 12 months ending on the selected date, with outstanding invoices)
+- **Aged Receivables** report (the Performance report, now in the menu as **AR Export**: income and sales activity for the 12 months ending on the selected date, with outstanding invoices)
 - Faster **Income by Shipper** and Aged Receivables reports
 
 See [Aged Receivables](aged-receivables.md).
@@ -360,7 +360,7 @@ See [Aged Receivables](aged-receivables.md).
 
     #### Orders
 
-    - **Magic Link** — send drivers a link to auto-login and open the order assigned to them
+    - **Driver Login Links** — send drivers a link to auto-login and open the order assigned to them
     - **Order duplication** with P/O grouping
     - **Confirmation dialogs** before destructive actions (delete, reset)
     - **CSV export** for open orders
@@ -374,12 +374,12 @@ See [Aged Receivables](aged-receivables.md).
     - **Combined filters** — ETA, Delivery date, Terminal, container status, and text search
     - **Driver link** displays the driver name when copying
     - **Pickup Number** on the Dispatch page
-    - **Port of Montreal** bulk update modal
+    - **Port of Montreal** bulk update window
     - **Last Free Date (LFD)** filter with date range, No Date, and Any Date options
 
     #### Track and Trace
 
-    - **CN Rail** Track'n Trace scheduler and modal on the Dispatch page
+    - **CN Rail** Track'n Trace automatic updates and tracking window on the Dispatch page
     - **Port of Montreal** container tracking (Termont 68 and Viau 52)
     - **Container movement history** and **Destination ETA** tracking
     - **Last Free Date** for CN tracking
@@ -418,10 +418,5 @@ See [Aged Receivables](aged-receivables.md).
     - Remove disabled companies from reporting
 
     #### Pro Modules
-
-    - **SMS Addon** — send Magic Link via SMS to drivers
-
-    !!! warning "SMS is not currently usable"
-        The SMS add-on can still be turned on, but in the current version the **Send SMS** icon is never drawn on order rows, so there is no way to send an SMS from the app. Use the Magic Link copy button (:fontawesome-solid-share-from-square:) instead. See [Driver Login Links](driver-login-links.md).
 
     - **Warehouse Addon**

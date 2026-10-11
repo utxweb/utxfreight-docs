@@ -75,7 +75,7 @@ Pick your role to find the pages you will use most. What each role can see and d
 
     ---
 
-    [Driver Mobile App](freight/driver-workflow.md) · [Driver Login Links & SMS](freight/driver-login-links.md) · [Yard Worker Mobile Screen](freight/yard-management.md)
+    [Driver Mobile App](freight/driver-workflow.md) · [Driver Login Links](freight/driver-login-links.md) · [Yard Worker Mobile Screen](freight/yard-management.md)
 
 - :fontawesome-solid-screwdriver-wrench: **Garage** *(if enabled for your account)*
 
@@ -111,7 +111,7 @@ Pick your role to find the pages you will use most. What each role can see and d
 
     ---
 
-    [Driver Mobile App](freight/driver-workflow.md) · [Mobile Users](freight/mobile-users.md) · [Driver Login Links & SMS](freight/driver-login-links.md) · [Yard Worker Mobile Screen](freight/yard-management.md) · [Equipment](freight/equipment.md)
+    [Driver Mobile App](freight/driver-workflow.md) · [Mobile Users](freight/mobile-users.md) · [Driver Login Links](freight/driver-login-links.md) · [Yard Worker Mobile Screen](freight/yard-management.md) · [Equipment](freight/equipment.md)
 
 - :material-account-group: **Customers & Master Data**
 

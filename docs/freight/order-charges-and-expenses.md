@@ -65,7 +65,7 @@ This section sits inside the **Order Income** panel (**Order Income & Billing** 
 | **Base rate** | The main price of the order. Filled automatically by the zone lookup, and you can type over it. |
 | :fontawesome-solid-info: **i** icon (blue, tooltip "Check rate history") | Opens the **Rate History** window for this order's customer. See [Rate History](#rate-history). |
 | **$ total** (large green number) | Base rate plus every Additional Charge on the form. It updates as you type. |
-| :fontawesome-solid-rotate-right: **Refresh** icon (green) | Runs the zone rate lookup again and replaces the **Base rate** with the result. (Its tooltip also reads "Check rate history".) |
+| :fontawesome-solid-rotate-right: **Refresh** icon (green) | Runs the zone rate lookup again and replaces the **Base rate** with the result. |
 | **Auto compute fuel surcharges for this order** | Yes / No. Only shown when the fuel surcharge add-on is on. Defaults to **Yes**. Set it to **No** to stop the fuel surcharge being computed for this order. A fuel charge already on the order stays until you remove it with **(-) Remove**. |
 | **Additional Charges** | The list of income charges on this order, including the automatic Terminal Fee and fuel surcharge rows once they have been added. |
 | **(+) Add another** | Adds a new Additional Charge row. |
@@ -201,7 +201,7 @@ The rate is the terminal's **Default Rate** (see [Managing Terminals](managing-t
 
 - The fee is added when the order is created and refreshed every time the open order is saved from the **Edit** or **Dispatch** form. Saving the **Complete** form marks the order **Completed** first, so that save does not refresh it.
 - Each refresh removes the existing Terminal Fee charge and adds a new one, with the note **Computed Terminal Fee**. Editing the amount by hand therefore does not stick -- change the terminal's rate or the customer's custom rate instead.
-- Rates under **$1** are ignored: no Terminal Fee is added, and an existing one is left as it is.
+- Rates under **$1** are ignored: no Terminal Fee is added.
 - Transfer and other order types never get an automatic Terminal Fee.
 
 ---

@@ -37,15 +37,15 @@ In UTX Freight, every login is a **person** who belongs to a **company** on the 
 |------|-------------|
 | :fontawesome-solid-user-shield: **Admin** | Add, edit and delete any person. Only Admins see and can change **Company**, **Role**, **Offices** and **Can manage rates?** |
 | :fontawesome-solid-user-tie: **Manager** | Add, edit and delete people in their own offices (see below), and edit their own details. Cannot change **Company**, **Role**, **Offices** or **Can manage rates?** |
-| :fontawesome-solid-headset: **Dispatch / Customer Service** | Add and edit people in their own offices only when the edition option `dispatch_can_manage_customers` is on (off by default). Cannot delete people. Cannot change **Company**, **Role**, **Offices** or **Can manage rates?**. They can always edit their own details with **Edit Profile** |
+| :fontawesome-solid-headset: **Dispatch / Customer Service** | Add and edit people in their own offices only if your account has dispatcher customer management turned on (ask UTX support). Cannot delete people. Cannot change **Company**, **Role**, **Offices** or **Can manage rates?**. They can always edit their own details with **Edit Profile** |
 | :fontawesome-solid-file-invoice-dollar: **Accountant, Customer** | No access to other people. They can edit their own details with **Edit Profile** |
 | :fontawesome-solid-warehouse: **Warehouse, Garage** | No access to people, including their own profile. An Admin updates their details |
 
-- Only **Admin** and **Manager** can delete a person. A dispatcher with `dispatch_can_manage_customers` on still sees the **Delete** button, but clicking it doesn't delete the person.
-- Which people a Manager (or a dispatcher with the option on) can manage depends on [Multi-Office](multi-office.md):
+- Only **Admin** and **Manager** can delete a person.
+- Which people a Manager (or a dispatcher, when dispatcher customer management is turned on) can manage depends on [Multi-Office](multi-office.md):
     - **Multi-Office on**: any person who is assigned to at least one of their offices, including staff under your own company.
     - **Multi-Office off**: people whose company belongs to one of their offices. Your own company has no office, so staff accounts (other than their own) are managed only by Admins.
-- If someone who isn't an Admin sends a role, company or office change anyway, UTX Freight ignores it.
+- Only Admins can change a person's role, company or offices.
 
 **How to get there:**
 
@@ -70,7 +70,7 @@ Each company box on the **Customers** page lists its people. Deleted people are 
 | **Alerts** | Only with a container tracking add-on. Whether the person is subscribed to container tracking alerts. See [Container Alerts](container-alerts.md) |
 | **Active** | Whether **Active for orders** is on |
 | **Offices** | How many offices the person is assigned to |
-| *(buttons)* | **Edit Person** and **Delete**, for users allowed to manage that person |
+| *(buttons)* | **Edit Person**, for users allowed to manage that person, and **Delete**, for Admins and Managers |
 
 ---
 
@@ -198,7 +198,7 @@ Click **Cancel** to leave without saving.
 
 ### :fontawesome-solid-user: Edit Profile (your own details)
 
-Users who are not Admin or Manager edit their own details from the menu under their name at the top of the screen: **Edit Profile**. It opens the same form for their own account, without the admin-only fields. Warehouse and Garage users see the menu item but are not allowed to open their profile; an Admin edits their details instead.
+Users who are not Admin or Manager edit their own details from the menu under their name at the top of the screen: **Edit Profile**. It opens the same form for their own account, without the admin-only fields. Warehouse and Garage users can't edit their own profile; an Admin edits their details instead.
 
 Admins and Managers don't have **Edit Profile** in that menu. They edit their own details from **Customers**, under **Your Company**, with **Edit Person** on their own row.
 
@@ -275,8 +275,8 @@ What deleting does:
 
 - The person disappears from the Customers page and from order forms.
 - Their **Email Notifications** setting is turned off.
-- Their stored email address is changed (a random prefix is added), so they can no longer sign in with it and the original address can be used for a new person.
-- It's a soft delete: their record stays in the database, and orders placed for them keep their history.
+- They can no longer sign in, and their email address becomes free to use for a new person.
+- Orders placed for them keep their history.
 - A company that has ever had people, including deleted ones, can't be deleted. See [Customers](managing-customers.md#deleting-a-customer).
 
 Only **Admin** and **Manager** can delete people.

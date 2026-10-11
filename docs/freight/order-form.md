@@ -43,9 +43,9 @@ You land back on the **Orders** list, searched for the new order, with the messa
 | Role | Full form (New / Edit order) | Quick Edit | View Details |
 |------|------------------------------|------------|--------------|
 | :fontawesome-solid-user-tie: **Admin / Manager** | Create and edit, all sections | Yes, all panels | Yes, including **Administrative Information** |
-| :fontawesome-solid-headset: **Dispatch** (and **Customer Service**) | Create and edit, all sections. **Rate**, **Order Expenses** and **Order Legs** need the *manage rates* permission | Yes. **Order Expenses** and the rate fields need the *manage rates* permission | Yes, including **Administrative Information** (**Base Rate** and **Total** need *manage rates*) |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | Create and edit only if your company's configuration lets accountants manage orders. Without that setting, accountants can still edit orders whose status is **Dispatched**. Staff-only sections are not shown | Same limits as the full form (from the **Orders** page) | Yes, without **Administrative Information** |
-| :fontawesome-solid-user: **Customer** | Only if your company's configuration lets customers manage orders, and only for their own company's orders while they are **New**; staff-only sections are not shown | Same limits as the full form | Yes, their own company's orders, without **Administrative Information** |
+| :fontawesome-solid-headset: **Dispatch** (and **Customer Service**) | Create and edit, all sections. **Rate**, **Order Expenses** and **Order Legs** need **Can manage rates?** turned on in their user profile | Yes. **Order Expenses** and the rate fields need **Can manage rates?** | Yes, including **Administrative Information** (**Base Rate** and **Total** need **Can manage rates?**) |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | Create and edit only if order management by accountants is turned on for your account (ask UTX support). Otherwise, accountants can view orders and complete orders whose status is **Dispatched**. Staff-only sections are not shown | Same limits as the full form (from the **Orders** page) | Yes, without **Administrative Information** |
+| :fontawesome-solid-user: **Customer** | Only if customer order entry is turned on for your account (ask UTX support), and only for their own company's orders while they are **New**; staff-only sections are not shown | Same limits as the full form | Yes, their own company's orders, without **Administrative Information** |
 
 **Staff-only sections** of the full form (shown to Admin, Manager and Dispatch only): **Change Customer**, **Administrative information**, **Appointment Information**, **Rate**, **Order Expenses**, **Order Legs** and **Comments**.
 
@@ -89,7 +89,7 @@ When you change the customer, the form:
 | **Reference number** | Always | Your own or the customer's reference for the order. |
 | **Waybill date** | Container Import, when EDI invoicing is enabled | Date picker. |
 | **Job type** \* | Always | **Container Import**, **Container Export**, **Container Transfer**, **Dry Van Move** or **International Export** (only the types enabled for your company are listed). |
-| **Tag / Group** | When the tagging add-on is enabled | If your configuration makes tags optional, the list has a blank choice; otherwise a tag is always selected. |
+| **Tag / Group** | When the tagging add-on is enabled | If tags are optional on your account (set by UTX support), the list has a blank choice; otherwise a tag is always selected. |
 | **Office** | Multi-office companies | Read-only. Shows the office the order belongs to. |
 
 ### :fontawesome-solid-building: Transport Company (Dry Van Move only)
@@ -114,14 +114,11 @@ On a **new** order:
 |-------|-------------|
 | **Search for a shipper / receiver** | Type at least 2 letters of a previously used shipper / receiver and pick it from the list to fill the fields below. |
 | **Name**, **Address**, **City**, **Zip**, **Contact** | The pickup location. |
-| **Pickup Date** | Moved into this section for Dry Van Moves (new orders only — see the note below). |
+| **Pickup Date** | Shown in this section for Dry Van Moves when you create the order. |
 | **Comments** | Pickup instructions. Filled from the shipper / receiver's comments when you use the search. |
 | **P.O.** | Purchase order number for the pickup. |
 
 On an **existing** order, the search and address fields are replaced by a **Pickup company** dropdown of active shippers / receivers. **Comments** and **P.O.** stay editable.
-
-!!! warning "Dates on an existing Dry Van Move"
-    When you edit an existing Dry Van Move in the full form, **Delivery Date** stays in the **Information** section and **Pickup Date** is not shown. Use **Quick Edit** to change the pickup date of an existing Dry Van Move.
 
 ### :fontawesome-solid-map-location-dot: Delivery Address
 
@@ -131,7 +128,7 @@ On a **new** order:
 |-------|-------------|
 | **Search for a shipper / receiver** | Type at least 2 letters of the name or city and pick a saved shipper / receiver. Fills **Name**, **Address**, **City**, **Zip**, **Contact**, **Email** and **Comments**. |
 | **Name**, **Address**, **City**, **Zip**, **Contact**, **Email** | The delivery (or loading) location. |
-| **Delivery Date** | Moved into this section for Dry Van Moves (new orders only). |
+| **Delivery Date** | Shown in this section for Dry Van Moves when you create the order. |
 | **Comments** | Delivery instructions. |
 | **P.O.** | The customer's purchase order number. |
 
@@ -174,7 +171,7 @@ Two date fields change their label with the order type:
 | Container Import | **Pickup Date** (after **Pickup number**) | **Delivery Date** (after **Storage date**) |
 | Container Export | **Pickup Date** (after **Booking number**) | **Delivery Date** (after **Cutoff date**) |
 | Container Transfer | **Pickup Date** (after **Booking number**) | **Delivery Date** |
-| Dry Van Move | **Pickup Date** (in **Pick Up Address**, new orders only) | **Delivery Date** (in **Delivery Address**, new orders only) |
+| Dry Van Move | **Pickup Date** (in **Pick Up Address**) | **Delivery Date** (in **Delivery Address**) |
 | International Export | **Pickup Date** | **Delivery Date** |
 
 !!! info "Which date is which"
@@ -240,7 +237,7 @@ Shown only when editing an order whose status is no longer **New**. Fields: **Ap
 
 ### :fontawesome-solid-dollar-sign: Rate
 
-Staff with the *manage rates* permission only.
+Admin and Manager, and Dispatch users with **Can manage rates?** turned on in their user profile (see [Access & Permissions](#access-permissions)).
 
 | Field | Description |
 |-------|-------------|
@@ -253,7 +250,7 @@ See [Order Charges & Expenses](order-charges-and-expenses.md).
 
 ### :fontawesome-solid-receipt: Order Expenses and Order Legs
 
-Staff with the *manage rates* permission only.
+Admin and Manager, and Dispatch users with **Can manage rates?** turned on.
 
 - **Order Expenses** — click **(+) Add another expense** to record a cost for the order (**Expense category**, **Expense**, **Rate**, **Note**). Picking an **Expense** fills its default rate.
 - **Order Legs** — click **(+) Add another leg** to add a move. On an existing Container Transfer the legs are shown read-only.
@@ -344,8 +341,8 @@ Below the header, collapsible panels:
 | Panel | Who sees it | Contents |
 |-------|-------------|----------|
 | **Container Information** | Everyone who can edit the order (open by default) | Type-specific fields, see below |
-| **Order Income & Billing** | Everyone who can edit the order | Staff: **Customer** with **Place the order on behalf of**. *Manage rates*: **Order Charges for Invoice Breakdown** with **Base rate**, rate history (:fontawesome-solid-info:), the **Total**, **Auto compute fuel surcharges for this order** (fuel add-on), and **Additional Charges** with **(+) Add another** |
-| **Order Expenses** | Staff with *manage rates* | Expenses with **(+) Add another** |
+| **Order Income & Billing** | Everyone who can edit the order | Staff: **Customer** with **Place the order on behalf of**. Admin, Manager, and Dispatch with **Can manage rates?**: **Order Charges for Invoice Breakdown** with **Base rate**, rate history (:fontawesome-solid-info:), the **Total**, **Auto compute fuel surcharges for this order** (fuel add-on), and **Additional Charges** with **(+) Add another** |
+| **Order Expenses** | Admin, Manager, and Dispatch with **Can manage rates?** | Expenses with **(+) Add another** |
 | **Order Legs** | Admin, Manager, Dispatch | Legs with **(+) Add another** (read-only for Container Transfer) |
 
 The **Documents** menu item opens the same window with only the **Order Documents** panel: **Order POD** (**Signed POD file in .pdf format**, **Check to remove the existing PDF**) and **Additional Documents** with **(+) Add document**. See [Order Documents & POD](order-documents-and-pod.md).
@@ -409,7 +406,7 @@ Use it for instructions everyone must see at a glance, such as gate codes or "ca
 | **Return Address** | Terminal, Instructions, Return date (Container Import) or Last return date (other types) |
 | **Container Information** | Container #, Booking #, Steamship line, Pickup #, Pickup date, Vessel, Voyage, Zone |
 | **Goods Information** | Container size, Packages, Weight, CBM, Hazardous, Chassis #, RV #, Seal #, Customs released |
-| **Administrative Information** *(Admin, Manager, Dispatch only)* | Base Rate and Total (*manage rates* only), Appointment date, Appointment time, Delivery date, Comments |
+| **Administrative Information** *(Admin, Manager, Dispatch only)* | Base Rate and Total (Admin, Manager, and Dispatch with **Can manage rates?**), Appointment date, Appointment time, Delivery date, Comments |
 
 Click **Back** to return to the **Orders** list.
 
@@ -447,12 +444,12 @@ Click **Back** to return to the **Orders** list.
 ### :fontawesome-solid-lock: A customer cannot edit an order or create one
 
 !!! info "Solution"
-    Customers can only create and edit orders when your configuration allows it, and only while the order is **New**. Once an appointment is taken or the order is dispatched, it is read-only for them. During an account suspension nobody can create new orders.
+    Customers can only create and edit orders when customer order entry is turned on for your account (ask UTX support), and only while the order is **New**. Once an appointment is taken or the order is dispatched, it is read-only for them. During an account suspension nobody can create new orders.
 
 ### :fontawesome-solid-address-book: A shipper / receiver does not appear in the search
 
 !!! info "Solution"
-    The search shows only **active** shippers / receivers of your current office whose name or city contains what you typed, and needs at least 2 letters. Suggestions are returned only to users who can manage shippers / receivers (Admin, Manager, Dispatch); customers and accountants see no suggestions and type the address instead. Check the entry in [Shippers & Receivers](shippers-receivers.md).
+    The search shows only **active** shippers / receivers of your current office whose name or city contains what you typed, and needs at least 2 letters. Check the entry in [Shippers & Receivers](shippers-receivers.md).
 
 ---
 

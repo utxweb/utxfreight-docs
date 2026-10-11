@@ -40,7 +40,7 @@ Who can change roles and user settings:
 |------|-----------------------------|
 | :fontawesome-solid-user-shield: **Admin** | Only role that can set or change a **Role**, **Company**, **Offices** and **Can manage rates?**. Adds, edits and deletes any person |
 | :fontawesome-solid-user-tie: **Manager** | Adds (invites) and edits customer people of the offices they belong to. Can delete people. **Cannot** change anyone's **Role**, **Company** or **Offices** |
-| :fontawesome-solid-headset: **Dispatch** / :fontawesome-solid-phone: **Customer Service** | Adds and edits customer people only when the edition option `dispatch_can_manage_customers` is on (off by default). Cannot delete people or change roles |
+| :fontawesome-solid-headset: **Dispatch** / :fontawesome-solid-phone: **Customer Service** | Adds and edits customer people only when your account has dispatch customer management turned on (an edition option set by UTX, off by default). Cannot delete people or change roles |
 | :fontawesome-solid-file-invoice-dollar: **Accountant**, :fontawesome-solid-user: **Customer** | Edit their own details only, with **Edit Profile** |
 | :fontawesome-solid-warehouse: **Warehouse**, :fontawesome-solid-screwdriver-wrench: **Garage** | No access to people, including their own profile. An Admin updates their details |
 | Admin, Manager, Dispatch, Customer Service | Add, edit, enable and disable **mobile users** (drivers, brokers, yard workers) and pick their role |
@@ -74,9 +74,6 @@ See [People & Invitations](people-and-invitations.md) for the full person form.
 | :fontawesome-solid-handshake: **Broker** | Mobile | Same mobile rights as a Driver |
 | :fontawesome-solid-boxes-stacked: **Yard Worker** | Mobile | Container search and the yard buttons on a phone |
 
-!!! info "UTX support accounts (superadmin)"
-    UTX staff accounts can carry an extra **superadmin** flag. It is not a role and it can't be set from the app. It adds a **Super User** item to the user menu and UTX support tools (for example account suspension management). Your own users never have it. See [Super User (UTX staff)](#super-user-utx-staff).
-
 ---
 
 ## :fontawesome-solid-user-shield: Admin
@@ -107,7 +104,7 @@ These are Admin-only, whatever the number of offices:
 
 | Not available to Managers | Notes |
 |---------------------------|-------|
-| **Settings** | The item appears in the Manager's user menu, but opening it sends them back. See [Application Settings](application-settings.md) |
+| **Settings** | See [Application Settings](application-settings.md) |
 | **Manage Content** (website content) | Not in the Manager's menu. See [Website Content](website-content.md) |
 | **Manage Offices** | Not in the Manager's menu |
 | **Manage Steamship Lines**, **Manage Container Sizes** | Not in the Manager's menu. See [Lookup Lists](lookup-lists.md) |
@@ -119,8 +116,8 @@ These are Admin-only, whatever the number of offices:
 
 Two more Manager permissions depend on edition options:
 
-- **Reports** (including **Aged Receivables (AR)** and **AR Export**): only when `manager_can_view_reports` is on (on by default).
-- **Checks**: only when `manager_can_manage_checks` is on (on by default).
+- **Reports** (including **Aged Receivables (AR)** and **AR Export**): only when manager access to Reports is turned on for your account (on by default).
+- **Checks**: only when manager access to Checks is turned on for your account (on by default).
 
 ## :fontawesome-solid-headset: Dispatch and :fontawesome-solid-phone: Customer Service
 
@@ -145,8 +142,8 @@ What depends on **Can manage rates?** (per user, on by default):
 
 What depends on edition options:
 
-- **Customers** (and adding/editing customer people): only when `dispatch_can_manage_customers` is on (off by default). Even then, Dispatch can't delete customers or people.
-- **Manage Terminals**: only when `dispatch_can_manage_terminals` is on (off by default).
+- **Customers** (and adding/editing customer people): only when dispatch customer management is turned on for your account (off by default). Even then, Dispatch can't delete customers or people.
+- **Manage Terminals**: only when dispatch terminal management is turned on for your account (off by default).
 
 Never available to Dispatch or Customer Service: **Invoices**, **Checks**, **Expenses** page, **Manage Taxes**, **Manage Zones**, **Manage Brokers**, **Manage Document Types**, **Manage Steamship Lines**, **Manage Container Sizes**, **Reports**, **Settings**, the setup checklist, **Garage** and **Warehouse**.
 
@@ -158,16 +155,16 @@ Never available to Dispatch or Customer Service: **Invoices**, **Checks**, **Exp
 Accountants work only with the offices they belong to.
 
 - **Invoices**: full access.
-- **Checks**: only when `accountant_can_manage_checks` is on (on by default).
+- **Checks**: only when accountant access to Checks is turned on for your account (on by default).
 - **Charge Types**, **Expense Types** and **Manage Taxes**: full access. **Fuel Schedule** with the Fuel Surcharge add-on.
-- **Orders**, with `accountant_can_manage_orders` on (the default): full order management. Create, edit, change status, reset, go back one step, duplicate, delete, transfer between offices, open the scanned and signed POD files and **View History**.
-- **Orders**, with `accountant_can_manage_orders` off: view orders, plus edit and **Complete** orders that are **Dispatched**. They can't open the scanned or signed POD files.
+- **Orders**, with accountant order management on (the default): full order management. Create, edit, change status, reset, go back one step, duplicate, delete, transfer between offices, open the scanned and signed POD files and **View History**.
+- **Orders**, with accountant order management off: view orders, plus edit and **Complete** orders that are **Dispatched**. They can't open the scanned or signed POD files.
 
 Accountants do **not** have:
 
 - The rate, charge and expense sections of the order form (for Admin, Manager and Dispatch with **Can manage rates?**), the **Order Legs** section, or the **Administrative information** and **Appointment Information** sections of **Edit Order** (Admin, Manager, Dispatch). See [Order Rates, Charges & Expenses](order-charges-and-expenses.md).
 - **Place the order on behalf of**. An order an Accountant creates is placed under their own name.
-- **Dispatch** board, **Email POD** (the envelope button shows on their Orders list, but sending is refused), the **View** POD link in the order menu, **Customers**, **Shipper / Receiver**, **Equipments**, **Mobile Users**, **Expenses** page, **Reports** (including AR), **Settings** or the setup checklist.
+- **Dispatch** board, **Email POD**, the **View** POD link in the order menu, **Customers**, **Shipper / Receiver**, **Equipments**, **Mobile Users**, **Expenses** page, **Reports** (including AR), **Settings** or the setup checklist.
 
 !!! info "Accountants and aged receivables"
     Accountants can't open **Reports**, but they can use the **AR Aging** filter and **AR aging detail** export on the Invoices page. See [Aged Receivables](aged-receivables.md).
@@ -178,7 +175,7 @@ A Customer is a person under one of your customer companies. They see the custom
 
 - Sees **all orders placed by anyone in their company**, in the office(s) they belong to. Not only their own.
 - Opens **View Details** and the scanned or signed POD documents of those orders.
-- Creates orders **only** when the edition option `customer_can_manage_orders` is on (off by default). Even then, they can only edit an order while its status is **New**. Once you make an appointment or dispatch it, the order becomes read-only for them.
+- Creates orders **only** when your account has customer order entry turned on (an edition option set by UTX, off by default). Even then, they can only edit an order while its status is **New**. Once you make an appointment or dispatch it, the order becomes read-only for them.
 - Can't change order status, duplicate, transfer, view history, or see rates, totals, invoices or drivers.
 - Uses the shipper/receiver search while filling the order form, but has no **Shipper / Receiver** page.
 - Edits their own details with **Edit Profile**.
@@ -205,14 +202,13 @@ See [Warehouse Overview](warehouse-overview.md).
 - Full access to every Garage page (**Work Orders**, **Invoices** and payments, **Equipment**, **Parts**, **Templates**, **Customers**, **Taxes**, **Settings** and **Reports**) for the offices they belong to.
 - No freight pages and no **Edit Profile**.
 
-!!! warning "Garage-only users after sign-in"
-    After sign-in, UTX Freight forwards users to **Orders**, which a Garage user can't open. Garage-only users should open the Garage **Work Orders** page directly and bookmark it. See [Garage Overview](garage-overview.md).
+See [Garage Overview](garage-overview.md).
 
 ## :fontawesome-solid-truck: Driver and :fontawesome-solid-handshake: Broker
 
 Drivers and Brokers are **mobile users**, not web users. They don't have an email and password and are not people on the Customers page.
 
-- They sign in on a phone with their **Access Code** (5 to 16 characters, set on the mobile user), or with a login link copied by dispatch (Login Link add-on). See [Mobile Users](mobile-users.md) and [Driver Login Links](driver-login-links.md).
+- They sign in on a phone with their **Access Code** (5 to 16 characters, set on the mobile user), or with a login link copied by dispatch (Driver Login Links add-on). See [Mobile Users](mobile-users.md) and [Driver Login Links](driver-login-links.md).
 - They see **only the orders assigned to them** (as delivery or return driver) that are **Dispatched**. Orders marked **Returned to terminal** drop off their list.
 - On those orders they can open the details, collect the delivery and pickup signatures (POD) and mark the container returned. They can't change which driver is assigned.
 - A Broker has exactly the same mobile rights as a Driver.
@@ -254,17 +250,17 @@ These options are set by UTX in your account's configuration. They apply to **al
 
 | Option | Default | What it changes |
 |--------|---------|-----------------|
-| `accountant_can_manage_orders` | On | **On**: Accountants have full order management in their offices. **Off**: view only, plus edit and **Complete** on **Dispatched** orders |
-| `accountant_can_manage_checks` | On | Accountants see **Checks** and manage the checks of their offices |
-| `manager_can_manage_checks` | On | Managers see **Checks** and manage the checks of their offices |
-| `manager_can_view_reports` | On | Managers see the **Reports** menu (all reports, including AR) |
-| `dispatch_can_manage_customers` | Off | Dispatch and Customer Service see **Customers** and can add and edit customers and customer people (not delete) |
-| `dispatch_can_manage_terminals` | Off | Dispatch and Customer Service see **Manage Terminals** with full access |
-| `customer_can_manage_orders` | Off | Customers can **Create a new order** and edit orders still **New** |
+| Accountant order management | On | **On**: Accountants have full order management in their offices. **Off**: view only, plus edit and **Complete** on **Dispatched** orders |
+| Accountant access to Checks | On | Accountants see **Checks** and manage the checks of their offices |
+| Manager access to Checks | On | Managers see **Checks** and manage the checks of their offices |
+| Manager access to Reports | On | Managers see the **Reports** menu (all reports, including AR) |
+| Dispatch customer management | Off | Dispatch and Customer Service see **Customers** and can add and edit customers and customer people (not delete) |
+| Dispatch terminal management | Off | Dispatch and Customer Service see **Manage Terminals** with full access |
+| Customer order entry | Off | Customers can **Create a new order** and edit orders still **New** |
 
 The defaults above are the standard values. Your account may have been set up differently.
 
-Add-ons also change what roles see: **Garage**, **Warehouse**, **Fuel Surcharge** (Fuel Schedule), **Login Link** (driver login links), Container Tracking (container alerts), Auto Orders and multi-office. See [Add-ons & Options](add-ons-and-options.md).
+Add-ons also change what roles see: **Garage**, **Warehouse**, **Fuel Surcharge** (Fuel Schedule), **Driver Login Links**, Container Tracking (container alerts), Auto Orders and multi-office. See [Add-ons & Options](add-ons-and-options.md).
 
 The only per-user option is **Can manage rates?** for Dispatch and Customer Service users. It is **on by default** and only an Admin can change it.
 
@@ -301,56 +297,56 @@ How to read the tables:
 | Feature | Admin | Manager | Dispatch / Customer Service | Accountant | Customer | Warehouse | Garage |
 |---------|-------|---------|-----------------------------|------------|----------|-----------|--------|
 | See orders | Yes | Own offices | Own offices | Own offices | Their company's orders, own offices (+ consignee deliveries) | No | No |
-| **Create a new order** | Yes | Yes | Yes | With `accountant_can_manage_orders` (placed under their own name) | With `customer_can_manage_orders` | No | No |
+| **Create a new order** | Yes | Yes | Yes | With accountant order management (placed under their own name) | With customer order entry | No | No |
 | **Place the order on behalf of** a customer | Yes | Yes | Yes | No | No | No | No |
-| **Edit Order** / **Quick Edit** | Yes | Yes | Yes | Yes with `accountant_can_manage_orders`; otherwise Dispatched orders only | With `customer_can_manage_orders`, status **New** only | No | No |
+| **Edit Order** / **Quick Edit** | Yes | Yes | Yes | Yes with accountant order management; otherwise Dispatched orders only | With customer order entry, status **New** only | No | No |
 | Rates, charges and expenses on the order | Yes | Yes | R | No | No | No | No |
 | **Order Legs** on the order | Yes | Yes | **Quick Edit**: Yes. **Edit Order**: R | No | No | No | No |
-| Status actions (**Make App.**, **Dispatch**, **Complete**) | Yes | Yes | Yes | Yes with `accountant_can_manage_orders`; otherwise **Complete** on Dispatched orders | No | No | No |
-| **Reset Order to New**, **Go Back 1 Step** | Yes | Yes | Yes | With `accountant_can_manage_orders` | No | No | No |
-| **Delete Order** (not invoiced) | Yes | Yes | Yes | With `accountant_can_manage_orders` | No | No | No |
-| **Duplicate** | Yes | Yes | Yes | With `accountant_can_manage_orders` | No | No | No |
-| **View History** (order audit, when enabled for your account) | Yes | Yes | R | With `accountant_can_manage_orders` | No | No | No |
-| Sign POD / **Remove Signature** | Yes | Yes | Yes | With `accountant_can_manage_orders` | No | No | No |
+| Status actions (**Make App.**, **Dispatch**, **Complete**) | Yes | Yes | Yes | Yes with accountant order management; otherwise **Complete** on Dispatched orders | No | No | No |
+| **Reset Order to New**, **Go Back 1 Step** | Yes | Yes | Yes | With accountant order management | No | No | No |
+| **Delete Order** (not invoiced) | Yes | Yes | Yes | With accountant order management | No | No | No |
+| **Duplicate** | Yes | Yes | Yes | With accountant order management | No | No | No |
+| **View History** (order audit, when enabled for your account) | Yes | Yes | R | With accountant order management | No | No | No |
+| Sign POD / **Remove Signature** | Yes | Yes | Yes | With accountant order management | No | No | No |
 | **View** POD (order menu) | Yes | Yes | Yes | No | No | No | No |
-| Open scanned / signed POD documents | Yes | Yes | Yes | With `accountant_can_manage_orders` | Yes | No | No |
-| **Email POD** to client | Yes | Yes | Yes | No (button shown on Orders, sending refused) | No | No | No |
+| Open scanned / signed POD documents | Yes | Yes | Yes | With accountant order management | Yes | No | No |
+| **Email POD** to client | Yes | Yes | Yes | No | No | No | No |
 | **Invoiced / Rate** column on Orders | Yes | Yes | Customer Service only (no invoice button) | Yes | No | No | No |
 | **Not Invoiced** / **Late Invoicing** tabs | Yes | Yes | No | No | No | No | No |
-| **Transfer to Office** (multi-office) | Yes | Yes | Yes | With `accountant_can_manage_orders` | No | No | No |
+| **Transfer to Office** (multi-office) | Yes | Yes | Yes | With accountant order management | No | No | No |
 | **Auto Orders** (add-on) | Yes | Yes (see [Auto Orders](auto-orders.md)) | Yes (see [Auto Orders](auto-orders.md)) | No | No | No | No |
-| Copy driver Login Link (add-on) | Yes | Yes | Yes | Orders page only, with `accountant_can_manage_orders` | No | No | No |
+| Copy driver Login Link (add-on) | Yes | Yes | Yes | Orders page only, with accountant order management | No | No | No |
 | **Dispatch** board | Yes | Yes | Yes | No | No | No | No |
 | View container alerts (tracking add-on) | Yes | Yes | Yes | No menu link | No menu link | No menu link | No menu link |
-| Mark container alerts read / **Mark All Read** | Yes | No (button shown, refused) | No (button shown, refused) | No | No | No | No |
+| Mark container alerts read / **Mark All Read** | Yes | No | No | No | No | No | No |
 
 ### Billing and accounting
 
 | Feature | Admin | Manager | Dispatch / Customer Service | Accountant | Customer | Warehouse | Garage |
 |---------|-------|---------|-----------------------------|------------|----------|-----------|--------|
 | **Invoices** | Yes | Own offices | No | Own offices | No | No | No |
-| **Checks** | Yes | Own offices, with `manager_can_manage_checks` | No | Own offices, with `accountant_can_manage_checks` | No | No | No |
+| **Checks** | Yes | Own offices, with manager checks | No | Own offices, with accountant checks | No | No | No |
 | **Expenses** page (all expense lines, left menu) | Yes | No menu item | No menu item | No menu item | No menu item | No menu item | No menu item |
 | **Charge Types** (order charge / rate types) | Yes | Yes | R | Yes | No | Yes | No |
 | **Expense Types** | Yes | Yes | R | Yes | No | No | No |
 | **Manage Taxes** | Yes | Yes | No | Yes | No | No | Via **Garage** > **Taxes** |
 | **Fuel Schedule** (Fuel Surcharge add-on) | Yes | Yes | R | Yes | No | Yes | No |
-| **Reports** (all reports) | Yes | With `manager_can_view_reports` | No | No | No | No | No |
-| **Aged Receivables (AR)** / **AR Export** | Yes | With `manager_can_view_reports` | No | No | No | No | No |
+| **Reports** (all reports) | Yes | With manager reports | No | No | No | No | No |
+| **Aged Receivables (AR)** / **AR Export** | Yes | With manager reports | No | No | No | No | No |
 
 !!! info "Expenses vs Expense Types"
     **Expense Types** (user menu) is the list of expense categories you pick from on an order, such as fuel or tolls. The **Expenses** page (left menu, Admin only) lists the actual expense lines recorded on orders across all offices. Expense lines are added on orders by users who can manage rates. See [Expenses & Checks](expenses-and-checks.md) and [Charge Types & Taxes](charge-types-and-taxes.md).
 
 !!! info "What \"manage rates\" covers"
-    The old **Manage Rates** permission is now split. **Charge Types** holds the order charge (rate) types. Zone rates are edited in **Manage Zones**, terminal rates in **Manage Terminals**, and city zones in **Manage Cities**, each with its own rules below.
+    Rates are managed in several places. **Charge Types** holds the order charge (rate) types. Zone rates are edited in **Manage Zones**, terminal rates in **Manage Terminals**, and city zones in **Manage Cities**, each with its own rules below.
 
 ### Customers, people and contacts
 
 | Feature | Admin | Manager | Dispatch / Customer Service | Accountant | Customer | Warehouse | Garage |
 |---------|-------|---------|-----------------------------|------------|----------|-----------|--------|
-| **Customers** (create, edit) | Yes | Yes | With `dispatch_can_manage_customers` | No | No | No | No |
+| **Customers** (create, edit) | Yes | Yes | With dispatch customer management | No | No | No | No |
 | Delete a customer (only shown when it has no people and no invoices) | Yes | Yes | No | No | No | No | No |
-| Add / edit customer people | Yes | Own offices | With `dispatch_can_manage_customers`, own offices | No | No | No | No |
+| Add / edit customer people | Yes | Own offices | With dispatch customer management, own offices | No | No | No | No |
 | Change **Role**, **Company**, **Offices**, **Can manage rates?** | Yes | No | No | No | No | No | No |
 | Delete a person | Yes | Yes | No | No | No | No | No |
 | **Edit Profile** (own details) | Via **Customers** | Via **Customers** | Yes | Yes | Yes | No | No |
@@ -364,7 +360,7 @@ How to read the tables:
 |---------|-------|---------|-----------------------------|------------|----------|-----------|--------|
 | **Manage Cities** | Yes | Yes | R | No | No | No | No |
 | **Manage Zones** (incl. zone rates) | Yes | Yes | No | No | No | No | No |
-| **Manage Terminals** (intermodal, incl. terminal rates) | Yes | Yes | With `dispatch_can_manage_terminals` | No | No | No | No |
+| **Manage Terminals** (intermodal, incl. terminal rates) | Yes | Yes | With dispatch terminal management | No | No | No | No |
 | **Manage Container Statuses** (intermodal) | Yes | Yes | View only | No | No | No | No |
 | **Manage Container Sizes** (intermodal) | Yes | No | No | No | No | No | No |
 | **Manage Steamship Lines** (intermodal) | Yes | No | No | No | No | No | No |
@@ -377,7 +373,7 @@ How to read the tables:
 
 | Feature | Admin | Manager | Dispatch / Customer Service | Accountant | Customer | Warehouse | Garage |
 |---------|-------|---------|-----------------------------|------------|----------|-----------|--------|
-| **Settings** | Yes | No (link shown, access refused) | No | No | No | No | No |
+| **Settings** | Yes | No | No | No | No | No | No |
 | **Manage Content** (website content) | Yes (edit existing pages) | No | No | No | No | No | No |
 | **Manage Offices** | Yes (new offices are added by UTX) | No | No | No | No | No | No |
 | **Alert Email Subscriptions** (tracking add-on, in Settings) | Yes | No | No | No | No | No | No |
@@ -407,7 +403,7 @@ How to read the tables:
 | Sidebar item | Admin | Manager | Dispatch / CS | Accountant | Customer | Warehouse | Garage |
 |--------------|-------|---------|---------------|------------|----------|-----------|--------|
 | **Getting started** / **Setup check** / **Setup complete** | Yes | Yes | — | — | — | — | — |
-| **Orders** | Yes | Yes | Yes | Yes | Yes | — | Yes (but can't open it) |
+| **Orders** | Yes | Yes | Yes | Yes | Yes | — | — |
 | **Dispatch** | Yes | Yes | Yes | — | — | — | — |
 | **Warehouse** (add-on) | Yes | — | — | — | — | Yes | — |
 | **Garage** (add-on) | Yes | Yes | — | — | — | — | Yes |
@@ -426,14 +422,14 @@ How to read the tables:
 | Role | Items shown |
 |------|-------------|
 | **Admin** | **Settings**, all **Manage …** lists, **Charge Types**, **Expense Types**, **Manage Taxes**, **Manage Content**, **Manage Offices**, **Logout** |
-| **Manager** | **Settings** (opens for Admins only), **Manage Brokers**, **Manage Cities**, **Manage Clients**, **Manage Container Statuses**, **Manage Document Types**, **Manage Drivers**, **Manage Equipment Types**, **Manage Move Locations**, **Manage Terminals**, **Manage Zones**, **Charge Types**, **Expense Types**, **Manage Taxes**, **Logout** |
-| **Dispatch / Customer Service** | **Edit Profile**, **Manage Clients**, **Manage Container Statuses** (view only), **Manage Drivers**, **Manage Equipment Types**, **Manage Move Locations**, **Logout**. With **Can manage rates?**: **Manage Cities**, **Charge Types**, **Expense Types**. With `dispatch_can_manage_terminals`: **Manage Terminals** |
+| **Manager** | **Manage Brokers**, **Manage Cities**, **Manage Clients**, **Manage Container Statuses**, **Manage Document Types**, **Manage Drivers**, **Manage Equipment Types**, **Manage Move Locations**, **Manage Terminals**, **Manage Zones**, **Charge Types**, **Expense Types**, **Manage Taxes**, **Logout** |
+| **Dispatch / Customer Service** | **Edit Profile**, **Manage Clients**, **Manage Container Statuses** (view only), **Manage Drivers**, **Manage Equipment Types**, **Manage Move Locations**, **Logout**. With **Can manage rates?**: **Manage Cities**, **Charge Types**, **Expense Types**. With dispatch terminal management: **Manage Terminals** |
 | **Accountant** | **Edit Profile**, **Charge Types**, **Expense Types**, **Manage Taxes**, **Logout** |
 | **Customer** | **Edit Profile**, **Logout** |
-| **Warehouse** | **Edit Profile** (refused when opened), **Charge Types**, **Logout** |
-| **Garage** | **Edit Profile** (refused when opened), **Logout**. Garage pages have their own left menu (**Work Orders**, **Invoices**, **Equipment**, **Parts**, **Templates**, **Customers**, **Taxes**, **Settings**, **Reports**, **Back to TMS**) and no user menu |
+| **Warehouse** | **Charge Types**, **Logout** |
+| **Garage** | **Logout**. Garage pages have their own left menu (**Work Orders**, **Invoices**, **Equipment**, **Parts**, **Templates**, **Customers**, **Taxes**, **Settings**, **Reports**, **Back to TMS**) and no user menu |
 
-**Manage Container Sizes**, **Manage Container Statuses**, **Manage Steamship Lines** and **Manage Terminals** only appear on intermodal (container) accounts. UTX staff also see **Super User**. See [Navigation & Account](navigation-and-account.md).
+**Manage Container Sizes**, **Manage Container Statuses**, **Manage Steamship Lines** and **Manage Terminals** only appear on intermodal (container) accounts. See [Navigation & Account](navigation-and-account.md).
 
 ---
 
@@ -443,7 +439,6 @@ How to read the tables:
 |------|---------------|
 | Admin, Manager, Dispatch, Customer Service, Accountant, Customer | **Orders** |
 | Warehouse | **Warehouse** > **Orders** (with the Warehouse add-on; otherwise the home page) |
-| Garage | Forwarded to **Orders**, which Garage users can't open. Bookmark the Garage **Work Orders** page instead. See [Garage Overview](garage-overview.md) |
 | Driver, Broker | Their list of assigned Dispatched orders on the phone. See [Driver Workflow](driver-workflow.md) |
 | Yard Worker | The container search (phone layout). See [Yard Management](yard-management.md) |
 
@@ -481,12 +476,6 @@ See [Notifications & Emails](notifications-and-emails.md) and [Email Notificatio
 
 ---
 
-## :fontawesome-solid-user-lock: Super User (UTX Staff)
-
-UTX staff accounts can have a **superadmin** flag. It is set by UTX only, it is not part of the **Role** list, and you can't give it to your users. It shows **Super User** in the user menu and gives access to UTX support tools such as account suspension management (including the **Manage Account Suspension** button when an account is suspended), email and storage tests. The **Refresh** and **Reprocess All** buttons on [Auto Orders](auto-orders.md) depend on another UTX-only flag, not on any role. If you see a user with this access that you don't recognise, contact UTX support.
-
----
-
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
 ### :fontawesome-solid-user-tie: We have one office. Isn't a Manager the same as an Admin?
@@ -507,17 +496,17 @@ UTX staff accounts can have a **superadmin** flag. It is set by UTX only, it is 
 ### :fontawesome-solid-building: A dispatcher can't see Customers or Manage Terminals
 
 !!! info "Solution"
-    These are edition options (`dispatch_can_manage_customers`, `dispatch_can_manage_terminals`), off by default. They apply to all Dispatch and Customer Service users at once. **Manage Terminals** also only exists on intermodal (container) accounts. Contact UTX support to turn them on.
+    These are edition options set by UTX (dispatch customer management and dispatch terminal management), off by default. They apply to all Dispatch and Customer Service users at once. **Manage Terminals** also only exists on intermodal (container) accounts. Contact UTX support to turn them on.
 
 ### :fontawesome-solid-chart-bar: A Manager doesn't see Reports or Checks
 
 !!! info "Solution"
-    `manager_can_view_reports` or `manager_can_manage_checks` is off for your account. Contact UTX support.
+    Manager access to Reports or Checks is turned off for your account. These are edition options set by UTX. Contact UTX support.
 
 ### :fontawesome-solid-file-invoice-dollar: An accountant can only view orders
 
 !!! info "Solution"
-    `accountant_can_manage_orders` is off for your account. With it off, Accountants can only view orders, and edit and complete **Dispatched** orders. Contact UTX support to turn it on.
+    Accountant order management is turned off for your account. With it off, Accountants can only view orders, and edit and complete **Dispatched** orders. Contact UTX support to turn it on.
 
 ### :fontawesome-solid-file-invoice-dollar: An accountant can't change the rate on an order
 
@@ -527,7 +516,7 @@ UTX staff accounts can have a **superadmin** flag. It is set by UTX only, it is 
 ### :fontawesome-solid-user: A customer can't create orders
 
 !!! info "Solution"
-    `customer_can_manage_orders` is off (the default). Contact UTX support if your customers should create orders. When it is on, customers can only edit an order while it is **New**.
+    Customer order entry is turned off for your account (the default). Contact UTX support if your customers should create orders. When it is on, customers can only edit an order while it is **New**.
 
 ### :fontawesome-solid-eye: A customer sees orders they didn't place
 
@@ -538,11 +527,6 @@ UTX staff accounts can have a **superadmin** flag. It is set by UTX only, it is 
 
 !!! info "Solution"
     Drivers, Brokers and Yard Workers don't have passwords. Give them their **Access Code**, or copy them a login link. See [Mobile Users](mobile-users.md).
-
-### :fontawesome-solid-gear: I'm a Manager and Settings sends me back
-
-!!! info "Solution"
-    Only Admins can open **Settings**, even though Managers see the link. Ask an Admin.
 
 ---
 

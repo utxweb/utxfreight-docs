@@ -43,7 +43,7 @@ A **Shipper / Receiver** is a pickup or delivery location: a company name, an ad
 | :fontawesome-solid-warehouse: **Warehouse** / :fontawesome-solid-wrench: **Garage** | No access |
 | :fontawesome-solid-user: **Customer** | No access to the list. Customer users linked through a consignee link can view the matching orders (see [Consignee Links](#consignee-links)) |
 
-When multi-office is turned on, Shipper / Receiver records are shared across offices: the list shows the records of every office and anyone with access can manage them. When multi-office is off, the list shows the shippers/receivers of the office you are working in, and Managers and Dispatch users can only manage records that belong to their own offices. See [Multi-Office](multi-office.md).
+When your account has multi-office turned on (ask UTX support), Shipper / Receiver records are shared across offices: the list shows the records of every office and anyone with access can manage them. When multi-office is off, the list shows the shippers/receivers of the office you are working in, and Managers and Dispatch users can only manage records that belong to their own offices. See [Multi-Office](multi-office.md).
 
 **How to get there:**
 
@@ -75,7 +75,7 @@ Type in the **Filter shippers / receivers by company name or city** box. The lis
 - part of the **Company Name**, or
 - part of the name of the linked city (the **City (Must exist)** value).
 
-The search always looks in **active** records, whatever filter button is highlighted, and clearing the box brings back the active list. To find a disabled record, click **Disabled** and browse the list. The search does not look at the old free-text city of records shown in red (see below).
+The search looks in **active** records. To find a disabled record, click **Disabled** and browse the list. The search matches the linked city only, not the old free-text city of records shown in red (see below).
 
 ### Columns
 
@@ -106,7 +106,7 @@ The search always looks in **active** records, whatever filter button is highlig
 | :fontawesome-solid-circle:{ style="color: #dc3545" } **Red** Company Name | Disabled |
 
 !!! warning "Fix records with a red City or Country"
-    The notice at the top of the list says it: any **City or Country in RED** does not use the normalized location and should be updated. Edit the Shipper / Receiver, choose a city in **City (Must exist)**, and click **Save Changes**. Until you do, the record has no zone (**N/A**).
+    The notice at the top of the list says it: any **City or Country in RED** is not using the normalized UN Location and should be updated. Edit the Shipper / Receiver, choose a city in **City (Must exist)**, and click **Save Changes**. Until you do, the record has no zone (**N/A**).
 
 ---
 

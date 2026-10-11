@@ -32,7 +32,7 @@ This page covers the list. These topics have their own pages:
 1. Click **Invoices** in the left menu. The list opens on **All Unpaid**, newest invoices first.
 2. Narrow it with a status tab, the search box, an **Invoice Date** range or an **AR Aging** option.
 3. Click the :fontawesome-solid-envelope: envelope on a row to email that invoice, or open the :fontawesome-solid-gear: cog menu to **Print**, **Record a payment**, **Edit** or **Delete**.
-4. To get the list into a file, pick a **Layout** and **Format** in the **Export** panel and click **Export**.
+4. To get the list into a file, pick a layout and a format in the **Export** panel and click **Export**.
 
 To create an invoice, click **Add a new Invoice** at the top right. See [Creating Invoices](creating-invoices.md).
 
@@ -87,8 +87,8 @@ The search box (placeholder *Invoice #, Container # or company name*) matches an
 
 The three checks run together, so a digits-only search also returns invoices whose container number starts with those digits or whose company name contains them. Search is not case-sensitive. Type your text and click **Search** (or press Enter).
 
-!!! warning "Type the digits, not the full invoice number"
-    If your invoice numbers are shown with a prefix (for example `A26 - 01234`), searching for the whole decorated number finds nothing. Type only the digits: `1234`.
+!!! tip "Search by the invoice digits"
+    Invoice search matches the invoice's number. If your invoice numbers are shown with a prefix (for example `A26 - 01234`), type only the digits: `1234`.
 
 Searching **narrows what you are already looking at**. It keeps your status tab, date range and aging option. On the default **All Unpaid** tab, a search will not find a paid invoice. Click **All** first if you are looking for an invoice that may be paid.
 
@@ -164,9 +164,6 @@ The list shows eight columns. Most pair a **main value** with a smaller related 
 | **Status** | Status value, with a delivery label | **sent** *date* or **not sent** |
 | **Actions** | Envelope button and cog menu | — |
 
-!!! info "Rows with no orders"
-    If an invoice has no orders attached, its **Total** and **Balance** cells are left blank.
-
 ### :fontawesome-solid-building: Company link
 
 Click a company name to see **all unpaid invoices for that company**. The list switches to **All Unpaid** with the company name in the search box. Your date range and aging option are dropped. Add them back from the filter bar if you need them.
@@ -190,7 +187,7 @@ Hover over a badge to see the exact count, for example *"12 days past due"* or *
 
 ### :fontawesome-solid-money-check: Last payment
 
-**Last payment** shows the date of the **first payment line found** on the invoice. Payment lines are not sorted, so with several payments this is not always the most recent one. If the invoice has no payment lines, the invoice's own paid date is shown, or **—**. The count underneath (**1 check**, **3 checks**, **0 checks**) is the number of payment lines.
+**Last payment** shows a payment date from the invoice's payment lines. If the invoice has no payment lines, the invoice's own paid date is shown, or **—**. The count underneath (**1 check**, **3 checks**, **0 checks**) is the number of payment lines.
 
 For a **Paid** invoice, **paid $ …** under the Balance shows the full invoice total.
 
@@ -198,7 +195,7 @@ For a **Paid** invoice, **paid $ …** under the Balance shows the full invoice 
 
 The **Status** column shows the value stored on the invoice, exactly as saved. A brand-new invoice reads **new** in lowercase. The others read **Invoiced**, **Paid** and **Partially Paid**.
 
-**Changing the status inline:** click the status text to open a small editor titled *Enter new invoice status*. Pick **new**, **Invoiced**, **Paid** or **Partially Paid** and confirm. The change saves immediately. (The list also offers a blank choice. Avoid it: an invoice with a blank status shows on the **All** tab only.)
+**Changing the status inline:** click the status text to open a small editor titled *Enter new invoice status*. Pick **new**, **Invoiced**, **Paid** or **Partially Paid** and confirm. The change saves immediately.
 
 Changing the status here does not add or remove payment lines. If you set an invoice to **Paid** and it has no payment lines and no paid date yet, today's date is recorded as its paid date.
 
@@ -240,7 +237,7 @@ A successful email of a **new** invoice changes its status to **Invoiced**. For 
 | Item | What it does |
 |------|--------------|
 | :fontawesome-solid-print: **Print** | Opens the printable invoice in a new browser tab |
-| :fontawesome-solid-download: **EDI 210** | Downloads the invoice as an EDI 210 file named `EDI210_<invoice number>_<YYYYMMDD>.csv`. Only shown when EDI invoicing is enabled for your account |
+| :fontawesome-solid-download: **EDI 210** | Downloads the invoice as an EDI 210 file named `EDI210_<invoice number>_<YYYYMMDD>.csv`. Only shown if your account has EDI invoicing turned on (ask UTX support) |
 | :fontawesome-solid-money-bill: **Record a payment** | Opens the invoice in a pop-up window so you can add payment lines. See [Invoice Email & Payments](invoice-email-and-payments.md) |
 | :fontawesome-solid-pen-to-square: **Edit** | Opens the full invoice form. See [Creating Invoices](creating-invoices.md) |
 | :fontawesome-solid-xmark: **Delete** | Deletes the invoice after an *Are you sure?* confirmation |
@@ -259,14 +256,14 @@ The line under the button always states what you are about to get, for example *
 **To export:**
 
 1. Filter the list until it shows what you want.
-2. In **Export**, pick a **Layout** and a **Format**.
+2. In **Export**, pick a layout (**QuickBooks columns** or **AR aging detail**) and a format (**Excel** or **CSV**).
 3. Click **Export**. The file downloads.
 
 | Setting | Options | Description |
 |---------|---------|-------------|
-| **Layout** | **QuickBooks columns** | One row per invoice with amounts before and after tax, for importing into QuickBooks |
+| Layout | **QuickBooks columns** | One row per invoice with amounts before and after tax, for importing into QuickBooks |
 | | **AR aging detail** | One row per invoice with balance and aging detail, for collections and month-end |
-| **Format** | **Excel** (.xlsx) | Default |
+| Format | **Excel** (.xlsx) | Default |
 | | **CSV** (.csv) | Comma-separated values |
 
 ### QuickBooks columns layout
@@ -327,7 +324,7 @@ The status part is one of `all-invoices`, `all-unpaid`, `new`, `invoiced`, `paid
 
 **What it checks:**
 
-- Invoices with status **Paid** (spelled exactly that way), invoice date **January 1, 2024 or later**, that have **at least one payment line**
+- Invoices with status **Paid**, invoice date **January 1, 2024 or later**, that have **at least one payment line**
 - The invoice total (orders + tax) is compared with the sum of its payment lines
 - Any difference **greater than $0.02** is listed
 - It looks at **all offices**, not just the one you are working in
@@ -355,7 +352,7 @@ If nothing is found, it reads *"No discrepancies found. All paid invoices match 
 !!! info "Solution"
     Check two things:
 
-    1. **Type only the digits.** If your invoice numbers have a prefix like `A26 - 01234`, search for `1234`.
+    1. **Search by the digits.** If your invoice numbers have a prefix like `A26 - 01234`, search for `1234`.
     2. **Check the status tab.** Search keeps the current tab, and the default is **All Unpaid**. Paid invoices only show on **All** or **Paid**.
 
     Also make sure you are in the right office: the list only shows the current office's invoices.
@@ -399,12 +396,3 @@ If nothing is found, it reads *"No discrepancies found. All paid invoices match 
     - Set a date range before exporting large histories. It keeps you under the 20,000-invoice cap and gives each file a clear period in its name.
     - Run **Audit Payments** before month-end close to catch Paid invoices with missing or mistyped payment lines.
     - Mark invoices **Paid** once fully paid so they leave **All Unpaid** and the aging filters.
-
----
-
-## Screenshots Needed
-
-!!! info "Screenshots to capture"
-    1. **Invoices list rows**: a few rows showing the paired columns, aging badges, OK/Failed! labels and the totals footer with its caption
-    2. **Cog menu** open on a row
-    3. **Audit Payments** pop-up with a few discrepancies listed

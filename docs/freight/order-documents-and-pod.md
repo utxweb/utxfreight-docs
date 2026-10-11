@@ -49,9 +49,9 @@ Every order can carry proof of delivery and supporting paperwork. Office staff w
 | **Remove Signature** | :fontawesome-solid-check: | :fontawesome-solid-check: | :fontawesome-solid-check: | :fontawesome-solid-check: ¹ |
 | **Manage Document Types** | :fontawesome-solid-check: | :fontawesome-solid-check: | — | — |
 
-¹ Accountants can work on orders in the standard setup. If your company has limited accountants to read-only access to orders, they cannot save changes in the **Documents** panel, cannot open the POD icons in the **POD** column, and do not see **Remove Signature**. The **Documents** link and the **DOC** icon are hidden from them, except on orders with the status **Dispatched**, where the panel opens but saving is refused.
+¹ Accountants can work on orders in the standard setup. If your account is set up so accountants have read-only access to orders (ask UTX support), they cannot change documents, open the POD icons in the **POD** column or use **Remove Signature**.
 
-² Accountants see the envelope in the **Email POD** column on the **Orders** list, but the send is refused and no email goes out. Sending runs through the **Dispatch** page, which only Admin, Manager, Dispatch and Customer Service can use. Ask one of them to send the POD.
+² Sending the POD is done by Admin, Manager, Dispatch and Customer Service. Accountants should ask one of them to send it.
 
 Managers, dispatchers, customer service and accountants only see orders from their own office(s).
 
@@ -102,7 +102,7 @@ Saved documents show as a row with:
 |------|--------------|
 | File icon | A PDF icon for `.pdf`, an image icon for `.jpg`, `.jpeg`, `.png` or `.gif`, and a plain file icon for anything else. Click it to open the file in a new tab. |
 | File name | Click to open the file in a new tab. |
-| Green download icon | Downloads the file. **Admin only**, see the warning below. |
+| Green download icon | Downloads the file. **Admin only**. |
 | Size | The file size. |
 | Type list | Change the document type, then click **Update Order**. |
 | **(-) Delete** | Removes the row. The document is deleted when you click **Update Order**. |
@@ -110,8 +110,8 @@ Saved documents show as a row with:
 !!! info "No type selected"
     If you save a document without choosing a type, it is saved with the type **Other**. If no **Other** type exists yet, UTX Freight creates it.
 
-!!! warning "The download icon only works for Admins"
-    The green download icon checks for document-management rights that only the **Admin** role has. Anyone else who clicks it is sent back to the dashboard with an access message. Click the **file name** or the **file icon** instead: those links open the file for everyone who can open the Documents panel.
+!!! tip "Opening a document"
+    Click the **file name** or the **file icon** to open a document. These links work for everyone who can open the Documents panel.
 
 ---
 
@@ -130,7 +130,7 @@ At the right end of each row, the **Orders** list has an **Email POD** column, t
 
 Both POD icons can show at once when an order has a scanned POD and a signature.
 
-The **DOC** icon only shows to users who can edit the order. The **Email POD** column shows to Admin, Manager, Dispatch, Customer Service and Accountant (accountants cannot actually send, see **Send POD to Client** below).
+The **DOC** icon only shows to users who can edit the order. Sending the POD from the **Email POD** column is for Admin, Manager, Dispatch and Customer Service (see **Send POD to Client** below).
 
 ---
 
@@ -219,7 +219,7 @@ The signature area depends on the order type. On Dry Van, Container Export and T
 | **Container Import** | One box: **DRIVER'S SIGNATURE** with **DATE ( RECU / RECEIVED )**. It holds the delivery signature. On the signed POD a **SIGNED BY** line with the signee name is added below. |
 | **Container Export** and **Transfer** | **DROP SIGNATURE (Empty)** with **DATE ( DROP )**, then **PICKUP SIGNATURE (Full)** with **DATE ( PICKUP )**. The first box holds the pickup signature from the driver app, the second holds the delivery signature. |
 
-On the blank **View POD** the signature images and dates are empty. The signee names still print on Dry Van, Container Export and Transfer orders if a signature was already captured.
+On the blank **View POD** the signature images and dates are empty.
 
 **NIR line and footer**
 
@@ -262,7 +262,7 @@ On International Export orders, **View eBoL** replaces **View POD**. It prints a
 
 | Section on the sheet | What is printed |
 |----------------------|-----------------|
-| Heading | Your logo and the title **Bill of Landing** (spelled this way on the sheet). |
+| Heading | Your logo and the title **Bill of Landing**. |
 | **SHIPPER** | The order's customer: name, address, city, province and postal code, country, **Tel:**, and the email address of the customer user on the order. |
 | **FREIGHT FORWARDER** | Your company: name, address, city, province and postal code, **Tel:** and **Fax:**. |
 | **CONTRACT** | **Order** (the order number) and **Booking** (the booking number). |
@@ -284,8 +284,8 @@ On International Export orders, **View eBoL** replaces **View POD**. It prints a
 
 The eBoL has no driver signature boxes, no **NIR - CTQ#:** line and no **POD Message** footer.
 
-!!! warning "The signed eBoL has no signature on it"
-    The eBoL layout never shows the driver's signature image, signee name or signature date. The signed version (green signature icon) and the *eBoL Signed* PDF attached to the POD email look the same as **View eBoL**.
+!!! info "The eBoL has no signature area"
+    The eBoL layout does not show the driver's signature image, signee name or signature date. The signed version (green signature icon) and the *eBoL Signed* PDF attached to the POD email look the same as **View eBoL**.
 
 <!-- TODO: Screenshot — View eBoL PDF for an International Export order -->
 
@@ -321,7 +321,7 @@ The eBoL has no driver signature boxes, no **NIR - CTQ#:** line and no **POD Mes
 
 ## :fontawesome-solid-envelope: Send POD to Client
 
-**Who:** Admin, Manager, Dispatch and Customer Service. Accountants see the envelope on the **Orders** list, but their send is refused and no email goes out.
+**Who:** Admin, Manager, Dispatch and Customer Service.
 
 ### When the envelope appears
 
@@ -350,19 +350,12 @@ The envelope button shows in the **Email POD** column when the order has at leas
 
 <!-- TODO: Screenshot — Send POD to client window with To, Cc, Bcc and Subject -->
 
-!!! warning "Known issue: the Subject field is ignored"
-    Whatever you type in **Subject**, the email always goes out with the subject **(Your company) Order #(order number) Delivered**. The field still has to be filled in for the form to submit.
-
-!!! info "Cc and Bcc are not cleared between sends"
-    The window keeps what you typed in **Cc** and **Bcc** until you reload the page. Check them before sending the next order's POD.
-
 ### What the client receives
 
 - **From:** your company name and the **Accountant Email** from **Settings**.
 - **Attachment** (one file):
     - If the order has a delivery or pickup signature: a signed POD PDF named *(Your company) POD Signed #(order number).pdf* (*eBoL Signed* for International Export).
     - Otherwise: the scanned POD PDF, under its original file name.
-    - If the order has neither (for example, the scanned POD was removed after an earlier send), the email goes out with no attachment.
 - **Body:** the heading *New proof of delivery from (your company)*, followed by the order number, order type, client name and reference number. Import and Export orders also show the container number and pickup terminal; other order types show the pickup company, pickup address and delivery address.
 
 ### Envelope colours
@@ -446,11 +439,11 @@ The list shows **Name**, **Orders** and **Active** for the current office. Use *
 
 Click **Save Changes** to save, or **Cancel** to go back.
 
-!!! info "Document types cannot be deleted"
-    There is no working **Delete** option for document types. To stop using one, untick **Active**. The **Orders** column always shows **-**; it does not count documents.
+!!! info "Retiring a document type"
+    To stop using a document type, untick **Active**. Documents that already use it keep their type.
 
 !!! tip "The type list on the Documents panel"
-    The Documents panel lists all **active** document types, sorted by name. It is not limited to the current office: active types from every office appear.
+    The Documents panel lists all **active** document types, sorted by name.
 
 ---
 
@@ -459,27 +452,17 @@ Click **Save Changes** to save, or **Cancel** to go back.
 ### :fontawesome-solid-envelope: I don't see the envelope button on an order
 
 !!! info "Solution"
-    The envelope only shows once the order has a signature, a scanned POD, or a previous email attempt. Upload the scanned POD in **Documents**, or wait for the driver to sign. Also check your role: the **Email POD** column is for Admin, Manager, Dispatch, Customer Service and Accountant.
+    The envelope only shows once the order has a signature, a scanned POD, or a previous email attempt. Upload the scanned POD in **Documents**, or wait for the driver to sign. Also check your role: sending the POD is for Admin, Manager, Dispatch and Customer Service.
 
-### :fontawesome-solid-user-lock: I'm an accountant and the POD email never goes out
-
-!!! info "Solution"
-    Sending the POD is limited to Admin, Manager, Dispatch and Customer Service. Accountants see the envelope, but the send is refused. Ask one of those users to send it.
-
-### :fontawesome-solid-heading: The client received a different subject than the one I typed
+### :fontawesome-solid-user-lock: I'm an accountant and can't send the POD
 
 !!! info "Solution"
-    This is a known issue. The subject is always *(Your company) Order #(order number) Delivered*, whatever is in the **Subject** field.
+    Sending the POD is limited to Admin, Manager, Dispatch and Customer Service. Ask one of those users to send it.
 
 ### :fontawesome-solid-triangle-exclamation: "The POD was not sent. Please correct the email address and try again."
 
 !!! info "Solution"
-    One of the addresses is not valid. Check **To**, **Cc** and **Bcc**: separate several addresses with commas or semicolons. If the addresses are correct, ask an Admin to check that **Invoice Default CC Address** is filled in on the **Settings** page; the POD form also needs it to validate.
-
-### :fontawesome-solid-download: Clicking the green download icon sends me to the dashboard
-
-!!! info "Solution"
-    The download icon works for Admins only. Click the document's **file name** or **file icon** instead to open it.
+    One of the addresses is not valid. Check **To**, **Cc** and **Bcc**: separate several addresses with commas or semicolons.
 
 ### :fontawesome-solid-file-pdf: The client got the signed POD, not the scanned one
 
@@ -506,7 +489,7 @@ Click **Save Changes** to save, or **Cancel** to go back.
 !!! info "Solution"
     **View Internal POD** only appears when the Internal POD option is turned on for your company, and only on the **Orders** list for Admin, Manager, Dispatch and Customer Service. Contact UTX to turn the option on (see [Add-ons & Options](add-ons-and-options.md)).
 
-### :fontawesome-solid-signature: The signed eBoL has no signature
+### :fontawesome-solid-signature: The signed eBoL looks the same as View eBoL
 
 !!! info "Solution"
     This is how the eBoL layout works: it has no driver signature boxes, so the signed version looks the same as **View eBoL**. The signature is still stored on the order and shows as the green signature icon in the **POD** column.
@@ -519,5 +502,5 @@ Click **Save Changes** to save, or **Cancel** to go back.
     - Upload scanned PODs as soon as the paper comes back, so the order leaves the driver's list and the envelope becomes available.
     - Always pick a document type. Untyped files all end up as **Other**.
     - Retire old document types with **Active** rather than renaming them.
-    - Check **Cc** and **Bcc** before each POD email. They carry over from the previous send.
+    - Check **To**, **Cc** and **Bcc** before each POD email.
     - Check the envelope colour after sending: green means delivered, red means the last attempt failed.

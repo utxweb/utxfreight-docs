@@ -1,6 +1,6 @@
 # Notifications & Emails
 
-A reference of every email, text message and on-screen notification UTX Freight sends: what triggers it, who receives it, the subject line, the sender, and which background jobs send things automatically.
+A reference of every email and on-screen notification UTX Freight sends: what triggers it, who receives it, the subject line, the sender, and which background jobs send things automatically.
 
 ## :fontawesome-solid-envelope: Overview
 
@@ -9,7 +9,7 @@ A reference of every email, text message and on-screen notification UTX Freight 
 - :fontawesome-solid-at: **Sender**: every email shows your company name as the display name. The address is either the **Admin Email** (notifications) or the **Accountant Email** (invoices, statements, PODs, garage emails) from [Application Settings](application-settings.md). Invitations and password resets are the exception: their sender is set by UTX for your system.
 - :fontawesome-solid-server: **Mail account**: with **SMTP**, invoices and statements go through the **Invoice Mailer** account and order emails, PODs, reminders, digests and feedback go through the **Notification Mailer** account. With **Postmark**, everything goes through Postmark.
 - :fontawesome-solid-bell: **Toasts** are the small notifications that slide in at the top of the screen after an action (for example **Invoice Sent!** or **Order Dispatched!**).
-- :fontawesome-solid-mobile-screen: **SMS** to the delivery driver exists in the SMS add-on, but in the current version its icon is not shown on order rows (see [Driver SMS](#driver-sms)).
+- :fontawesome-solid-share-from-square: **Driver sign-in links** are copied by dispatch and sent by you, by text message or email (see [Driver Login Links](driver-login-links.md)).
 
 !!! info "One page for everything"
     This page lists every message in one place. The detailed how-to for each one lives on the feature page, linked in each section.
@@ -48,7 +48,7 @@ See [User Roles](user-roles.md) for the full permission list.
 | [Invoicing reminder](#invoicing-reminder) | `Invoicing Reminder - <Weekday, Mon. DD>` (multi-office: `Invoicing Reminder (All Offices) - …`) | Background job, Monday / Wednesday / Friday | Active Admins, Accountants and Managers | Admin Email | Notification |
 | [Invoice](#invoice-email) | What you type (pre-filled `<Your company> Invoice #<number>`) | **Send** in *Send invoice to customer* | What you type in To / Cc / Bcc | Accountant Email | Invoice |
 | [Statement of account](#statement-of-account) | `<Your company> Statement of Account as of <YYYY-MM-DD>` (+ ` - <Office>` with multi-office) | **Send** in *Send statement to customer*, or the automatic statement job | Manual: what you type. Automatic: customer's Accountant Email | Accountant Email | Invoice |
-| [POD](#pod-email) | Always `<Your company> Order #<order number> Delivered` | **Send** in *Send POD to client* | What you type in To / Cc / Bcc | Accountant Email | Notification |
+| [POD](#pod-email) | `<Your company> Order #<order number> Delivered` | **Send** in *Send POD to client* | What you type in To / Cc / Bcc | Accountant Email | Notification |
 | [Container tracking digest](#container-tracking-digest) | `Container Tracking — <N> alert(s)` | Background job | Each subscriber | Admin Email | Notification |
 | [Invitation](#invitation-and-password-reset) | `Invitation instructions` | Adding or re-inviting a person | The invited person | Set by UTX | Not chosen (see below) |
 | [Password reset](#invitation-and-password-reset) | `Reset password instructions` | **I forgot my password** | The person who asked | Set by UTX | Not chosen (see below) |
@@ -59,10 +59,7 @@ See [User Roles](user-roles.md) for the full permission list.
 | [Garage statement](#garage-emails) | `Statement of Account as of <Mon DD, YYYY> - <Your company>` | **Email to** button, or the automatic statement job | Garage customer's Email; CC: Accountant Email; BCC: Admin Email | Accountant Email | Not chosen |
 
 !!! info "\"Not chosen\" mail account"
-    Garage emails, invitations and password resets do not pick the Invoice or Notification account themselves. They go out through the SMTP settings already in use at that moment, which is usually the **Notification Mailer** account. If you use SMTP, make sure **both** accounts are allowed to send as your **Accountant Email**. With Postmark this does not matter.
-
-!!! warning "Changing Admin Email or Accountant Email"
-    For most emails the **From** address is read when the application starts, so after a change some emails may keep the old sender until the application is restarted. The test emails and Garage emails use the new address right away. See [Application Settings](application-settings.md#administrative-email-addresses).
+    Garage emails, invitations and password resets do not have their own mail account setting. They normally go out through the **Notification Mailer** account. If you use SMTP, make sure **both** accounts are allowed to send as your **Accountant Email**. With Postmark this does not matter.
 
 <!-- TODO: Screenshot — Settings page, Administrative Emails rows (Admin Email, Accountant Email) -->
 
@@ -81,16 +78,10 @@ See [User Roles](user-roles.md) for the full permission list.
 | **From** | Your company name and the **Admin Email**. |
 | **Body** | *New order notification*, *<contact> from <customer company> submitted a new order* (the contact is the person the order is placed for, even if staff created it), the order number, client name (or *Container Transfer*), reference number, container number and terminals (import, export, transfer) or pickup and delivery addresses, and a **View new orders** link. |
 
-**Not sent when:**
-
-- the order is a copy made with **Duplicate** (see [Order Duplication](order-duplication.md)),
-- the application is not running in production mode (UTX development and test environments do not send it).
-
-!!! info "The footer says \"submitted by customers\""
-    The email ends with *This notification is send automatically when new orders are submitted by customers.* In fact it is sent for every new order, including the ones your staff create.
+**Not sent when** the order is a copy made with **Duplicate** (see [Order Duplication](order-duplication.md)).
 
 !!! warning "Nobody gets the email?"
-    The email only reaches Admins and Managers who have **Email Notifications** on. Make sure at least one Admin has it on. Errors while sending are ignored, so the order is still saved even if the email fails.
+    The email only reaches Admins and Managers who have **Email Notifications** on. Make sure at least one Admin has it on. The order is always saved, even if the email cannot be sent.
 
 ### Order dispatched and order completed {#order-dispatched-and-order-completed}
 
@@ -104,11 +95,8 @@ See [User Roles](user-roles.md) for the full permission list.
 | **Body** | *Status change notification for order #…*, the new status, **Appointment Date** and **Appointment Time**, then order details | The new status, **Empty container return date** (when set), then order details |
 
 - **Make App.** never sends an email to the customer.
-- Like the new order email, these are only sent when the application runs in production mode.
-- The *View your orders* link at the bottom is only included when your system is set up to link emails back to the app.
-
-!!! warning "The toast does not check Email Notifications"
-    After dispatching, the toast reads *The order was dispatched and a notification was sent to the customer with the appointment information.* (or the completed version) even when the contact has **Email Notifications** off and no email went out. If sending fails, the message ends with **Sending email failed!** instead. See [Order Workflow](order-workflow.md).
+- The *View your orders* link at the bottom is only included when your system is set up to link emails back to the app (ask UTX support).
+- After dispatching, the toast reads *The order was dispatched and a notification was sent to the customer with the appointment information.* (or the completed version). If the email cannot be sent, the message ends with **Sending email failed!** instead. See [Order Workflow](order-workflow.md).
 
 ### Invoicing reminder {#invoicing-reminder}
 
@@ -134,8 +122,8 @@ The table *Completed Orders waiting to be invoiced* has these columns:
 
 With multi-office, there is one section per office, and only offices with something to report are included. The counts respect the **Order Archive Cutoff Date** and **Order Start Date** in [Application Settings](application-settings.md).
 
-!!! warning "The links open the In Progress tab"
-    The **Over 2 Weeks ago**, **2 Weeks ago** and **Missing Date** numbers (and, on some systems, a **View Orders Late for Invoicing** link) point to the Orders page, but they open the default **In Progress** tab, not the late orders. Click the **Late Invoicing** tab on the **Orders** page to see them. That tab is only shown to Admins and Managers, so Accountants who receive the reminder cannot open it.
+!!! tip "Seeing the late orders"
+    The full list of orders waiting to be invoiced is on the **Late Invoicing** tab of the **Orders** page. That tab is shown to Admins and Managers.
 
 ---
 
@@ -157,7 +145,7 @@ Sent from the envelope button on the **Invoices** list. The full procedure is in
 **Delivery status:** shown on the invoice row in the **Invoices** list. Success sets the sent date and **OK**, and a **new** invoice becomes **Invoiced**. A failure shows **Failed!** with the error.
 
 !!! warning "Invoice 'From' Override must be valid"
-    The *Send invoice to customer* and *Send statement to customer* windows carry a hidden **From** value taken from the **Invoice 'From' Override** setting (or the UTX default if yours is blank). If it is missing or not a valid address, sending is refused with **Sending Invoice Failed!** / **Sending Statement Failed!** and *…Please correct the email address and try again.*, and automatic statements are not sent. The email itself still goes out from the **Accountant Email**. See [Application Settings](application-settings.md#administrative-email-addresses).
+    Sending invoices and statements (manual and automatic) needs a valid address in **Settings** > **Invoice 'From' Override** (or the UTX default if yours is blank). Otherwise sending is refused with **Sending Invoice Failed!** / **Sending Statement Failed!** and *…Please correct the email address and try again.* See [Application Settings](application-settings.md#administrative-email-addresses).
 
 ### Statement of account {#statement-of-account}
 
@@ -182,18 +170,15 @@ Sent from the envelope in the **Email POD** column on **Orders** or **Dispatch**
 |------|-------|
 | **Window** | *Send POD to client*: **To**, **Cc**, **Bcc**, **Subject** |
 | **To** | Pre-filled with the email of the order's delivery company (or the order's delivery email) |
-| **Subject** | Always `<Your company> Order #<order number> Delivered` |
+| **Subject** | `<Your company> Order #<order number> Delivered` |
 | **From** | Your company name and the **Accountant Email** |
 | **Attachment** | The signed POD PDF, or the scanned POD if there is no signature |
 | **Mail account** | Notification Mailer |
 
-!!! warning "Subject field is ignored"
-    The window pre-fills **Subject** with *<Your company> Order # <number> Completed*, and the field must be filled in, but the email always goes out with the subject **<Your company> Order #<number> Delivered**.
+!!! warning "POD needs a valid Invoice Default CC"
+    Sending a POD needs a valid address in **Settings** > **Invoice Default CC** (or the UTX default if yours is blank). Otherwise sending is refused with **Sending POD Failed!** and *The POD was not sent. Please correct the email address and try again.* See [Application Settings](application-settings.md#administrative-email-addresses).
 
-!!! warning "POD needs the Invoice Default CC"
-    The window uses the **Invoice Default CC** setting (or the UTX default if yours is blank) as a hidden, required **From** value. If neither exists, or it is not a valid address, sending fails with **Sending POD Failed!** and *The POD was not sent. Please correct the email address and try again.* The email itself is still sent from the **Accountant Email**. See [Application Settings](application-settings.md#administrative-email-addresses).
-
-**Delivery status:** the envelope colour. Blue: never delivered (tooltip *Send POD to client*). Green: last send delivered (tooltip *Last email delivered …*). Red: the last attempt failed after an earlier successful send (the tooltip still shows the date of that earlier delivery). A first send that fails leaves the envelope blue, so rely on the toast.
+**Delivery status:** the envelope colour and the toast. Blue: not delivered yet (tooltip *Send POD to client*). Green: last send delivered (tooltip *Last email delivered …*). Red: the last attempt failed.
 
 ---
 
@@ -234,12 +219,12 @@ Only on systems with a container tracking add-on. Full details in [Container Ale
 ### Feedback {#feedback}
 
 1. Click :fontawesome-solid-comment-dots: **Feedback** in the top menu. The window *We'd love your feedback* opens.
-2. Choose the type (**General**, **Bug Report** or **Suggestion**) and how important it is.
+2. Choose the type of feedback (**General**, **Bug Report** or **Suggestion**) and how important it is.
 3. Type your message in **Your Feedback** (at least 10 characters) and click **Send Feedback**. A *Thank you!* message confirms it.
 
 | Item | Value |
 |------|-------|
-| **Subject** | `[<Category>] Feedback from <your name> on <page>`, where the category is **General**, **Bug Report** or **Suggestion** and the page is the address (path) of the screen you were on |
+| **Subject** | `[<Category>] Feedback from <your name> on <page>`, where the category is the type you chose and the page is the address (path) of the screen you were on |
 | **To** | UTX support (not your company) |
 | **From** | Your company name and the **Admin Email** |
 
@@ -264,28 +249,12 @@ Only with the Garage add-on. All of them are sent **from** your company name and
 
 | Email | Subject | Sent by | Attachment | Extra |
 |-------|---------|---------|------------|-------|
-| **Invoice** | `Invoice <number> from <Your company>` | **Email Invoice** on the invoice | *<Your company> Invoice <number>.pdf* | Sent in the background. A **Draft** invoice becomes **Sent** and a purple **Emailed** badge shows the date as soon as you click, even if delivery later fails. Void invoices and customers with no **Email** are refused. See [Garage Invoices](garage-invoices.md). |
+| **Invoice** | `Invoice <number> from <Your company>` | **Email Invoice** on the invoice | *<Your company> Invoice <number>.pdf* | Sent in the background. A **Draft** invoice becomes **Sent** and a purple **Emailed** badge shows the date. Void invoices and customers with no **Email** are refused. See [Garage Invoices](garage-invoices.md). |
 | **Work summary** | `Work Summary <Mon DD - Mon DD, YYYY> - <Your company>` | **Email to <customer email>** on the **Customer Work Summary**, or the automatic summary job | *<Your company> Work Summary <period>.pdf* | Manual sends go out in the background and are not recorded. |
 | **Statement of account** | `Statement of Account as of <Mon DD, YYYY> - <Your company>` | **Email to <customer email>** on the **Customer Statement**, or the automatic statement job | *<Your company> Statement of Account <YYYY-MM-DD>.pdf* | BCC to the **Admin Email**. Only offered when the customer has outstanding invoices. |
 | **Test statement** | `[TEST] Statement of Account as of <date> - <Your company> (<customer>)` | **Send Test** in the **Send Test Email** box | Same PDF | Only to the **Recipient**: no CC, no BCC, no status change. |
 
 The automatic work summary and statement jobs skip customers with no **Email**, no work orders in the period (*No work orders in period - skipped*), or nothing outstanding (*No outstanding invoices - skipped*). Their result (*Summary delivered*, *Statement delivered*, or the skip or error message) is shown in the customer's schedule box. See [Garage Reports](garage-reports.md).
-
----
-
-## :fontawesome-solid-mobile-screen: Driver SMS {#driver-sms}
-
-The **SMS** add-on contains a text message to the **delivery driver** of an order (there is no SMS for the pickup driver).
-
-!!! warning "The SMS icon is not shown in the current version"
-    In the current version, the SMS icon is not displayed on order rows in **Orders** or **Dispatch**, even when your system has the SMS add-on, so you cannot send a driver SMS from the app. If your system has the Magic Link add-on, use the copy-link icon next to the driver instead and send the link yourself (see [Driver Login Links](driver-login-links.md)). Contact UTX support if you need SMS.
-
-What the SMS contains when it is sent:
-
-- **Window:** **Notify Driver via SMS**, with a **Notify** button.
-- **Message:** *Order# <order number> was assigned to you. View order: <link>*. The link signs the driver in to the order.
-- **To:** the delivery driver's phone number. A `+` is added in front if missing.
-- **Toast:** **Driver notified!** on success, or **Driver not notified!** with the reason (for example *Order must have an assigned delivery driver with a valid phone number*, or *Driver's phone number … is not a mobile number*).
 
 ---
 
@@ -364,15 +333,10 @@ See [Application Settings](application-settings.md#email-delivery-method).
 !!! info "Solution"
     **Email Notifications** does not control it. Every active Admin, Accountant and Manager receives it. The only way to stop it for a person is to change their role or turn off **Active for orders**.
 
-### :fontawesome-solid-link-slash: The links in the Invoicing Reminder show the wrong orders
+### :fontawesome-solid-list-check: Where do I see the orders from the Invoicing Reminder?
 
 !!! info "Solution"
-    Known issue: the links open the **In Progress** tab. Open **Orders** and click **Late Invoicing**.
-
-### :fontawesome-solid-heading: The POD email subject is not what I typed
-
-!!! info "Solution"
-    Known issue. POD emails always use *<Your company> Order #<number> Delivered*.
+    Open **Orders** and click the **Late Invoicing** tab (Admins and Managers).
 
 ### :fontawesome-solid-reply: Customers reply to an address that isn't ours
 

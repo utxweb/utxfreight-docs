@@ -8,7 +8,7 @@ The **Settings** page holds the company-wide values UTX Freight uses on invoices
 - There is one set of settings for the whole system. It is not per office or per customer.
 - The settings are grouped as **Order**, **Invoice**, **POD**, **Email Delivery Method**, the SMTP mailer sections, and **Administrative Email Addresses**.
 - Emails leave the system through one of two **delivery methods**: **SMTP** (your own mail server) or **Postmark** (an email service managed by UTX).
-- With SMTP, two mail accounts are used: the **Invoice Mailer** account sends invoices and statements, and the **Notification Mailer** account sends order emails, PODs, invoicing reminders, alert digests and feedback. A few emails (Garage emails, password-reset and invitation emails) do not pick an account themselves, see [Which account sends which email](#administrative-email-addresses).
+- With SMTP, two mail accounts are used: the **Invoice Mailer** account sends invoices and statements, and the **Notification Mailer** account sends order emails, PODs, invoicing reminders, alert digests and feedback. See [Which account sends which email](#administrative-email-addresses).
 - Every email field has a fallback: if you leave it blank, UTX Freight uses the default UTX configured for your system.
 - The **Settings** page also has a **Test Email Configuration** box and, if you have container tracking, an **Alert Email Subscriptions** box.
 - Every change to the settings is recorded with who made it and what changed.
@@ -26,15 +26,15 @@ The **Settings** page holds the company-wide values UTX Freight uses on invoices
 | Role | Access |
 |------|--------|
 | :fontawesome-solid-user-shield: **Admin** | Full access: view the **Settings** page, edit settings, send test emails, manage alert subscriptions. |
-| :fontawesome-solid-user-tie: **Manager** | The **Settings** item appears in the user menu, but opening it is refused: you are sent back to the dashboard with a "not authorized" message. Ask an Admin to make the change. |
+| :fontawesome-solid-user-tie: **Manager** | No access. Ask an Admin to make the change. |
 | :fontawesome-solid-headset: **Dispatch** / :fontawesome-solid-calculator: **Accountant** / **Customer Service** | No menu item and no access. |
 | :fontawesome-solid-warehouse: **Warehouse** / :fontawesome-solid-wrench: **Garage** | No access. Garage has its own settings page (see [Garage Settings & Taxes](garage-settings-and-taxes.md)). |
 | :fontawesome-solid-user: **Customer / Driver** | No access. |
 
 **To navigate:** click your **name** at the top of the screen to open the user menu :fontawesome-solid-arrow-right: :fontawesome-solid-gear: **Settings**. See [Navigation & Account](navigation-and-account.md).
 
-!!! info "Super User menu"
-    Some people see an extra :fontawesome-solid-user-shield: **Super User** item under **Settings** in the user menu. That menu is for UTX staff only (system monitoring, audit trail, account maintenance). It is not part of your company's settings and is not described in these docs.
+!!! info "UTX staff menu"
+    UTX staff may see an extra item under **Settings** in the user menu (system monitoring and account maintenance). It is not part of your company's settings and is not described in these docs.
 
 The **Manage …** items (cities, zones, terminals and so on), **Charge Types**, **Expense Types** and **Manage Taxes** are in the same user menu but are **not** on the Settings page. See [User Roles](user-roles.md) for how roles work.
 
@@ -55,14 +55,7 @@ What the table shows for email:
 - With **Postmark**, those SMTP rows are replaced by a **Postmark** group showing **API Token** (*Configured* or *Not configured*) and **Message Stream**.
 - The SMTP and **Administrative Emails** rows show the value **actually in use**. If a field is blank in the form, you see the UTX default here instead of an empty cell.
 
-!!! warning "Some on-screen descriptions are out of date"
-    The **Description** column is short and in a few places not accurate. Rely on this page instead:
-
-    - **Order Archive Cutoff Date** says it applies to the "Orders / Search and Dispatch pages". It does **not** affect the **Dispatch** board.
-    - **Order Start Date** says "orders completed after this date". The filter is actually on the order's **delivery date**, on or after the date.
-    - **Admin Email** says "Devise sender". It does **not** set the sender of password-reset or invitation emails.
-    - **Invoice 'From' Override** says it "overrides accountant email". It does not change the sender of invoices.
-    - **Message** says it shows "in the header of each invoice". Where it appears depends on your invoice layout.
+The **Description** column gives a short summary of each value. The sections below explain each one in more detail.
 
 ### Edit Setting form
 
@@ -111,9 +104,6 @@ The other labels (**GST Number**, **QST Number**, **NIR Number**, **Email Delive
 | **Default Terms** (form: **Default Terms for all companies**) | The terms pre-selected when you create a **new** invoice. The dropdown is grouped: **Most Common** (Due on Receipt, 30 Days, 10 Days, 45 Days) and **Other** (15 Days, 21 Days, 60 Days, 90 Days). New systems start at **15 Days**. You can still change the terms on each invoice. Changing this setting does **not** change existing invoices. |
 | **Order Start Date** (form: **Invoice order start date**) | Only completed orders with a **delivery date** on or after this date are offered when you create or edit an invoice. The same limit applies to the **Not Invoiced** and **Late Invoicing** tabs on the Orders page, the invoicing reminder email, and the **Standard** aged receivables report (invoices dated before it are left out, see [Aged Receivables](aged-receivables.md)). Use it if you invoiced outside UTX Freight before. New systems start at 2010-01-01. |
 | **Message** (form: **Invoice Message**) | Free text printed near the top of every invoice. Depending on your invoice layout it appears in red bold next to **TERMS**, or in small text under the **BILL TO** customer address. Use it for payment instructions or other accounting information. Line breaks are kept. |
-
-!!! warning "Keep a date in Order Start Date"
-    If you clear **Order Start Date**, no completed orders are offered on new invoices. Set it to an early date (for example 2010-01-01) instead of leaving it blank.
 
 ## :fontawesome-solid-file-signature: POD Settings
 
@@ -189,12 +179,12 @@ The account used for every other email from UTX Freight.
 
 ## :fontawesome-solid-at: Administrative Email Addresses
 
-| Field | What it really does |
+| Field | What it does |
 |-------|---------------------|
 | **Admin Email** | The **From** address (with your company name as display name) of notification emails: new order, order dispatched, order completed, invoicing reminders, the container tracking alert digest, and feedback sent to UTX. It is also the contact address printed in invitation emails (*Have questions? Contact … at …*) and receives a BCC copy of every Garage statement of account. It does **not** set the sender of password-reset or invitation emails; those come from the UTX configuration of your system. |
 | **Accountant Email** | The **From** address of all invoice, statement of account and POD emails, and of Garage invoices, statements and work summaries. |
-| **Invoice 'From' Override** (form: **Invoice 'From' Address Override**) | Pre-fills a hidden **From** field on the **Send invoice to customer** and **Send statement to customer** windows, and is checked for **automatic statements**. It does **not** change the sender of the email: invoices and statements always go out from **Accountant Email**. The value (yours, or the UTX default if yours is blank) must be a valid address (`accounting@example.com` or `Accounting Dept <accounting@example.com>`). If it is missing or invalid, sending an invoice or statement is refused with *Please correct the email address and try again.*, and automatic statements are not sent. |
-| **Invoice Default CC** (form: **Invoice Default CC Address**) | Pre-fills the **CC** field when you email an invoice or a statement. You can edit or remove it in the window before sending. For **automatic statements** it is added to the customer's own statement CC. It is also used as the hidden **From** field of the POD send window, so if it is blank (and there is no UTX default), sending a POD fails with *Sending POD Failed!* The POD itself is still sent from **Accountant Email**. |
+| **Invoice 'From' Override** (form: **Invoice 'From' Address Override**) | Used when you send invoices and statements (from the **Send invoice to customer** and **Send statement to customer** windows, and for **automatic statements**). Enter a single valid address, for example `accounting@example.com` or `Accounting Dept <accounting@example.com>`. |
+| **Invoice Default CC** (form: **Invoice Default CC Address**) | Pre-fills the **CC** field when you email an invoice or a statement. You can edit or remove it in the window before sending. For **automatic statements** it is added to the customer's own statement CC. |
 
 !!! info "Which account sends which email (SMTP)"
     | Email | Mail account | From address |
@@ -207,18 +197,13 @@ The account used for every other email from UTX Freight.
     | Container tracking alert digest | Notification Mailer | Admin Email |
     | Feedback sent to UTX | Notification Mailer | Admin Email |
     | Test invoice / Test notification | Invoice Mailer / Notification Mailer | Accountant Email / Admin Email |
-    | Garage invoice, statement of account, work summary | Not chosen (see below) | Accountant Email |
-    | Password reset, invitation | Not chosen (see below) | Sender set by UTX for your system |
-
-    Emails marked *Not chosen* do not select a mail account themselves: they go through whichever of the two accounts the application used last (normally the Notification Mailer). So that they always go out, make sure both accounts are allowed to send as **Accountant Email** (Garage emails) and that the UTX sender for password-reset and invitation emails is accepted by your server.
+    | Garage invoice, statement of account, work summary | Set by UTX | Accountant Email |
+    | Password reset, invitation | Set by UTX | Sender set by UTX for your system |
 
     With **Postmark**, all of them go through Postmark, and the From is rewritten as described above.
 
 !!! warning "POD emails mix the two"
     PODs are sent through the **Notification Mailer** account but **from** the **Accountant Email**. If your mail server only lets an account send as its own address, POD emails can be rejected ("sender not allowed"). Either use the same mailbox for both, or allow the notification account to send as the accountant address.
-
-!!! warning "Sender changes and restarts"
-    For most emails sent while people work in the app (order emails, invoices, statements, PODs, feedback), the **From** address is read when the application starts. After changing **Admin Email** or **Accountant Email**, the test emails and Garage emails use the new address right away, but those other emails may keep the old one until the application is restarted. Scheduled emails (automatic statements, invoicing reminders, alert digests) pick up the change on their next run. Ask UTX support if the old sender keeps appearing.
 
 See [Notifications & Emails](notifications-and-emails.md) for who receives each email, and [Invoice Email & Payments](invoice-email-and-payments.md) for the send window.
 
@@ -276,20 +261,20 @@ Every save of the settings is recorded: who made the change, when, and the old a
 !!! info "Solution"
     Password-reset and invitation emails do not use **Admin Email**. Their sender is part of the UTX configuration of your system. Contact UTX support to change it.
 
-### :fontawesome-solid-ban: I set Invoice 'From' Override but invoices still come from the accountant address
+### :fontawesome-solid-ban: I want invoices to come from a different address
 
 !!! info "Solution"
-    That is expected. Invoices, statements and PODs are always sent from **Accountant Email**. Change **Accountant Email** instead.
+    Invoices, statements and PODs are sent from **Accountant Email**. Change **Accountant Email** and save.
 
 ### :fontawesome-solid-ban: Sending an invoice or statement fails with "Please correct the email address and try again"
 
 !!! info "Solution"
-    First check the **To**, **CC** and **BCC** addresses in the window. If they are correct, check **Invoice 'From' Override** on the Settings page: it must show a valid address. Fill it in (for example with your **Accountant Email**) and save.
+    Check the **To**, **CC** and **BCC** addresses in the window. Each must be a complete email address; separate several addresses with a comma or semicolon.
 
-### :fontawesome-solid-ban: Sending a POD always fails
+### :fontawesome-solid-ban: POD emails are rejected with a sender error
 
 !!! info "Solution"
-    Check that **Invoice Default CC** has a valid address (or that the UTX default is used). The POD window uses it as a hidden From value and refuses to send without it. If the error mentions the sender, see [POD emails mix the two](#administrative-email-addresses).
+    PODs are sent through the **Notification Mailer** account from **Accountant Email**. See [POD emails mix the two](#administrative-email-addresses).
 
 ### :fontawesome-solid-ban: Orders are missing from the Orders page
 
@@ -311,16 +296,11 @@ Every save of the settings is recorded: who made the change, when, and the old a
 !!! info "Solution"
     The two tests use different accounts. If the invoice test fails, check **Invoice Mailer Settings**; if the notification test fails, check **Notification Mailer Settings**. The error after *Invoicing Failed:* or *Notification Failed:* tells you why.
 
-### :fontawesome-solid-ban: I'm a Manager and Settings sends me back to the dashboard
-
-!!! info "Solution"
-    Managers see the **Settings** menu item but cannot open the page. Ask an Admin to make the change.
-
 ## :fontawesome-solid-star: Best Practices
 
 !!! tip "Best Practices"
     - Fill in **GST Number**, **QST Number** and **NIR Number** before sending your first invoice.
     - After any email change, save and then use **Send Test** with your own address.
     - Use a mailbox you actually read for **Accountant Email** and **Admin Email**: with Postmark, customer replies go there.
-    - Keep **Invoice 'From' Override** and **Invoice Default CC** filled in with valid addresses, so invoices, statements and POD emails can be sent and you keep a copy of invoices and statements.
-    - Never clear **Order Start Date** or **Order Archive Cutoff Date**; move them instead. A blank **Order Start Date** stops completed orders from being offered on new invoices.
+    - Fill in **Invoice Default CC** with a mailbox you keep, so you have a copy of every invoice and statement you send.
+    - Keep a date in **Order Start Date** and **Order Archive Cutoff Date**; move them forward or back as needed (for example to 2010-01-01 to include everything).

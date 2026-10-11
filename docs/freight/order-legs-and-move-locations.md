@@ -65,7 +65,7 @@ Each leg is one row with three choices and a remove button:
 
 | Part | What it is |
 |------|------------|
-| **Move From** | Where the move starts. A dropdown grouped under **Move Location** (every move location in your account, see [Disabling and deleting](#disabling-and-deleting)) and **Terminal** (active terminals from every office). |
+| **Move From** | Where the move starts. A dropdown grouped under **Move Location** (your active move locations, see [Disabling and deleting](#disabling-and-deleting)) and **Terminal** (active terminals). |
 | Driver | The driver who does this move. Lists the active drivers of your current office. Can be left blank. |
 | **Move To** | Where the move ends. Same grouped dropdown as **Move From**. |
 | **(-) Remove** | Removes the leg when you save. |
@@ -146,7 +146,6 @@ Automatic legs (Dry Van Move and Container Transfer only) are rebuilt when:
 They are **not** rebuilt when:
 
 - You save the **Dispatch**, **Quick Edit** or **Complete** window. The legs are saved exactly as they are in the **Order Legs** panel.
-- You change the pickup terminal directly in the **Orders** list or the **Dispatch** board. A Transfer leg keeps the old pickup terminal until one of the actions above rebuilds it.
 - The order is created with **Duplicate** or from the **Auto Orders** review window. These orders start with no legs (duplicates do not copy legs) until one of the actions above builds them. See [Order Duplication](order-duplication.md) and [Auto Orders](auto-orders.md).
 
 !!! info "Rebuilt legs are new legs"
@@ -196,7 +195,6 @@ Go to your name in the top bar :fontawesome-solid-arrow-right: **Manage Move Loc
 | Column | What it shows |
 |--------|---------------|
 | **Name** | The location name, as it appears in the leg dropdowns |
-| **Legs Count** | Always shows **-** (not calculated) |
 | **Active** | Green check mark (active) or red cross (inactive) |
 | *(no heading)* | An **Actions** button with **Edit** and **View History** |
 
@@ -219,12 +217,9 @@ Go to your name in the top bar :fontawesome-solid-arrow-right: **Manage Move Loc
 
 ### :fontawesome-solid-ban: Disabling and deleting
 
-There is no **Delete** action for move locations. To retire a location, **Edit** it and uncheck **Active**.
+There is no **Delete** action for move locations. To retire a location, **Edit** it and uncheck **Active**. Only active move locations are offered for new orders.
 
-!!! warning "Inactive locations still appear in the leg dropdowns"
-    Despite the **Active** hint, the **Move From** and **Move To** dropdowns list **every** move location in your account — active and inactive, and from all offices. Unchecking **Active** only changes the check mark on the **Leg Move Locations** page. Give retired locations a clear name (for example prefix them with "OLD -") if you want dispatchers to stop picking them.
-
-    Terminals behave differently: only **active** terminals appear under **Terminal** in the dropdowns. See [Managing Terminals](managing-terminals.md).
+Terminals work the same way: only **active** terminals appear under **Terminal** in the dropdowns. See [Managing Terminals](managing-terminals.md).
 
 ---
 
@@ -240,11 +235,6 @@ There is no **Delete** action for move locations. To retire a location, **Edit**
 !!! info "Solution"
     When a Dry Van Move has a driver, saving the full **Edit Order** form or changing a driver inline on the **Orders** list or **Dispatch** board rebuilds the legs and deletes all existing ones. Re-add your extra legs from **Quick Edit** after the drivers are final.
 
-### :fontawesome-solid-arrows-rotate: The Transfer leg still shows the old pickup terminal
-
-!!! info "Solution"
-    Changing the pickup terminal inline on the **Orders** list or **Dispatch** board does not rebuild the leg. Open **Edit Order** and click **Submit Order**, or change the pickup driver or **Return To** inline, to rebuild it.
-
 ### :fontawesome-solid-lock: I can't edit the legs of a Container Transfer
 
 !!! info "Solution"
@@ -258,7 +248,7 @@ There is no **Delete** action for move locations. To retire a location, **Edit**
 ### :fontawesome-solid-trash-can: How do I delete a move location?
 
 !!! info "Solution"
-    You can't — the page has no **Delete** action. Edit the location and uncheck **Active**, keeping in mind that inactive locations still show in the leg dropdowns.
+    You can't — the page has no **Delete** action. Edit the location and uncheck **Active**.
 
 ### :fontawesome-solid-circle-dot: My active leg is no longer highlighted
 
@@ -272,6 +262,6 @@ There is no **Delete** action for move locations. To retire a location, **Edit**
 !!! tip "Getting the most out of legs"
     - For **Dry Van Moves**, set both drivers first and let UTX Freight build the legs; only add extra legs afterwards from **Quick Edit**.
     - For **Container Transfers**, keep the pickup terminal, return terminal and pickup driver correct — the leg follows them.
-    - Keep your **Move Locations** list short and clearly named, since inactive locations still show in the dropdowns.
+    - Keep your **Move Locations** list short and clearly named, and uncheck **Active** on locations you no longer use.
     - Use the **active** badge on the Dispatch board to show the team which leg is in progress.
     - Check **Legs** and **Details** on the Dispatch board each morning to balance today's work between drivers.

@@ -10,8 +10,8 @@ These lists are simple: each entry has a name, an office and, for steamship line
 - :fontawesome-solid-ship: **Steamship Lines** (**Manage Steamship Lines**): the shipping lines offered in the **Steamship line** field of container orders. Admins only, intermodal accounts only.
 - :fontawesome-solid-box: **Container Sizes** (**Manage Container Sizes**): the sizes offered in the **Container size** field of container orders. Admins only, intermodal accounts only.
 - :fontawesome-solid-building: Every entry belongs to an **office**. Each list shows the entries of the office you are currently working in.
-- :fontawesome-solid-clock-rotate-left: Changes are recorded (when data auditing is turned on for your account) and can be viewed with **Actions** → **View History**.
-- :fontawesome-solid-trash: A broker can be deleted only while no order and no expense uses it. Steamship lines and container sizes cannot be deleted from the screen; uncheck **Active** instead.
+- :fontawesome-solid-clock-rotate-left: Changes are recorded (when change history is turned on for your account; ask UTX support) and can be viewed with **Actions** → **View History**.
+- :fontawesome-solid-trash: A broker can be deleted only while no order and no expense uses it. Steamship lines and container sizes are retired by unchecking **Active**.
 
 !!! warning "Three different things are called \"broker\""
     UTX Freight uses the word *broker* in three unrelated places. They are separate records and are not linked to each other:
@@ -54,7 +54,7 @@ The new entry is now available in the matching dropdown on your orders.
 These items sit in the user menu with the other **Manage …** items (**Manage Cities**, **Manage Zones** and so on). They are **not** inside the **Settings** page. A menu item only appears for users who have access to it.
 
 !!! info "Intermodal only"
-    **Manage Steamship Lines** and **Manage Container Sizes** only appear when your account runs in intermodal (container) mode. **Manage Brokers** appears in every mode.
+    **Manage Steamship Lines** and **Manage Container Sizes** only appear when your account is set up for intermodal (container) work. This is switched on by UTX; ask UTX support if you need it. **Manage Brokers** appears for every account.
 
 !!! info "Multi-office"
     Each **Manage …** page shows the entries of the office you are currently working in. When you create or edit an entry, the **Office** dropdown lists the offices you belong to. See [Multi-Office](multi-office.md).
@@ -103,10 +103,7 @@ Renaming a broker changes the name everywhere it is shown, including on existing
 
 ### Expense report
 
-The :fontawesome-solid-dollar-sign: **Expense report** button opens the **Expenses** page (subtitle *Tracking of expenses for brokers*) with **Expense payment status** set to **Unpaid Only**. It is meant to show what you still owe the broker.
-
-!!! warning "The Expense report opens empty"
-    The button does not pass the broker in the format the **Expenses** page expects, so the page always opens with **no expenses** listed and **Select a filter** showing **No Filter**. To see the broker's expenses, choose the broker under **Select a filter** (in the **Broker** group) and click **Search**.
+The :fontawesome-solid-dollar-sign: **Expense report** button opens the **Expenses** page (subtitle *Tracking of expenses for brokers*) with **Expense payment status** set to **Unpaid Only**. Choose the broker in **Select a filter** and click **Search** to review what you still owe that broker.
 
 On the **Expenses** page you can refine the list with:
 
@@ -149,7 +146,7 @@ The **Steamship Lines** page (subtitle *Management of Steamship Lines*) lists th
 |--------|-------------|
 | **Name** | The steamship line name |
 | **Description** | The optional description |
-| **Orders** | Always shows **-**. The number of orders is not counted on this page |
+| **Orders** | Shows **-** on this page |
 | **Active** | A green :fontawesome-solid-circle-check: when active, a red :fontawesome-solid-circle-xmark: when inactive |
 | *(Actions)* | The **Actions** menu: **Edit**, **View History** |
 
@@ -186,7 +183,7 @@ The **Container Sizes** page (subtitle *Management of Container Sizes*) lists th
 |--------|-------------|
 | **Name** | The container size name, as shown on orders (for example `40HC`) |
 | **Description** | The optional description |
-| **Orders** | Always shows **-**. The number of orders is not counted on this page |
+| **Orders** | Shows **-** on this page |
 | **Active** | A green :fontawesome-solid-circle-check: when active, a red :fontawesome-solid-circle-xmark: when inactive |
 | *(Actions)* | The **Actions** menu: **Edit**, **View History** |
 
@@ -216,11 +213,11 @@ The **Container Sizes** page (subtitle *Management of Container Sizes*) lists th
 
 ## :fontawesome-solid-toggle-on: Active vs. Delete (Steamship Lines & Container Sizes)
 
-- :fontawesome-solid-ban: **Delete** is not offered for steamship lines or container sizes. The list does not count orders, so it cannot confirm that an entry is unused, and the **Delete** item stays hidden.
+- :fontawesome-solid-ban: **Delete** is not offered for steamship lines or container sizes.
 - :fontawesome-solid-toggle-off: To retire an entry, **Edit** it and uncheck **Active**.
 
-!!! warning "Inactive entries are moved down, not hidden"
-    In the order dropdowns, active entries are listed first (alphabetically), followed by inactive ones. Unchecking **Active** moves an entry to the end of the dropdown; it does not remove it. Existing orders keep their steamship line or container size either way.
+!!! info "Existing orders are not affected"
+    Existing orders keep their steamship line or container size when you uncheck **Active**.
 
 ---
 
@@ -228,7 +225,7 @@ The **Container Sizes** page (subtitle *Management of Container Sizes*) lists th
 
 Every list on this page has **Actions** → **View History**. It opens a **History** window without leaving the page.
 
-History is only recorded while data auditing is turned on for your account. Changes made while it was off do not appear, and an entry with no recorded changes shows an empty table.
+History is only recorded while change history is turned on for your account (ask UTX support). Changes made while it was off do not appear, and an entry with no recorded changes shows an empty table.
 
 <!-- TODO: Screenshot — History modal for a steamship line showing User, Changes and When columns with a red -> green value change -->
 
@@ -259,7 +256,7 @@ Click **Close** (or the **×**) to close the window.
 ### :fontawesome-solid-eye-slash: I can't see Manage Steamship Lines or Manage Container Sizes
 
 !!! info "Solution"
-    Both are available to **Admins** only, and only when your account runs in intermodal mode. Managers can open **Manage Brokers** but not these two lists. Ask an Admin. Also make sure you are looking in the user menu under your **name**, not on the **Settings** page.
+    Both are available to **Admins** only, and only when your account is set up for intermodal work (ask UTX support). Managers can open **Manage Brokers** but not these two lists. Ask an Admin. Also make sure you are looking in the user menu under your **name**, not on the **Settings** page.
 
 ### :fontawesome-solid-trash: There is no Delete option for a broker
 
@@ -269,12 +266,7 @@ Click **Close** (or the **×**) to close the window.
 ### :fontawesome-solid-trash: How do I delete a steamship line or a container size?
 
 !!! info "Solution"
-    You can't from the screen. **Edit** the entry and uncheck **Active**. It moves to the end of the order dropdowns, and past orders keep their value.
-
-### :fontawesome-solid-list: I unchecked Active but the entry still shows in the order form
-
-!!! info "Solution"
-    That is expected. Inactive steamship lines and container sizes are still listed, after the active ones. If an entry is a duplicate or a typo, rename it to something clearly marked (for example *Do not use*) so nobody picks it by mistake.
+    Steamship lines and container sizes are not deleted. **Edit** the entry and uncheck **Active**. Past orders keep their value.
 
 ### :fontawesome-solid-user: I added a broker but I can't find it in the Transport Company / Broker field
 
@@ -286,10 +278,10 @@ Click **Close** (or the **×**) to close the window.
 !!! info "Solution"
     A broker record is just a name in a list; it has no login. To let a broker use the mobile app, create a mobile user with the **Broker** role under **Mobile Users** → **Drivers, Brokers & Yard**. See [Mobile Users](mobile-users.md).
 
-### :fontawesome-solid-dollar-sign: The Expense report is empty
+### :fontawesome-solid-dollar-sign: The Expense report doesn't show paid expenses
 
 !!! info "Solution"
-    This is a known limitation: the **Expense report** button always opens an empty list. On the **Expenses** page, choose the broker under **Select a filter** (in the **Broker** group), pick the **Expense payment status** you want, and click **Search**. The button starts on **Unpaid Only**: if everything has already been paid by check, switch to **Paid and Unpaid**.
+    The **Expense report** starts on **Unpaid Only**. To include expenses that have already been paid by check, choose the broker in **Select a filter**, set **Expense payment status** to **Paid and Unpaid** and click **Search**.
 
 ---
 

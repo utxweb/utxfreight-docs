@@ -8,19 +8,18 @@ UTX Freight connects to a small number of outside services. All of them are set 
 
 | Integration | What it does for you | Add-on / option | Where you see it |
 |-------------|----------------------|-----------------|------------------|
-| :fontawesome-solid-train: **CN Rail** | Container status, ETA, Last Free Day, customs, GPS and bill of lading from CN | CN tracking (`track_n_trace_cn`) | Tracking icon on **Orders** / **Dispatch**, **CN Tracking** and **Alerts** on **Dispatch** |
-| :fontawesome-solid-ship: **Port of Montreal (Termont)** | Container availability, holds, customs, vessel and carrier data from Termont / Viau | Port of Montreal tracking (`track_n_trace_port_of_montreal`) | Tracking icon on **Orders** / **Dispatch**, **Port Tracking** and **Alerts** on **Dispatch** |
-| :fontawesome-solid-ship: **MGT (Racine/Cast)** | Container availability, holds, customs, vessel and carrier data from MGT | MGT tracking (`track_n_trace_mtrtml`) | Tracking icon on **Orders** / **Dispatch**, **Port Tracking** and **Alerts** on **Dispatch** |
-| :fontawesome-solid-wand-magic-sparkles: **AWS Textract** | Reads uploaded delivery orders and pre-fills a new order | Textract (`textract`), beta | **Upload** button and **AUTO ORDERS** card on **Orders** |
-| :fontawesome-solid-comment-sms: **Twilio SMS** | Texts the delivery driver the order and their Login Link | SMS (`sms`) | **Currently unavailable** -- the SMS icon is never shown |
+| :fontawesome-solid-train: **CN Rail** | Container status, ETA, Last Free Day, customs, GPS and bill of lading from CN | CN tracking | Tracking icon on **Orders** / **Dispatch**, **CN Tracking** and **Alerts** on **Dispatch** |
+| :fontawesome-solid-ship: **Port of Montreal (Termont)** | Container availability, holds, customs, vessel and carrier data from Termont / Viau | Port of Montreal tracking | Tracking icon on **Orders** / **Dispatch**, **Port Tracking** and **Alerts** on **Dispatch** |
+| :fontawesome-solid-ship: **MGT (Racine/Cast)** | Container availability, holds, customs, vessel and carrier data from MGT | MGT tracking | Tracking icon on **Orders** / **Dispatch**, **Port Tracking** and **Alerts** on **Dispatch** |
+| :fontawesome-solid-wand-magic-sparkles: **AWS Textract** | Reads uploaded delivery orders and pre-fills a new order | Auto Orders (beta) | **Upload** button and **AUTO ORDERS** card on **Orders** |
 | :fontawesome-solid-envelope: **Postmark** | Sends all outgoing emails through a UTX-managed email service | **Email Delivery Method** = Postmark in **Settings** | **Settings** page, the *From* line of every email |
 | :fontawesome-solid-file-csv: **EDI 210 invoice CSV** | Downloads one invoice as an EDI 210 CSV file | EDI invoicing (account option set by UTX) | **Invoices** > :fontawesome-solid-gear: **Actions** > **EDI 210** |
 | :fontawesome-solid-file-excel: **QuickBooks-ready export** | Exports the listed invoices in a QuickBooks import layout | None (standard) | **Invoices** > **Export** panel |
-| :fontawesome-solid-barcode: **NHTSA VIN decoder** | Fills **Year**, **Make** and **Model** from a VIN | Garage (`garage`) | Garage **Equipment** form > **Decode** |
+| :fontawesome-solid-barcode: **NHTSA VIN decoder** | Fills **Year**, **Make** and **Model** from a VIN | Garage | Garage **Equipment** form > **Decode** |
 
 - :fontawesome-solid-puzzle-piece: **Add-ons** are turned on per account by UTX. If a button or icon described here is missing, the add-on is probably off. See [Add-ons and Options](add-ons-and-options.md).
 - :fontawesome-solid-arrows-rotate: **Automatic vs. on demand** -- container tracking and Auto Orders run in the background on a schedule. EDI, QuickBooks export and VIN decoding happen only when you click the button.
-- :fontawesome-solid-key: **Credentials** -- the CN, MGT, AWS, Twilio and Postmark accounts belong to UTX and are stored on the server. They are never shown in the app.
+- :fontawesome-solid-key: **Credentials** -- the CN, MGT, AWS and Postmark accounts belong to UTX and are stored on the server. They are never shown in the app.
 - :fontawesome-solid-ban: **No public API** -- UTX Freight does not offer an API for customers. See [Is there an API?](#is-there-an-api).
 
 ---
@@ -28,7 +27,7 @@ UTX Freight connects to a small number of outside services. All of them are set 
 ## :fontawesome-solid-bolt: Quick Start
 
 - **Track containers:** ask UTX to turn on the tracking add-on for your terminal (CN, Port of Montreal, MGT). Make sure your pickup terminals are named as in [Which terminal triggers which source](#which-terminal-triggers-which-source). Then click the tracking icon in the **Container#** column on **Orders** or **Dispatch**.
-- **Create orders from documents:** with the Textract add-on, click **Upload** on **Orders**, wait for the document to reach **Need Review**, then click **Review**.
+- **Create orders from documents:** with the Auto Orders add-on, click **Upload** on **Orders**, wait for the document to reach **Need Review**, then click **Review**.
 - **Send an invoice as EDI 210:** on **Invoices**, open the :fontawesome-solid-gear: **Actions** menu of the invoice and click **EDI 210**.
 - **Export invoices for QuickBooks:** on **Invoices**, filter the list, choose **Layout** **QuickBooks columns** in the **Export** panel and click **Export**.
 - **Decode a VIN:** in the Garage, on the equipment form, type the **VIN** and click **Decode**.
@@ -41,13 +40,12 @@ Each integration follows the permissions of the feature it lives in.
 
 | Integration | Who can use it |
 |-------------|----------------|
-| **Container tracking popup** (CN, Termont, MGT) | Admin, Manager, Dispatch, Customer Service. Accountant on **Orders** only when the account option `accountant_can_manage_orders` is on. Customers, drivers, warehouse and garage users don't see it. See [Container Tracking](container-tracking.md#access-permissions) |
+| **Container tracking popup** (CN, Termont, MGT) | Admin, Manager, Dispatch, Customer Service. Accountant on **Orders** only when your account lets accountants manage orders (an option set by UTX -- ask UTX support). Customers, drivers, warehouse and garage users don't see it. See [Container Tracking](container-tracking.md#access-permissions) |
 | **Container Alerts** page | Opened with the **Alerts** button on **Dispatch**, so Admin, Manager, Dispatch and Customer Service. Only Admins can mark alerts read or unread. See [Container Alerts](container-alerts.md) |
-| **Auto Orders** (Textract) | Admin, Manager, Dispatch and Customer Service can upload and review. Saving an order from the review window currently works for Admins only. See [Auto Orders](auto-orders.md) |
+| **Auto Orders** | Admin, Manager, Dispatch and Customer Service can upload and review. See [Auto Orders](auto-orders.md) |
 | **Email Delivery Method** (Postmark) | Admin only (**Settings**). See [Application Settings](application-settings.md) |
 | **EDI 210** and **QuickBooks** export | Admin, Manager and Accountant (the roles that can open **Invoices**). Dispatch and Customer Service have no access |
 | **VIN Decode** | Admin, Manager and Garage users (the roles that can edit Garage equipment) |
-| **SMS** | Nobody at the moment -- see [Twilio SMS](#twilio-sms-currently-unavailable) |
 
 ---
 
@@ -65,11 +63,11 @@ The source is chosen from the order's **pickup terminal** name (upper or lower c
 | :fontawesome-solid-ship: **Termont (Port of Montreal)** | Contains **TERMONT** or **VIAU** | Blue ship |
 | :fontawesome-solid-ship: **MGT (Racine/Cast)** | Contains **RACINE** or **CAST** | Orange ship |
 
-!!! warning "Start the terminal name with the keyword"
-    The icon and the background checks only need the keyword somewhere in the name, but the tracking popup picks its source from the **first word** of the terminal name (**CN**, **TERMONT**, **VIAU**, **RACINE** or **CAST**). A terminal named, for example, *Port CAST* gets an icon, but its popup finds no data. Name terminals so the keyword comes first.
+!!! tip "Start the terminal name with the keyword"
+    The tracking popup picks its source from the **first word** of the terminal name (**CN**, **TERMONT**, **VIAU**, **RACINE** or **CAST**). Name tracked terminals so the keyword comes first, for example *CAST Montreal* rather than *Montreal CAST*.
 
 !!! info "New or renamed terminals"
-    UTX Freight reads which terminals are CN, Termont or MGT terminals when the application starts. A terminal you add or rename may not be picked up for tracking until the application next restarts. If tracking does not start for a new terminal, contact UTX support.
+    If tracking does not start for a terminal you have just added or renamed, contact UTX support.
 
 See [Managing Terminals](managing-terminals.md) to set up your terminals.
 
@@ -85,7 +83,7 @@ If one of CN's supplementary data sets (ETA, BOL, GPS or status) fails, the rest
 
 ### Refresh behaviour
 
-- :fontawesome-solid-clock: **Stored data is refreshed automatically.** A scheduled job run by UTX checks the containers and stores the result. You cannot trigger that check from the app. The Container Alerts page says the data is pulled every 10 minutes; the exact interval is set by UTX. The **Updated ... ago** line in the popup tells you when that container was last refreshed.
+- :fontawesome-solid-clock: **Stored data is refreshed automatically.** A scheduled job run by UTX checks the containers and stores the result. You cannot trigger that check from the app. The refresh interval is set by UTX. The **Updated ... ago** line in the popup tells you when that container was last refreshed.
 - :fontawesome-solid-train: **One live lookup:** the **CN Tracking** button on **Dispatch** asks CN live (basic tracking data only) each time you open it. It does not refresh the stored data that the popup, alerts and **Port Tracking** use. **Port Tracking** shows stored data only. See [Tracking Bulk Update](tracking-bulk-update.md).
 - :fontawesome-solid-filter: **Only in-progress orders** (status **New**, **App. Taken** or **Dispatched**) created after the **Order Archive Cutoff Date** are checked. A container stops being checked once it has left the terminal (CN: **Departed** or **Completed**; Termont / MGT: transit state **Out**).
 - :fontawesome-solid-layer-group: **Batches:** orders are processed in groups of 200 for CN, 50 for MGT and 10 for Termont. Within a group, a container number that appears on several orders is checked once. Blank container numbers and **N/A** are skipped.
@@ -100,7 +98,7 @@ If one of CN's supplementary data sets (ETA, BOL, GPS or status) fails, the rest
 
 ## :fontawesome-solid-wand-magic-sparkles: Auto Orders (AWS Textract)
 
-**Add-on:** Textract (beta). **Where:** **Orders** > **Upload** button and the **AUTO ORDERS** card (**Processing**, **Need Review**, **Completed**).
+**Add-on:** Auto Orders (beta). **Where:** **Orders** > **Upload** button and the **AUTO ORDERS** card (**Processing**, **Need Review**, **Completed**).
 
 **Data flow:**
 
@@ -112,19 +110,6 @@ If one of CN's supplementary data sets (ETA, BOL, GPS or status) fails, the rest
 **Refresh:** the move from **Processing** to **Need Review** waits for the next scheduled check, so there is a delay. Reload the **Need Review** tab after a while.
 
 Full guide, including recognised document layouts and error messages: [Auto Orders](auto-orders.md).
-
----
-
-## :fontawesome-solid-comment-sms: Twilio SMS (currently unavailable)
-
-**Add-on:** SMS (`sms`). **Service:** Twilio, using UTX's Twilio account and sending number.
-
-The SMS integration was built to text the order's **delivery driver** a message like *Order# &lt;order number&gt; was assigned to you. View order: &lt;link&gt;*, where the link is the driver's Login Link.
-
-!!! warning "SMS is not available right now"
-    Because of a known issue, the SMS icon next to the delivery driver is **never shown**, even when the SMS add-on is on. There is no other way to send the SMS from UTX Freight. If your account has the Login Links add-on (`magic_link`), copy the driver's Login Link instead and send it yourself. See [Driver Login Links & SMS](driver-login-links.md).
-
-For reference, once restored: the driver must have a phone number (a `+` is added in front if it is missing), and Twilio errors such as an invalid, unreachable, blocked, international or non-mobile number are shown as messages on the order. Details in [Driver Login Links & SMS](driver-login-links.md#sms-notifications-currently-unavailable).
 
 ---
 
@@ -234,11 +219,6 @@ To get data out of UTX Freight, use the built-in exports (for example the invoic
 
 !!! info "Solution"
     With **Postmark** selected, the From address is a UTX sending address, while the sender name stays yours and Reply-To points to your original address. Replies still reach you. If you need your own From address, switch **Email Delivery Method** back to **SMTP**.
-
-### :fontawesome-solid-comment-sms: Drivers are not getting SMS
-
-!!! info "Solution"
-    SMS is currently unavailable. If your account has the Login Links add-on (`magic_link`), copy the driver's Login Link and send it yourself. See [Driver Login Links & SMS](driver-login-links.md).
 
 ### :fontawesome-solid-key: Can I get an API token?
 

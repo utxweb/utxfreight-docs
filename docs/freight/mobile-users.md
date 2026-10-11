@@ -18,7 +18,7 @@ A **mobile user** is someone who works in UTX Freight from a phone instead of th
 
 1. In the left menu, open :fontawesome-solid-user: **Mobile Users** :fontawesome-solid-arrow-right: **Drivers, Brokers & Yard**.
 2. Click **Add a new mobile user**.
-3. Fill in **Firstname** and **Lastname**. Add the **Phone #** if you send SMS notifications.
+3. Fill in **Firstname** and **Lastname**. Optionally add the **Phone #**.
 4. Pick the **Role**: **Driver**, **Broker** or **Yard Worker**.
 5. Type an **Access Code** of 5 to 16 characters. It must not be used by any other mobile user.
 6. Leave **Active** checked and click **Save**.
@@ -74,14 +74,12 @@ There is no search box. The list is sorted by first name and shows 50 users per 
 | **Phone #** | The phone number entered on the form. |
 | **Email** | The email entered on the form. |
 | **Truck #** | The truck number entered on the form. |
-| **Active Deliveries** | Always shows **-**. This column is not filled in. |
-| **Total Legs** | Always shows **-**. This column is not filled in. |
 | **Active** | A green check icon when active, a red cross icon when disabled. |
-| **Last Login** | Date and time of the user's previous sign-in (by Access Code or login link). Each time the user signs in, this column takes the time of the sign-in before it; after the very first sign-in it shows that sign-in. Empty if they have never signed in. |
+| **Last Login** | Date and time the user last signed in (by Access Code or login link). Empty if they have never signed in. |
 | (Actions) | The **Actions** button with a drop-down menu: **Edit User**, and **Disable** or **Enable**. |
 
-!!! info "Active Deliveries and Total Legs are always '-'"
-    These two columns are placeholders. They always show **-** for every user, whatever work the user has done. To see a driver's work, use the [Dispatch](dispatch.md) board or [Reports](reports.md).
+!!! tip "Seeing a driver's work"
+    To see the orders and legs a driver has worked on, use the [Dispatch](dispatch.md) board or [Reports](reports.md).
 
 ### :fontawesome-solid-palette: Color Guide
 
@@ -115,17 +113,14 @@ Fields marked with * are required.
 |-------|----------|-------------|
 | **Firstname** | * | First name. Shown in the list and in driver drop-downs. |
 | **Lastname** | * | Last name. |
-| **Phone #** | | The user's phone number. Needed if your system has the **SMS** add-on and you send order SMS to drivers. Enter it with the country code (for example `15145550123`); a `+` is added in front when the SMS is sent if you leave it out. See [Notifications & Emails](notifications-and-emails.md). |
+| **Phone #** | | The user's phone number, for your reference. Shown in the list. |
 | **Email** | | Email address, for your reference. It is not used to sign in. |
 | **Truck #** | | The truck the user drives, for your reference. Shown in the list. |
 | **Driver's License #** | | Licence number, for your reference. Not shown in the list. |
 | **Role** | * | **Driver**, **Broker** or **Yard Worker**. See [Roles](#roles). |
-| **Office** | * | The office the user belongs to. Hint: *Office to which the driver is assigned*. The list contains the offices you belong to, and starts on the office you are working in. See the warning below about new users. |
+| **Office** | * | The office the user belongs to. Hint: *Office to which the driver is assigned*. The list contains the offices you belong to, and starts on the office you are working in. |
 | **Access Code** | * | The code the user types to sign in on the phone. Hint: *Code used by the driver to access the application. The driver must be active!* See [Access Code rules](#access-code-rules). |
 | **Active** | | Checked = the user can sign in and be assigned. Hint: *Only active drivers can access the system*. |
-
-!!! warning "New users are saved in your current office"
-    When you **add** a mobile user, the user is always saved in the office you are currently working in, whatever you pick in **Office**. To put the user in another office, either switch to that office before adding them, or save them and then edit them and change **Office**.
 
 !!! info "No delete"
     Mobile users cannot be deleted from this page. When someone leaves, **disable** them instead. Their past orders and legs keep their name.
@@ -184,9 +179,6 @@ The user stays on screen until you reload the page or switch filter. Then they m
 
 **From the form:** uncheck or check **Active** on the **Edit Mobile User** page and click **Save**.
 
-!!! warning "A login link sent earlier still works after disabling"
-    Disabling stops the Access Code from working. But a login link that dispatch sent before you disabled the user keeps signing them in until that link expires. Changing the Access Code does not cancel the link either. See [Driver Login Links](driver-login-links.md).
-
 ---
 
 ## :fontawesome-solid-right-to-bracket: Signing In on a Phone (Access Code)
@@ -195,7 +187,7 @@ Mobile users sign in on their phone's web browser. No app download is needed.
 
 1. Open UTX Freight in the phone's browser. The sign-in page shows the heading **Are you a driver or yard worker ?** under the normal email and password form.
 2. Tap **Mobile Login**.
-3. Type the code in the **Access code** field. The characters are hidden as you type.
+3. Type the code in the **Access Code** field. The characters are hidden as you type.
 4. Tap **Sign in**.
 
 <!-- TODO: Screenshot — Phone sign-in page showing "Are you a driver or yard worker ?" and the Mobile Login button, then the Access Code screen -->
@@ -207,7 +199,7 @@ Mobile users sign in on their phone's web browser. No app download is needed.
 
 There is no "remember me" box on the Access Code screen.
 
-Sign-in only works when the user is **Active**. Signing in with an Access Code (even with a wrong code) also signs out anyone who was signed in on that browser before.
+Sign-in only works when the user is **Active**.
 
 !!! info "Use the phone's browser"
     The **Are you a driver or yard worker ?** heading and the **Mobile Login** button appear on the phone version of the sign-in page. The computer version of the sign-in page only shows the email and password form.
@@ -219,10 +211,10 @@ Sign-in only works when the user is **Active**. Signing in with an Access Code (
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
-### :fontawesome-solid-ban: The driver enters the code and the screen just comes back empty
+### :fontawesome-solid-ban: The driver's Access Code is not accepted
 
 !!! info "Solution"
-    The sign-in page reloads without an error message when the code is not accepted. Check, on the **Edit Mobile User** page:
+    If the code is not accepted, check the following on the **Edit Mobile User** page:
 
     - The **Access Code** is exactly what the driver types (5 to 16 characters, same upper and lower case, no extra spaces).
     - **Active** is checked. A disabled user cannot sign in.
@@ -248,28 +240,13 @@ Sign-in only works when the user is **Active**. Signing in with an Access Code (
 !!! info "Solution"
     You can't delete them from this page. Use **Disable** in the **Actions** menu. They disappear from the active list and the drop-downs but keep their history.
 
-### :fontawesome-solid-building: I created a driver for another office but they are in my office
-
-!!! info "Solution"
-    New mobile users are always saved in your current office. Open **Edit User**, change **Office**, and click **Save**. Or switch office first and then add the driver.
-
-### :fontawesome-solid-comment-sms: The driver doesn't get SMS notifications
-
-!!! info "Solution"
-    SMS is only available when your system has the **SMS** add-on, and the order's delivery driver must have a **Phone #** (with the country code). Check the number on the **Edit Mobile User** page. See [Notifications & Emails](notifications-and-emails.md).
-
-### :fontawesome-solid-chart-line: Why do Active Deliveries and Total Legs show "-"?
-
-!!! info "Solution"
-    These columns are not filled in. They always show **-**. Use the [Dispatch](dispatch.md) board or [Reports](reports.md) to see a driver's work.
-
 ---
 
 ## :fontawesome-solid-lightbulb: Best Practices
 
 !!! tip "Best Practices"
     - **Disable, don't reuse.** When someone leaves, disable their user and create a new one for the next person, so history stays correct.
-    - **Change the code when a phone is lost or the code may have been shared.** Remember that an earlier login link still works until it expires, even after disabling.
-    - **Fill in Phone # for every driver** (with the country code) if you use SMS notifications.
+    - **Change the code when a phone is lost or the code may have been shared.**
+    - **Fill in Phone # for every driver** so the office can reach them from the list.
     - **Use the right role.** Pick **Yard Worker** for people who only work the yard, so they don't clutter the driver lists on Orders and Dispatch.
     - **Keep Access Codes private** and avoid guessable codes.

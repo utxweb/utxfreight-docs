@@ -8,7 +8,7 @@ Your UTX Freight system is configured by UTX: which add-ons are on, which order 
 - :fontawesome-solid-eye-slash: **Off means hidden.** When an add-on is off, its menu items, buttons, columns and form fields are not shown at all. Opening one of its pages directly sends you back elsewhere in the application (for example to the **Orders** page, or to the **Charge Types** list with the message *Fuel surcharge addon is not enabled.*).
 - :fontawesome-solid-truck-ramp-box: **Shipment mode** sets the shape of the whole application: **intermodal** (containers, terminals, steamship lines) or **ground** (trailers, pickup and delivery).
 - :fontawesome-solid-list: **Order types** decide which kinds of orders you can create (for example **Container Import** and **Container Export**).
-- :fontawesome-solid-user-lock: **Permission flags** widen or narrow what the **Manager**, **Dispatch**, **Accountant** and **Customer** roles can do, on top of the normal role rules in [User Roles](user-roles.md).
+- :fontawesome-solid-user-lock: **Role permissions** widen or narrow what the **Manager**, **Dispatch**, **Accountant** and **Customer** roles can do, on top of the normal role rules in [User Roles](user-roles.md).
 - :fontawesome-solid-ban: **Account suspension** is set by UTX. While the account is suspended, nobody can create, duplicate or upload new orders, but existing orders stay visible.
 
 ## :fontawesome-solid-bolt: Quick Start
@@ -21,34 +21,33 @@ Your UTX Freight system is configured by UTX: which add-ons are on, which order 
 
 | Who | What they can do |
 |-----|------------------|
-| :fontawesome-solid-user-shield: **UTX super administrator** | Turns add-ons and options on and off in the system configuration. Sees the **Super User Dashboard** (user menu > **Super User**), which lists the **Enabled Addons** and **Configuration** values, and the **Company Suspension** page where the account is suspended or unsuspended |
+| :fontawesome-solid-headset: **UTX support** | Turns add-ons and options on and off in your system configuration, and suspends or reactivates the account |
 | :fontawesome-solid-user-shield: **Admin**, :fontawesome-solid-user-tie: **Manager** and all other roles | Use whatever the add-ons and options switch on. Cannot see or change the configuration. See the suspension banner and the blocked buttons when the account is suspended |
 
-!!! info "The Super User menu is for UTX"
-    The **Super User** item in the user menu (click your **name** at the top of the screen) is shown only to UTX super administrators. Admins and managers of your company do not see it. Your own company settings are in **Settings**, in the same user menu. See [Application Settings](application-settings.md).
+!!! info "Your own company settings"
+    The options on this page are managed by UTX. Your own company settings are in **Settings**, in the user menu (click your **name** at the top of the screen). See [Application Settings](application-settings.md).
 
 ## :fontawesome-solid-plug: Add-ons
 
-Each add-on is a separate switch. The **Enabled Addons** panel on the Super User Dashboard lists them by these names, each marked **ON** or **OFF**.
+Each add-on is switched on or off separately by UTX.
 
 | Add-on | What appears when it is on | More |
 |--------|----------------------------|------|
-| `magic_link` | A :fontawesome-solid-share-from-square: icon (tooltip **Click to copy**) next to the delivery driver once the order is ready for the driver, and next to the return (pickup) driver once the container is ready for return. Clicking it copies the driver's Login Link | [Driver Login Links & SMS](driver-login-links.md) |
-| `sms` | Built to add an SMS icon next to the delivery driver to text the order to the driver. **Currently unavailable:** the SMS icon is never shown, even with the add-on on | [Driver Login Links & SMS](driver-login-links.md#sms-notifications-currently-unavailable) |
-| `fuel_surcharge` | The **Fuel Schedule** menu item (for users who can manage charge types), a **Fuel Surcharge** section with the **Exempt from Fuel Surcharge** checkbox on the customer form, the **Auto compute fuel surcharges for this order** field on the order form, and automatic fuel charges on import, export and transfer orders that are not yet completed or invoiced and have auto compute on. Fuel surcharge charge types (the monthly rates) are hidden from the **Charge Types** list and managed on the **Fuel Schedule** page instead | [Fuel Surcharge](fuel-surcharge.md) |
-| `track_n_trace_cn` | CN Rail container tracking: a red :fontawesome-solid-train: icon (tooltip **Check container status**) on orders picked up at a CN terminal, and the **CN Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
-| `track_n_trace_port_of_montreal` | Termont (Port of Montreal) container tracking: a blue :fontawesome-solid-ship: icon on orders picked up at a Termont terminal, and the **Port Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
-| `track_n_trace_mtrtml` | MGT (Racine / Cast) container tracking: an orange :fontawesome-solid-ship: icon on orders picked up at a Racine or Cast terminal, and the **Port Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
-| `textract` | Auto Orders: an **Upload** button next to **Create a new order** on the **Orders** page, and an **AUTO ORDERS** filter box (**Processing**, **Need Review**, **Completed**) for reviewing orders read from uploaded documents. Shown to users allowed to use Auto Orders (Admin, Manager, Dispatch) | [Auto Orders](auto-orders.md) |
-| `warehouse` | The **Warehouse** menu group (**Orders**, **Product**, **Location**, **Charges**, **Unit of Measure**, **Building**), the **Warehouse** user role, the **Warehouse** and **Intermodal & Warehouse** customer services, and **Warehouse** / **Intermodal** filter buttons on the customer list and the **Charge Types** list | [Warehouse Overview](warehouse-overview.md) |
-| `garage` | The **Garage** menu item (repair shop work orders, invoices and payments), the **Garage** user role and the **Garage** customer service | [Garage Overview](garage-overview.md) |
-| `multi_office` | Several offices in one system. Customers, terminals, equipment and other lists are shared by all offices, while orders, invoices and checks stay with their office. Adds **Transfer to Office** to the order row menu on the **Orders** and **Dispatch** pages (Admin, Manager and Dispatch; not for invoiced orders) | [Multi-Office](multi-office.md) |
+| **Driver Login Links** | A :fontawesome-solid-share-from-square: icon (tooltip **Click to copy**) next to the delivery driver once the order is ready for the driver, and next to the return (pickup) driver once the container is ready for return. Clicking it copies the driver's Login Link | [Driver Login Links](driver-login-links.md) |
+| **Fuel Surcharge** | The **Fuel Schedule** menu item (for users who can manage charge types), a **Fuel Surcharge** section with the **Exempt from Fuel Surcharge** checkbox on the customer form, the **Auto compute fuel surcharges for this order** field on the order form, and automatic fuel charges on import, export and transfer orders that are not yet completed or invoiced and have auto compute on. Fuel surcharge charge types (the monthly rates) are hidden from the **Charge Types** list and managed on the **Fuel Schedule** page instead | [Fuel Surcharge](fuel-surcharge.md) |
+| **CN Rail tracking** | CN Rail container tracking: a red :fontawesome-solid-train: icon (tooltip **Check container status**) on orders picked up at a CN terminal, and the **CN Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
+| **Port of Montreal (Termont) tracking** | Termont (Port of Montreal) container tracking: a blue :fontawesome-solid-ship: icon on orders picked up at a Termont terminal, and the **Port Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
+| **MGT (Racine / Cast) tracking** | MGT (Racine / Cast) container tracking: an orange :fontawesome-solid-ship: icon on orders picked up at a Racine or Cast terminal, and the **Port Tracking** button on the **Dispatch** page | [Container Tracking](container-tracking.md) |
+| **Auto Orders** | Auto Orders: an **Upload** button next to **Create a new order** on the **Orders** page, and an **AUTO ORDERS** filter box (**Processing**, **Need Review**, **Completed**) for reviewing orders read from uploaded documents. Shown to users allowed to use Auto Orders (Admin, Manager, Dispatch) | [Auto Orders](auto-orders.md) |
+| **Warehouse** | The **Warehouse** menu group (**Orders**, **Product**, **Location**, **Charges**, **Unit of Measure**, **Building**), the **Warehouse** user role, the **Warehouse** and **Intermodal & Warehouse** customer services, and **Warehouse** / **Intermodal** filter buttons on the customer list and the **Charge Types** list | [Warehouse Overview](warehouse-overview.md) |
+| **Garage** | The **Garage** menu item (repair shop work orders, invoices and payments), the **Garage** user role and the **Garage** customer service | [Garage Overview](garage-overview.md) |
+| **Multi-Office** | Several offices in one system. Customers, terminals, equipment and other lists are shared by all offices, while orders, invoices and checks stay with their office. Adds **Transfer to Office** to the order row menu on the **Orders** and **Dispatch** pages (Admin, Manager and Dispatch; not for invoiced orders) | [Multi-Office](multi-office.md) |
 
-With any of the three tracking add-ons on, you also get the **Alerts** button on the **Dispatch** page, the [Container Alerts](container-alerts.md) page, the **Alert Email Subscriptions** box in [Application Settings](application-settings.md) and an **Alerts** column in each customer's people list. If a CN terminal and a Racine/Cast terminal tracking add-on could both apply, the CN icon is shown first.
+With any of the three tracking add-ons on, you also get the **Alerts** button on the **Dispatch** page, the [Container Alerts](container-alerts.md) page, the **Alert Email Subscriptions** box in [Application Settings](application-settings.md) and an **Alerts** column in each customer's people list. If both CN Rail tracking and MGT (Racine / Cast) tracking could apply to an order, the CN icon is shown first.
 
 ### :fontawesome-solid-tags: Tags
 
-Tags are not in the add-on list. They are turned on when UTX sets up a list of tag names for your account (the **Tags** line on the Super User Dashboard shows them, or **(none)**). With tags configured you get:
+Tags are not in the add-on list. They are turned on when UTX sets up a list of tag names for your account. With tags configured you get:
 
 - A **Tag / Group** field on the order form.
 - A **Default tag** field on the customer form.
@@ -64,54 +63,52 @@ These options are also set by UTX. The **Default** column is the product default
 
 | Value | What it changes |
 |-------|-----------------|
-| `intermodal` (default) | Container-based screens. The **Orders** and **Dispatch** lists show **ETA**, **Storage (STO)** / **Demurrage (DEM)**, **Size** / **Steamship** / **Weight**, **Container#** / **Book#/Seal#** / **Last Free Day**, **Vessel** / **ERD** / **Cutoff Date**, **Terminal** / **Pickup From** / **Pickup #**, **Chassis #**, **C.Status** and **Return To** / **Return Date** columns, plus the **Empty at Yard** and **Full at Yard** counters at the top of the **Orders** page. The driver columns are **Delivery** and **Return**. The **Orders** page has the **ORDER TYPE** and **CONTAINER STATUS** filter boxes, and the **Dispatch** page has container status and terminal filters. The user menu includes **Manage Container Sizes**, **Manage Container Statuses**, **Manage Steamship Lines** and **Manage Terminals**. The **Dispatch** date filter offers **Delivery**, **ETA**, **LFD** and **CUT** |
-| `ground` | Trailer-based screens. The **Orders** and **Dispatch** lists show **Pickup From** and **Pickup Date** columns, **Trailer#** instead of **Container#**, **Equipment #** instead of **Chassis #**, and **Delivery Date** instead of **Delivery/Pickup**. The driver columns are **Pickup** and **Delivery**. The container columns, container counters and filters, and container menu items above are hidden. The **Dispatch** date filter offers **Pickup** and **Delivery** |
+| **Intermodal** (default) | Container-based screens. The **Orders** and **Dispatch** lists show **ETA**, **Storage (STO)** / **Demurrage (DEM)**, **Size** / **Steamship** / **Weight**, **Container#** / **Book#/Seal#** / **Last Free Day**, **Vessel** / **ERD** / **Cutoff Date**, **Terminal** / **Pickup From** / **Pickup #**, **Chassis #**, **C.Status** and **Return To** / **Return Date** columns, plus the **Empty at Yard** and **Full at Yard** counters at the top of the **Orders** page. The driver columns are **Delivery** and **Return**. The **Orders** page has the **ORDER TYPE** and **CONTAINER STATUS** filter boxes, and the **Dispatch** page has container status and terminal filters. The user menu includes **Manage Container Sizes**, **Manage Container Statuses**, **Manage Steamship Lines** and **Manage Terminals**. The **Dispatch** date filter offers **Delivery**, **ETA**, **LFD** and **CUT** |
+| **Ground** | Trailer-based screens. The **Orders** and **Dispatch** lists show **Pickup From** and **Pickup Date** columns, **Trailer#** instead of **Container#**, **Equipment #** instead of **Chassis #**, and **Delivery Date** instead of **Delivery/Pickup**. The driver columns are **Pickup** and **Delivery**. The container columns, container counters and filters, and container menu items above are hidden. The **Dispatch** date filter offers **Pickup** and **Delivery** |
 
 ### :fontawesome-solid-list: Order Types
 
-`order_type_enabled` lists the order types you can choose in the **Job type** list on the New order form. It also sets the buttons in the **ORDER TYPE** filter box on the **Orders** page (intermodal accounts) and the order type filters on the **Dispatch** page. The **Dispatch** page has filters for **Import**, **Export**, **Transfer** and **Dry Van** only; there is no **International Export** filter there. Default: **import** and **export**.
+UTX sets the order types you can choose in the **Job type** list on the New order form. It also sets the buttons in the **ORDER TYPE** filter box on the **Orders** page (intermodal accounts) and the order type filters on the **Dispatch** page. The **Dispatch** page has filters for **Import**, **Export**, **Transfer** and **Dry Van**. Default: **Container Import** and **Container Export**.
 
-| Value | Shown as |
-|-------|----------|
-| `import` | **Container Import** |
-| `export` | **Container Export** |
-| `transfer` | **Container Transfer** |
-| `dry_van` | **Dry Van Move** |
-| `international_export` | **International Export** |
+| Order type |
+|------------|
+| **Container Import** |
+| **Container Export** |
+| **Container Transfer** |
+| **Dry Van Move** |
+| **International Export** |
 
-The **Order Types** line on the Super User Dashboard lists the types turned on for your account. See [Order Form](order-form.md).
+See [Order Form](order-form.md).
 
 ### :fontawesome-solid-gears: Order, Invoice and Statement Options
 
 | Option | Default | What it does when on |
 |--------|---------|----------------------|
-| `tag_is_optional` | On | The **Tag / Group** list has a blank choice, so an order can have no tag. When off, there is no blank choice and every order gets a tag. Only matters if tags are configured |
-| `order_id_prefix` / `order_id_start` | No prefix / 781000 | Order numbers are the prefix followed by the order's internal number plus the start value |
-| `edi_invoicing_enabled` | Off | Adds a **Waybill date** field to import and export orders (the reference field is labelled **Waybill number(reference)**), and an **EDI 210** download in the invoice row menu |
-| `internal_pod_enabled` | Off | Adds **View Internal POD** to the order row menu on the **Orders** page, for Admin, Manager and Dispatch. See [Order Documents & POD](order-documents-and-pod.md) |
-| `data_audit_enabled` | On | Shows **View History** in the order row menu on the **Orders** and **Dispatch** pages (for users allowed to audit orders; dispatchers need **Can manage rates?**). When off, **View History** is hidden. See [Order Status Workflow](order-workflow.md) |
-| `automated_statement_enabled` | Off | Adds the **Automatic Statement schedule for this customer** section to the customer form and the **Delivery Day / Next Date** column and the statement day counters to **Customer Reports**. See [Automatic Statements](automatic-statements.md) |
-| `display_detailed_statement` | Off | Customer statements list the orders under each invoice (container number, reference number and order total), in the on-screen statement and in the export. See [Customer Statements](customer-statements.md) |
-| `invoice_id_decorator` | On | Invoice numbers start with the first letter of the customer's name and the two-digit invoice year, for example `A26 - 00123`. When off, the invoice number is just the five-digit number, for example `00123` |
-| `invoice_template` | `invoice` | Chooses the layout used for printed and emailed invoices. UTX can switch your account to another layout |
-| `check_charges_enabled` | On | Shows the **Check Expenses** section on the check form, so you can attach expenses to a check. See [Expenses & Checks](expenses-and-checks.md) |
-| `emails_link_back_to_app` | On | Order **Dispatched** and **Completed** notification emails, POD emails and invoice-with-POD emails include a **View your orders** link back into UTX Freight, and the invoicing reminder includes **View Orders Late for Invoicing**. When off, these links are left out. See [Notifications & Emails](notifications-and-emails.md) |
+| Optional tag | On | The **Tag / Group** list has a blank choice, so an order can have no tag. When off, there is no blank choice and every order gets a tag. Only matters if tags are configured |
+| Order number format | No prefix / numbers start at 781000 | Order numbers can start with a prefix chosen for your account, followed by a number that counts up from a starting value |
+| EDI invoicing | Off | Adds a **Waybill date** field to import and export orders (the reference field is labelled **Waybill number(reference)**), and an **EDI 210** download in the invoice row menu |
+| Internal POD | Off | Adds **View Internal POD** to the order row menu on the **Orders** page, for Admin, Manager and Dispatch. See [Order Documents & POD](order-documents-and-pod.md) |
+| Order history | On | Shows **View History** in the order row menu on the **Orders** and **Dispatch** pages (for users allowed to audit orders; dispatchers need **Can manage rates?**). When off, **View History** is hidden. See [Order Status Workflow](order-workflow.md) |
+| Automatic statements | Off | Adds the **Automatic Statement schedule for this customer** section to the customer form and the **Delivery Day / Next Date** column and the statement day counters to **Customer Reports**. See [Automatic Statements](automatic-statements.md) |
+| Detailed statements | Off | Customer statements list the orders under each invoice (container number, reference number and order total), in the on-screen statement and in the export. See [Customer Statements](customer-statements.md) |
+| Invoice number letter and year | On | Invoice numbers start with the first letter of the customer's name and the two-digit invoice year, for example `A26 - 00123`. When off, the invoice number is just the five-digit number, for example `00123` |
+| Invoice layout | Standard | Chooses the layout used for printed and emailed invoices. UTX can switch your account to another layout |
+| Check expenses | On | Shows the **Check Expenses** section on the check form, so you can attach expenses to a check. See [Expenses & Checks](expenses-and-checks.md) |
+| Links in emails | On | Order **Dispatched** and **Completed** notification emails, POD emails and invoice-with-POD emails include a **View your orders** link back into UTX Freight, and the invoicing reminder includes **View Orders Late for Invoicing**. When off, these links are left out. See [Notifications & Emails](notifications-and-emails.md) |
 
-### :fontawesome-solid-user-lock: Permission Flags
+### :fontawesome-solid-user-lock: Role Permissions
 
-These flags apply to every user with the role. They are separate from the per-user **Can manage rates?** setting for dispatchers described in [User Roles](user-roles.md).
+These options apply to every user with the role. They are separate from the per-user **Can manage rates?** setting for dispatchers described in [User Roles](user-roles.md).
 
-| Flag | Default | Role | When on | When off |
+| Option | Default | Role | When on | When off |
 |------|---------|------|---------|----------|
-| `accountant_can_manage_orders` | On | :fontawesome-solid-calculator: **Accountant** | Can create, edit and manage orders in their office | Can only view orders (and still complete and edit **Dispatched** orders) |
-| `accountant_can_manage_checks` | On | :fontawesome-solid-calculator: **Accountant** | Can manage checks | No access to checks |
-| `manager_can_manage_checks` | On | :fontawesome-solid-user-tie: **Manager** | Can manage checks | No access to checks |
-| `manager_can_view_reports` | On | :fontawesome-solid-user-tie: **Manager** | Can open the reports (analytics) pages | No access to the reports pages |
-| `dispatch_can_manage_customers` | Off | :fontawesome-solid-headset: **Dispatch** | Can manage customers and their people | Cannot manage customers |
-| `dispatch_can_manage_terminals` | Off | :fontawesome-solid-headset: **Dispatch** | Can manage terminals | Cannot manage terminals |
-| `customer_can_manage_orders` | Off | :fontawesome-solid-user: **Customer** | Can create orders from the customer portal, and edit or delete their company's orders while they are still **New** | Can only view their company's orders. See [Customer Portal](customer-portal.md) |
-
-The **Configuration** panel on the Super User Dashboard shows **Customer Can Manage Orders** and **Dispatch Can Manage Customers** as **Yes** or **No**.
+| Accountants can manage orders | On | :fontawesome-solid-calculator: **Accountant** | Can create, edit and manage orders in their office | Can only view orders (and still complete and edit **Dispatched** orders) |
+| Accountants can manage checks | On | :fontawesome-solid-calculator: **Accountant** | Can manage checks | No access to checks |
+| Managers can manage checks | On | :fontawesome-solid-user-tie: **Manager** | Can manage checks | No access to checks |
+| Managers can view reports | On | :fontawesome-solid-user-tie: **Manager** | Can open the reports (analytics) pages | No access to the reports pages |
+| Dispatchers can manage customers | Off | :fontawesome-solid-headset: **Dispatch** | Can manage customers and their people | Cannot manage customers |
+| Dispatchers can manage terminals | Off | :fontawesome-solid-headset: **Dispatch** | Can manage terminals | Cannot manage terminals |
+| Customers can manage orders | Off | :fontawesome-solid-user: **Customer** | Can create orders from the customer portal, and edit or delete their company's orders while they are still **New** | Can only view their company's orders. See [Customer Portal](customer-portal.md) |
 
 ## :fontawesome-solid-ban: Account Suspension
 
@@ -153,7 +150,7 @@ Every message is followed by the contact details of the UTX accounting departmen
 
 ### :fontawesome-solid-unlock: Lifting a Suspension
 
-Only UTX can suspend or unsuspend the account, from **Super User** > **Company Suspension** (**Suspend Company** / **Unsuspend Company**). When the account is unsuspended, the level goes back to **Active**, the banner disappears and order creation, duplication and upload work again.
+Only UTX can suspend or reactivate the account. When the account is unsuspended, the level goes back to **Active**, the banner disappears and order creation, duplication and upload work again.
 
 ## :fontawesome-solid-circle-question: FAQ / Troubleshooting
 
@@ -165,7 +162,7 @@ Only UTX can suspend or unsuspend the account, from **Super User** > **Company S
 ### :fontawesome-solid-toggle-off: Can I switch an add-on or option myself?
 
 !!! info "Solution"
-    No. Add-ons, shipment mode, order types, tags and permission flags are part of the system configuration that UTX manages. Contact UTX support with the name of the option you want changed.
+    No. Add-ons, shipment mode, order types, tags and role permissions are part of the system configuration that UTX manages. Contact UTX support with the name of the option you want changed.
 
 ### :fontawesome-solid-ban: The Create a new order button is red
 
@@ -177,20 +174,15 @@ Only UTX can suspend or unsuspend the account, from **Super User** > **Company S
 !!! info "Solution"
     Duplicating is blocked while the account is suspended. No copies were created. Once the suspension is lifted, duplicate the order again.
 
-### :fontawesome-solid-comment-sms: The sms add-on is on but there is no SMS icon
-
-!!! info "Solution"
-    SMS notifications are currently unavailable; the icon is never shown. Use the driver's Login Link instead. See [Driver Login Links & SMS](driver-login-links.md).
-
 ### :fontawesome-solid-headset: A dispatcher cannot edit customers or terminals
 
 !!! info "Solution"
-    By default, dispatchers cannot manage customers or terminals. UTX can turn on `dispatch_can_manage_customers` and `dispatch_can_manage_terminals` for your account.
+    By default, dispatchers cannot manage customers or terminals. If your dispatchers need this, ask UTX support to turn on **Dispatchers can manage customers** and **Dispatchers can manage terminals** for your account.
 
 ## :fontawesome-solid-lightbulb: Best Practices
 
 !!! tip "Tips"
-    - When you ask UTX to change an option, name it exactly as on this page (for example `customer_can_manage_orders`) to avoid confusion.
-    - Before turning on `customer_can_manage_orders`, decide who on your team will check the orders customers place from the portal.
-    - Changing `invoice_id_decorator` changes how invoice numbers look. Agree on it before you start sending invoices, so numbers stay consistent for your customers.
+    - When you ask UTX to change an option, name it exactly as on this page (for example **Customers can manage orders**) to avoid confusion.
+    - Before turning on **Customers can manage orders**, decide who on your team will check the orders customers place from the portal.
+    - Changing **Invoice number letter and year** changes how invoice numbers look. Agree on it before you start sending invoices, so numbers stay consistent for your customers.
     - Act on a Level 1 late payment warning quickly: order creation is already blocked at Level 1.

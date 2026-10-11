@@ -47,8 +47,8 @@ This page covers the list itself. Related topics have their own pages:
 | :fontawesome-solid-user-shield: **Admin** | Full access to all orders, plus **Export** |
 | :fontawesome-solid-user-tie: **Manager** | Full access to orders in their offices: create, edit, inline edit, status actions, reset, go back one step, duplicate, transfer, delete |
 | :fontawesome-solid-headset: **Dispatch** / **Customer Service** | Same order access as Manager: create, edit, inline edit, status actions, delete, reset, duplicate, transfer. **View History** needs the **Can manage rates?** option on the user's profile |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | Full order access by default (account configuration option `accountant_can_manage_orders`, on by default; it is not on the **Settings** page). If the option is off: view only, plus **Complete** and edit on Dispatched orders. Never sees the filter cards, the **Equipment**, **Legend**, or **Export** buttons, or the **Not Invoiced** / **Late Invoicing** tabs |
-| :fontawesome-solid-user: **Customer** | Sees all orders placed by anyone in their company, in their offices. View only by default. When the account configuration option `customer_can_manage_orders` is on (off by default), customers can also create orders and edit orders that are still **New**. Customers never get **Delete Order**, inline editing, or the status action buttons |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | Full order access by default. If UTX support has turned accountant order management off for your account: view only, plus **Complete** and edit on Dispatched orders. Never sees the filter cards, the **Equipment**, **Legend**, or **Export** buttons, or the **Not Invoiced** / **Late Invoicing** tabs |
+| :fontawesome-solid-user: **Customer** | Sees all orders placed by anyone in their company, in their offices. View only by default. If your account has customer order entry turned on (ask UTX support), customers can also create orders and edit orders that are still **New**. Customers never get **Delete Order**, inline editing, or the status action buttons |
 | :fontawesome-solid-eye: **Customer (consignee)** | Also sees, read-only, the deliveries addressed to their linked shipper/receiver records, from all freight forwarders, in the office they are working in. See [Consignee view](#consignee-view) |
 | :fontawesome-solid-id-card: **Driver** | Always sees only **Dispatched** orders assigned to them. Drivers use the mobile view; see [Driver Workflow](driver-workflow.md) |
 | :fontawesome-solid-warehouse: **Warehouse** / :fontawesome-solid-wrench: **Garage** | No access to Orders |
@@ -67,7 +67,7 @@ This page covers the list itself. Related topics have their own pages:
 
 ## :fontawesome-solid-list: Order Types
 
-Order types are turned on per account (setting `order_type_enabled`). By default only **Import** and **Export** are enabled. The order form and the **Order Type** filter card only offer the enabled types.
+Order types are turned on per account by UTX support. By default only **Import** and **Export** are enabled; ask UTX support to turn on other types. The order form and the **Order Type** filter card only offer the enabled types.
 
 Each row starts with a short code badge. Hover the badge to see the order description.
 
@@ -99,7 +99,7 @@ The page header shows counters:
 | **Pre-Pull** (blue, intermodal) | Orders not yet Completed whose container status is *Pre-Pull*. Shown only when *Pre-Pull* is one of your container statuses |
 
 !!! warning "Counters ignore filters"
-    The counters always count every order you can access in the current office. Search, status tabs, and filter cards do not change them, and unlike the list they also count orders created before the **Order Archive Cutoff Date**.
+    The counters always count every order you can access in the current office. Search, status tabs, and filter cards do not change them.
 
 ---
 
@@ -118,7 +118,7 @@ The search bar at the top reads **Container #, Order # and more**. Type a value 
 | Pickup company | Contains |
 | Customer company (Bill To) | Contains |
 | Equipment name | Contains |
-| Order type, by its internal name (`import`, `export`, `transfer`, `dry_van`, `international_export`) | Contains |
+| Order type (for example *import*, *export*, *transfer*) | Contains |
 | Container size | Contains |
 
 **How search interacts with the tabs:**
@@ -282,8 +282,7 @@ See [Order Workflow](order-workflow.md) for how an order moves between statuses.
 | :fontawesome-solid-train: / :fontawesome-solid-ship: | Container column | Check container status with terminal tracking, when the add-on is on for that terminal. See [Container Tracking](container-tracking.md) |
 | **OFF-HIRE** (red) | Size column | Equipment off-hire |
 | Driver name in green or red | Driver columns | Green when that leg is ready for the driver's signature; red otherwise |
-| :fontawesome-solid-share-from-square: | Driver columns | Copies the driver's magic link (Magic Link add-on), shown when that leg is ready for the driver. See [Driver Login Links](driver-login-links.md) |
-| :fontawesome-solid-comment-sms: | Delivery driver column | Send an SMS to the driver (SMS add-on), shown when the leg is ready for signature and a driver is assigned. Green after a delivered SMS, red after a failed one; hover for the last send time |
+| :fontawesome-solid-share-from-square: | Driver columns | Copies the driver's Login Link (Driver Login Links add-on), shown when that leg is ready for the driver. See [Driver Login Links](driver-login-links.md) |
 | Zone badge (blue) | Rate column | The order's zone |
 | **Zone Not Set** (red) | Rate column | No zone is assigned. See [Zones & Cities](zones-and-cities.md) |
 | :fontawesome-solid-file-invoice: | Invoiced column | Opens the invoice list searched to this order's invoice. Not shown to Customer Service |
@@ -342,13 +341,11 @@ Inline fields need full order rights (Admin, Manager, Dispatch, Customer Service
 | Pickup terminal | Select Terminal | All except DV and IX | Intermodal |
 | Pickup # | Enter new pickup number | CI | Intermodal |
 | **Chassis #** | Enter chassis number | All | Only when the equipment is **Borrowed** |
-| **C.Status** (container status) | Enter new container status | All | Intermodal. Shown as a link to Admin, Manager, Accountant, Dispatch, and Customer Service; saving needs order edit rights, so an Accountant without full order access is refused |
-| Delivery driver (first driver column) | Enter new delivery driver (CI); Enter new return driver (other types) | All | |
-| Return driver (second driver column) | Enter new return driver (CI); Enter new delivery driver (other types) | All except TF | |
+| **C.Status** (container status) | Enter new container status | All | Intermodal. Needs order edit rights |
+| Delivery driver (first driver column) | — | All | Pick a driver from the list |
+| Return driver (second driver column) | — | All except TF | Pick a driver from the list |
 | **Return To** | Enter new return to | All | Intermodal |
 | **Return Date** | Enter new return date | All except TF | Intermodal |
-
-The popup titles of the two driver columns are swapped for every order type except CI; the column you click is the one that changes.
 
 The **equipment** button (truck icon) opens the equipment assignment window. See [Equipment](equipment.md).
 
@@ -385,7 +382,7 @@ Click the **caret** (:fontawesome-solid-caret-down:) next to the action button. 
 | **Quick Edit** | Opens the order in a popup | You can edit the order | [Order Form](order-form.md) |
 | **Documents** | Opens the popup on the documents section | You can edit the order | [Order Documents & POD](order-documents-and-pod.md) |
 | **View POD** / **View eBoL** | Opens the POD PDF (eBoL for IX) | Admin, Manager, Dispatch, Customer Service, Driver | [Order Documents & POD](order-documents-and-pod.md) |
-| **View Internal POD** | Opens the internal POD | Internal POD enabled; Admin, Manager, Dispatch, Customer Service | [Order Documents & POD](order-documents-and-pod.md) |
+| **View Internal POD** | Opens the internal POD | Internal POD turned on for your account (ask UTX support); Admin, Manager, Dispatch, Customer Service | [Order Documents & POD](order-documents-and-pod.md) |
 | **View Carrier Confirmation** | Opens the carrier confirmation | DV orders; Admin, Manager, Dispatch, Customer Service | [Order Documents & POD](order-documents-and-pod.md) |
 | **View Details** | Opens the order details page | You can view the order | |
 | **Edit Order** | Opens the full order form | You can edit the order | [Order Form](order-form.md) |
@@ -393,7 +390,7 @@ Click the **caret** (:fontawesome-solid-caret-down:) next to the action button. 
 | **Go Back 1 Step** | Moves the status back one step, after a **GO BACK ONE STEP** confirmation. Going back from App. Taken to New also clears the appointment and delivery date | Status is not New; same roles | [Order Workflow](order-workflow.md) |
 | **Duplicate** | Opens the duplicate window | You have full order rights (not Customers) | [Order Duplication](order-duplication.md) |
 | **Transfer to Office** | Moves the order to another of your offices | Multi-office, and you have another office. Shown greyed as **Transfer (Invoiced)** when the order is invoiced | [Multi-Office](multi-office.md) |
-| **View History** | Shows the order's change history | Data audit enabled (on by default); Admin, Manager, Accountant with full order access, or Dispatch / Customer Service with **Can manage rates?** | |
+| **View History** | Shows the order's change history | Change history turned on for your account (on by default); Admin, Manager, Accountant with full order access, or Dispatch / Customer Service with **Can manage rates?** | |
 | **Remove Signature** | Clears the delivery signature, after a **CLEAR THE SIGNATURE** confirmation | Order is not Completed, has a delivery signature, and you have full order rights | [Order Documents & POD](order-documents-and-pod.md) |
 | **Delete Order** | Deletes the order, after a **DELETE THIS ORDER** confirmation | You have full order rights (never Customers). Greyed out when invoiced | |
 
@@ -410,7 +407,7 @@ Click **Export** in the **Action & Orders** card to download a CSV file.
 
 - **Admin only.** Other roles do not see the button.
 - **Filters are ignored.** The file always contains all **In Progress** orders (New, App. Taken, Dispatched) created after the archive cutoff date, from every office, whatever tab, search, filter, or office is active.
-- **Fixed columns:** Reference, Description, Status, Container number, Customer name, Delivery company name, Container status with customer name, Delivery date, App info, Pickup terminal name, Container size name, Steamship line name, Display hazardous, Display equipment name, Return date display, Creation date, Last update.
+- **Fixed columns:** order reference, description, status, container number, customer, delivery company, container status, delivery date, appointment, pickup terminal, container size, steamship line, hazardous cargo, equipment, return date, creation date, and last update.
 - **Fixed file name:** `<account>-orders-open-<YYYY-MM-DD>.csv`.
 
 For other exports, see [Data Exports](data-exports.md).
@@ -458,7 +455,7 @@ Drivers see a separate mobile view of their dispatched orders. See [Driver Workf
 ### :fontawesome-solid-hashtag: The counters don't match the list
 
 !!! info "Solution"
-    This is expected. Counters ignore search and filters, count every order you can access in the office (including orders older than the archive cutoff date), and **Total** is New + App. Made + Dispatched only.
+    This is expected. Counters ignore search and filters, count every order you can access in the office, and **Total** is New + App. Made + Dispatched only.
 
 ### :fontawesome-solid-file-csv: My export doesn't match what I filtered
 

@@ -43,7 +43,7 @@ Yard Workers use UTX Freight in their **phone's web browser**. There is no app t
     The **Yard Worker** role only exists under **Mobile Users** (with **Driver** and **Broker**). It is not in the **Role** list when you add a person with an email and password. The yard buttons are only allowed for a Yard Worker signed in with an **Access Code**.
 
 !!! info "Phone layout only"
-    The container search is part of the mobile layout, which UTX Freight uses automatically on a phone browser. On a desktop browser the same page shows only *Dashboard - Transportation orders coming soon*. Use a phone.
+    The container search is part of the mobile layout, which UTX Freight uses automatically on a phone browser. On a desktop browser the page shows *Dashboard - Transportation orders coming soon* instead. Use a phone.
 
 ---
 
@@ -70,11 +70,8 @@ The results appear under **Search Results**. If nothing matches, the screen show
 
 | Included | Not included |
 |----------|--------------|
-| Orders with status **New**, **App. Taken** (shown as **App. Made** on the Orders page) or **Dispatched** | **Completed** orders |
+| Orders with status **New**, **App. Made** or **Dispatched** | **Completed** orders |
 | Every order whose container number contains what you typed | Orders created before the **Order Archive Cutoff Date** in **Settings** (see [Application Settings](application-settings.md)) |
-
-!!! tip "Search box clears after a search"
-    The **Container #** box is empty again after you tap **Search**. Your results stay on screen. To search again, type the next number.
 
 !!! info "Several matches"
     A short search (for example 3 digits) can match several orders. Each one is listed as its own card. Check the container number and order type in the card title before you tap a button.
@@ -137,7 +134,7 @@ The chassis is taken off the order, so the office sees the order without **Equip
 1. Search for the container and open its card.
 2. Tap **Full at yard** if the container is loaded, or **Empty at yard** if it is empty.
 
-Only the container status changes. The order status (**New**, **App. Taken**, **Dispatched**) stays the same. Switching from one to the other is allowed: after you tap **Full at yard**, the **Empty at yard** button is still there, and the other way around.
+Only the container status changes. The order status (**New**, **App. Made**, **Dispatched**) stays the same. Switching from one to the other is allowed: after you tap **Full at yard**, the **Empty at yard** button is still there, and the other way around.
 
 On the office side, these statuses feed the **Full at Yard** and **Empty at Yard** counters on the **Orders** page (intermodal accounts). See [Orders](orders.md).
 
@@ -148,7 +145,7 @@ On the office side, these statuses feed the **Full at Yard** and **Empty at Yard
 ### :fontawesome-solid-magnifying-glass: The search shows No Results Found but the container exists
 
 !!! info "Solution"
-    The search only finds orders that are **New**, **App. Taken** or **Dispatched**. It does not find **Completed** orders or orders created before the **Order Archive Cutoff Date**. Check the order's status with the office. Also check the number: try typing only the last few digits.
+    The search only finds orders that are **New**, **App. Made** or **Dispatched**. It does not find **Completed** orders or orders created before the **Order Archive Cutoff Date**. Check the order's status with the office. Also check the number: try typing only the last few digits.
 
 ### :fontawesome-solid-eye-slash: The Ground Container button is missing
 

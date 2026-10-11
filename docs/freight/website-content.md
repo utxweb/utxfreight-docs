@@ -133,7 +133,7 @@ On the mobile **Home** and **Equipment** pages there is no side column, so `comp
 
 ### When changes appear
 
-The public site keeps a cached copy of the content pages so it loads quickly. The copy is tied to the pages' last-saved time, so as soon as any content page is saved the old copy is no longer used and your change shows on the next page load. You do not need to clear anything or wait.
+As soon as you save a content page, your change shows on the public site the next time the page is loaded. You do not need to clear anything or wait.
 
 ---
 
@@ -164,7 +164,7 @@ Fax: 555-555-0101
 ```
 
 !!! info "HTML in your content"
-    Textile also lets plain HTML through. The `contact` page of a new system starts wrapped in `<div class="contact">` and `</div>`. You can keep those lines or remove them; write your text between them if you keep them.
+    Textile also lets plain HTML through. The `contact` page of a new system starts with an HTML line at the top and a matching `</div>` line at the bottom. You can keep those lines or remove them; write your text between them if you keep them.
 
 !!! tip "Keep it short"
     The side column (`company` and `login`) is narrow. A few lines of address and phone details read better there than long paragraphs.

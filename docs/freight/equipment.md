@@ -34,7 +34,7 @@ Keep a list of your chassis, trailers and trucks, track their inspection dates a
 | :fontawesome-solid-user-tie: **Manager** | Yes | Yes | No | Yes |
 | :fontawesome-solid-headset: **Dispatch** | Yes | Yes | No | Yes |
 | :fontawesome-solid-headset: **Customer Service** | Yes (same as Dispatch) | Yes | No | Yes |
-| :fontawesome-solid-file-invoice-dollar: **Accountant** | No — the menu item is hidden | No | No | **Assign Equipment** only if order management is turned on for accountants in your installation. **Available Equipments**: No |
+| :fontawesome-solid-file-invoice-dollar: **Accountant** | No — the menu item is hidden | No | No | **Assign Equipment** only if your account has order management for accountants turned on — ask UTX support. **Available Equipments**: No |
 | :fontawesome-solid-user: **Customer**, **Driver**, other roles | No | No | No | No |
 
 **Where to find it:**
@@ -102,8 +102,8 @@ A new UTX Freight installation starts with these types, all under the **Chassis*
 
 *20' - 3 AXLES*, *20'/40'*, *20'/40'/45'*, *20' BI-TRAIN - 2 AXLES*, *20' BI-TRAIN - 3 AXLES*, *20' BI-TRAIN - 3 AXLES (Fixed 5th wheel)*, *40' - 2 AXLES*, *40' - 2 AXLES COMBO*, *40' - 3 AXLES*, *40' - 3 AXLES COMBO*, *40'/45'*, *40'/45'/53'*, *40'/53'*, *TRUCK*
 
-!!! warning "The starter TRUCK type is a Chassis"
-    The starter type named *TRUCK* is created under the **Chassis** sub category. Units of that type show **Chassis** in the **Category** column, appear under the **Chassis** filter and can be assigned to orders. If you track trucks, edit the type and set its **Sub Category** to **Truck** (or create a new type under **Truck**). Your installation may have renamed or changed these types.
+!!! tip "The starter TRUCK type"
+    The starter type named *TRUCK* is set up under the **Chassis** sub category. Units of that type show **Chassis** in the **Category** column, appear under the **Chassis** filter and can be assigned to orders. If you track trucks, edit the type and set its **Sub Category** to **Truck** (or create a new type under **Truck**). Your installation may have renamed or changed these types.
 
 ---
 
@@ -265,7 +265,7 @@ In the **Assign Equipment** modal an unavailable status shows as *Mechanical iss
 
 ### Assignment status
 
-A unit is **in use** while it is on an order whose status is **New**, **App. Taken** (shown as **Appointment Made** / **App. Made** in the app) or **Dispatched**. Once the order moves to any other status, such as **Completed**, the unit is **FREE** again. See [Order Status Workflow](order-workflow.md).
+A unit is **in use** while it is on an order whose status is **New**, **App. Made** (**Appointment Made**) or **Dispatched**. Once the order moves to any other status, such as **Completed**, the unit is **FREE** again. See [Order Status Workflow](order-workflow.md).
 
 A unit should be on only one order in progress at a time. If it is already on another order in progress, it shows red.
 
@@ -319,7 +319,7 @@ Under the list, a box shows one line per check: **Active** or **Disabled**, the 
 | **Order not updated!** | *The order was not saved: <reasons>.* or *The order could not be saved. Please try again or contact the administrator.* | The order could not be saved for another reason (for example a validation error on the order) |
 
 !!! info "Who sees the button"
-    On the **Dispatch** board the :fontawesome-solid-truck: button is always clickable. On the **Orders** list it is only a button for users allowed to change an order's equipment; others see the equipment name as a plain label.
+    On the **Orders** list, the :fontawesome-solid-truck: button is only clickable for users allowed to change an order's equipment; others see the equipment name as a plain label.
 
 !!! info "Other ways equipment leaves an order"
     - Tapping **Ground Container** in [Yard Management](yard-management.md) removes the equipment from the order.
@@ -359,12 +359,12 @@ When you use a chassis that you do not own (for example one borrowed from anothe
 
 The green **Export** button at the top of the **Equipments** page downloads a CSV file. It is **Admin only**.
 
-- The export **ignores the filters and the search box**. It contains every equipment record, enabled and disabled, sorted by name — including the equipment of other offices if you have [multiple offices](multi-office.md).
+- The export **ignores the filters and the search box**. It contains your equipment, enabled and disabled, sorted by name.
 - The file name ends with `-equipments-YYYY-MM-DD.csv`.
 
 | CSV column | Content |
 |------------|---------|
-| **Id** | Internal ID |
+| **Id** | Record ID number |
 | **Name** | Name/Number |
 | **Equipment type display name** | *Sub Category: Type name*, for example *Chassis: 40' - 2 AXLES* |
 | **Inspection date** | Next Inspection Date |
@@ -429,7 +429,7 @@ If you use the **Garage** add-on, the **Equipment** page in the Garage sidebar i
 ### :fontawesome-solid-triangle-exclamation: A unit is FREE but the order still shows it
 
 !!! info "Solution"
-    Only orders that are **New**, **App. Taken** or **Dispatched** count as in progress. A **Completed** order keeps its equipment for the record, but the unit is free for new work.
+    Only orders that are **New**, **App. Made** or **Dispatched** count as in progress. A **Completed** order keeps its equipment for the record, but the unit is free for new work.
 
 ### :fontawesome-solid-copy: Saving fails with "has already been taken" on Name/Number
 
@@ -449,17 +449,6 @@ If you use the **Garage** add-on, the **Equipment** page in the Garage sidebar i
     - Use **Notes** for anything a dispatcher should know before taking the unit — they show in red when it is picked.
     - Give each type the correct **Sub Category** so filters and assignment work as expected.
     - Disable units you sell or return instead of renaming them.
-
----
-
-## Screenshots Needed
-
-!!! info "Screenshots to capture"
-    1. **Equipments list** — filters, search, colours, inline Mechanical Status and Notes (replace the current image if it is outdated)
-    2. **Equipment Information** form
-    3. **Assign Equipment** modal — with a red and an orange status report
-    4. **Available Equipments** modal from the Dispatch **Chassis** button
-    5. **Equipment Types** page
 
 <!-- TODO: Screenshot — Equipment Information form (Add a new Equipment) -->
 <!-- TODO: Screenshot — Equipment Types page with sub category, Name, Equipment Count and Active columns -->

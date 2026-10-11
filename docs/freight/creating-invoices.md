@@ -10,7 +10,7 @@ An invoice in UTX Freight is a header (customer, terms, date, status, tax) plus 
 - :fontawesome-solid-circle-check: **Completed orders only** -- an order can be invoiced once it is **Completed**, is not already on an invoice, and its delivery date is on or after the **Order Start Date** in **Settings**
 - :fontawesome-solid-calendar-days: **Due date is automatic** -- calculated from the **Invoice date** and the **Terms** every time you save
 - :fontawesome-solid-calculator: **Totals are automatic** -- the sum of the order totals, plus GST and QST from the selected **Tax**
-- :fontawesome-solid-print: **Print** opens a printable invoice; **EDI 210** downloads a CSV (when EDI invoicing is enabled for your account)
+- :fontawesome-solid-print: **Print** opens a printable invoice; **EDI 210** downloads a CSV (if your account has EDI invoicing turned on -- ask UTX support)
 - :fontawesome-solid-trash: **Delete** releases the orders so they can be invoiced again
 
 !!! info "Related pages"
@@ -154,8 +154,8 @@ The text next to the button tells you where you stand:
 | *3 of 5 shown orders selected* | Ticked vs shown, for the current filter |
 | *3 of 5 shown orders selected — 7 selected in total, including hidden orders* | Other ticked orders are hidden by the filter. All 7 go on the invoice |
 
-!!! warning "Check the customer before saving"
-    The invoice is for one **Company**, but UTX Freight does not stop you from ticking another customer's order by hand (for example with **All** and the text filter). The company filter is a text match, so it can also show another customer's order whose receiver or reference contains the same name. Use **Selected Orders** to review exactly what is ticked before you click **Save Invoice**.
+!!! tip "Review the selection before saving"
+    An invoice is for one **Company**. The company filter matches text in the order label, so it can also show an order whose receiver or reference contains the same name. Click **Selected Orders** to review exactly what is ticked before you click **Save Invoice**.
 
 ---
 
@@ -259,7 +259,7 @@ Each order row shows the order number (with **PO:** underneath when the order ha
 
 ## :fontawesome-solid-file-csv: EDI 210 Export
 
-When EDI invoicing is enabled for your account, the :fontawesome-solid-gear: **Actions** menu on each invoice has :fontawesome-solid-download: **EDI 210**. If you don't see it, EDI invoicing is not enabled -- contact UTX.
+When EDI invoicing is enabled for your account, the :fontawesome-solid-gear: **Actions** menu on each invoice has :fontawesome-solid-download: **EDI 210**. If you don't see it, EDI invoicing is not turned on for your account -- ask UTX support.
 
 Clicking it downloads a CSV named `EDI210_<invoice number>_<YYYYMMDD>.csv` (the date is the download date). The file has a header row and **one row per order** on the invoice. Dates use the `dd/mm/yyyy` format and amounts have no thousands separator or currency sign.
 
@@ -286,11 +286,8 @@ Clicking it downloads a CSV named `EDI210_<invoice number>_<YYYYMMDD>.csv` (the 
 
 These columns are present but always empty: `BOND CHARGES`, `CHASSIS DETENTION`, `DROP CHARGES`, `GENSET COST`, `OVERWEIGHT`, `SPECIAL PERMIT`, `WAITING TIME COST`, `DEAD RUN`, `OVERDIMENTION`, `SCALING`, `HAZMAT`, `RESERVATION FEE`, `EQUIP-NUMBER`, `ORIGIN-UNLOC`, `ORIGIN-PROV`, `DESTINATION-PROV`, `WEIGHT`, `UOM`, `EQUIP-SIZE`, `EQUIP-TYPE`.
 
-!!! warning "Charges are not split by type"
-    All of an order's charges land in `OTHER`. `FUEL`, `STORAGE` and `PRE-PULL` are always `0.00`, even when the order has a fuel surcharge.
-
-!!! warning "Fill in the Waybill date before exporting"
-    If an order on the invoice has no **Waybill date**, its row in the file is one cell short: `WAYBILL-DATE` is skipped instead of left empty, so every value after it (`VESSEL` onwards) moves one column to the left. Enter the **Waybill date** on each order before you download the EDI 210 file.
+!!! info "Charges are reported together"
+    All of an order's charges are reported in `OTHER`, including the fuel surcharge. `FUEL`, `STORAGE` and `PRE-PULL` are always `0.00`.
 
 ---
 
@@ -302,7 +299,7 @@ These columns are present but always empty: `BOND CHARGES`, `CHASSIS DETENTION`,
 The invoice disappears from the list. Its orders are **released**: they are no longer invoiced, appear again in **Not Invoiced** on the Orders page, and can be put on a new invoice.
 
 !!! danger "Deleted invoices cannot be restored from the app"
-    There is no undo button. If you deleted an invoice by mistake, contact UTX support. UTX staff can restore an invoice deleted in the **last 12 months** (from the 50 most recent deletions), provided its customer and office still exist. The invoice comes back with its original number, date, terms, status and tax. Its orders are re-attached if they have not been put on another invoice since. If the orders' history cannot be found, UTX staff are instead offered all of that customer's Completed orders that are not on an invoice, so check the restored invoice's orders afterwards.
+    There is no undo button. If you deleted an invoice by mistake, contact UTX support. UTX support can restore a recently deleted invoice (within the last 12 months), provided its customer and office still exist. The invoice comes back with its original number, date, terms, status and tax, and its orders are re-attached if they have not been put on another invoice since. Check the restored invoice's orders afterwards.
 
 ---
 
@@ -363,12 +360,12 @@ Removing an order from an invoice (untick and save, or delete the invoice) undoe
 ### :fontawesome-solid-rotate-left: I deleted an invoice by mistake
 
 !!! info "Solution"
-    Contact UTX support with the invoice number and customer. UTX staff can restore invoices deleted within the last 12 months, with the same number and, where they can still be found, its orders. Check the orders on the restored invoice afterwards.
+    Contact UTX support with the invoice number and customer. UTX support can restore invoices deleted within the last 12 months, with the same number and, where they can still be found, its orders. Check the orders on the restored invoice afterwards.
 
 ### :fontawesome-solid-download: There is no EDI 210 option
 
 !!! info "Solution"
-    EDI invoicing is an account option. Contact UTX if you need it.
+    EDI invoicing is an account option that UTX turns on. Ask UTX support if you need it.
 
 ---
 

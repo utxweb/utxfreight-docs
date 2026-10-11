@@ -10,7 +10,7 @@ Garage **Reports** is the last item in the Garage sidebar menu, just above **Bac
 - :fontawesome-solid-chart-line: **Profit Report**: revenue, parts cost and profit per work order for a date range (*Work order margins by date range*).
 - :fontawesome-solid-clipboard-check: **Customer Work Summary**: the completed work orders of one customer for a week or a month, with what was invoiced and paid. Print it, email it, or schedule it (*Weekly/monthly summary by customer*).
 - :fontawesome-solid-file-invoice-dollar: **Customer Statement**: a statement of account listing the customer's unpaid invoices, split into **Overdue** and **Not Yet Due**. Print it, email it, send yourself a test, or schedule it (*Due & overdue invoices by customer*).
-- :fontawesome-solid-clock: **Automatic emails**: background jobs send scheduled work summaries and statements, and record the result (*Summary delivered*, *Statement delivered*, a skip message or an error) on the report page.
+- :fontawesome-solid-clock: **Automatic emails**: UTX Freight sends scheduled work summaries and statements for you, and shows the result (*Summary delivered*, *Statement delivered*, a skip message or an error) on the report page.
 
 Garage reports only use garage data (garage work orders, garage invoices, garage customers). They are separate from the freight [Reports](reports.md), [Customer Statements](customer-statements.md) and [Automatic Statements](automatic-statements.md).
 
@@ -83,7 +83,7 @@ The page is titled **Dashboard**. Use the toggle at the top right to choose the 
 | **Outstanding** | What is still owed on all **Sent** and **Partially paid** invoices (total minus payments). Shown in red when above zero | No, always all unpaid invoices |
 
 !!! info "WOs Completed uses the last update date"
-    The card does not use a completion date. A work order completed last week but edited today (or invoiced today) counts as completed **Today**. Treat it as a guide, not an exact count.
+    The card counts work orders by the date they were last updated. A work order completed last week and invoiced today counts as completed **Today**.
 
 ### :fontawesome-solid-table-list: Panels
 
@@ -120,8 +120,8 @@ The **Profit Report** shows the margin on each work order in a date range.
 
 A **Totals** row adds up the three amount columns.
 
-!!! warning "Revenue includes shop supplies, Profit does not"
-    The **Shop Supplies Fee** is part of **Revenue** but not of **Profit**. So **Revenue** - **Parts Cost** is not the same as **Profit** when a work order has shop supplies. Labour is counted as pure profit because labour lines only have hours and a rate, with no cost.
+!!! info "Revenue includes shop supplies, Profit does not"
+    The **Shop Supplies Fee** is part of **Revenue** but not of **Profit**, so **Revenue** - **Parts Cost** differs from **Profit** by the shop supplies amount. Labour is counted entirely as profit because labour lines have hours and a rate, with no cost.
 
 !!! info "Work order amounts, not invoice amounts"
     The report uses the work order lines. Invoice discounts, GST and QST are not included, and the report does not check whether the work was invoiced or paid. For billed and paid amounts, use the **Customer Work Summary**, the **Customer Statement** or [Garage Invoices](garage-invoices.md).
@@ -205,8 +205,8 @@ The period in the subject and file name always uses the first and last day, also
 
 If the customer has no **Email**, the button is replaced by a greyed-out **No email on file** (*Add an email address to this customer first*). See [Garage Customers & Equipment](garage-customers-and-equipment.md).
 
-!!! info "Manual sends are not recorded"
-    The email is sent in the background. Sending a summary by hand does not change **Next send** or the delivery status, and it does not stop a scheduled summary due the same day.
+!!! info "Manual sends and the schedule are independent"
+    Sending a summary by hand does not change **Next send** or the delivery status, and a scheduled summary due the same day is still sent.
 
 ### :fontawesome-solid-clock: Automatic Summary Emails {#automatic-summary-emails}
 
@@ -231,18 +231,18 @@ Examples of the weekly period:
 | **Weekly on Sunday** | Sunday | Monday to Saturday of the same week |
 
 !!! tip "Use Weekly on Monday for full weeks"
-    Any other weekday sends a partial week (Monday up to the day before). Work completed between the send day and Sunday is not in the next weekly email either, because that one starts on the next Monday.
+    Any other weekday sends a partial week (Monday up to the day before the send day).
 
 When a schedule is active the box also shows:
 
 - **Next send:** the next date the summary is due. For a weekly schedule this is the next occurrence of that weekday (today if it is that weekday and nothing was sent today). For a monthly schedule it is the 1st or 15th of this month, or of next month once that day has passed or the summary was already sent on it.
-- The result of the last automatic run, in green or red:
+- The result of the last automatic send, in green or red:
 
 | Message | Meaning |
 |---------|---------|
 | *Summary delivered* | The email was sent |
 | *No work orders in period - skipped* | No completed or invoiced work orders in the period, so nothing was sent |
-| *(error type): (error message)* (red) | The email failed, for example because of a mail server error. It is not retried that day |
+| An error message (red) | The email could not be sent. It is not retried that day |
 
 ---
 
@@ -316,7 +316,7 @@ The email is sent immediately, so the result is known right away:
 | Nothing is outstanding | A greyed-out **Nothing to send** (*This customer has no outstanding invoices to send*). If you get there another way: *This customer has no outstanding invoices — nothing to send.* |
 
 !!! warning "A manual send replaces today's automatic send"
-    Sending a statement by hand records today as the sent date. If the same customer's automatic statement is due today, the job skips it, and **Next send** moves to the following scheduled date. This avoids the customer getting two statements on the same day.
+    Sending a statement by hand records today as the sent date. If the same customer's automatic statement is due today, it is skipped, and **Next send** moves to the following scheduled date. This avoids the customer getting two statements on the same day.
 
 ### :fontawesome-solid-flask: Send Test Email
 
@@ -347,23 +347,23 @@ When a schedule is active the box shows **Next send:** (calculated as for the wo
 |---------|---------|
 | *Statement delivered* | The statement was sent (automatically or with the email button) |
 | *No outstanding invoices - skipped* | Nothing was owed on the scheduled day, so nothing was sent |
-| *(error type): (error message)* (red) | The email failed. It is not retried that day |
+| An error message (red) | The email could not be sent. It is not retried that day |
 
 ---
 
-## :fontawesome-solid-gears: How the Automatic Jobs Run
+## :fontawesome-solid-gears: How Automatic Emails Are Sent
 
-Two background jobs send the scheduled emails: one for work summaries and one for statements. They run on a schedule managed by UTX, so don't count on a specific time of day. They do nothing when the Garage add-on is off.
+UTX Freight sends the scheduled emails automatically: work summaries and statements are sent separately. Sending times are managed by UTX, so don't count on a specific time of day. Nothing is sent when the Garage add-on is off.
 
-On each run, each job goes through the customers in the order they were created and sends to a customer only when:
+A scheduled email is sent to a customer only when:
 
 - the customer is **active**,
 - a **Frequency** other than **Disabled** is saved,
 - **Next send** is today,
-- the customer has an **Email** (customers without one are skipped silently, with no status message), and
+- the customer has an **Email** (customers without one are not sent anything and no status message is shown), and
 - nothing was already sent (or attempted) for that customer today.
 
-| | Work summary job | Statement job |
+| | Work summary | Statement |
 |---|------------------|---------------|
 | **Content** | Work orders completed in the period (see [the periods above](#automatic-summary-emails)) | Invoices outstanding today |
 | **Skipped when** | No work orders in the period: *No work orders in period - skipped* | Nothing outstanding: *No outstanding invoices - skipped* |
@@ -372,8 +372,8 @@ On each run, each job goes through the customers in the order they were created 
 
 Skips and errors also count as "done for today": the customer is not tried again until their next scheduled date.
 
-!!! warning "At most 20 emails per run"
-    Each job sends at most 20 emails per run, waiting 10 seconds between emails. Customers who were not reached stay due and are picked up if the job runs again the same day. If it does not, they miss that cycle and wait for their next scheduled date. Spread customers across different weekdays and the 1st and 15th to keep each day light.
+!!! tip "Spread your schedules"
+    Spread customers across different weekdays and the 1st and 15th to keep each day light.
 
 ---
 
@@ -407,7 +407,7 @@ Skips and errors also count as "done for today": the customer is not tried again
 ### :fontawesome-solid-clock-rotate-left: The scheduled statement did not go out today
 
 !!! info "Solution"
-    Check the message next to **Next send**. If someone emailed the statement by hand today, the automatic send is skipped on purpose. If the customer has no **Email**, or more than 20 customers were due that day, the statement may not have been sent: spread schedules over more days, or send it with the email button.
+    Check the message next to **Next send**. If someone emailed the statement by hand today, the automatic send is skipped on purpose. If the customer has no **Email**, nothing is sent: add one, then send the statement with the email button.
 
 ### :fontawesome-solid-scale-unbalanced: Revenue minus Parts Cost does not equal Profit
 
@@ -427,6 +427,6 @@ Skips and errors also count as "done for today": the customer is not tried again
     - Fill in each customer's **Email** and **Accountant Email** so summaries and statements reach both the customer and their bookkeeper.
     - Use **Send Test** before the first statement to a new customer, so you see exactly what they will receive.
     - Schedule weekly summaries on **Monday** so each email covers a full week.
-    - Spread automatic schedules across weekdays and the 1st and 15th, since each job sends at most 20 emails per run.
+    - Spread automatic schedules across weekdays and the 1st and 15th to keep each day light.
     - Check the delivery message next to **Next send** now and then to catch failed emails.
     - Mark invoices **Sent** (or email them) promptly: drafts never appear on statements.
