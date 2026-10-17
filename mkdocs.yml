@@ -51,24 +51,74 @@ nav:
   - Home: index.md
   - Getting Started:
     - freight/getting-started.md
-  - Features:
+    - freight/setup-checklist.md
+    - freight/navigation-and-account.md
+  - Orders & Dispatch:
     - freight/orders.md
-    - freight/dispatch.md
-    - freight/driver-workflow.md
-    - freight/managing-customers.md
-    - freight/managing-terminals.md
-    - freight/equipment.md
-    - freight/invoices.md
-    - freight/fuel-surcharge.md
-    - freight/container-tracking.md
-    - freight/order-tagging.md
+    - freight/order-form.md
+    - freight/order-workflow.md
+    - freight/order-charges-and-expenses.md
+    - freight/order-legs-and-move-locations.md
+    - freight/order-documents-and-pod.md
     - freight/order-duplication.md
+    - freight/order-tagging.md
+    - freight/auto-orders.md
+    - freight/dispatch.md
+  - Drivers & Equipment:
+    - freight/driver-workflow.md
+    - freight/mobile-users.md
+    - freight/driver-login-links.md
+    - freight/yard-management.md
+    - freight/equipment.md
+  - Customers & Master Data:
+    - freight/managing-customers.md
+    - freight/people-and-invitations.md
+    - freight/shippers-receivers.md
+    - freight/customer-portal.md
+    - freight/zones-and-cities.md
+    - freight/managing-terminals.md
+    - freight/container-statuses.md
+    - freight/lookup-lists.md
+  - Billing:
+    - freight/invoices.md
+    - freight/creating-invoices.md
+    - freight/invoice-email-and-payments.md
+    - freight/charge-types-and-taxes.md
+    - freight/expenses-and-checks.md
+    - freight/fuel-surcharge.md
+    - freight/customer-statements.md
     - freight/automatic-statements.md
+  - Reports:
     - freight/reports.md
     - freight/aged-receivables.md
+  - Container Tracking:
+    - freight/container-tracking.md
+    - freight/container-alerts.md
+    - freight/tracking-bulk-update.md
+  - Garage:
+    - freight/garage-overview.md
+    - freight/garage-work-orders.md
+    - freight/garage-invoices.md
+    - freight/garage-customers-and-equipment.md
+    - freight/garage-parts-and-templates.md
+    - freight/garage-settings-and-taxes.md
+    - freight/garage-reports.md
+  - Warehouse:
+    - freight/warehouse-overview.md
+    - freight/warehouse-orders.md
+    - freight/warehouse-setup.md
   - Settings:
     - freight/application-settings.md
     - freight/user-roles.md
+    - freight/multi-office.md
+    - freight/website-content.md
+  - Reference:
+    - freight/add-ons-and-options.md
+    - freight/data-exports.md
+    - freight/notifications-and-emails.md
+    - freight/glossary.md
+  - Integrations:
+    - freight/integrations.md
   - Changelog: freight/changelog.md
 
 extra:
